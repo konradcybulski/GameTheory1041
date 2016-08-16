@@ -6,15 +6,19 @@ Code written utilising pseudocode provided
  in 'Social norms of cooperation in small-scale
  societies' by Santos, Santos, Pacheco
 """
-import random
+import numpy as np
+from numba import jit, int8, int32, int64
+import threading
+import multiprocessing
+
 """
     Static Variables
 """
 #              B  G
-Strategies = [[0, 0], # AllD
-              [1, 0], # pDisc
-              [0, 1], # Disc
-              [1, 1]] # AllC
+Strategies = [[0, 0],  # AllD
+              [1, 0],  # pDisc
+              [0, 1],  # Disc
+              [1, 1]]  # AllC
 
 """
     Simulation Variables
@@ -40,11 +44,14 @@ socialnorm = [[1,0],[0,1]]  # matrix determining the reputation dynamic with
 cost = 1                    # cost defining the payoff matrix cost
 benefit = 5                 # benefit defined as the payoff matrix benefit
 
+
 def Rand():
-    return random.uniform(0.0, 1.0)
+    return np.random.random()
+
 
 def U(a, b):
-    return random.randint(a, b)
+    return np.random.randint(a, b+1)
+
 
 def ReputationFunction(socialnorm_matrix, action_x, rep_y):
     """
@@ -63,6 +70,8 @@ def ReputationFunction(socialnorm_matrix, action_x, rep_y):
     """
     return socialnorm_matrix[1 - action_x][1 - rep_y]
 
+
+@jit(int8(int8, int8), nopython=True, nogil=True)
 def FitnessFunction(x, y):
     """
     :param x: the index of agent-x in P
@@ -70,27 +79,29 @@ def FitnessFunction(x, y):
     :return: the fitness of x after
     """
     # Action of X:
+    XStrategy = Strategies[P[x]]
     if Rand() < Xerror:
-        if Rand() < epsilon and P[x][1 - D[y]]:
-            Cx = 1 - P[x][1 - D[y]]
+        if Rand() < epsilon and XStrategy[1 - D[y]]:
+            Cx = 1 - XStrategy[1 - D[y]]
         else:
-            Cx = P[x][1 - D[y]]
+            Cx = XStrategy[1 - D[y]]
     else:
-        if Rand() < epsilon and P[x][D[y]]:
-            Cx = 1 - P[x][D[y]]
+        if Rand() < epsilon and XStrategy[D[y]]:
+            Cx = 1 - XStrategy[D[y]]
         else:
-            Cx = P[x][D[y]]
+            Cx = XStrategy[D[y]]
     # Action of Y:
+    YStrategy = Strategies[P[y]]
     if Rand() < Xerror:
-        if Rand() < epsilon and P[y][1 - D[x]]:
-            Cy = 1 - P[y][1 - D[x]]
+        if Rand() < epsilon and YStrategy[1 - D[x]]:
+            Cy = 1 - YStrategy[1 - D[x]]
         else:
-            Cy = P[y][1 - D[x]]
+            Cy = YStrategy[1 - D[x]]
     else:
-        if Rand() < epsilon and P[y][D[x]]:
-            Cy = 1 - P[y][D[x]]
+        if Rand() < epsilon and YStrategy[D[x]]:
+            Cy = 1 - YStrategy[D[x]]
         else:
-            Cy = P[y][D[x]]
+            Cy = YStrategy[D[x]]
 
     # Update Reputation of X:
     if Rand() < tau:
@@ -107,12 +118,28 @@ def FitnessFunction(x, y):
 
     return (benefit * Cy) - (cost * Cx)
 
+@jit(void(int64, int64, int64), nopython=True, nogil=True)
+def InteractPopulation(a, b, iterations):
+    Fa = 0
+    Fb = 0
+    for i in range(0, iterations):
+        c = U(0, Z-1)
+        while c == a:
+            c = U(0, Z-1)
+        # Update Fitness of A and Reputation of A & C
+        Fa += FitnessFunction(a, c)
+
+        c = U(0, Z-1)
+        while c == b:
+            c = U(0, Z-1)
+
+        # Update Fitness of B and Reputation of B & C
+        Fb += FitnessFunction(b, c)
+    pass
+
+
 def Simulate():
     for r in range(0, Runs):
-        # Initialise random population
-        for k in range(0, Z):
-            P[k] = Strategies[U(0, 3)]
-            D[k] = U(0, 1)
         for t in range(0, Generations):
             a = U(0, Z-1)
             # Random mutation probability
@@ -126,6 +153,18 @@ def Simulate():
             Fa = 0
             Fb = 0
             for i in range(0, 2*Z):
+
+                #### Multiprocessing
+                mp_num = multiprocessing.cpu_count()
+                chunk_N = 2*Z / mp_num
+                chunks = [i * chunk_N for i in range(mp_num)]
+                threads = [threading.Thread(target=InteractPopulation, args=(a, b, chunk_N)) for chunk in chunks]
+                for thread in threads:
+                    thread.start()
+                for thread in threads:
+                    thread.join()
+                ##### Multiprocessing
+                """
                 c = U(0, Z-1)
                 while c == a:
                     c = U(0, Z-1)
@@ -137,45 +176,48 @@ def Simulate():
                     c = U(0, Z-1)
                 # Update Fitness of B and Reputation of B & C
                 Fb += FitnessFunction(b, c)
+                """
             Fa /= (2*Z)
             Fb /= (2*Z)
-            if Rand() < (1 +
-
-
-
-
+            if Rand() < np.power(1 + np.exp(Fa-Fb),-1):
+                P[a] = P[b]
 
 def RunInstance(NumRuns, NumGenerations, PopulationSize, MutationRate,
                  ExecutionError, ReputationAssignmentError,
                  PrivateAssessmentError, ReputationUpdateProbability,
                  RandomSeed, SocialNormMatrix, CostValue, BenefitValue):
+    global Runs
+    global Generations
+    global Z
+    global P
+    global D
+    global mu
+    global epsilon
+    global alpha
+    global Xerror
+    global tau
+    global randomseed
+    global socialnorm
+    global cost
+    global benefit
     Runs = NumRuns
     Generations = NumGenerations
     Z = PopulationSize
-    P = [0]*Z ########## ADAPT FOR NUMPY
-    D = [0]*Z ########## ADAPT FOR NUMPY
+
+    # Initialise random population
+    P = np.random.randint(4, Z)  # equivalent to U(0, 3)
+    D = np.random.randint(2, Z)  # equivalent to U(0, 1)
+
     mu = MutationRate
     epsilon = ExecutionError
     alpha = ReputationAssignmentError
     Xerror = PrivateAssessmentError
     tau = ReputationUpdateProbability
     randomseed = RandomSeed
-    random.seed(randomseed)
+    np.random.seed(randomseed)
     socialnorm = SocialNormMatrix
     cost = CostValue
     benefit = BenefitValue
     Simulate()
-
-
-
-
-
-
-
-
-
-
-
-
 
 
