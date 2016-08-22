@@ -21,15 +21,15 @@ Strategies = [[0, 0],  # AllD
 """
     Simulation Variables
 """
-# Runs = 0                    # number of runs
-# Generations = 0             # number of generations
+# runs = 0                    # number of runs
+# generations = 0             # number of generations
 # Z = 0                       # population size
-# P = []                      # vector of all individual strategies
-#                                 # P[k] : strategy of individual k
-#                                 # P[k] = [0,0], [1,0], [0,1] or [1,1]
-# D = []                      # vector of all individual public reputations
-#                                 # D[k] : public reputation of individual k
-#                                 # D[k] = 0 or 1
+# population = []                      # vector of all individual strategies
+#                                 # population[k] : strategy of individual k
+#                                 # population[k] = [0,0], [1,0], [0,1] or [1,1]
+# reputation = []                      # vector of all individual public reputations
+#                                 # reputation[k] : public reputation of individual k
+#                                 # reputation[k] = 0 or 1
 # mu = 0                      # mutation probability
 # epsilon = 0                 # execution error probability
 # alpha = 0                   # reputation assignment error probability
@@ -74,8 +74,8 @@ def ReputationFunction(socialnorm_matrix, action_x, rep_y):
           int8, int8, float32, float32, float32, float32), nogil=True)
 def FitnessFunction(x, y, P, D, Strategies, CoopList, socialnorm, cost, benefit, Xerror, epsilon, tau, alpha):
     # """
-    # :param x: the index of agent-x in P
-    # :param y: the index of agent-y in P
+    # :param x: the index of agent-x in population
+    # :param y: the index of agent-y in population
     # :return: the fitness of x after
     # """
     # Action of X:
@@ -106,15 +106,15 @@ def FitnessFunction(x, y, P, D, Strategies, CoopList, socialnorm, cost, benefit,
     # Update Reputation of X:
     if np.random.rand() < tau:
         if np.random.rand() < alpha:
-            D[x] = 1 - socialnorm[1 - Cx, 1 - D[y]]#ReputationFunction(socialnorm, Cx, D[y])
+            D[x] = 1 - socialnorm[1 - Cx, 1 - D[y]]#ReputationFunction(socialnorm, Cx, reputation[y])
         else:
-            D[x] = socialnorm[1 - Cx, 1 - D[y]]#ReputationFunction(socialnorm, Cx, D[y])
+            D[x] = socialnorm[1 - Cx, 1 - D[y]]#ReputationFunction(socialnorm, Cx, reputation[y])
     # Update Reputation of Y:
     if np.random.rand() < tau:
         if np.random.rand() < alpha:
-            D[y] = 1 - socialnorm[1 - Cy, 1 - D[x]]#ReputationFunction(socialnorm, Cy, D[x])
+            D[y] = 1 - socialnorm[1 - Cy, 1 - D[x]]#ReputationFunction(socialnorm, Cy, reputation[x])
         else:
-            D[y] = socialnorm[1 - Cy, 1 - D[x]]#ReputationFunction(socialnorm, Cy, D[x])
+            D[y] = socialnorm[1 - Cy, 1 - D[x]]#ReputationFunction(socialnorm, Cy, reputation[x])
     ### Track cooperation
     CoopList[0] += 2
     CoopList[1] += 1 if Cx == 1 else 0
@@ -178,11 +178,11 @@ def RunInstance(NumRuns, NumGenerations, PopulationSize, MutationRate,
                  ExecutionError, ReputationAssignmentError,
                  PrivateAssessmentError, ReputationUpdateProbability,
                  RandomSeed, SocialNormMatrix, CostValue, BenefitValue):
-    # global Runs
-    # global Generations
+    # global runs
+    # global generations
     # global Z
-    # global P
-    # global D
+    # global population
+    # global reputation
     # global mu
     # global epsilon
     # global alpha

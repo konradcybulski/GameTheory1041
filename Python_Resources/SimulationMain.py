@@ -7,21 +7,35 @@ import numpy as np
 import SimulationInstance
 import SimulationInstanceOptimized
 
+# STERN JUDGING
 SJ = [[1, 0],
       [0, 1]]
+
+# SIMPLE STANDING
 SS = [[1, 1],
       [0, 1]]
+
+# SHUNNING
 SH = [[1, 0],
       [0, 0]]
+
+# IMAGE SCORING
 IS = [[1, 1],
       [0, 0]]
 
 
-def SantosSantosPacheco(Z=50):
-    Runs = 1
-    Generations = 3*np.power(10,5)
+def santos_santos_pacheco(Z=50):
+    """
+    This class does everything
+    :param Z: population size
+    :return:
+    """
+
+    runs = 1
+    generations = 3*np.power(10,5)
 
     mu = np.power(10*Z, -1)
+
     epsilon = 0.08
     alpha = 0.01
     Xerror = 0.01
@@ -30,12 +44,14 @@ def SantosSantosPacheco(Z=50):
     socialnorm = SJ
     cost = 1
     benefit = 5
-    SimulationInstance.RunInstance(Runs, Generations, Z,
+
+    SimulationInstance.RunInstance(runs, generations, Z,
                                    mu, epsilon, alpha, Xerror,
                                    tau, randomseed, socialnorm,
                                    cost, benefit)
 
-def SantosSantosPachecoOptimized(Z=50):
+
+def santos_santos_pacheco_optimized(Z=50):
     Runs = 1
     Generations = 3*np.power(10,5)
 
@@ -54,5 +70,5 @@ def SantosSantosPachecoOptimized(Z=50):
                                    cost, benefit)
 
 if __name__ == '__main__':
-    # SantosSantosPacheco()
-    SantosSantosPachecoOptimized()
+    # santos_santos_pacheco()
+    santos_santos_pacheco_optimized()
