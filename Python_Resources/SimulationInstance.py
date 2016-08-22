@@ -7,18 +7,14 @@ Code written utilising pseudocode provided
  societies' by Santos, Santos, Pacheco
 """
 import numpy as np
-from numba import jit, int8, int32, int64
-import multiprocessing
-import threading
-from multiprocessing import Process, Pool
 import time
-import sys
-import queue
+
 """
     Static Variables
 """
+
 #              B  G
-Strategies = [[0, 0],  # AllD
+strategies = [[0, 0],  # AllD
               [1, 0],  # pDisc
               [0, 1],  # Disc
               [1, 1]]  # AllC
@@ -26,37 +22,38 @@ Strategies = [[0, 0],  # AllD
 """
     Simulation Variables
 """
-Runs = 0                    # number of runs
-Generations = 0             # number of generations
-Z = 0                       # population size
-P = []                      # vector of all individual strategies
-                                # P[k] : strategy of individual k
-                                # P[k] = [0,0], [1,0], [0,1] or [1,1]
-D = []                      # vector of all individual public reputations
-                                # D[k] : public reputation of individual k
-                                # D[k] = 0 or 1
-mu = 0                      # mutation probability
-epsilon = 0                 # execution error probability
-alpha = 0                   # reputation assignment error probability
-Xerror = 0                       # private assessment error probability
-tau = 0                     # reputation update probability
-randomseed = 0              # seed used to generate randomness
-socialnorm = [[1,0],[0,1]]  # matrix determining the reputation dynamic with
-                                # regard to the action taken and the reputation
-                                # of the other agent
-cost = 1                    # cost defining the payoff matrix cost
-benefit = 5                 # benefit defined as the payoff matrix benefit
+runs = 0  # number of runs
+generations = 0  # number of generations
+Z = 0  # population size
+population = []  # vector of all individual strategies
+# population[k] : strategy of individual k
+# population[k] = [0,0], [1,0], [0,1] or [1,1]
+reputation = []  # vector of all individual public reputations
+# reputation[k] : public reputation of individual k
+# reputation[k] = 0 or 1
+mu = 0  # mutation probability
+epsilon = 0  # execution error probability
+alpha = 0  # reputation assignment error probability
+Xerror = 0  # private assessment error probability
+tau = 0  # reputation update probability
+randomseed = 0  # seed used to generate randomness
+socialnorm = [[1, 0], [0, 1]]  # matrix determining the reputation dynamic with
+# regard to the action taken and the reputation
+# of the other agent
+cost = 1  # cost defining the payoff matrix cost
+benefit = 5  # benefit defined as the payoff matrix benefit
 
 ### Tracking Variables
 CooperationCount = 0
 InteractionCount = 0
+
 
 def Rand():
     return np.random.random()
 
 
 def U(a, b):
-    return np.random.randint(a, b+1)
+    return np.random.randint(a, b + 1)
 
 
 def ReputationFunction(socialnorm_matrix, action_x, rep_y):
@@ -79,47 +76,47 @@ def ReputationFunction(socialnorm_matrix, action_x, rep_y):
 
 def FitnessFunction(x, y):
     """
-    :param x: the index of agent-x in P
-    :param y: the index of agent-y in P
+    :param x: the index of agent-x in population
+    :param y: the index of agent-y in population
     :return: the fitness of x after
     """
     # Action of X:
-    XStrategy = Strategies[P[x]]
+    XStrategy = strategies[population[x]]
     if Rand() < Xerror:
-        if Rand() < epsilon and XStrategy[1 - D[y]]:
-            Cx = 1 - XStrategy[1 - D[y]]
+        if Rand() < epsilon and XStrategy[1 - reputation[y]]:
+            Cx = 1 - XStrategy[1 - reputation[y]]
         else:
-            Cx = XStrategy[1 - D[y]]
+            Cx = XStrategy[1 - reputation[y]]
     else:
-        if Rand() < epsilon and XStrategy[D[y]]:
-            Cx = 1 - XStrategy[D[y]]
+        if Rand() < epsilon and XStrategy[reputation[y]]:
+            Cx = 1 - XStrategy[reputation[y]]
         else:
-            Cx = XStrategy[D[y]]
+            Cx = XStrategy[reputation[y]]
     # Action of Y:
-    YStrategy = Strategies[P[y]]
+    YStrategy = strategies[population[y]]
     if Rand() < Xerror:
-        if Rand() < epsilon and YStrategy[1 - D[x]]:
-            Cy = 1 - YStrategy[1 - D[x]]
+        if Rand() < epsilon and YStrategy[1 - reputation[x]]:
+            Cy = 1 - YStrategy[1 - reputation[x]]
         else:
-            Cy = YStrategy[1 - D[x]]
+            Cy = YStrategy[1 - reputation[x]]
     else:
-        if Rand() < epsilon and YStrategy[D[x]]:
-            Cy = 1 - YStrategy[D[x]]
+        if Rand() < epsilon and YStrategy[reputation[x]]:
+            Cy = 1 - YStrategy[reputation[x]]
         else:
-            Cy = YStrategy[D[x]]
+            Cy = YStrategy[reputation[x]]
 
     # Update Reputation of X:
     if Rand() < tau:
         if Rand() < alpha:
-            D[x] = 1 - ReputationFunction(socialnorm, Cx, D[y])
+            reputation[x] = 1 - ReputationFunction(socialnorm, Cx, reputation[y])
         else:
-            D[x] = ReputationFunction(socialnorm, Cx, D[y])
+            reputation[x] = ReputationFunction(socialnorm, Cx, reputation[y])
     # Update Reputation of Y:
     if Rand() < tau:
         if Rand() < alpha:
-            D[y] = 1 - ReputationFunction(socialnorm, Cy, D[x])
+            reputation[y] = 1 - ReputationFunction(socialnorm, Cy, reputation[x])
         else:
-            D[y] = ReputationFunction(socialnorm, Cy, D[x])
+            reputation[y] = ReputationFunction(socialnorm, Cy, reputation[x])
     ### Track cooperation
     global InteractionCount
     global CooperationCount
@@ -130,60 +127,63 @@ def FitnessFunction(x, y):
 
 
 def Simulate():
-    for r in range(0, Runs):
+    for r in range(0, runs):
 
         # Initialise random population
-        global P
-        global D
-        P = np.random.randint(4, size=Z)  # equivalent to U(0, 3)
-        D = np.random.randint(2, size=Z)  # equivalent to U(0, 1)
+        global population
+        global reputation
+        population = np.random.randint(4, size=Z)  # equivalent to U(0, 3)
+        reputation = np.random.randint(2, size=Z)  # equivalent to U(0, 1)
 
-        for t in range(0, Generations):
+        for t in range(0, generations):
             # Update progress
-            if t % (Generations//100) == 0:
-                progress = (float((t+1)*100)/float(Generations))
+            if t % (generations // 100) == 0:
+                progress = (float((t + 1) * 100) / float(generations))
                 print("Simulation progress: %d%%     \r" % progress)
-            #sys.stdout.flush()
-            #sys.stdout.write("Simulation progress: %d%%     \r" % ((t+1)*100/Generations))
+            # sys.stdout.flush()
+            # sys.stdout.write("Simulation progress: %d%%     \r" % ((t+1)*100/generations))
 
-            a = U(0, Z-1)
+            index_to_mutate = U(0, Z - 1)
+
             # Random mutation probability
             if Rand() < mu:
-                P[a] = Strategies[U(0, 3)]
+                population[index_to_mutate] = strategies[U(0, 3)]
+
             # Make sure B != A
-            b = U(0, Z-1)
-            while b == a:
-                b = U(0, Z-1)
+            b = U(0, Z - 1)
+            while b == index_to_mutate:
+                b = U(0, Z - 1)
 
             Fa = 0
             Fb = 0
-            for i in range(0, 2*Z):
-                c = U(0, Z-1)
-                while c == a:
-                    c = U(0, Z-1)
+            for i in range(0, 2 * Z):
+                c = U(0, Z - 1)
+                while c == index_to_mutate:
+                    c = U(0, Z - 1)
                 # Update Fitness of A and Reputation of A & C
-                Fa += FitnessFunction(a, c)
+                Fa += FitnessFunction(index_to_mutate, c)
 
-                c = U(0, Z-1)
+                c = U(0, Z - 1)
                 while c == b:
-                    c = U(0, Z-1)
+                    c = U(0, Z - 1)
                 # Update Fitness of B and Reputation of B & C
                 Fb += FitnessFunction(b, c)
-            Fa /= (2*Z)
-            Fb /= (2*Z)
-            if Rand() < np.power(1 + np.exp(Fa-Fb),-1):
-                P[a] = P[b]
-    print("Cooperation index: " + str(float(CooperationCount)/float(InteractionCount)))
+            Fa /= (2 * Z)
+            Fb /= (2 * Z)
+            if Rand() < np.power(1 + np.exp(Fa - Fb), -1):
+                population[index_to_mutate] = population[b]
+    print("Cooperation index: " + str(float(CooperationCount) / float(InteractionCount)))
+
 
 def RunInstance(NumRuns, NumGenerations, PopulationSize, MutationRate,
-                 ExecutionError, ReputationAssignmentError,
-                 PrivateAssessmentError, ReputationUpdateProbability,
-                 RandomSeed, SocialNormMatrix, CostValue, BenefitValue):
-    global Runs
-    global Generations
+                ExecutionError, ReputationAssignmentError,
+                PrivateAssessmentError, ReputationUpdateProbability,
+                RandomSeed, SocialNormMatrix, CostValue, BenefitValue):
+    global runs
+    global generations
     global Z
-    global P
-    global D
+    global population
+    global reputation
     global mu
     global epsilon
     global alpha
@@ -193,8 +193,8 @@ def RunInstance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     global socialnorm
     global cost
     global benefit
-    Runs = NumRuns
-    Generations = NumGenerations
+    runs = NumRuns
+    generations = NumGenerations
     Z = PopulationSize
 
     mu = MutationRate
