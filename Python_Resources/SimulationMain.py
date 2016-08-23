@@ -5,7 +5,7 @@
 """
 import numpy as np
 import SimulationInstance
-import SimulationInstanceOptimized
+import SimulationInstanceVectorized
 
 # STERN JUDGING
 SJ = [[1, 0],
@@ -32,43 +32,45 @@ def santos_santos_pacheco(Z=50):
     """
 
     runs = 1
-    generations = 3*np.power(10,5)
+    generations = 3*np.power(10,3)
 
-    mu = np.power(10*Z, -1)
+    mutation_rate = np.power(10*Z, -1)
 
-    epsilon = 0.08
-    alpha = 0.01
-    Xerror = 0.01
-    tau = 0.2
+    execution_error = 0.08
+    reputation_assignment_error = 0.01
+    private_assessment_error = 0.01
+    reputation_update_probability = 0.2
     randomseed = 1
     socialnorm = SJ
     cost = 1
     benefit = 5
 
     SimulationInstance.RunInstance(runs, generations, Z,
-                                   mu, epsilon, alpha, Xerror,
-                                   tau, randomseed, socialnorm,
+                                   mutation_rate, execution_error, reputation_assignment_error, private_assessment_error,
+                                   reputation_update_probability, randomseed, socialnorm,
                                    cost, benefit)
 
 
 def santos_santos_pacheco_optimized(Z=50):
-    Runs = 1
-    Generations = 3*np.power(10,5)
+    runs = 1
+    generations = 3*np.power(10,3)
 
-    mu = np.power(10*Z, -1)
-    epsilon = 0.08
-    alpha = 0.01
-    Xerror = 0.01
-    tau = 0.2
+    mutation_rate = np.power(10*Z, -1)
+
+    execution_error = 0.08
+    reputation_assignment_error = 0.01
+    private_assessment_error = 0.01
+    reputation_update_probability = 0.2
     randomseed = 1
     socialnorm = SJ
     cost = 1
     benefit = 5
-    SimulationInstanceOptimized.RunInstance(Runs, Generations, Z,
-                                   mu, epsilon, alpha, Xerror,
-                                   tau, randomseed, socialnorm,
-                                   cost, benefit)
+    SimulationInstanceVectorized.RunInstance(runs, generations, Z,
+                                             mutation_rate, execution_error, reputation_assignment_error,
+                                             private_assessment_error, reputation_update_probability,
+                                             randomseed, socialnorm,
+                                             cost, benefit)
 
 if __name__ == '__main__':
-    # santos_santos_pacheco()
+    santos_santos_pacheco()
     santos_santos_pacheco_optimized()
