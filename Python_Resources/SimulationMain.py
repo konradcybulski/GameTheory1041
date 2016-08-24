@@ -45,10 +45,10 @@ def santos_santos_pacheco(Z=50):
     cost = 1
     benefit = 5
 
-    SimulationInstance.RunInstance(runs, generations, Z,
-                                   mutation_rate, execution_error, reputation_assignment_error, private_assessment_error,
-                                   reputation_update_probability, randomseed, socialnorm,
-                                   cost, benefit)
+    SimulationInstance.run_instance(runs, generations, Z,
+                                    mutation_rate, execution_error, reputation_assignment_error, private_assessment_error,
+                                    reputation_update_probability, randomseed, socialnorm,
+                                    cost, benefit)
 
 
 def santos_santos_pacheco_optimized(Z=50):
@@ -65,11 +65,11 @@ def santos_santos_pacheco_optimized(Z=50):
     socialnorm = SJ
     cost = 1
     benefit = 5
-    SimulationInstanceVectorized.RunInstance(runs, generations, Z,
-                                             mutation_rate, execution_error, reputation_assignment_error,
-                                             private_assessment_error, reputation_update_probability,
-                                             randomseed, socialnorm,
-                                             cost, benefit)
+    SimulationInstanceVectorized.run_instance(runs, generations, Z,
+                                              mutation_rate, execution_error, reputation_assignment_error,
+                                              private_assessment_error, reputation_update_probability,
+                                              randomseed, socialnorm,
+                                              cost, benefit)
 
 if __name__ == '__main__':
     santos_santos_pacheco()

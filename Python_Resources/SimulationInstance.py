@@ -44,63 +44,63 @@ cost = 1  # cost defining the payoff matrix cost
 benefit = 5  # benefit defined as the payoff matrix benefit
 
 ### Tracking Variables
-CooperationCount = 0
-InteractionCount = 0
+cooperation_count = 0
+interaction_count = 0
 
 
-def FitnessFunction(x, y):
+def fitness_function(x, y):
     """
     :param x: the index of agent-x in population
     :param y: the index of agent-y in population
     :return: the fitness of x after
     """
     # Action of X:
-    XStrategy = strategies[population[x]]
+    xstrategy = strategies[population[x]]
     if np.random.random() < assessment_error:
-        if np.random.random() < execution_error and XStrategy[1 - reputation[y]]:
-            Cx = 1 - XStrategy[1 - reputation[y]]
+        if np.random.random() < execution_error and xstrategy[1 - reputation[y]]:
+            cx = 1 - xstrategy[1 - reputation[y]]
         else:
-            Cx = XStrategy[1 - reputation[y]]
+            cx = xstrategy[1 - reputation[y]]
     else:
-        if np.random.random() < execution_error and XStrategy[reputation[y]]:
-            Cx = 1 - XStrategy[reputation[y]]
+        if np.random.random() < execution_error and xstrategy[reputation[y]]:
+            cx = 1 - xstrategy[reputation[y]]
         else:
-            Cx = XStrategy[reputation[y]]
+            cx = xstrategy[reputation[y]]
     # Action of Y:
-    YStrategy = strategies[population[y]]
+    ystrategy = strategies[population[y]]
     if np.random.random() < assessment_error:
-        if np.random.random() < execution_error and YStrategy[1 - reputation[x]]:
-            Cy = 1 - YStrategy[1 - reputation[x]]
+        if np.random.random() < execution_error and ystrategy[1 - reputation[x]]:
+            cy = 1 - ystrategy[1 - reputation[x]]
         else:
-            Cy = YStrategy[1 - reputation[x]]
+            cy = ystrategy[1 - reputation[x]]
     else:
-        if np.random.random() < execution_error and YStrategy[reputation[x]]:
-            Cy = 1 - YStrategy[reputation[x]]
+        if np.random.random() < execution_error and ystrategy[reputation[x]]:
+            cy = 1 - ystrategy[reputation[x]]
         else:
-            Cy = YStrategy[reputation[x]]
+            cy = ystrategy[reputation[x]]
 
     # Update Reputation of X:
     if np.random.random() < reputation_update_rate:
         if np.random.random() < reputation_assignment_error:
-            reputation[x] = 1 - socialnorm[1 - Cx][1 - reputation[y]]  #ReputationFunction(socialnorm, Cx, reputation[y])
+            reputation[x] = 1 - socialnorm[1 - cx][1 - reputation[y]]
         else:
-            reputation[x] = socialnorm[1 - Cx][1 - reputation[y]]  #ReputationFunction(socialnorm, Cx, reputation[y])
+            reputation[x] = socialnorm[1 - cx][1 - reputation[y]]
     # Update Reputation of Y:
     if np.random.random() < reputation_update_rate:
         if np.random.random() < reputation_assignment_error:
-            reputation[y] = 1 - socialnorm[1 - Cy][1 - reputation[x]]  #ReputationFunction(socialnorm, Cy, reputation[x])
+            reputation[y] = 1 - socialnorm[1 - cy][1 - reputation[x]]
         else:
-            reputation[y] = socialnorm[1 - Cy][1 - reputation[x]]  #ReputationFunction(socialnorm, Cy, reputation[x])
-    ### Track cooperation
-    global InteractionCount
-    global CooperationCount
-    InteractionCount += 2
-    CooperationCount += 1 if Cx == 1 else 0
-    CooperationCount += 1 if Cy == 1 else 0
-    return (benefit * Cy) - (cost * Cx)
+            reputation[y] = socialnorm[1 - cy][1 - reputation[x]]
+    # Track cooperation
+    global interaction_count
+    global cooperation_count
+    interaction_count += 2
+    cooperation_count += 1 if cx == 1 else 0
+    cooperation_count += 1 if cy == 1 else 0
+    return (benefit * cy) - (cost * cx)
 
 
-def Simulate():
+def simulate():
     for r in range(0, runs):
 
         # Initialise random population
@@ -126,31 +126,31 @@ def Simulate():
             while b == index_to_mutate:
                 b = np.random.randint(population_size)
 
-            Fa = 0
-            Fb = 0
+            fitness_a = 0
+            fitness_b = 0
             for i in range(0, 2 * population_size):
                 c = np.random.randint(population_size)
                 while c == index_to_mutate:
                     c = np.random.randint(population_size)
                 # Update Fitness of A and Reputation of A & C
-                Fa += FitnessFunction(index_to_mutate, c)
+                fitness_a += fitness_function(index_to_mutate, c)
 
                 c = np.random.randint(population_size)
                 while c == b:
                     c = np.random.randint(population_size)
                 # Update Fitness of B and Reputation of B & C
-                Fb += FitnessFunction(b, c)
-            Fa /= (2 * population_size)
-            Fb /= (2 * population_size)
-            if np.random.random() < np.power(1 + np.exp(Fa - Fb), -1):
+                fitness_b += fitness_function(b, c)
+            fitness_a /= (2 * population_size)
+            fitness_b /= (2 * population_size)
+            if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
                 population[index_to_mutate] = population[b]
-    print("Cooperation index: " + str(float(CooperationCount) / float(InteractionCount)))
+    print("Cooperation index: " + str(float(cooperation_count) / float(interaction_count)))
 
 
-def RunInstance(NumRuns, NumGenerations, PopulationSize, MutationRate,
-                ExecutionError, ReputationAssignmentError,
-                PrivateAssessmentError, ReputationUpdateProbability,
-                RandomSeed, SocialNormMatrix, CostValue, BenefitValue):
+def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
+                 ExecutionError, ReputationAssignmentError,
+                 PrivateAssessmentError, ReputationUpdateProbability,
+                 RandomSeed, SocialNormMatrix, CostValue, BenefitValue):
     global runs
     global generations
     global population_size
@@ -181,14 +181,14 @@ def RunInstance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     benefit = BenefitValue
 
     ### Reset tracking variables
-    global CooperationCount
-    global InteractionCount
+    global cooperation_count
+    global interaction_count
     CooperationCount = 0
     InteractionCount = 0
 
     start = time.clock()
     print("Simulation beginning...")
 
-    Simulate()
+    simulate()
     end = time.clock()
     print("Simulation completed in " + str(end - start))
