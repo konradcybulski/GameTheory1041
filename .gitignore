@@ -330,3 +330,6 @@ ENV/
 .ipynb_checkpoints
 
 
+/python/.idea/.name
+/python/.idea/encodings.xml
+/python/.idea/modules.xml
