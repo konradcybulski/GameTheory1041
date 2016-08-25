@@ -215,7 +215,7 @@ void SimInstance::RunInstanceParallel(int Z){
 
 			int Fa = 0;
 			int Fb = 0;
-			int chunksize = Z / num_threads;
+			int chunksize = 2*Z / num_threads;
 
 			
 			vector<future<vector<int>>> futures(num_threads);

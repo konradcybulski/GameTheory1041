@@ -111,16 +111,16 @@ def fitness_function(x, y_array):
     """
     cy = np.multiply(reputation_x_vector, pactiongood) + np.multiply((1 - reputation_x_vector), pactionbad)
     # Adjust for assessment error
-    elements_to_change_assessment_error = np.int(arr_len * assessment_error)
-    mask_assessment_error = np.random.randint(arr_len, size=elements_to_change_assessment_error)
-    cy[mask_assessment_error] = np.multiply(pactiongood[mask_assessment_error],
-                                            (1 - reputation_x_vector[mask_assessment_error])) +\
-                                np.multiply(pactionbad[mask_assessment_error],
-                                            reputation_x_vector[mask_assessment_error])
-    # Adjust for execution error
-    elements_to_change_execution_error = np.int(arr_len * execution_error)
-    mask_execution_error = np.random.randint(arr_len, size=elements_to_change_execution_error)
-    cy[mask_execution_error] = 0
+    # elements_to_change_assessment_error = np.int(arr_len * assessment_error)
+    # mask_assessment_error = np.random.randint(arr_len, size=elements_to_change_assessment_error)
+    # cy[mask_assessment_error] = np.multiply(pactiongood[mask_assessment_error],
+    #                                         (1 - reputation_x_vector[mask_assessment_error])) +\
+    #                             np.multiply(pactionbad[mask_assessment_error],
+    #                                         reputation_x_vector[mask_assessment_error])
+    # # Adjust for execution error
+    # elements_to_change_execution_error = np.int(arr_len * execution_error)
+    # mask_execution_error = np.random.randint(arr_len, size=elements_to_change_execution_error)
+    # cy[mask_execution_error] = 0
 
     """
         Update Reputation of Y with errors
@@ -135,14 +135,15 @@ def fitness_function(x, y_array):
     mask_reputation_assignment_error = np.random.randint(
         arr_len, size=elements_to_change_reputation_assignment_error)
     reputation_y_vector[mask_reputation_assignment_error] = 1 - reputation_y_vector[mask_reputation_assignment_error]
+    reputation[y_array] = reputation_y_vector
 
     # Track cooperation
-    # global interaction_count
-    # global cooperation_count
+    global interaction_count
+    global cooperation_count
     coops_y = np.sum(cy)
     coops_x = np.sum(cx)
-    # interaction_count += 2 * arr_len
-    # cooperation_count += coops_y + coops_x
+    interaction_count += 2 * arr_len
+    cooperation_count += coops_y + coops_x
 
     return (benefit * coops_y) - (cost * coops_x)
 
@@ -182,7 +183,7 @@ def simulate():
             fitness_b /= (2 * population_size)
             if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
                 population[agent_one] = population[agent_two]
-    # print("Cooperation index: " + str(float(cooperation_count) / float(interaction_count)))
+    print("Cooperation index: " + str(float(cooperation_count) / float(interaction_count)))
 
 
 def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,

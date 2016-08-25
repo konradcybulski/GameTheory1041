@@ -72,5 +72,5 @@ def santos_santos_pacheco_optimized(Z=50):
                                               cost, benefit)
 
 if __name__ == '__main__':
-    santos_santos_pacheco()
+    # santos_santos_pacheco()
     santos_santos_pacheco_optimized()

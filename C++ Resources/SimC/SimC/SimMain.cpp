@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
 
 void SantosSantosPacheco(int Z){
     int Runs = 1;
-    int Generations = 3 * powf(10, 4);
+    int Generations = 3 * powf(10, 3);
 
     float mu = powf(10*Z, -1);
     float epsilon = 0.08;
@@ -59,7 +59,7 @@ void SantosSantosPacheco(int Z){
             cost,
             benefit);
 	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-	//instance.RunInstance(Z);
+	instance.RunInstance(Z);
 	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 	auto duration1 = std::chrono::duration_cast<std::chrono::seconds>(t2 - t1).count();
 
