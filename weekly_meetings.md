@@ -1,0 +1,2 @@
+
+Week 3The leading eight (JTV) – paperReview by Martin Nowak – Indirect ReciprocityReplication – replace recreate with  Steps:ReplicationSpeedOptimisationClarification of Santos et al. Assumptions made:The game, many rounds, competition, errorsProcess, imitation process with small mutationResults:Mathematical predictionSimulation resultsLook at models:NumbaMonash Campus ClusterCythonC (perhaps)How to measure things:How accurate is the simulation to results in the paperMeasuring speed up##Information Delay Paper Research
