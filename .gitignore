@@ -326,3 +326,5 @@ ENV/
 /Python_Resources/.idea/Python_Resources.iml
 /Python_Resources/.idea/misc.xml
 /Python_Resources/.idea/workspace.xml
+
+.ipynb_checkpoints
