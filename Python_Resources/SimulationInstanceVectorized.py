@@ -111,16 +111,16 @@ def fitness_function(x, y_array):
     """
     cy = np.multiply(reputation_x_vector, pactiongood) + np.multiply((1 - reputation_x_vector), pactionbad)
     # Adjust for assessment error
-    # elements_to_change_assessment_error = np.int(arr_len * assessment_error)
-    # mask_assessment_error = np.random.randint(arr_len, size=elements_to_change_assessment_error)
-    # cy[mask_assessment_error] = np.multiply(pactiongood[mask_assessment_error],
-    #                                         (1 - reputation_x_vector[mask_assessment_error])) +\
-    #                             np.multiply(pactionbad[mask_assessment_error],
-    #                                         reputation_x_vector[mask_assessment_error])
+    elements_to_change_assessment_error = np.int(arr_len * assessment_error)
+    mask_assessment_error = np.random.randint(arr_len, size=elements_to_change_assessment_error)
+    cy[mask_assessment_error] = np.multiply(pactiongood[mask_assessment_error],
+                                            (1 - reputation_x_vector[mask_assessment_error])) +\
+                                np.multiply(pactionbad[mask_assessment_error],
+                                            reputation_x_vector[mask_assessment_error])
     # # Adjust for execution error
-    # elements_to_change_execution_error = np.int(arr_len * execution_error)
-    # mask_execution_error = np.random.randint(arr_len, size=elements_to_change_execution_error)
-    # cy[mask_execution_error] = 0
+    elements_to_change_execution_error = np.int(arr_len * execution_error)
+    mask_execution_error = np.random.randint(arr_len, size=elements_to_change_execution_error)
+    cy[mask_execution_error] = 0
 
     """
         Update Reputation of Y with errors
@@ -159,9 +159,9 @@ def simulate():
 
         for t in range(0, generations):
             # Update progress
-            if t % (generations // 10) == 0:
-                progress = (float((t + 1) * 100) / float(generations))
-                print("Simulation progress: %d%%     \r" % progress)
+            # if t % (generations // 10) == 0:
+            #     progress = (float((t + 1) * 100) / float(generations))
+            #     print("Simulation progress: %d%%     \r" % progress)
 
             agent_one = np.random.randint(population_size)
 
@@ -225,9 +225,10 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     cooperation_count = 0
     interaction_count = 0
 
-    start = time.clock()
-    print("Simulation beginning...")
+    # start = time.clock()
+    # print("Simulation beginning...")
 
     simulate()
-    end = time.clock()
-    print("Simulation completed in " + str(end - start))
+    # end = time.clock()
+    # print("Simulation completed in " + str(end - start))
+    return float(float(cooperation_count)/float(interaction_count))

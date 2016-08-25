@@ -34,14 +34,18 @@ reputation = []  # vector of all individual public reputations
 mutation_probability = 0  # mutation probability
 execution_error = 0  # execution error probability
 reputation_assignment_error = 0  # reputation assignment error probability
-assessment_error = 0  # private assessment error probability
-reputation_update_rate = 0  # reputation update probability
 randomseed = 0  # seed used to generate randomness
 socialnorm = [[1, 0], [0, 1]]  # matrix determining the reputation dynamic with
 # regard to the action taken and the reputation
 # of the other agent
 cost = 1  # cost defining the payoff matrix cost
 benefit = 5  # benefit defined as the payoff matrix benefit
+
+# Constrained communication
+assessment_error = []  # vector of size population_size which
+# signifies the number of interactions since the last time
+# person k's reputation was CHANGED (from 0 to 1 or 1 to 0
+reputation_spread_rate = 0  # reputation update probability
 
 ### Tracking Variables
 cooperation_count = 0
@@ -55,8 +59,9 @@ def fitness_function(x, y):
     :return: the fitness of x after
     """
     # Action of X:
+    global assessment_error
     xstrategy = strategies[population[x]]
-    if np.random.random() < assessment_error:
+    if np.random.random() < np.power(1 - reputation_spread_rate, assessment_error[y]):
         if np.random.random() < execution_error and xstrategy[1 - reputation[y]]:
             cx = 1 - xstrategy[1 - reputation[y]]
         else:
@@ -68,7 +73,7 @@ def fitness_function(x, y):
             cx = xstrategy[reputation[y]]
     # Action of Y:
     ystrategy = strategies[population[y]]
-    if np.random.random() < assessment_error:
+    if np.random.random() < np.power(1 - reputation_spread_rate, assessment_error[x]):
         if np.random.random() < execution_error and ystrategy[1 - reputation[x]]:
             cy = 1 - ystrategy[1 - reputation[x]]
         else:
@@ -81,12 +86,14 @@ def fitness_function(x, y):
 
     # Update Reputation of X:
     if np.random.random() < reputation_update_rate:
+        assessment_error[x] = 0
         if np.random.random() < reputation_assignment_error:
             reputation[x] = 1 - socialnorm[1 - cx][1 - reputation[y]]
         else:
             reputation[x] = socialnorm[1 - cx][1 - reputation[y]]
     # Update Reputation of Y:
     if np.random.random() < reputation_update_rate:
+        assessment_error[y] = 0
         if np.random.random() < reputation_assignment_error:
             reputation[y] = 1 - socialnorm[1 - cy][1 - reputation[x]]
         else:
@@ -97,6 +104,7 @@ def fitness_function(x, y):
     interaction_count += 2
     cooperation_count += 1 if cx == 1 else 0
     cooperation_count += 1 if cy == 1 else 0
+    assessment_error += 1
     return (benefit * cy) - (cost * cx)
 
 
@@ -106,14 +114,16 @@ def simulate():
         # Initialise random population
         global population
         global reputation
+        global assessment_error
+        assessment_error = np.ones(population_size, dtype=np.int)  # equivalent to assessment_error = 0.5 for all
         population = np.random.randint(4, size=population_size)  # equivalent to U(0, 3)
         reputation = np.random.randint(2, size=population_size)  # equivalent to U(0, 1)
 
         for t in range(0, generations):
             # Update progress
-            # if t % (generations // 10) == 0:
-            #     progress = (float((t + 1) * 100) / float(generations))
-            #     print("Simulation progress: %d%%     \r" % progress)
+            if t % (generations // 10) == 0:
+                progress = (float((t + 1) * 100) / float(generations))
+                print("Simulation progress: %d%%     \r" % progress)
 
             index_to_mutate = np.random.randint(population_size)
 
@@ -150,7 +160,8 @@ def simulate():
 def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
                  ExecutionError, ReputationAssignmentError,
                  PrivateAssessmentError, ReputationUpdateProbability,
-                 RandomSeed, SocialNormMatrix, CostValue, BenefitValue):
+                 RandomSeed, SocialNormMatrix, CostValue, BenefitValue,
+                 ReputationSpreadRate):
     global runs
     global generations
     global population_size
@@ -165,6 +176,7 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     global socialnorm
     global cost
     global benefit
+    global reputation_spread_rate
     runs = NumRuns
     generations = NumGenerations
     population_size = PopulationSize
@@ -179,17 +191,17 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     socialnorm = SocialNormMatrix
     cost = CostValue
     benefit = BenefitValue
+    reputation_spread_rate = ReputationSpreadRate
 
     ### Reset tracking variables
     global cooperation_count
     global interaction_count
-    cooperation_count = 0
-    interaction_count = 0
+    CooperationCount = 0
+    InteractionCount = 0
 
-    # start = time.clock()
-    # print("Simulation beginning...")
+    start = time.clock()
+    print("Simulation beginning...")
 
     simulate()
-    return float(float(cooperation_count)/float(interaction_count))
-    # end = time.clock()
-    # print("Simulation completed in " + str(end - start))
+    end = time.clock()
+    print("Simulation completed in " + str(end - start))
