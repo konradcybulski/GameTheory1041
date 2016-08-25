@@ -183,7 +183,7 @@ def simulate():
             fitness_b /= (2 * population_size)
             if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
                 population[agent_one] = population[agent_two]
-    print("Cooperation index: " + str(float(cooperation_count) / float(interaction_count)))
+    # print("Cooperation index: " + str(float(cooperation_count) / float(interaction_count)))
 
 
 def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
