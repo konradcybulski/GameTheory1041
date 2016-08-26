@@ -121,15 +121,15 @@ def simulate():
 
         for t in range(0, generations):
             # Update progress
-            if t % (generations // 10) == 0:
-                progress = (float((t + 1) * 100) / float(generations))
-                print("Simulation progress: %d%%     \r" % progress)
+            # if t % (generations // 10) == 0:
+            #     progress = (float((t + 1) * 100) / float(generations))
+            #     print("Simulation progress: %d%%     \r" % progress)
 
             index_to_mutate = np.random.randint(population_size)
 
             # Random mutation probability
             if np.random.random() < mutation_probability:
-                population[index_to_mutate] = strategies[np.random.randint(4)]
+                population[index_to_mutate] = np.random.randint(4)
 
             # Make sure B != A
             b = np.random.randint(population_size)
@@ -154,7 +154,7 @@ def simulate():
             fitness_b /= (2 * population_size)
             if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
                 population[index_to_mutate] = population[b]
-    print("Cooperation index: " + str(float(cooperation_count) / float(interaction_count)))
+    # print("Cooperation index: " + str(float(cooperation_count) / float(interaction_count)))
 
 
 def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
@@ -199,9 +199,10 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     CooperationCount = 0
     InteractionCount = 0
 
-    start = time.clock()
-    print("Simulation beginning...")
+    # start = time.clock()
+    # print("Simulation beginning...")
 
     simulate()
-    end = time.clock()
-    print("Simulation completed in " + str(end - start))
+    # end = time.clock()
+    # print("Simulation completed in " + str(end - start))
+    return float(cooperation_count) / float(interaction_count)

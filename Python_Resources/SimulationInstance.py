@@ -119,7 +119,7 @@ def simulate():
 
             # Random mutation probability
             if np.random.random() < mutation_probability:
-                population[index_to_mutate] = strategies[np.random.randint(4)]
+                population[index_to_mutate] = np.random.randint(4)
 
             # Make sure B != A
             b = np.random.randint(population_size)

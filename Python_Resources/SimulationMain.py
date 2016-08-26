@@ -27,14 +27,13 @@ IS = [[1, 1],
       [0, 0]]
 
 
-def santos_santos_pacheco(Z=50):
+def santos_santos_pacheco(runs, Z, socialnorm):
     """
     This class does everything
     :param Z: population size
     :return:
     """
 
-    runs = 1
     generations = 3*np.power(10,3)
 
     mutation_rate = np.power(10*Z, -1)
@@ -44,7 +43,6 @@ def santos_santos_pacheco(Z=50):
     private_assessment_error = 0.01
     reputation_update_probability = 0.2
     randomseed = np.random.randint(999999)
-    socialnorm = SJ
     cost = 1
     benefit = 5
 
@@ -64,7 +62,7 @@ def santos_santos_pacheco_optimized(runs, Z, socialnorm):
     """
     generations = 3*np.power(10,5)
 
-    mutation_rate = np.power(10*Z, -1)
+    mutation_rate = float(np.power(float(10*Z), float(-1)))
 
     execution_error = 0.08
     reputation_assignment_error = 0.01
@@ -79,23 +77,21 @@ def santos_santos_pacheco_optimized(runs, Z, socialnorm):
                                               randomseed, socialnorm,
                                               cost, benefit)
 
-def santos_santos_pacheco_comms(Z=50, rep_spread_rate= 0.08):
-    runs = 10
-    generations = 3*np.power(10,3)
+def santos_santos_pacheco_comms(runs, Z, socialnorm):
+    generations = 3*np.power(10,5)
 
     rep_spread_rate = np.power(float(1/Z), float(3/(2*(Z+1))))
 
-    mutation_rate = np.power(10*Z, -1)
+    mutation_rate = float(np.power(float(10*Z), float(-1)))
 
     execution_error = 0.08
     reputation_assignment_error = 0.01
     private_assessment_error = 0.01
     reputation_update_probability = 0.2
     randomseed = np.random.randint(999999)
-    socialnorm = SJ
     cost = 1
     benefit = 5
-    SimulationInstanceComms.run_instance(runs, generations, Z,
+    return SimulationInstanceComms.run_instance(runs, generations, Z,
                                               mutation_rate, execution_error, reputation_assignment_error,
                                               private_assessment_error, reputation_update_probability,
                                               randomseed, socialnorm,
@@ -107,20 +103,20 @@ def ssp_parallel(runs, Z, socialnorm):
     pool = multiprocessing.Pool(num_threads)
     results = [pool.apply_async(santos_santos_pacheco_optimized,
                                 args=(runs_per_thread, Z, socialnorm)) for i in range(num_threads)]
-    cooperation_index = 0
+    cooperation_index = float(0)
     for result in results:
         cooperation_index_i = result.get()
-        cooperation_index += cooperation_index_i
-    cooperation_index /= num_threads
+        cooperation_index += float(cooperation_index_i)
+    cooperation_index /= float(num_threads)
     return cooperation_index
 
 
 def ssp_tofile(filename, population_size, socialnorm, socialnorm_string):
-    file_out = open(filename, 'w+')
     start_sim = time.clock()
     coop_index = ssp_parallel(104, population_size, socialnorm)
     end_sim = time.clock()
     out_string = socialnorm_string + ',' + str(population_size) + ',' + str(coop_index) + ',\n'
+    file_out = open(filename, 'a')
     file_out.write(out_string)
     file_out.close()
     print("Z: " + str(population_size) + ', Cooperation Index: ' + str(coop_index) +

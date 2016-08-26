@@ -45,8 +45,7 @@ cost = 1  # cost defining the payoff matrix cost
 benefit = 5  # benefit defined as the payoff matrix benefit
 
 ### Tracking Variables
-cooperation_count = 0
-interaction_count = 0
+cooperation_index = 0
 
 
 def fitness_function(x, y_array):
@@ -138,12 +137,10 @@ def fitness_function(x, y_array):
     reputation[y_array] = reputation_y_vector
 
     # Track cooperation
-    global interaction_count
-    global cooperation_count
+    global cooperation_index
     coops_y = np.sum(cy)
     coops_x = np.sum(cx)
-    interaction_count += 2 * arr_len
-    cooperation_count += coops_y + coops_x
+    cooperation_index = (cooperation_index + float(float(coops_y + coops_x)/float(2 * arr_len)))/float(2)
 
     return (benefit * coops_y) - (cost * coops_x)
 
@@ -167,7 +164,7 @@ def simulate():
 
             # Random mutation probability
             if np.random.random() < mutation_probability:
-                population[agent_one] = strategies[np.random.randint(4)]
+                population[agent_one] = np.random.randint(4)
 
             # Make sure B != A
             agent_two = np.random.randint(population_size)
@@ -183,6 +180,7 @@ def simulate():
             fitness_b /= (2 * population_size)
             if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
                 population[agent_one] = population[agent_two]
+    print(cooperation_index)
     # print("Cooperation index: " + str(float(cooperation_count) / float(interaction_count)))
 
 
@@ -220,10 +218,8 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     benefit = BenefitValue
 
     ### Reset tracking variables
-    global cooperation_count
-    global interaction_count
-    cooperation_count = 0
-    interaction_count = 0
+    global cooperation_index
+    cooperation_index = 0
 
     # start = time.clock()
     # print("Simulation beginning...")
@@ -231,4 +227,4 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     simulate()
     # end = time.clock()
     # print("Simulation completed in " + str(end - start))
-    return float(float(cooperation_count)/float(interaction_count))
+    return float(cooperation_index)
