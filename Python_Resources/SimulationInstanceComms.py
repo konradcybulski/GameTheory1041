@@ -187,7 +187,6 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     assessment_error = PrivateAssessmentError
     reputation_update_rate = ReputationUpdateProbability
     randomseed = RandomSeed
-    np.random.seed(randomseed)
     socialnorm = SocialNormMatrix
     cost = CostValue
     benefit = BenefitValue

@@ -45,7 +45,11 @@ cost = 1  # cost defining the payoff matrix cost
 benefit = 5  # benefit defined as the payoff matrix benefit
 
 ### Tracking Variables
-cooperation_index = 0
+cooperation_index_sum = 0
+cooperation_index_min = 1
+cooperation_index_max = 0
+cooperation_index_average = 0
+cooperation_index_zeros = 0
 
 
 def fitness_function(x, y_array):
@@ -83,7 +87,7 @@ def fitness_function(x, y_array):
     reputation_x_vector = np.insert(socialnorm[(1 - cx, 1 - p_rep)], 0, reputation[x])
 
     # Reputation update rate:
-    elements_to_change_reputation_update_rate = np.int(arr_len * reputation_update_rate)
+    elements_to_change_reputation_update_rate = np.int(arr_len * (float(1) - reputation_update_rate))
     mask_reputation_update_rate = np.random.randint(1, arr_len,
                                                     size=elements_to_change_reputation_update_rate)
     reputation_x_vector[mask_reputation_update_rate] = reputation_x_vector[mask_reputation_update_rate - 1]
@@ -126,7 +130,7 @@ def fitness_function(x, y_array):
     """
     reputation_y_vector = socialnorm[(1 - cy, 1 - reputation_x_vector)]
     # Reputation update rate:
-    elements_to_change_reputation_update_rate = np.int(arr_len * reputation_update_rate)
+    elements_to_change_reputation_update_rate = np.int(arr_len * (float(1) - reputation_update_rate))
     mask_reputation_update_rate = np.random.randint(arr_len, size=elements_to_change_reputation_update_rate)
     reputation_y_vector[mask_reputation_update_rate] = reputation[y_array[mask_reputation_update_rate]]
     # Reputation assignment error:
@@ -137,10 +141,22 @@ def fitness_function(x, y_array):
     reputation[y_array] = reputation_y_vector
 
     # Track cooperation
-    global cooperation_index
+    global cooperation_index_sum
+    global cooperation_index_min
+    global cooperation_index_max
+    global cooperation_index_zeros
     coops_y = np.sum(cy)
     coops_x = np.sum(cx)
-    cooperation_index = (cooperation_index + float(float(coops_y + coops_x)/float(2 * arr_len)))/float(2)
+    cur_cooperation_index = float(float(coops_y + coops_x)/float(2 * arr_len))
+    cooperation_index_sum += cur_cooperation_index
+    cooperation_index_min = min(cooperation_index_min, cur_cooperation_index)
+    cooperation_index_max = max(cooperation_index_max, cur_cooperation_index)
+    if cur_cooperation_index < float(np.power(float(10), float(-5))):
+        cooperation_index_zeros += 1
+    # if cooperation_index == 0:
+    #     cooperation_index = #float(float(coops_y + coops_x)/float(2 * arr_len))
+    # else:
+    #     cooperation_index = (cooperation_index + float(float(coops_y + coops_x)/float(2 * arr_len)))/float(2)
 
     return (benefit * coops_y) - (cost * coops_x)
 
@@ -172,22 +188,38 @@ def simulate():
                 agent_two = np.random.randint(population_size)
 
             #### Creating tournament arrays
-            tournament_sample = np.random.randint(population_size, size=2*population_size)
-            fitness_a = fitness_function(agent_one, tournament_sample)
-            fitness_b = fitness_function(agent_two, tournament_sample)
+            tournament_sample_a = np.random.randint(population_size, size=2*population_size)
+            fitness_a = fitness_function(agent_one, tournament_sample_a)
+            tournament_sample_b = np.random.randint(population_size, size=2*population_size)
+            fitness_b = fitness_function(agent_two, tournament_sample_b)
 
             fitness_a /= (2 * population_size)
             fitness_b /= (2 * population_size)
             if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
                 population[agent_one] = population[agent_two]
-    print(cooperation_index)
-    # print("Cooperation index: " + str(float(cooperation_count) / float(interaction_count)))
+    global cooperation_index_sum
+    global cooperation_index_average
+    cooperation_index_average = float(cooperation_index_sum)/float(runs*generations*2)
+    # print("Cooperation Index: " + str(cooperation_index_average) +
+    #       ", Min: " + str(cooperation_index_min) +
+    #       ", Max: " + str(cooperation_index_max) +
+    #       ", Zero proportion: " + str(float(cooperation_index_zeros) / float(runs*generations*2)) +
+    #       ", CoopIndx without zeros: " +
+    #       str(float(cooperation_index_sum)/float(runs*generations*2 - cooperation_index_zeros)))
 
 
 def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
                  ExecutionError, ReputationAssignmentError,
                  PrivateAssessmentError, ReputationUpdateProbability,
                  RandomSeed, SocialNormMatrix, CostValue, BenefitValue):
+    """
+    :return: an array in the form:
+            [cooperation_index_avg,
+            cooperation_index_min,
+            cooperation_index_max,
+            cooperation_index_zero_proportion,
+            cooperation_index_without_zeros]
+    """
     global runs
     global generations
     global population_size
@@ -211,15 +243,21 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     reputation_assignment_error = ReputationAssignmentError
     assessment_error = PrivateAssessmentError
     reputation_update_rate = ReputationUpdateProbability
-    randomseed = RandomSeed
-    np.random.seed(randomseed)
     socialnorm = np.array(SocialNormMatrix)
     cost = CostValue
     benefit = BenefitValue
 
     ### Reset tracking variables
-    global cooperation_index
-    cooperation_index = 0
+    global cooperation_index_sum
+    global cooperation_index_average
+    global cooperation_index_min
+    global cooperation_index_max
+    global cooperation_index_zeros
+    cooperation_index_min = 1
+    cooperation_index_max = 0
+    cooperation_index_zeros = 0
+    cooperation_index_sum = 0
+    cooperation_index_average = 0
 
     # start = time.clock()
     # print("Simulation beginning...")
@@ -227,4 +265,9 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     simulate()
     # end = time.clock()
     # print("Simulation completed in " + str(end - start))
-    return float(cooperation_index)
+    return_list = [cooperation_index_average,
+                   cooperation_index_min,
+                   cooperation_index_max,
+                   float(cooperation_index_zeros) / float(runs * generations * 2),
+                   float(cooperation_index_sum) / float((runs * generations * 2) - cooperation_index_zeros)]
+    return return_list # float(cooperation_index_average)

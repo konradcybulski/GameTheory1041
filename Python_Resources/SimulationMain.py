@@ -34,9 +34,9 @@ def santos_santos_pacheco(runs, Z, socialnorm):
     :return:
     """
 
-    generations = 3*np.power(10,3)
+    generations = 3*np.power(10,5)
 
-    mutation_rate = np.power(10*Z, -1)
+    mutation_rate = float(np.power(float(10*Z), float(-1)))
 
     execution_error = 0.08
     reputation_assignment_error = 0.01
@@ -46,7 +46,7 @@ def santos_santos_pacheco(runs, Z, socialnorm):
     cost = 1
     benefit = 5
 
-    SimulationInstance.run_instance(runs, generations, Z,
+    return SimulationInstance.run_instance(runs, generations, Z,
                                     mutation_rate, execution_error, reputation_assignment_error, private_assessment_error,
                                     reputation_update_probability, randomseed, socialnorm,
                                     cost, benefit)
@@ -103,50 +103,90 @@ def ssp_parallel(runs, Z, socialnorm):
     pool = multiprocessing.Pool(num_threads)
     results = [pool.apply_async(santos_santos_pacheco_optimized,
                                 args=(runs_per_thread, Z, socialnorm)) for i in range(num_threads)]
-    cooperation_index = float(0)
+    """
+    result is in the form:
+            [cooperation_index_avg,
+            cooperation_index_min,
+            cooperation_index_max,
+            cooperation_index_zero_proportion,
+            cooperation_index_without_zeros]
+    """
+    cooperation_index_average = float(0)
+    cooperation_index_min = float(1)
+    cooperation_index_max = float(0)
+    cooperation_index_zero_proportion = float(0)
+    cooperation_index_without_zeros = float(0)
     for result in results:
-        cooperation_index_i = result.get()
-        cooperation_index += float(cooperation_index_i)
-    cooperation_index /= float(num_threads)
-    return cooperation_index
+        cooperation_index_values_i = result.get()
+        cooperation_index_average += float(cooperation_index_values_i[0])
+        cooperation_index_min = min(cooperation_index_min, cooperation_index_values_i[1])
+        cooperation_index_max = max(cooperation_index_max, cooperation_index_values_i[2])
+        cooperation_index_zero_proportion += float(cooperation_index_values_i[3])
+        cooperation_index_without_zeros += float(cooperation_index_values_i[4])
+    cooperation_index_average /= float(num_threads)
+    cooperation_index_zero_proportion /= float(num_threads)
+    cooperation_index_without_zeros /= float(num_threads)
+    return [cooperation_index_average,
+            cooperation_index_min,
+            cooperation_index_max,
+            cooperation_index_zero_proportion,
+            cooperation_index_without_zeros]
 
 
-def ssp_tofile(filename, population_size, socialnorm, socialnorm_string):
+def ssp_tofile(filename, population_size, socialnorm):
     start_sim = time.clock()
-    coop_index = ssp_parallel(104, population_size, socialnorm)
+    coop_index_values = ssp_parallel(104, population_size, socialnorm)
+    """
+    result is in the form:
+        [cooperation_index_avg,
+         cooperation_index_min,
+         cooperation_index_max,
+         cooperation_index_zero_proportion,
+         cooperation_index_without_zeros]
+    """
     end_sim = time.clock()
-    out_string = socialnorm_string + ',' + str(population_size) + ',' + str(coop_index) + ',\n'
+    out_string = str(population_size) + ',' +\
+                 str(coop_index_values[0]) + ',' +\
+                 str(coop_index_values[1]) + ',' +\
+                 str(coop_index_values[2]) + ',' +\
+                 str(coop_index_values[3]) + ',' +\
+                 str(coop_index_values[4]) + ',\n'
     file_out = open(filename, 'a')
     file_out.write(out_string)
     file_out.close()
-    print("Z: " + str(population_size) + ', Cooperation Index: ' + str(coop_index) +
-          ', completed in ' + str(end_sim - start_sim) + " seconds.")
+    print("Z: " + str(population_size) +
+          ", Cooperation Index: " + str(coop_index_values[0]) +
+          ", Min: " + str(coop_index_values[1]) +
+          ", Max: " + str(coop_index_values[2]) +
+          ", Zero proportion: " + str(coop_index_values[3]) +
+          ", CoopIndx without zeros: " +
+          str(coop_index_values[4]))
     pass
 
 if __name__ == '__main__':
     # santos_santos_pacheco()
     start = time.clock()
-    ssp_tofile("SSP_results_SternJudging.csv", 10, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 20, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 30, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 40, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 50, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 60, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 70, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 80, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 90, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 100, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 110, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 120, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 130, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 140, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 150, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 175, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 200, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 225, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 250, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 275, SJ, "Stern Judging")
-    ssp_tofile("SSP_results_SternJudging.csv", 300, SJ, "Stern Judging")
+    ssp_tofile("SSP_results_SternJudging.csv", 10, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 20, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 30, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 40, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 50, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 60, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 70, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 80, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 90, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 100, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 110, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 120, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 130, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 140, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 150, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 175, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 200, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 225, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 250, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 275, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 300, SJ)
     end = time.clock()
     print("Simulation completed in " + str(end - start))
     # santos_santos_pacheco_comms()
