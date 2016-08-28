@@ -7,6 +7,7 @@ Code written utilising pseudocode provided
  societies' by Santos, Santos, Pacheco
 """
 import numpy as np
+import numpy.ma as ma
 import time
 from numba import jit
 
@@ -188,9 +189,18 @@ def simulate():
                 agent_two = np.random.randint(population_size)
 
             #### Creating tournament arrays
+            # Agent One:
             tournament_sample_a = np.random.randint(population_size, size=2*population_size)
+            while (tournament_sample_a == agent_one).any():
+                tournament_sample_a[tournament_sample_a == agent_one] =\
+                    np.random.randint(population_size, size=np.sum(tournament_sample_a == agent_one))
             fitness_a = fitness_function(agent_one, tournament_sample_a)
+
+            # Agent Two:
             tournament_sample_b = np.random.randint(population_size, size=2*population_size)
+            while (tournament_sample_b == agent_two).any():
+                tournament_sample_b[tournament_sample_b == agent_two] =\
+                    np.random.randint(population_size, size=np.sum(tournament_sample_b == agent_two))
             fitness_b = fitness_function(agent_two, tournament_sample_b)
 
             fitness_a /= (2 * population_size)

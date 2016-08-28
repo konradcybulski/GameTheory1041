@@ -29,12 +29,11 @@ IS = [[1, 1],
 
 def santos_santos_pacheco(runs, Z, socialnorm):
     """
-    This class does everything
     :param Z: population size
     :return:
     """
 
-    generations = 3*np.power(10,5)
+    generations = 3*np.power(10,4)
 
     mutation_rate = float(np.power(float(10*Z), float(-1)))
 
@@ -60,7 +59,7 @@ def santos_santos_pacheco_optimized(runs, Z, socialnorm):
     :param socialnorm:
     :return: cooperation index
     """
-    generations = 3*np.power(10,5)
+    generations = 3*np.power(10, 5)
 
     mutation_rate = float(np.power(float(10*Z), float(-1)))
 
@@ -135,7 +134,7 @@ def ssp_parallel(runs, Z, socialnorm):
 
 def ssp_tofile(filename, population_size, socialnorm):
     start_sim = time.clock()
-    coop_index_values = ssp_parallel(104, population_size, socialnorm)
+    coop_index_values = ssp_parallel(32, population_size, socialnorm)
     """
     result is in the form:
         [cooperation_index_avg,
@@ -166,27 +165,96 @@ def ssp_tofile(filename, population_size, socialnorm):
 if __name__ == '__main__':
     # santos_santos_pacheco()
     start = time.clock()
+    ssp_tofile("SSP_results_SternJudging.csv", 5, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 5, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 5, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 5, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 5, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 5, SS)
+
     ssp_tofile("SSP_results_SternJudging.csv", 10, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 10, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 10, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 10, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 10, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 10, SS)
+
     ssp_tofile("SSP_results_SternJudging.csv", 20, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 20, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 20, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 20, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 20, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 20, SS)
+
     ssp_tofile("SSP_results_SternJudging.csv", 30, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 30, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 30, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 30, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 30, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 30, SS)
+
     ssp_tofile("SSP_results_SternJudging.csv", 40, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 40, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 40, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 40, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 40, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 40, SS)
+
     ssp_tofile("SSP_results_SternJudging.csv", 50, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 50, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 50, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 50, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 50, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 50, SS)
+
     ssp_tofile("SSP_results_SternJudging.csv", 60, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 60, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 60, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 60, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 60, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 60, SS)
+
     ssp_tofile("SSP_results_SternJudging.csv", 70, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 70, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 70, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 70, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 70, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 70, SS)
+
     ssp_tofile("SSP_results_SternJudging.csv", 80, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 80, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 80, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 80, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 80, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 80, SS)
+
     ssp_tofile("SSP_results_SternJudging.csv", 90, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 90, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 90, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 90, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 90, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 90, SS)
+
     ssp_tofile("SSP_results_SternJudging.csv", 100, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 100, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 100, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 100, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 100, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 100, SS)
+
     ssp_tofile("SSP_results_SternJudging.csv", 110, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 110, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 110, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 110, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 110, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 110, SS)
+
     ssp_tofile("SSP_results_SternJudging.csv", 120, SJ)
-    ssp_tofile("SSP_results_SternJudging.csv", 130, SJ)
-    ssp_tofile("SSP_results_SternJudging.csv", 140, SJ)
-    ssp_tofile("SSP_results_SternJudging.csv", 150, SJ)
-    ssp_tofile("SSP_results_SternJudging.csv", 175, SJ)
-    ssp_tofile("SSP_results_SternJudging.csv", 200, SJ)
-    ssp_tofile("SSP_results_SternJudging.csv", 225, SJ)
-    ssp_tofile("SSP_results_SternJudging.csv", 250, SJ)
-    ssp_tofile("SSP_results_SternJudging.csv", 275, SJ)
-    ssp_tofile("SSP_results_SternJudging.csv", 300, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 120, SJ)
+    ssp_tofile("SSP_results_SternJudging.csv", 120, SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 120, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 120, SS)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 120, SS)
     end = time.clock()
     print("Simulation completed in " + str(end - start))
     # santos_santos_pacheco_comms()

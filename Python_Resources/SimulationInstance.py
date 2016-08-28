@@ -44,8 +44,11 @@ cost = 1  # cost defining the payoff matrix cost
 benefit = 5  # benefit defined as the payoff matrix benefit
 
 ### Tracking Variables
-cooperation_count = 0
-interaction_count = 0
+cooperation_index_sum = 0
+cooperation_index_min = 1
+cooperation_index_max = 0
+cooperation_index_average = 0
+cooperation_index_zeros = 0
 
 
 def fitness_function(x, y):
@@ -92,11 +95,18 @@ def fitness_function(x, y):
         else:
             reputation[y] = socialnorm[1 - cy][1 - reputation[x]]
     # Track cooperation
-    global interaction_count
-    global cooperation_count
-    interaction_count += 2
-    cooperation_count += 1 if cx == 1 else 0
-    cooperation_count += 1 if cy == 1 else 0
+    global cooperation_index_sum
+    global cooperation_index_min
+    global cooperation_index_max
+    global cooperation_index_zeros
+    coops_x = 1 if cx == 1 else 0
+    coops_y = 1 if cy == 1 else 0
+    cur_cooperation_index = float(float(coops_y + coops_x)/float(2))
+    cooperation_index_sum += cur_cooperation_index
+    cooperation_index_min = min(cooperation_index_min, cur_cooperation_index)
+    cooperation_index_max = max(cooperation_index_max, cur_cooperation_index)
+    if cur_cooperation_index < float(np.power(float(10), float(-5))):
+        cooperation_index_zeros += 1
     return (benefit * cy) - (cost * cx)
 
 
@@ -144,7 +154,9 @@ def simulate():
             fitness_b /= (2 * population_size)
             if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
                 population[index_to_mutate] = population[b]
-    print("Cooperation index: " + str(float(cooperation_count) / float(interaction_count)))
+    global cooperation_index_sum
+    global cooperation_index_average
+    cooperation_index_average = float(cooperation_index_sum)/float(runs*generations*4*population_size)
 
 
 def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
@@ -180,15 +192,27 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     benefit = BenefitValue
 
     ### Reset tracking variables
-    global cooperation_count
-    global interaction_count
-    cooperation_count = 0
-    interaction_count = 0
+    global cooperation_index_sum
+    global cooperation_index_average
+    global cooperation_index_min
+    global cooperation_index_max
+    global cooperation_index_zeros
+    cooperation_index_min = 1
+    cooperation_index_max = 0
+    cooperation_index_zeros = 0
+    cooperation_index_sum = 0
+    cooperation_index_average = 0
 
     # start = time.clock()
     # print("Simulation beginning...")
 
     simulate()
-    return float(float(cooperation_count)/float(interaction_count))
+    return_list = [cooperation_index_average,
+                   cooperation_index_min,
+                   cooperation_index_max,
+                   float(cooperation_index_zeros) / float(runs * generations * 4 * population_size),
+                   float(cooperation_index_sum) / float((runs *
+                                                         generations * 4 * population_size) - cooperation_index_zeros)]
+    return return_list # float(cooperation_index_average)
     # end = time.clock()
     # print("Simulation completed in " + str(end - start))
