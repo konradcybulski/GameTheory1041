@@ -10,6 +10,7 @@ import numpy as np
 import numpy.ma as ma
 import time
 from numba import jit
+from collections import Counter
 
 """
     Static Variables
@@ -52,11 +53,36 @@ cooperation_index_max = 0
 cooperation_index_average = 0
 cooperation_index_zeros = 0
 
+# Data saving variables
+generation_data_save_wait = -1
+generation_data_save_filename = ""
+
+def save_generation_data(gen_num):
+    # file_out.write("Generation Number,AllC Count,pDisc Count,Disc Count,AllD Count," +
+    #                "AllC Ratio,pDisc Ratio,Disc Ratio,AllD Ratio")
+    counter = Counter(population)
+    allc_count = counter[0]
+    pdisc_count = counter[1]
+    disc_count = counter[2]
+    alld_count = counter[3]
+    out_string = str(gen_num) + "," +\
+        str(allc_count) + "," +\
+        str(pdisc_count) + "," +\
+        str(disc_count) + "," +\
+        str(alld_count) + "," +\
+        str(float(allc_count)/float(population_size)) + "," +\
+        str(float(pdisc_count)/float(population_size)) + "," +\
+        str(float(disc_count)/float(population_size)) + "," +\
+        str(float(alld_count)/float(population_size)) + "," +\
+        ",\n"
+    file_out = open(generation_data_save_filename, 'a')
+    file_out.write(out_string)
+    file_out.close()
 
 def fitness_function(x, y_array):
     """
     :param x: the index of agent-x in population
-    :param y: the array of indices of agent-y's in population
+    :param y_array: the array of indices of agent-y's in population
     :return: the fitness of x after
     """
     # Action of X:
@@ -67,15 +93,17 @@ def fitness_function(x, y_array):
     x_strategy = strategies[population[x]]
     xactionbad = x_strategy[0]
     xactiongood = x_strategy[1]
+
     """
         Action of X with errors
     """
     cx = xactiongood*p_rep + xactionbad*(1 - p_rep)
 
     # Adjust for assessment error
-    elements_to_change_assessment_error = np.int(arr_len * assessment_error)
-    mask_assessment_error = np.random.randint(arr_len, size=elements_to_change_assessment_error)
-    cx[mask_assessment_error] = (xactiongood*(1 - p_rep[mask_assessment_error]) + xactionbad*p_rep[mask_assessment_error])
+    assessment_error_changes = np.int(arr_len * assessment_error)
+    mask_assessment_error = np.random.randint(arr_len, size=assessment_error_changes)
+    cx[mask_assessment_error] = (xactiongood*(1 - p_rep[mask_assessment_error]) +
+                                 xactionbad*p_rep[mask_assessment_error])
 
     # Adjust for execution error
     elements_to_change_execution_error = np.int(arr_len * execution_error)
@@ -113,14 +141,12 @@ def fitness_function(x, y_array):
     """
         Action of Y with errors
     """
-    cy = np.multiply(reputation_x_vector, pactiongood) + np.multiply((1 - reputation_x_vector), pactionbad)
+    cy = reputation_x_vector*pactiongood + (1 - reputation_x_vector)*pactionbad
     # Adjust for assessment error
     elements_to_change_assessment_error = np.int(arr_len * assessment_error)
     mask_assessment_error = np.random.randint(arr_len, size=elements_to_change_assessment_error)
-    cy[mask_assessment_error] = np.multiply(pactiongood[mask_assessment_error],
-                                            (1 - reputation_x_vector[mask_assessment_error])) +\
-                                np.multiply(pactionbad[mask_assessment_error],
-                                            reputation_x_vector[mask_assessment_error])
+    cy[mask_assessment_error] = pactiongood[mask_assessment_error]*(1 - reputation_x_vector[mask_assessment_error]) +\
+        pactionbad[mask_assessment_error]*reputation_x_vector[mask_assessment_error]
     # # Adjust for execution error
     elements_to_change_execution_error = np.int(arr_len * execution_error)
     mask_execution_error = np.random.randint(arr_len, size=elements_to_change_execution_error)
@@ -154,10 +180,6 @@ def fitness_function(x, y_array):
     cooperation_index_max = max(cooperation_index_max, cur_cooperation_index)
     if cur_cooperation_index < float(np.power(float(10), float(-5))):
         cooperation_index_zeros += 1
-    # if cooperation_index == 0:
-    #     cooperation_index = #float(float(coops_y + coops_x)/float(2 * arr_len))
-    # else:
-    #     cooperation_index = (cooperation_index + float(float(coops_y + coops_x)/float(2 * arr_len)))/float(2)
 
     return (benefit * coops_y) - (cost * coops_x)
 
@@ -172,10 +194,9 @@ def simulate():
         reputation = np.random.randint(2, size=population_size)  # equivalent to U(0, 1)
 
         for t in range(0, generations):
-            # Update progress
-            # if t % (generations // 10) == 0:
-            #     progress = (float((t + 1) * 100) / float(generations))
-            #     print("Simulation progress: %d%%     \r" % progress)
+            if generation_data_save_filename != "":
+                if t % generation_data_save_wait == 0:
+                    save_generation_data(t)
 
             agent_one = np.random.randint(population_size)
 
@@ -188,7 +209,7 @@ def simulate():
             while agent_two == agent_one:
                 agent_two = np.random.randint(population_size)
 
-            #### Creating tournament arrays
+            # Creating tournament arrays
             # Agent One:
             tournament_sample_a = np.random.randint(population_size, size=2*population_size)
             while (tournament_sample_a == agent_one).any():
@@ -210,13 +231,35 @@ def simulate():
     global cooperation_index_sum
     global cooperation_index_average
     cooperation_index_average = float(cooperation_index_sum)/float(runs*generations*2)
-    # print("Cooperation Index: " + str(cooperation_index_average) +
-    #       ", Min: " + str(cooperation_index_min) +
-    #       ", Max: " + str(cooperation_index_max) +
-    #       ", Zero proportion: " + str(float(cooperation_index_zeros) / float(runs*generations*2)) +
-    #       ", CoopIndx without zeros: " +
-    #       str(float(cooperation_index_sum)/float(runs*generations*2 - cooperation_index_zeros)))
 
+
+def run_instance_generation_information(NumRuns, NumGenerations, PopulationSize, MutationRate,
+                 ExecutionError, ReputationAssignmentError,
+                 PrivateAssessmentError, ReputationUpdateProbability,
+                 RandomSeed, SocialNormMatrix, CostValue, BenefitValue,
+                 GenerationDataSaveWait, GenerationDataSaveFilename):
+    global generation_data_save_wait
+    global generation_data_save_filename
+    generation_data_save_wait = GenerationDataSaveWait
+    generation_data_save_filename = GenerationDataSaveFilename
+    file_out = open(generation_data_save_filename, 'w+')
+    file_out.write("Generation Number,AllC Count,pDisc Count,Disc Count,AllD Count," +
+                   "AllC Ratio,pDisc Ratio,Disc Ratio,AllD Ratio,")
+    file_out.close()
+    output = run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
+                 ExecutionError, ReputationAssignmentError,
+                 PrivateAssessmentError, ReputationUpdateProbability,
+                 RandomSeed, SocialNormMatrix, CostValue, BenefitValue)
+    final_string = str(population_size) + ',' +\
+                 str(output[0]) + ',' +\
+                 str(output[1]) + ',' +\
+                 str(output[2]) + ',' +\
+                 str(output[3]) + ',' +\
+                 str(output[4]) + ',\n'
+    file_out = open(generation_data_save_filename, 'a')
+    file_out.write("---,---,---,---,---,---,---,---,---,")
+    file_out.write(final_string)
+    file_out.close()
 
 def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
                  ExecutionError, ReputationAssignmentError,
