@@ -58,22 +58,22 @@ generation_data_save_wait = -1
 generation_data_save_filename = ""
 
 def save_generation_data(gen_num):
-    # file_out.write("Generation Number,AllC Count,pDisc Count,Disc Count,AllD Count," +
-    #                "AllC Ratio,pDisc Ratio,Disc Ratio,AllD Ratio")
+    # file_out.write("Generation Number,AllD Count,pDisc Count,Disc Count,AllD Count," +
+    #                "AllD Ratio,pDisc Ratio,Disc Ratio,AllD Ratio")
     counter = Counter(population)
-    allc_count = counter[0]
+    alld_count = counter[0]
     pdisc_count = counter[1]
     disc_count = counter[2]
-    alld_count = counter[3]
+    allc_count = counter[3]
     out_string = str(gen_num) + "," +\
-        str(allc_count) + "," +\
+        str(alld_count) + "," +\
         str(pdisc_count) + "," +\
         str(disc_count) + "," +\
-        str(alld_count) + "," +\
-        str(float(allc_count)/float(population_size)) + "," +\
+        str(allc_count) + "," +\
+        str(float(alld_count)/float(population_size)) + "," +\
         str(float(pdisc_count)/float(population_size)) + "," +\
         str(float(disc_count)/float(population_size)) + "," +\
-        str(float(alld_count)/float(population_size)) + "," +\
+        str(float(allc_count)/float(population_size)) + "," +\
         ",\n"
     file_out = open(generation_data_save_filename, 'a')
     file_out.write(out_string)
@@ -243,8 +243,8 @@ def run_instance_generation_information(NumRuns, NumGenerations, PopulationSize,
     generation_data_save_wait = GenerationDataSaveWait
     generation_data_save_filename = GenerationDataSaveFilename
     file_out = open(generation_data_save_filename, 'w+')
-    file_out.write("Generation Number,AllC Count,pDisc Count,Disc Count,AllD Count," +
-                   "AllC Ratio,pDisc Ratio,Disc Ratio,AllD Ratio,")
+    file_out.write("Generation Number,AllD Count,pDisc Count,Disc Count,AllC Count," +
+                   "AllD Ratio,pDisc Ratio,Disc Ratio,AllC Ratio,\n")
     file_out.close()
     output = run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
                  ExecutionError, ReputationAssignmentError,
@@ -257,7 +257,7 @@ def run_instance_generation_information(NumRuns, NumGenerations, PopulationSize,
                  str(output[3]) + ',' +\
                  str(output[4]) + ',\n'
     file_out = open(generation_data_save_filename, 'a')
-    file_out.write("---,---,---,---,---,---,---,---,---,")
+    file_out.write("---,---,---,---,---,---,---,---,---,\n")
     file_out.write(final_string)
     file_out.close()
 

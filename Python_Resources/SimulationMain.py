@@ -88,7 +88,7 @@ if __name__ == '__main__':
     # santos_santos_pacheco()
     start = time.clock()
 
-    ssp_parallel_generation_information(50, 3*np.power(10, 3), SantosSantosPacheco.SJ, 10, "SJ")
+    ssp_parallel_generation_information(50, 3*np.power(10, 5), SantosSantosPacheco.SJ, 300, "SJ")
     # ssp_tofile("SSP_results_SternJudging.csv", 5, SJ)
     # ssp_tofile("SSP_results_SternJudging.csv", 5, SJ)
     # ssp_tofile("SSP_results_SternJudging.csv", 5, SJ)
