@@ -8,6 +8,7 @@ import time
 import multiprocessing
 import SantosSantosPacheco
 
+
 def ssp_parallel_generation_information(Z, generations, socialnorm, data_delay, socialnorm_name):
     num_threads = multiprocessing.cpu_count()
     pool = multiprocessing.Pool(num_threads)
@@ -17,6 +18,7 @@ def ssp_parallel_generation_information(Z, generations, socialnorm, data_delay, 
                                       str(Z) + "_" + str(i+1) + ".csv")) for i in range(num_threads)]
     for result in results:
         result.get()
+
 
 def ssp_parallel(runs, generations, Z, socialnorm):
     num_threads = multiprocessing.cpu_count()
@@ -56,7 +58,7 @@ def ssp_parallel(runs, generations, Z, socialnorm):
 
 def ssp_tofile(filename, population_size, socialnorm):
     start_sim = time.clock()
-    coop_index_values = ssp_parallel(32, 3*np.power(10, 5), population_size, socialnorm)
+    coop_index_values = ssp_parallel(104, 3*np.power(10, 5), population_size, socialnorm)
     """
     result is in the form:
         [cooperation_index_avg,
@@ -87,98 +89,96 @@ def ssp_tofile(filename, population_size, socialnorm):
 if __name__ == '__main__':
     # santos_santos_pacheco()
     start = time.clock()
+    ssp_tofile("SSP_results_SternJudging.csv", 5, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 5, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 5, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 5, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 5, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 5, SantosSantosPacheco.SS)
 
-    ssp_parallel_generation_information(50, 3*np.power(10, 5), SantosSantosPacheco.SJ, 300, "SJ")
-    # ssp_tofile("SSP_results_SternJudging.csv", 5, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 5, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 5, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 5, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 5, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 5, SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 10, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 10, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 10, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 10, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 10, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 10, SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 20, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 20, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 20, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 20, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 20, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 20, SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 30, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 30, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 30, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 30, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 30, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 30, SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 40, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 40, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 40, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 40, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 40, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 40, SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 50, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 50, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 50, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 50, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 50, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 50, SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 60, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 60, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 60, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 60, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 60, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 60, SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 70, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 70, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 70, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 70, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 70, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 70, SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 80, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 80, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 80, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 80, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 80, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 80, SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 90, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 90, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 90, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 90, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 90, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 90, SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 100, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 100, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 100, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 100, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 100, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 100, SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 110, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 110, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 110, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 110, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 110, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 110, SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 120, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 120, SJ)
-    # ssp_tofile("SSP_results_SternJudging.csv", 120, SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 120, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 120, SS)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 120, SS)
+    ssp_tofile("SSP_results_SternJudging.csv", 10, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 10, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 10, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 10, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 10, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 10, SantosSantosPacheco.SS)
+
+    ssp_tofile("SSP_results_SternJudging.csv", 20, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 20, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 20, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 20, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 20, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 20, SantosSantosPacheco.SS)
+
+    ssp_tofile("SSP_results_SternJudging.csv", 30, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 30, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 30, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 30, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 30, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 30, SantosSantosPacheco.SS)
+
+    ssp_tofile("SSP_results_SternJudging.csv", 40, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 40, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 40, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 40, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 40, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 40, SantosSantosPacheco.SS)
+
+    ssp_tofile("SSP_results_SternJudging.csv", 50, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 50, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 50, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 50, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 50, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 50, SantosSantosPacheco.SS)
+
+    ssp_tofile("SSP_results_SternJudging.csv", 60, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 60, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 60, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 60, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 60, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 60, SantosSantosPacheco.SS)
+
+    ssp_tofile("SSP_results_SternJudging.csv", 70, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 70, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 70, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 70, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 70, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 70, SantosSantosPacheco.SS)
+
+    ssp_tofile("SSP_results_SternJudging.csv", 80, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 80, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 80, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 80, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 80, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 80, SantosSantosPacheco.SS)
+
+    ssp_tofile("SSP_results_SternJudging.csv", 90, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 90, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 90, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 90, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 90, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 90, SantosSantosPacheco.SS)
+
+    ssp_tofile("SSP_results_SternJudging.csv", 100, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 100, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 100, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 100, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 100, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 100, SantosSantosPacheco.SS)
+
+    ssp_tofile("SSP_results_SternJudging.csv", 110, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 110, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 110, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 110, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 110, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 110, SantosSantosPacheco.SS)
+
+    ssp_tofile("SSP_results_SternJudging.csv", 120, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 120, SantosSantosPacheco.SJ)
+    # ssp_tofile("SSP_results_SternJudging.csv", 120, SantosSantosPacheco.SJ)
+    ssp_tofile("SSP_results_SimpleStanding.csv", 120, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 120, SantosSantosPacheco.SS)
+    # ssp_tofile("SSP_results_SimpleStanding.csv", 120, SantosSantosPacheco.SS)
     end = time.clock()
     print("Simulation completed in " + str(end - start))
     # santos_santos_pacheco_comms()

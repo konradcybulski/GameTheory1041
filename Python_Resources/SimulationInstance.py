@@ -8,6 +8,7 @@ Code written utilising pseudocode provided
 """
 import numpy as np
 import time
+from collections import Counter
 
 """
     Static Variables
@@ -49,6 +50,36 @@ cooperation_index_min = 1
 cooperation_index_max = 0
 cooperation_index_average = 0
 cooperation_index_zeros = 0
+
+# Data saving variables
+generation_data_save_wait = -1
+generation_data_save_filename = ""
+
+def save_generation_data(gen_num, fitness_a, fitness_b, strat_a, strat_b):
+    # file_out.write("Generation Number,AllD Count,pDisc Count,Disc Count,AllD Count," +
+    #                "AllD Ratio,pDisc Ratio,Disc Ratio,AllD Ratio")
+    counter = Counter(population)
+    alld_count = counter[0]
+    pdisc_count = counter[1]
+    disc_count = counter[2]
+    allc_count = counter[3]
+    out_string = str(gen_num) + "," +\
+        str(alld_count) + "," +\
+        str(pdisc_count) + "," +\
+        str(disc_count) + "," +\
+        str(allc_count) + "," +\
+        str(float(alld_count)/float(population_size)) + "," +\
+        str(float(pdisc_count)/float(population_size)) + "," +\
+        str(float(disc_count)/float(population_size)) + "," +\
+        str(float(allc_count)/float(population_size)) + "," +\
+        str(fitness_a) + "," +\
+        str(fitness_b) + "," +\
+        str(strat_a) + "," +\
+        str(strat_b) + "," +\
+        ",\n"
+    file_out = open(generation_data_save_filename, 'a')
+    file_out.write(out_string)
+    file_out.close()
 
 
 def fitness_function(x, y):
@@ -152,11 +183,43 @@ def simulate():
                 fitness_b += fitness_function(b, c)
             fitness_a /= (2 * population_size)
             fitness_b /= (2 * population_size)
+            if generation_data_save_filename != "":
+                if t % generation_data_save_wait == 0:
+                    save_generation_data(t, fitness_a, fitness_b, population[index_to_mutate], population[b])
+
             if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
                 population[index_to_mutate] = population[b]
     global cooperation_index_sum
     global cooperation_index_average
     cooperation_index_average = float(cooperation_index_sum)/float(runs*generations*4*population_size)
+
+def run_instance_generation_information(NumRuns, NumGenerations, PopulationSize, MutationRate,
+                 ExecutionError, ReputationAssignmentError,
+                 PrivateAssessmentError, ReputationUpdateProbability,
+                 RandomSeed, SocialNormMatrix, CostValue, BenefitValue,
+                 GenerationDataSaveWait, GenerationDataSaveFilename):
+    global generation_data_save_wait
+    global generation_data_save_filename
+    generation_data_save_wait = GenerationDataSaveWait
+    generation_data_save_filename = GenerationDataSaveFilename
+    file_out = open(generation_data_save_filename, 'w+')
+    file_out.write("Generation Number,AllD Count,pDisc Count,Disc Count,AllC Count," +
+                   "AllD Ratio,pDisc Ratio,Disc Ratio,AllC Ratio,\n")
+    file_out.close()
+    output = run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
+                 ExecutionError, ReputationAssignmentError,
+                 PrivateAssessmentError, ReputationUpdateProbability,
+                 RandomSeed, SocialNormMatrix, CostValue, BenefitValue)
+    final_string = str(population_size) + ',' +\
+                 str(output[0]) + ',' +\
+                 str(output[1]) + ',' +\
+                 str(output[2]) + ',' +\
+                 str(output[3]) + ',' +\
+                 str(output[4]) + ',\n'
+    file_out = open(generation_data_save_filename, 'a')
+    file_out.write("---,---,---,---,---,---,---,---,---,\n")
+    file_out.write(final_string)
+    file_out.close()
 
 
 def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,

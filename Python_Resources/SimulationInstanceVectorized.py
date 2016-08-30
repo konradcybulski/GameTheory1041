@@ -57,7 +57,7 @@ cooperation_index_zeros = 0
 generation_data_save_wait = -1
 generation_data_save_filename = ""
 
-def save_generation_data(gen_num):
+def save_generation_data(gen_num, fitness_a, fitness_b, strat_a, strat_b):
     # file_out.write("Generation Number,AllD Count,pDisc Count,Disc Count,AllD Count," +
     #                "AllD Ratio,pDisc Ratio,Disc Ratio,AllD Ratio")
     counter = Counter(population)
@@ -74,6 +74,10 @@ def save_generation_data(gen_num):
         str(float(pdisc_count)/float(population_size)) + "," +\
         str(float(disc_count)/float(population_size)) + "," +\
         str(float(allc_count)/float(population_size)) + "," +\
+        str(fitness_a) + "," +\
+        str(fitness_b) + "," +\
+        str(strat_a) + "," +\
+        str(strat_b) + "," +\
         ",\n"
     file_out = open(generation_data_save_filename, 'a')
     file_out.write(out_string)
@@ -194,9 +198,6 @@ def simulate():
         reputation = np.random.randint(2, size=population_size)  # equivalent to U(0, 1)
 
         for t in range(0, generations):
-            if generation_data_save_filename != "":
-                if t % generation_data_save_wait == 0:
-                    save_generation_data(t)
 
             agent_one = np.random.randint(population_size)
 
@@ -226,7 +227,12 @@ def simulate():
 
             fitness_a /= (2 * population_size)
             fitness_b /= (2 * population_size)
-            if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
+
+            if generation_data_save_filename != "":
+                if t % generation_data_save_wait == 0:
+                    save_generation_data(t, fitness_a, fitness_b, population[agent_one], population[agent_two])
+
+            if np.random.random() < np.power(1 + np.exp(float(1)*float(fitness_a - fitness_b)), -1):
                 population[agent_one] = population[agent_two]
     global cooperation_index_sum
     global cooperation_index_average
