@@ -155,12 +155,14 @@ def simulate():
             # if t % (generations // 10) == 0:
             #     progress = (float((t + 1) * 100) / float(generations))
             #     print("Simulation progress: %d%%     \r" % progress)
+
+            mutation_probs = np.random.rand(population_size) < mutation_probability
             for i in range(population_size):
 
                 index_to_mutate = np.random.randint(population_size)
 
                 # Random mutation probability
-                if np.random.random() < mutation_probability:
+                if mutation_probs[i]:
                     population[index_to_mutate] = np.random.randint(4)
 
                 # Make sure B != A
@@ -170,7 +172,7 @@ def simulate():
 
                 fitness_a = 0
                 fitness_b = 0
-                for i in range(0, 2 * population_size):
+                for _ in range(0, 2 * population_size):
                     c = np.random.randint(population_size)
                     while c == index_to_mutate:
                         c = np.random.randint(population_size)
