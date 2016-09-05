@@ -24,7 +24,7 @@ def ssp_parallel(runs, generations, Z, socialnorm):
     num_threads = multiprocessing.cpu_count()
     runs_per_thread = int(np.ceil(float(runs) / float(num_threads)))
     pool = multiprocessing.Pool(num_threads)
-    results = [pool.apply_async(SantosSantosPacheco.simulation_optimized,
+    results = [pool.apply_async(SantosSantosPacheco.simulation,
                                 args=(runs_per_thread, generations, Z, socialnorm)) for i in range(num_threads)]
     """
     result is in the form:
@@ -42,7 +42,6 @@ def ssp_parallel(runs, generations, Z, socialnorm):
     for result in results:
         cooperation_index_values_i = result.get()
         cooperation_index_average += float(cooperation_index_values_i[0])
-        print(cooperation_index_values_i[0])
         cooperation_index_min = min(cooperation_index_min, cooperation_index_values_i[1])
         cooperation_index_max = max(cooperation_index_max, cooperation_index_values_i[2])
         cooperation_index_zero_proportion += float(cooperation_index_values_i[3])
@@ -57,9 +56,9 @@ def ssp_parallel(runs, generations, Z, socialnorm):
             cooperation_index_without_zeros]
 
 
-def ssp_tofile(filename, population_size, socialnorm):
+def ssp_tofile(filename, population_size, socialnorm, theoretical_index):
     start_sim = time.clock()
-    coop_index_values = ssp_parallel(104, 3*np.power(10, 5), population_size, socialnorm)
+    coop_index_values = ssp_parallel(8, 3*np.power(10, 5), population_size, socialnorm)
     """
     result is in the form:
         [cooperation_index_avg,
@@ -70,6 +69,8 @@ def ssp_tofile(filename, population_size, socialnorm):
     """
     end_sim = time.clock()
     out_string = str(population_size) + ',' +\
+                 str(socialnorm) + ',' +\
+                 str(theoretical_index) + ',' +\
                  str(coop_index_values[0]) + ',' +\
                  str(coop_index_values[1]) + ',' +\
                  str(coop_index_values[2]) + ',' +\
@@ -79,6 +80,8 @@ def ssp_tofile(filename, population_size, socialnorm):
     file_out.write(out_string)
     file_out.close()
     print("Z: " + str(population_size) +
+          ", Institution: " + str(socialnorm) +
+          ", Theoretical Index: " + str(theoretical_index) +
           ", Cooperation Index: " + str(coop_index_values[0]) +
           ", Min: " + str(coop_index_values[1]) +
           ", Max: " + str(coop_index_values[2]) +
@@ -89,59 +92,44 @@ def ssp_tofile(filename, population_size, socialnorm):
 
 if __name__ == '__main__':
     start = time.clock()
-    coop_index_values = ssp_parallel(8, 3*np.power(10, 4), 12, [[0, 0], [0, 1]])
-    print("Z: " + str(12) +
-          ", Cooperation Index: " + str(coop_index_values[0]) +
-          ", Min: " + str(coop_index_values[1]) +
-          ", Max: " + str(coop_index_values[2]) +
-          ", Zero proportion: " + str(coop_index_values[3]) +
-          ", CoopIndx without zeros: " +
-          str(coop_index_values[4]))
-    coop_index_values = ssp_parallel(8, 3*np.power(10, 4), 12, [[1, 1], [0, 1]])
-    print("Z: " + str(12) +
-          ", Cooperation Index: " + str(coop_index_values[0]) +
-          ", Min: " + str(coop_index_values[1]) +
-          ", Max: " + str(coop_index_values[2]) +
-          ", Zero proportion: " + str(coop_index_values[3]) +
-          ", CoopIndx without zeros: " +
-          str(coop_index_values[4]))
-    # ssp_tofile("SSP_results_SternJudging.csv", 5, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 5, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 10, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 10, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 20, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 20, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 30, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 30, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 40, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 40, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 50, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 50, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 60, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 60, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 70, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 70, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 80, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 80, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 90, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 90, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 100, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 100, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 110, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 110, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 120, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 120, SantosSantosPacheco.SS)
+
+    # GC, GD, BC, BD ==> GC, BC, GD, BD
+    # Rule 0: [0, 0, 0, 0]: 0.007790514478896741
+    # Rule 1: [0, 0, 0, 1]: 0.4627661993687701
+    # Rule 2: [0, 0, 1, 0]: 0.06161330969353635
+    # Rule 3: [0, 0, 1, 1]: 0.0005849304509235106
+    # Rule 4: [0, 1, 0, 0]: 0.0043600195271226265
+    # Rule 5: [0, 1, 0, 1]: 0.07095791170280523
+    # Rule 6: [0, 1, 1, 0]: 0.05197578035307538
+    # Rule 7: [0, 1, 1, 1]: 0.06161330969353021
+    # Rule 8: [1, 0, 0, 0]: 0.04719576688988282
+    # Rule 9: [1, 0, 0, 1]: 0.816033606679371
+    # Rule 10: [1, 0, 1, 0]: 0.07095791170280075
+    # Rule 11: [1, 0, 1, 1]: 0.4627661993697064
+    # Rule 12: [1, 1, 0, 0]: 0.000584930450923339
+    # Rule 13: [1, 1, 0, 1]: 0.047195766889946984
+    # Rule 14: [1, 1, 1, 0]: 0.004360019527122341
+    # Rule 15: [1, 1, 1, 1]: 0.0077905144788752686
+    institutions = [
+        [[[0, 0], [0, 0]], 0.007790514478896741],
+        [[[0, 0], [0, 1]], 0.4627661993687701],
+        [[[0, 1], [0, 0]], 0.06161330969353635],
+        [[[0, 1], [0, 1]], 0.0005849304509235106],
+        [[[0, 0], [1, 0]], 0.0043600195271226265],
+        [[[0, 0], [1, 1]], 0.07095791170280523],
+        [[[0, 1], [1, 0]], 0.05197578035307538],
+        [[[0, 1], [1, 1]], 0.06161330969353021],
+        [[[1, 0], [0, 0]], 0.04719576688988282],
+        [[[1, 0], [0, 1]], 0.816033606679371],
+        [[[1, 1], [0, 0]], 0.07095791170280075],
+        [[[1, 1], [0, 1]], 0.4627661993697064],
+        [[[1, 0], [1, 0]], 0.000584930450923339],
+        [[[1, 0], [1, 1]], 0.047195766889946984],
+        [[[1, 1], [1, 0]], 0.004360019527122341],
+        [[[1, 1], [1, 1]], 0.0077905144788752686]
+    ]
+    for institution_info in institutions:
+        for _ in range(6):
+            ssp_tofile("Data/SSP_results_Z12.csv", 12, institution_info[0], institution_info[1])
     end = time.clock()
     print("Simulation completed in " + str(end - start))
