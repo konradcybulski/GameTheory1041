@@ -24,7 +24,7 @@ def ssp_parallel(runs, generations, Z, socialnorm):
     num_threads = multiprocessing.cpu_count()
     runs_per_thread = int(np.ceil(float(runs) / float(num_threads)))
     pool = multiprocessing.Pool(num_threads)
-    results = [pool.apply_async(SantosSantosPacheco.simulation,
+    results = [pool.apply_async(SantosSantosPacheco.simulation_optimized,
                                 args=(runs_per_thread, generations, Z, socialnorm)) for i in range(num_threads)]
     """
     result is in the form:
@@ -42,6 +42,7 @@ def ssp_parallel(runs, generations, Z, socialnorm):
     for result in results:
         cooperation_index_values_i = result.get()
         cooperation_index_average += float(cooperation_index_values_i[0])
+        print(cooperation_index_values_i[0])
         cooperation_index_min = min(cooperation_index_min, cooperation_index_values_i[1])
         cooperation_index_max = max(cooperation_index_max, cooperation_index_values_i[2])
         cooperation_index_zero_proportion += float(cooperation_index_values_i[3])
@@ -86,13 +87,9 @@ def ssp_tofile(filename, population_size, socialnorm):
           str(coop_index_values[4]))
     pass
 
-# GC, GD, BC, BD
-
 if __name__ == '__main__':
-    # santos_santos_pacheco()
     start = time.clock()
-    # ssp_parallel_generation_information(10, 3000, SantosSantosPacheco.SJ, 1, "SJ")
-    coop_index_values = ssp_parallel(16, 3*np.power(10, 4), 12, [[0, 0], [0, 1]])
+    coop_index_values = ssp_parallel(8, 3*np.power(10, 4), 12, [[0, 0], [0, 1]])
     print("Z: " + str(12) +
           ", Cooperation Index: " + str(coop_index_values[0]) +
           ", Min: " + str(coop_index_values[1]) +
@@ -100,7 +97,7 @@ if __name__ == '__main__':
           ", Zero proportion: " + str(coop_index_values[3]) +
           ", CoopIndx without zeros: " +
           str(coop_index_values[4]))
-    coop_index_values = ssp_parallel(16, 3*np.power(10, 4), 12, [[1, 1], [0, 1]])
+    coop_index_values = ssp_parallel(8, 3*np.power(10, 4), 12, [[1, 1], [0, 1]])
     print("Z: " + str(12) +
           ", Cooperation Index: " + str(coop_index_values[0]) +
           ", Min: " + str(coop_index_values[1]) +
@@ -148,4 +145,3 @@ if __name__ == '__main__':
     # ssp_tofile("SSP_results_SimpleStanding.csv", 120, SantosSantosPacheco.SS)
     end = time.clock()
     print("Simulation completed in " + str(end - start))
-    # santos_santos_pacheco_comms()

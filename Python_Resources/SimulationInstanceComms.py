@@ -120,41 +120,48 @@ def simulate():
         reputation = np.random.randint(2, size=population_size)  # equivalent to U(0, 1)
 
         for t in range(0, generations):
-            # Update progress
-            # if t % (generations // 10) == 0:
-            #     progress = (float((t + 1) * 100) / float(generations))
-            #     print("Simulation progress: %d%%     \r" % progress)
 
-            index_to_mutate = np.random.randint(population_size)
+            mutation_probs = np.random.rand(population_size) < mutation_probability
+            for i in range(population_size):
 
-            # Random mutation probability
-            if np.random.random() < mutation_probability:
-                population[index_to_mutate] = np.random.randint(4)
+                agent_one = np.random.randint(population_size)
 
-            # Make sure B != A
-            b = np.random.randint(population_size)
-            while b == index_to_mutate:
-                b = np.random.randint(population_size)
+                # Random mutation probability
+                if mutation_probs[i]:
+                    population[agent_one] = np.random.randint(4)
 
-            fitness_a = 0
-            fitness_b = 0
-            for i in range(0, 2 * population_size):
-                c = np.random.randint(population_size)
-                while c == index_to_mutate:
-                    c = np.random.randint(population_size)
-                # Update Fitness of A and Reputation of A & C
-                fitness_a += fitness_function(index_to_mutate, c)
+                # Make sure B != A
+                agent_two = np.random.randint(population_size)
+                while agent_two == agent_one:
+                    agent_two = np.random.randint(population_size)
 
-                c = np.random.randint(population_size)
-                while c == b:
-                    c = np.random.randint(population_size)
-                # Update Fitness of B and Reputation of B & C
-                fitness_b += fitness_function(b, c)
-            fitness_a /= (2 * population_size)
-            fitness_b /= (2 * population_size)
-            if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
-                population[index_to_mutate] = population[b]
-    # print("Cooperation index: " + str(float(cooperation_count) / float(interaction_count)))
+                fitness_a = 0
+                fitness_b = 0
+
+                # Creating tournament arrays
+                probabilities_a = np.ones(population_size, dtype=np.float) / float(population_size - 1)
+                probabilities_a[agent_one] = 0
+                probabilities_b = np.ones(population_size, dtype=np.float) / float(population_size - 1)
+                probabilities_b[agent_two] = 0
+
+                tournament_sample_a = np.random.choice(population_size, size=2 * population_size, p=probabilities_a,
+                                                       replace=True)
+                tournament_sample_b = np.random.choice(population_size, size=2 * population_size, p=probabilities_b,
+                                                       replace=True)
+
+                for c in range(0, 2 * population_size):
+                    agent_three = tournament_sample_a[c]
+                    # Update Fitness of A and Reputation of A & C
+                    fitness_a += fitness_function(agent_one, agent_three)
+
+                    agent_three = tournament_sample_b[c]
+                    # Update Fitness of B and Reputation of B & C
+                    fitness_b += fitness_function(agent_two, agent_three)
+                fitness_a /= (2 * population_size)
+                fitness_b /= (2 * population_size)
+
+                if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
+                    population[agent_one] = population[agent_two]
 
 
 def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
@@ -198,10 +205,5 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     CooperationCount = 0
     InteractionCount = 0
 
-    # start = time.clock()
-    # print("Simulation beginning...")
-
     simulate()
-    # end = time.clock()
-    # print("Simulation completed in " + str(end - start))
     return float(cooperation_count) / float(interaction_count)

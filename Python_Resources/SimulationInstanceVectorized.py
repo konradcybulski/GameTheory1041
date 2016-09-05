@@ -58,8 +58,6 @@ generation_data_save_wait = -1
 generation_data_save_filename = ""
 
 def save_generation_data(gen_num, fitness_a, fitness_b, strat_a, strat_b):
-    # file_out.write("Generation Number,AllD Count,pDisc Count,Disc Count,AllD Count," +
-    #                "AllD Ratio,pDisc Ratio,Disc Ratio,AllD Ratio")
     counter = Counter(population)
     alld_count = counter[0]
     pdisc_count = counter[1]
@@ -200,12 +198,16 @@ def simulate():
 
         for t in range(0, generations):
 
+            mutation_probabilities = np.random.rand(population_size) < mutation_probability
             for i in range(population_size):
+
+                fitness_a = 0
+                fitness_b = 0
 
                 agent_one = np.random.randint(population_size)
 
                 # Random mutation probability
-                if np.random.random() < mutation_probability:
+                if mutation_probabilities[i]:
                     population[agent_one] = np.random.randint(4)
 
                 # Make sure B != A
@@ -214,25 +216,23 @@ def simulate():
                     agent_two = np.random.randint(population_size)
 
                 # Creating tournament arrays
-                # Agent One:
-                tournament_sample_a = np.random.randint(population_size, size=2*population_size)
-                while (tournament_sample_a == agent_one).any():
-                    tournament_sample_a[tournament_sample_a == agent_one] =\
-                        np.random.randint(population_size, size=np.sum(tournament_sample_a == agent_one))
+                probabilities_a = np.ones(population_size, dtype=np.float) / float(population_size - 1)
+                probabilities_a[agent_one] = 0
+                probabilities_b = np.ones(population_size, dtype=np.float) / float(population_size - 1)
+                probabilities_b[agent_two] = 0
 
-                # Agent Two:
-                tournament_sample_b = np.random.randint(population_size, size=2*population_size)
-                while (tournament_sample_b == agent_two).any():
-                    tournament_sample_b[tournament_sample_b == agent_two] =\
-                        np.random.randint(population_size, size=np.sum(tournament_sample_b == agent_two))
-
-                # Check if after transient period
-                if t > generations // 10:
-                    fitness_a = fitness_function(agent_one, tournament_sample_a, True)
-                    fitness_b = fitness_function(agent_two, tournament_sample_b, True)
-                else:
-                    fitness_a = fitness_function(agent_one, tournament_sample_a, False)
-                    fitness_b = fitness_function(agent_two, tournament_sample_b, False)
+                for _ in range(2):
+                    tournament_sample_a = np.random.choice(population_size, size=population_size - 1, p=probabilities_a,
+                                                           replace=False)
+                    tournament_sample_b = np.random.choice(population_size, size=population_size - 1, p=probabilities_b,
+                                                           replace=False)
+                    # Check if after transient period
+                    if t > generations // 10:
+                        fitness_a = fitness_function(agent_one, tournament_sample_a, True)
+                        fitness_b = fitness_function(agent_two, tournament_sample_b, True)
+                    else:
+                        fitness_a = fitness_function(agent_one, tournament_sample_a, False)
+                        fitness_b = fitness_function(agent_two, tournament_sample_b, False)
 
                 fitness_a /= (2 * population_size)
                 fitness_b /= (2 * population_size)
@@ -245,7 +245,7 @@ def simulate():
                     population[agent_one] = population[agent_two]
     global cooperation_index_sum
     global cooperation_index_average
-    cooperation_index_average = float(cooperation_index_sum)/float(runs*generations*2*population_size)
+    cooperation_index_average = float(cooperation_index_sum)/float(runs*generations*4*(population_size-1))
 
 
 def run_instance_generation_information(NumRuns, NumGenerations, PopulationSize, MutationRate,
@@ -327,16 +327,11 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     cooperation_index_sum = 0
     cooperation_index_average = 0
 
-    # start = time.clock()
-    # print("Simulation beginning...")
-
     simulate()
-    # end = time.clock()
-    # print("Simulation completed in " + str(end - start))
     return_list = [cooperation_index_average,
                    cooperation_index_min,
                    cooperation_index_max,
-                   float(cooperation_index_zeros) / float(runs * generations * 2 * population_size),
-                   float(cooperation_index_sum) / float((runs * generations * 2 * population_size) -
+                   float(cooperation_index_zeros) / float(runs*generations*4*(population_size-1)),
+                   float(cooperation_index_sum) / float((runs*generations*4*(population_size-1)) -
                                                         cooperation_index_zeros)]
-    return return_list # float(cooperation_index_average)
+    return return_list
