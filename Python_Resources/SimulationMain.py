@@ -97,51 +97,5 @@ if __name__ == '__main__':
           ", Zero proportion: " + str(coop_index_values[3]) +
           ", CoopIndx without zeros: " +
           str(coop_index_values[4]))
-    coop_index_values = ssp_parallel(8, 3*np.power(10, 4), 12, [[1, 1], [0, 1]])
-    print("Z: " + str(12) +
-          ", Cooperation Index: " + str(coop_index_values[0]) +
-          ", Min: " + str(coop_index_values[1]) +
-          ", Max: " + str(coop_index_values[2]) +
-          ", Zero proportion: " + str(coop_index_values[3]) +
-          ", CoopIndx without zeros: " +
-          str(coop_index_values[4]))
-    # ssp_tofile("SSP_results_SternJudging.csv", 5, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 5, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 10, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 10, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 20, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 20, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 30, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 30, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 40, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 40, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 50, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 50, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 60, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 60, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 70, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 70, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 80, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 80, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 90, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 90, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 100, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 100, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 110, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 110, SantosSantosPacheco.SS)
-    #
-    # ssp_tofile("SSP_results_SternJudging.csv", 120, SantosSantosPacheco.SJ)
-    # ssp_tofile("SSP_results_SimpleStanding.csv", 120, SantosSantosPacheco.SS)
     end = time.clock()
     print("Simulation completed in " + str(end - start))
