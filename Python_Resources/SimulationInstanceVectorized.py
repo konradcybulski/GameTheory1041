@@ -83,7 +83,7 @@ def save_generation_data(gen_num, fitness_a, fitness_b, strat_a, strat_b):
     file_out.write(out_string)
     file_out.close()
 
-def fitness_function(x, y_array):
+def fitness_function(x, y_array, track_cooperation):
     """
     :param x: the index of agent-x in population
     :param y_array: the array of indices of agent-y's in population
@@ -104,13 +104,13 @@ def fitness_function(x, y_array):
     cx = xactiongood*p_rep + xactionbad*(1 - p_rep)
 
     # Adjust for assessment error
-    assessment_error_changes = np.int(arr_len * assessment_error)
+    assessment_error_changes = np.random.binomial(arr_len, assessment_error)
     mask_assessment_error = np.random.randint(arr_len, size=assessment_error_changes)
     cx[mask_assessment_error] = (xactiongood*(1 - p_rep[mask_assessment_error]) +
                                  xactionbad*p_rep[mask_assessment_error])
 
     # Adjust for execution error
-    elements_to_change_execution_error = np.int(arr_len * execution_error)
+    elements_to_change_execution_error = np.random.binomial(arr_len, execution_error)
     mask_execution_error = np.random.randint(arr_len, size=elements_to_change_execution_error)
     cx[mask_execution_error] = 0
 
@@ -120,13 +120,13 @@ def fitness_function(x, y_array):
     reputation_x_vector = np.insert(socialnorm[(1 - cx, 1 - p_rep)], 0, reputation[x])
 
     # Reputation update rate:
-    elements_to_change_reputation_update_rate = np.int(arr_len * (float(1) - reputation_update_rate))
+    elements_to_change_reputation_update_rate = np.random.binomial(arr_len, (float(1) - reputation_update_rate))
     mask_reputation_update_rate = np.random.randint(1, arr_len,
                                                     size=elements_to_change_reputation_update_rate)
     reputation_x_vector[mask_reputation_update_rate] = reputation_x_vector[mask_reputation_update_rate - 1]
 
     # Reputation assignment error:
-    elements_to_change_reputation_assignment_error = np.int(arr_len * reputation_assignment_error)
+    elements_to_change_reputation_assignment_error = np.random.binomial(arr_len, reputation_assignment_error)
     mask_reputation_assignment_error = np.random.randint(
         1, arr_len, size=elements_to_change_reputation_assignment_error)
     reputation_x_vector[mask_reputation_assignment_error] = 1 - reputation_x_vector[mask_reputation_assignment_error]
@@ -147,12 +147,12 @@ def fitness_function(x, y_array):
     """
     cy = reputation_x_vector*pactiongood + (1 - reputation_x_vector)*pactionbad
     # Adjust for assessment error
-    elements_to_change_assessment_error = np.int(arr_len * assessment_error)
+    elements_to_change_assessment_error = np.random.binomial(arr_len, assessment_error)
     mask_assessment_error = np.random.randint(arr_len, size=elements_to_change_assessment_error)
     cy[mask_assessment_error] = pactiongood[mask_assessment_error]*(1 - reputation_x_vector[mask_assessment_error]) +\
         pactionbad[mask_assessment_error]*reputation_x_vector[mask_assessment_error]
     # # Adjust for execution error
-    elements_to_change_execution_error = np.int(arr_len * execution_error)
+    elements_to_change_execution_error = np.random.binomial(arr_len, execution_error)
     mask_execution_error = np.random.randint(arr_len, size=elements_to_change_execution_error)
     cy[mask_execution_error] = 0
 
@@ -161,29 +161,30 @@ def fitness_function(x, y_array):
     """
     reputation_y_vector = socialnorm[(1 - cy, 1 - reputation_x_vector)]
     # Reputation update rate:
-    elements_to_change_reputation_update_rate = np.int(arr_len * (float(1) - reputation_update_rate))
+    elements_to_change_reputation_update_rate = np.random.binomial(arr_len, (float(1) - reputation_update_rate))
     mask_reputation_update_rate = np.random.randint(arr_len, size=elements_to_change_reputation_update_rate)
     reputation_y_vector[mask_reputation_update_rate] = reputation[y_array[mask_reputation_update_rate]]
     # Reputation assignment error:
-    elements_to_change_reputation_assignment_error = np.int(arr_len * reputation_assignment_error)
+    elements_to_change_reputation_assignment_error = np.random.binomial(arr_len, reputation_assignment_error)
     mask_reputation_assignment_error = np.random.randint(
         arr_len, size=elements_to_change_reputation_assignment_error)
     reputation_y_vector[mask_reputation_assignment_error] = 1 - reputation_y_vector[mask_reputation_assignment_error]
     reputation[y_array] = reputation_y_vector
 
     # Track cooperation
-    global cooperation_index_sum
-    global cooperation_index_min
-    global cooperation_index_max
-    global cooperation_index_zeros
     coops_y = np.sum(cy)
     coops_x = np.sum(cx)
-    cur_cooperation_index = float(float(coops_y + coops_x)/float(2 * arr_len))
-    cooperation_index_sum += cur_cooperation_index
-    cooperation_index_min = min(cooperation_index_min, cur_cooperation_index)
-    cooperation_index_max = max(cooperation_index_max, cur_cooperation_index)
-    if cur_cooperation_index < float(np.power(float(10), float(-5))):
-        cooperation_index_zeros += 1
+    if track_cooperation:
+        global cooperation_index_sum
+        global cooperation_index_min
+        global cooperation_index_max
+        global cooperation_index_zeros
+        cur_cooperation_index = float(float(coops_y + coops_x)/float(2 * arr_len))
+        cooperation_index_sum += cur_cooperation_index
+        cooperation_index_min = min(cooperation_index_min, cur_cooperation_index)
+        cooperation_index_max = max(cooperation_index_max, cur_cooperation_index)
+        if cur_cooperation_index < float(np.power(float(10), float(-5))):
+            cooperation_index_zeros += 1
 
     return (benefit * coops_y) - (cost * coops_x)
 
@@ -199,44 +200,52 @@ def simulate():
 
         for t in range(0, generations):
 
-            agent_one = np.random.randint(population_size)
+            for i in range(population_size):
 
-            # Random mutation probability
-            if np.random.random() < mutation_probability:
-                population[agent_one] = np.random.randint(4)
+                agent_one = np.random.randint(population_size)
 
-            # Make sure B != A
-            agent_two = np.random.randint(population_size)
-            while agent_two == agent_one:
+                # Random mutation probability
+                if np.random.random() < mutation_probability:
+                    population[agent_one] = np.random.randint(4)
+
+                # Make sure B != A
                 agent_two = np.random.randint(population_size)
+                while agent_two == agent_one:
+                    agent_two = np.random.randint(population_size)
 
-            # Creating tournament arrays
-            # Agent One:
-            tournament_sample_a = np.random.randint(population_size, size=2*population_size)
-            while (tournament_sample_a == agent_one).any():
-                tournament_sample_a[tournament_sample_a == agent_one] =\
-                    np.random.randint(population_size, size=np.sum(tournament_sample_a == agent_one))
-            fitness_a = fitness_function(agent_one, tournament_sample_a)
+                # Creating tournament arrays
+                # Agent One:
+                tournament_sample_a = np.random.randint(population_size, size=2*population_size)
+                while (tournament_sample_a == agent_one).any():
+                    tournament_sample_a[tournament_sample_a == agent_one] =\
+                        np.random.randint(population_size, size=np.sum(tournament_sample_a == agent_one))
 
-            # Agent Two:
-            tournament_sample_b = np.random.randint(population_size, size=2*population_size)
-            while (tournament_sample_b == agent_two).any():
-                tournament_sample_b[tournament_sample_b == agent_two] =\
-                    np.random.randint(population_size, size=np.sum(tournament_sample_b == agent_two))
-            fitness_b = fitness_function(agent_two, tournament_sample_b)
+                # Agent Two:
+                tournament_sample_b = np.random.randint(population_size, size=2*population_size)
+                while (tournament_sample_b == agent_two).any():
+                    tournament_sample_b[tournament_sample_b == agent_two] =\
+                        np.random.randint(population_size, size=np.sum(tournament_sample_b == agent_two))
 
-            fitness_a /= (2 * population_size)
-            fitness_b /= (2 * population_size)
+                # Check if after transient period
+                if t > generations // 10:
+                    fitness_a = fitness_function(agent_one, tournament_sample_a, True)
+                    fitness_b = fitness_function(agent_two, tournament_sample_b, True)
+                else:
+                    fitness_a = fitness_function(agent_one, tournament_sample_a, False)
+                    fitness_b = fitness_function(agent_two, tournament_sample_b, False)
 
-            if generation_data_save_filename != "":
-                if t % generation_data_save_wait == 0:
-                    save_generation_data(t, fitness_a, fitness_b, population[agent_one], population[agent_two])
+                fitness_a /= (2 * population_size)
+                fitness_b /= (2 * population_size)
 
-            if np.random.random() < np.power(1 + np.exp(float(1)*float(fitness_a - fitness_b)), -1):
-                population[agent_one] = population[agent_two]
+                if generation_data_save_filename != "":
+                    if t % generation_data_save_wait == 0:
+                        save_generation_data(t, fitness_a, fitness_b, population[agent_one], population[agent_two])
+
+                if np.random.random() < np.power(1 + np.exp(float(1)*float(fitness_a - fitness_b)), -1):
+                    population[agent_one] = population[agent_two]
     global cooperation_index_sum
     global cooperation_index_average
-    cooperation_index_average = float(cooperation_index_sum)/float(runs*generations*2)
+    cooperation_index_average = float(cooperation_index_sum)/float(runs*generations*2*population_size)
 
 
 def run_instance_generation_information(NumRuns, NumGenerations, PopulationSize, MutationRate,
@@ -327,6 +336,7 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     return_list = [cooperation_index_average,
                    cooperation_index_min,
                    cooperation_index_max,
-                   float(cooperation_index_zeros) / float(runs * generations * 2),
-                   float(cooperation_index_sum) / float((runs * generations * 2) - cooperation_index_zeros)]
+                   float(cooperation_index_zeros) / float(runs * generations * 2 * population_size),
+                   float(cooperation_index_sum) / float((runs * generations * 2 * population_size) -
+                                                        cooperation_index_zeros)]
     return return_list # float(cooperation_index_average)

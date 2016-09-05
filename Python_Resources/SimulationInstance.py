@@ -155,43 +155,44 @@ def simulate():
             # if t % (generations // 10) == 0:
             #     progress = (float((t + 1) * 100) / float(generations))
             #     print("Simulation progress: %d%%     \r" % progress)
+            for i in range(population_size):
 
-            index_to_mutate = np.random.randint(population_size)
+                index_to_mutate = np.random.randint(population_size)
 
-            # Random mutation probability
-            if np.random.random() < mutation_probability:
-                population[index_to_mutate] = np.random.randint(4)
+                # Random mutation probability
+                if np.random.random() < mutation_probability:
+                    population[index_to_mutate] = np.random.randint(4)
 
-            # Make sure B != A
-            b = np.random.randint(population_size)
-            while b == index_to_mutate:
+                # Make sure B != A
                 b = np.random.randint(population_size)
+                while b == index_to_mutate:
+                    b = np.random.randint(population_size)
 
-            fitness_a = 0
-            fitness_b = 0
-            for i in range(0, 2 * population_size):
-                c = np.random.randint(population_size)
-                while c == index_to_mutate:
+                fitness_a = 0
+                fitness_b = 0
+                for i in range(0, 2 * population_size):
                     c = np.random.randint(population_size)
-                # Update Fitness of A and Reputation of A & C
-                fitness_a += fitness_function(index_to_mutate, c)
+                    while c == index_to_mutate:
+                        c = np.random.randint(population_size)
+                    # Update Fitness of A and Reputation of A & C
+                    fitness_a += fitness_function(index_to_mutate, c)
 
-                c = np.random.randint(population_size)
-                while c == b:
                     c = np.random.randint(population_size)
-                # Update Fitness of B and Reputation of B & C
-                fitness_b += fitness_function(b, c)
-            fitness_a /= (2 * population_size)
-            fitness_b /= (2 * population_size)
-            if generation_data_save_filename != "":
-                if t % generation_data_save_wait == 0:
-                    save_generation_data(t, fitness_a, fitness_b, population[index_to_mutate], population[b])
+                    while c == b:
+                        c = np.random.randint(population_size)
+                    # Update Fitness of B and Reputation of B & C
+                    fitness_b += fitness_function(b, c)
+                fitness_a /= (2 * population_size)
+                fitness_b /= (2 * population_size)
+                if generation_data_save_filename != "":
+                    if t % generation_data_save_wait == 0:
+                        save_generation_data(t, fitness_a, fitness_b, population[index_to_mutate], population[b])
 
-            if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
-                population[index_to_mutate] = population[b]
+                if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
+                    population[index_to_mutate] = population[b]
     global cooperation_index_sum
     global cooperation_index_average
-    cooperation_index_average = float(cooperation_index_sum)/float(runs*generations*4*population_size)
+    cooperation_index_average = float(cooperation_index_sum)/float(runs*generations*4*population_size*population_size)
 
 def run_instance_generation_information(NumRuns, NumGenerations, PopulationSize, MutationRate,
                  ExecutionError, ReputationAssignmentError,
@@ -273,9 +274,9 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     return_list = [cooperation_index_average,
                    cooperation_index_min,
                    cooperation_index_max,
-                   float(cooperation_index_zeros) / float(runs * generations * 4 * population_size),
-                   float(cooperation_index_sum) / float((runs *
-                                                         generations * 4 * population_size) - cooperation_index_zeros)]
+                   float(cooperation_index_zeros) / float(runs * generations * 4 * population_size*population_size),
+                   float(cooperation_index_sum) / float(
+                       (runs * generations * 4 * population_size*population_size) - cooperation_index_zeros)]
     return return_list # float(cooperation_index_average)
     # end = time.clock()
     # print("Simulation completed in " + str(end - start))
