@@ -80,7 +80,7 @@ def save_generation_data(gen_num, fitness_a, fitness_b, strat_a, strat_b):
     file_out.close()
 
 
-def fitness_function(x, y):
+def fitness_function(x, y, track_cooperation):
     """
     :param x: the index of agent-x in population
     :param y: the index of agent-y in population
@@ -130,12 +130,13 @@ def fitness_function(x, y):
     global cooperation_index_zeros
     coops_x = 1 if cx == 1 else 0
     coops_y = 1 if cy == 1 else 0
-    cur_cooperation_index = float(float(coops_y + coops_x)/float(2))
-    cooperation_index_sum += cur_cooperation_index
-    cooperation_index_min = min(cooperation_index_min, cur_cooperation_index)
-    cooperation_index_max = max(cooperation_index_max, cur_cooperation_index)
-    if cur_cooperation_index < float(np.power(float(10), float(-5))):
-        cooperation_index_zeros += 1
+    if track_cooperation:
+        cur_cooperation_index = float(float(coops_y + coops_x)/float(2))
+        cooperation_index_sum += cur_cooperation_index
+        cooperation_index_min = min(cooperation_index_min, cur_cooperation_index)
+        cooperation_index_max = max(cooperation_index_max, cur_cooperation_index)
+        if cur_cooperation_index < float(np.power(float(10), float(-5))):
+            cooperation_index_zeros += 1
     return (benefit * cy) - (cost * cx)
 
 
@@ -148,7 +149,11 @@ def simulate():
         population = np.random.randint(4, size=population_size)  # equivalent to U(0, 3)
         reputation = np.random.randint(2, size=population_size)  # equivalent to U(0, 1)
 
+        track_cooperation = False
+
         for t in range(0, generations):
+            if t > generations // 10:
+                track_cooperation = True
 
             mutation_probs = np.random.rand(population_size) < mutation_probability
             for i in range(population_size):
@@ -181,16 +186,13 @@ def simulate():
                 for c in range(0, 2 * population_size):
                     agent_three = tournament_sample_a[c]
                     # Update Fitness of A and Reputation of A & C
-                    fitness_a += fitness_function(agent_one, agent_three)
+                    fitness_a += fitness_function(agent_one, agent_three, track_cooperation)
 
                     agent_three = tournament_sample_b[c]
                     # Update Fitness of B and Reputation of B & C
-                    fitness_b += fitness_function(agent_two, agent_three)
+                    fitness_b += fitness_function(agent_two, agent_three, track_cooperation)
                 fitness_a /= (2 * population_size)
                 fitness_b /= (2 * population_size)
-                if generation_data_save_filename != "":
-                    if t % generation_data_save_wait == 0:
-                        save_generation_data(t, fitness_a, fitness_b, population[agent_one], population[agent_two])
 
                 if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
                     population[agent_one] = population[agent_two]

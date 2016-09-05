@@ -58,7 +58,7 @@ def ssp_parallel(runs, generations, Z, socialnorm):
 
 def ssp_tofile(filename, population_size, socialnorm, theoretical_index):
     start_sim = time.clock()
-    coop_index_values = ssp_parallel(8, 3*np.power(10, 5), population_size, socialnorm)
+    coop_index_values = ssp_parallel(8, 3*np.power(10, 1), population_size, socialnorm)
     """
     result is in the form:
         [cooperation_index_avg,

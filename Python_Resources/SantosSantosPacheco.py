@@ -36,7 +36,7 @@ def simulation(runs, generations, Z, socialnorm):
     execution_error = 0.08
     reputation_assignment_error = 0.01
     private_assessment_error = 0.01
-    reputation_update_probability = 0.2
+    reputation_update_probability = 1
     randomseed = np.random.randint(999999)
     cost = 1
     benefit = 5
