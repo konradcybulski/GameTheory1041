@@ -24,7 +24,7 @@ def ssp_parallel(runs, generations, Z, socialnorm):
     num_threads = multiprocessing.cpu_count()
     runs_per_thread = int(np.ceil(float(runs) / float(num_threads)))
     pool = multiprocessing.Pool(num_threads)
-    results = [pool.apply_async(SantosSantosPacheco.simulation_optimized,
+    results = [pool.apply_async(SantosSantosPacheco.simulation,
                                 args=(runs_per_thread, generations, Z, socialnorm)) for i in range(num_threads)]
     """
     result is in the form:
@@ -89,7 +89,7 @@ def ssp_tofile(filename, population_size, socialnorm):
 
 if __name__ == '__main__':
     start = time.clock()
-    coop_index_values = ssp_parallel(8, 3*np.power(10, 4), 12, [[0, 0], [0, 1]])
+    coop_index_values = ssp_parallel(8, 3*np.power(10, 5), 12, [[0, 0], [0, 1]])
     print("Z: " + str(12) +
           ", Cooperation Index: " + str(coop_index_values[0]) +
           ", Min: " + str(coop_index_values[1]) +
