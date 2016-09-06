@@ -30,7 +30,7 @@ vector<vector<int>> SJ = {{1, 0},
  * 
  */
 int main(int argc, char** argv) {
-    SantosSantosPacheco(50);
+    SantosSantosPacheco(30);
     return 0;
 }
 
@@ -43,8 +43,8 @@ void SantosSantosPacheco(int Z){
     float alpha = 0.01;
     float Xerror = 0.01;
     float tau = 0.2;
-    int randomseed = 1;
-    vector<vector<int>> socialnorm = SJ;
+    int randomseed = 4;
+	vector<vector<int>> socialnorm = { {0, 0}, {0, 1} }; //SJ;
     int cost = 1;
     int benefit = 5;
     
@@ -62,13 +62,20 @@ void SantosSantosPacheco(int Z){
 	instance.RunInstance(Z);
 	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 	auto duration1 = std::chrono::duration_cast<std::chrono::seconds>(t2 - t1).count();
+	auto average_time = duration1;
 
 	t1 = std::chrono::high_resolution_clock::now();
-    instance.RunInstanceParallel(Z);
+	instance.RunInstance(Z);
 	t2 = std::chrono::high_resolution_clock::now();
-	auto duration2 = std::chrono::duration_cast<std::chrono::seconds>(t2 - t1).count();
+	duration1 = std::chrono::duration_cast<std::chrono::seconds>(t2 - t1).count();
+	average_time += duration1;
 
-	cout << "Single Thread: " << duration1 << " seconds" << endl;
-	cout << "Parallel on " << std::thread::hardware_concurrency() << " threads: " << duration2 << " seconds" << endl;
+	t1 = std::chrono::high_resolution_clock::now();
+	instance.RunInstance(Z);
+	t2 = std::chrono::high_resolution_clock::now();
+	duration1 = std::chrono::duration_cast<std::chrono::seconds>(t2 - t1).count();
+	average_time += duration1;
+
+	cout << "Single Thread: " << average_time/float(3) << " seconds" << endl;
 	std::getchar();
 }

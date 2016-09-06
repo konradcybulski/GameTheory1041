@@ -42,6 +42,7 @@ def ssp_parallel(runs, generations, Z, socialnorm):
     for result in results:
         cooperation_index_values_i = result.get()
         cooperation_index_average += float(cooperation_index_values_i[0])
+        print(cooperation_index_values_i[0])
         cooperation_index_min = min(cooperation_index_min, cooperation_index_values_i[1])
         cooperation_index_max = max(cooperation_index_max, cooperation_index_values_i[2])
         cooperation_index_zero_proportion += float(cooperation_index_values_i[3])
@@ -92,7 +93,6 @@ def ssp_tofile(filename, population_size, socialnorm, theoretical_index):
 
 if __name__ == '__main__':
     start = time.clock()
-
     # GC, GD, BC, BD ==> GC, BC, GD, BD
     # Rule 0: [0, 0, 0, 0]: 0.007790514478896741
     # Rule 1: [0, 0, 0, 1]: 0.4627661993687701

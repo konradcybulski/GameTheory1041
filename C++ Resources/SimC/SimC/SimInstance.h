@@ -29,15 +29,10 @@ public:
         int RandomSeed, vector<vector<int>> SocialNormMatrix,
         int CostValue, int BenefitValue);
     void RunInstance(int Z);
-	void RunInstanceParallel(int Z);
 protected:
     float RFloat();
     int U(int a, int b);
 	int FitnessFunction(int x, int y);
-	int ReputationFunction(vector<vector<int>> socialnorm_matrix,
-		int action_x, int rep_y);
-	vector<int> InteractZ(int a, int b, int iterations, int Z);
-	void Add();
 };
 
 #endif /* SIMINSTANCE_H */
