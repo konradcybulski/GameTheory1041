@@ -327,3 +327,7 @@ ENV/
 /Python_Resources/.idea/misc.xml
 /Python_Resources/.idea/workspace.xml
 /Python_Resources/.idea/modules.xml
+misc.xml
+modules.xml
+Python_Resources.iml
+workspace.xml
