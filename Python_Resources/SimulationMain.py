@@ -40,7 +40,7 @@ def ssp_parallel(runs, generations, Z, socialnorm):
 
 def ssp_tofile(filename, population_size, socialnorm, theoretical_index):
     start_sim = time.clock()
-    coop_index = ssp_parallel(8, 3*np.power(10, 5), population_size, socialnorm)
+    coop_index = ssp_parallel(8, 3*np.power(10, 6), population_size, socialnorm)
     """
     result is in the form:
         [cooperation_index_avg,
@@ -86,7 +86,7 @@ if __name__ == '__main__':
         [[[0, 0], [0, 0]], 0.007790514478896741]
     ]
     for institution_info in institutions:
-        for _ in range(3):
+        for _ in range(1):
             ssp_tofile("Data/SSP_results_Z12_alt.csv", 12, institution_info[0], institution_info[1])
     end = time.clock()
     print("Simulation completed in " + str(end - start))
