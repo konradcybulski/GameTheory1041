@@ -27,39 +27,20 @@ def ssp_parallel(runs, generations, Z, socialnorm):
     results = [pool.apply_async(SantosSantosPacheco.simulation,
                                 args=(runs_per_thread, generations, Z, socialnorm)) for i in range(num_threads)]
     """
-    result is in the form:
-            [cooperation_index_avg,
-            cooperation_index_min,
-            cooperation_index_max,
-            cooperation_index_zero_proportion,
-            cooperation_index_without_zeros]
+    result is the cooperation index
     """
     cooperation_index_average = float(0)
-    cooperation_index_min = float(1)
-    cooperation_index_max = float(0)
-    cooperation_index_zero_proportion = float(0)
-    cooperation_index_without_zeros = float(0)
     for result in results:
         cooperation_index_values_i = result.get()
-        cooperation_index_average += float(cooperation_index_values_i[0])
-        print(cooperation_index_values_i[0])
-        cooperation_index_min = min(cooperation_index_min, cooperation_index_values_i[1])
-        cooperation_index_max = max(cooperation_index_max, cooperation_index_values_i[2])
-        cooperation_index_zero_proportion += float(cooperation_index_values_i[3])
-        cooperation_index_without_zeros += float(cooperation_index_values_i[4])
+        cooperation_index_average += float(cooperation_index_values_i)
+        print(cooperation_index_values_i)
     cooperation_index_average /= float(num_threads)
-    cooperation_index_zero_proportion /= float(num_threads)
-    cooperation_index_without_zeros /= float(num_threads)
-    return [cooperation_index_average,
-            cooperation_index_min,
-            cooperation_index_max,
-            cooperation_index_zero_proportion,
-            cooperation_index_without_zeros]
+    return cooperation_index_average
 
 
 def ssp_tofile(filename, population_size, socialnorm):
     start_sim = time.clock()
-    coop_index_values = ssp_parallel(104, 3*np.power(10, 5), population_size, socialnorm)
+    coop_index = ssp_parallel(104, 3*np.power(10, 5), population_size, socialnorm)
     """
     result is in the form:
         [cooperation_index_avg,
@@ -70,32 +51,22 @@ def ssp_tofile(filename, population_size, socialnorm):
     """
     end_sim = time.clock()
     out_string = str(population_size) + ',' +\
-                 str(coop_index_values[0]) + ',' +\
-                 str(coop_index_values[1]) + ',' +\
-                 str(coop_index_values[2]) + ',' +\
-                 str(coop_index_values[3]) + ',' +\
-                 str(coop_index_values[4]) + ',\n'
+                 str(coop_index) + ',\n'
     file_out = open(filename, 'a')
     file_out.write(out_string)
     file_out.close()
     print("Z: " + str(population_size) +
-          ", Cooperation Index: " + str(coop_index_values[0]) +
-          ", Min: " + str(coop_index_values[1]) +
-          ", Max: " + str(coop_index_values[2]) +
-          ", Zero proportion: " + str(coop_index_values[3]) +
-          ", CoopIndx without zeros: " +
-          str(coop_index_values[4]))
-    pass
+          ", Cooperation Index: " + str(coop_index))
+
 
 if __name__ == '__main__':
     start = time.clock()
-    coop_index_values = ssp_parallel(8, 3*np.power(10, 5), 12, [[0, 0], [0, 1]])
+    coop_index = ssp_parallel(8, 3*np.power(10, 5), 12, [[1, 0], [0, 1]])
+    # coop_index += ssp_parallel(8, 3*np.power(10, 4), 12, [[1, 0], [0, 1]])
+    # coop_index += ssp_parallel(16, 3*np.power(10, 4), 12, [[1, 0], [0, 1]])
+    # coop_index += ssp_parallel(16, 3*np.power(10, 4), 12, [[1, 0], [0, 1]])
+    # coop_index /= 4.0
     print("Z: " + str(12) +
-          ", Cooperation Index: " + str(coop_index_values[0]) +
-          ", Min: " + str(coop_index_values[1]) +
-          ", Max: " + str(coop_index_values[2]) +
-          ", Zero proportion: " + str(coop_index_values[3]) +
-          ", CoopIndx without zeros: " +
-          str(coop_index_values[4]))
+          ", Cooperation Index: " + str(coop_index))
     end = time.clock()
     print("Simulation completed in " + str(end - start))
