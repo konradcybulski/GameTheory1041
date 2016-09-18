@@ -51,6 +51,7 @@ def save_generation_data(gen_num, fitness_a, fitness_b, strat_a, strat_b, variab
 
 
 def fitness_function(x, y, variables):
+
     """
     :param x: the index of agent-x in population
     :param y: the index of agent-y in population
