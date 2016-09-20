@@ -29,18 +29,17 @@ def ssp_parallel(runs, generations, Z, socialnorm):
     """
     result is the cooperation index
     """
-    cooperation_index_average = float(0)
+    cooperation_indexes = []
     for result in results:
         cooperation_index_values_i = result.get()
-        cooperation_index_average += float(cooperation_index_values_i)
+        cooperation_indexes.append(float(cooperation_index_values_i))
         print(cooperation_index_values_i)
-    cooperation_index_average /= float(num_threads)
-    return cooperation_index_average
+    return cooperation_indexes
 
 
 def ssp_tofile(filename, population_size, socialnorm, theoretical_index):
     start_sim = time.clock()
-    coop_index = ssp_parallel(8, 3*np.power(10, 6), population_size, socialnorm)
+    coop_indexes = ssp_parallel(8, 3*np.power(10, 3), population_size, socialnorm)
     """
     result is in the form:
         [cooperation_index_avg,
@@ -50,43 +49,77 @@ def ssp_tofile(filename, population_size, socialnorm, theoretical_index):
          cooperation_index_without_zeros]
     """
     end_sim = time.clock()
-    out_string = str(population_size) + ',' +\
-                 str(socialnorm) + ',' +\
-                 str(theoretical_index) + ',' +\
-                 str(coop_index) + ',\n'
     file_out = open(filename, 'a')
-    file_out.write(out_string)
+    for coop_index in coop_indexes:
+        out_string = str(population_size) + ',' +\
+                     str(socialnorm) + ',' +\
+                     str(theoretical_index) + ',' +\
+                     str(coop_index) + ',\n'
+        file_out.write(out_string)
     file_out.close()
     print("Z: " + str(population_size) +
-          ", Cooperation Index: " + str(coop_index))
+          ", Cooperation Index: " + str(np.average(coop_indexes)))
 
 
 if __name__ == '__main__':
     start = time.clock()
     # GC, GD, BC, BD ==> GC, BC, GD, BD
-    # Rule 0: [0, 0, 0, 0]: 0.007790514478896741
-    # Rule 1: [0, 0, 0, 1]: 0.4627661993687701
-    # Rule 2: [0, 0, 1, 0]: 0.06161330969353635
-    # Rule 3: [0, 0, 1, 1]: 0.0005849304509235106
-    # Rule 4: [0, 1, 0, 0]: 0.0043600195271226265
-    # Rule 5: [0, 1, 0, 1]: 0.07095791170280523
-    # Rule 6: [0, 1, 1, 0]: 0.05197578035307538
-    # Rule 7: [0, 1, 1, 1]: 0.06161330969353021
-    # Rule 8: [1, 0, 0, 0]: 0.04719576688988282
-    # Rule 9: [1, 0, 0, 1]: 0.816033606679371
-    # Rule 10: [1, 0, 1, 0]: 0.07095791170280075
-    # Rule 11: [1, 0, 1, 1]: 0.4627661993697064
-    # Rule 12: [1, 1, 0, 0]: 0.000584930450923339
-    # Rule 13: [1, 1, 0, 1]: 0.047195766889946984
-    # Rule 14: [1, 1, 1, 0]: 0.004360019527122341
-    # Rule 15: [1, 1, 1, 1]: 0.0077905144788752686
     institutions = [
-        [[[1, 0], [0, 1]], 0.816033606679371],
-        [[[0, 0], [0, 1]], 0.4627661993687701],
-        [[[0, 0], [0, 0]], 0.007790514478896741]
+        # [[0, 0], [0, 0]],
+        [[0, 0], [0, 1]],
+        # [[0, 1], [0, 0]],
+        # [[0, 1], [0, 1]],
+        # [[0, 0], [1, 0]],
+        # [[0, 0], [1, 1]],
+        # [[0, 1], [1, 0]],
+        # [[0, 1], [1, 1]],
+        # [[1, 0], [0, 0]],
+        [[1, 0], [0, 1]],
+        # [[1, 1], [0, 0]],
+        [[1, 1], [0, 1]],
+        # [[1, 0], [1, 0]],
+        # [[1, 0], [1, 1]],
+        # [[1, 1], [1, 0]],
+        # [[1, 1], [1, 1]]
     ]
-    for institution_info in institutions:
+    theoretical_Z12 = [
+        # 0.007790514478896741,
+        0.4627661993687701,
+        # 0.06161330969353635,
+        # 0.0005849304509235106,
+        # 0.0043600195271226265,
+        # 0.07095791170280523,
+        # 0.05197578035307538,
+        # 0.06161330969353021,
+        # 0.04719576688988282,
+        0.816033606679371,
+        # 0.07095791170280075,
+        0.4627661993697064,
+        # 0.000584930450923339,
+        # 0.047195766889946984,
+        # 0.004360019527122341,
+        # 0.007790514478875268
+    ]
+    institutions_Z50 = [
+        # 0.004885658144033963,
+        0.4923273034325223,
+        # 0.006870340397749519,
+        # 9.031340098879267e-12,
+        # 1.578455107243566e-05,
+        # 0.006825503964836176,
+        # 5.535122147388484e-05,
+        # 0.006870340397746998,
+        # 0.07083386985149893,
+        0.8224949855474589,
+        # 0.006825503964834948,
+        0.49232730343821446,
+        # 9.031340098549926e-12,
+        # 0.07083386985154855,
+        # 1.5784551072303234e-05,
+        # 0.004885658144036075
+    ]
+    for i in range(len(institutions)):
         for _ in range(1):
-            ssp_tofile("Data/SSP_results_Z12_alt.csv", 12, institution_info[0], institution_info[1])
+            ssp_tofile("Data/SSP_results_Z12_alt.csv", 50, institutions[i], institutions_Z50[i])
     end = time.clock()
     print("Simulation completed in " + str(end - start))
