@@ -1,0 +1,113 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Konrad Cybulski}
+\title{Using agent-based simulations to verify the predictions made by Santos, Santos, Pacheco.}
+\begin{document}
+\begin{Large}
+Using agent-based simulations to verify when and if the mathematical predictions of
+Santos, Santos and Pacheco hold true
+\end{Large}
+
+\pagebreak
+\tableofcontents
+\pagebreak
+
+\section{Abstract}
+In order to understand our behaviour, our willingness and ability to cooperate with those around us, it is vital that we can create simulations to model the dynamics of populations and the interactions of agents within them.
+It is also important to understand the way cooperation and defection evolve in both small and large populations.
+The main research paper on which this project is based is “\textit{Social Norms of Cooperation in Small-Scale Societies}” by Santos, Santos, and Pacheco. 
+In the paper a number of simulation parameters and methods are introduced and those specifications are replicated in this project in order to verify the results of the simulations performed in the paper.
+\\\\
+\section{Introduction}
+What is the effect of reputation in fostering collaboration amongst decision makers? Verifying the results and simulations developed by Santos, Santos, Pacheco in their paper \textit{Social Norms of Cooperation in Small-Scale Societies}.
+The primary aim of this project is to replicate the findings of Santos, Santos, and Pacheco which will allow further exploration into more detailed models of the prisoner’s dilemma game within populations. The paper outlines simulation parameters based on equations to model the process in which the prisoner’s dilemma game is played over time in a population. In order to allow for greater research to be done in this area based on the simulation developed to verify the mathematical model developed by Santos et al. it is necessary that the simulation can be recreated and tested under similar variables and constraints to verify their results.
+\section{Literature Review}
+
+\section{Methodology}
+The application developed was initially programmed in both native Python as well as C++ in an effort to determine the most optimal medium to utilise for further development of the project.
+The code itself was based on the pseudocode provided by Santos, Santos, Pacheco in the supporting material of their paper.
+In developing both the C++ and Python programs, the focus initially was on optimization of the program due to the intractability of the algorithm as defined in the paper for large population sizes (\emph{Z}), large generation numbers (\emph{G}) and large numbers of runs (\emph{R}).
+The total time complexity for any given simulation being O(\emph{$Z^{2} \cdot G\cdot R$}).
+Utilising numpy $^{3}$ a number of scalar optimisations were able to increase the efficiency of the program in its Python implementation. 
+\\
+The method of vectorizing the program took was aimed at parallelizing the stage at which one individual interacted with a number of other individuals in order to determine its average fitness over a number of interactions. 
+All optimizations made at any point in the algorithm were tested to ensure complete correctness and verify the algorithm itself had been altered functionally in any way.
+\\
+\subsection{Vectorization of the fitness function}
+The fitness function, the function to determine the average fitness of an individual over the course of a series of prisoner's dilemma games with other individual in the population, was the aim of the optimization. 
+The vectorization was required to compute a series of vectors in order to computer the payoff for a given agent X and update the reputations of X and a vector of other agents (the tournament vector).
+The following computations were required:
+\\
+\\ 1. Vector of actions taken by a given agent X against each opposing individual in the tournament vector.
+\\ 2. Vector of actions taken by each agent in the tournament vector.
+\\ 3. Vector of the reputation of X after each interaction.
+\\ 4. Vector of the reputation of each agent after each interaction with X. \\\\
+
+The equations defining the actions of both agent X (\emph{$C_{x}$}) and each agent in the tournament vector (\emph{$C_{y}$}) are defined as:\\
+$A_{i}$ = the vector of size two defining the possible actions of agent i against another agent Y, this vector contains the action if Y has reputation G and if Y has reputation B.
+$(A_{i})_{G}$ = the action of agent X if the reputation of some agent Y is G (0 is defection, 1 is cooperation). \\
+$(A_{i})_{B}$ = the action of agent X if the reputation of some agent Y is B (0 is defection, 1 is cooperation). \\
+R = the reputations of the agents defined in the tournament vector (0 is B, 1 is G). \\
+$R_{x}$ = the reputation of agent X (0 is B, 1 is G). \\
+\begin{center}
+$\overrightarrow{C_{x}} = (A_{x})_{G} \cdot \overrightarrow{R} + (A_{x})_{B} \cdot (1 - \overrightarrow{R})$
+\\
+$\overrightarrow{C_{y}} = \overrightarrow{(A_{y})_{G}} \cdot \overrightarrow{R_{x}} + \overrightarrow{(A_{y})_{B}} \cdot (1 - \overrightarrow{R_{x}})$
+\end{center}
+
+$\\ $
+The constraints of this vectorization however are such that for any given tournament vector there must be no duplicates.
+Due to the parallel nature of the interactions, interactions are performed with incorrect or antiquated knowledge of the reputation of an agent who appears more than once.
+In order to perform the fitness function correctly with duplicate agents in the tournament sample the algorithm must iterate through each agent.
+Thus the vectorization requires that a given tournament sample must not contain duplicate agents. 
+\\
+The parallelization of reputation update was done utilizing \emph{numpy} features.
+
+$\\\\ $
+\subsection{Analysis of optimization}
+The optimizations made to increase the program's time complexity were measured utilizing \emph{Jupyter Notebook} to measure improvements in execution time for given functions. 
+
+\section{Results}
+
+\section{Discussion}
+
+\section{Conclusion}
+
+\pagebreak
+\begin{thebibliography}{9}
+
+\bibitem{1} 
+Martin A. Novak, Karl Sigmund, (2005) 
+\textit{Evolution of indirect reciprocity}. 
+Nature.
+
+\bibitem{2} 
+Fernando P. Santos, Francisco C. Santos, Jorge M. Pacheco, (2016) 
+\textit{Social Norms of Cooperation in Small-Scale Societies}. 
+PLOS Computational Biology.
+
+\bibitem{3} 
+Numpy Developers, (2016) 
+\textit{Numpy}. 
+\\\texttt{http://www.numpy.org/}.
+
+\bibitem{4} 
+Continuum Analytics, Inc., (2016) 
+\textit{Anaconda and Anaconda Accelerate}. 
+\\\texttt{https://docs.continuum.io/}.
+
+\bibitem{5} 
+Hisashi Ohtsuki, Yoh Iwasa, (2005) 
+\textit{The leading eight: Social norms that can maintain cooperation by indirect reciprocity}. 
+Journal of Theoretical Biology.
+
+\bibitem{6} 
+Olof Leimar, Peter Hammerstein, (2001) 
+\textit{Evolution of cooperation through indirect reciprocity}. 
+Proceedings of the Royal Society B.
+
+\end{thebibliography}
+\end{document}

@@ -61,7 +61,7 @@ def ssp_tofile(filename, population_size, socialnorm):
 
 if __name__ == '__main__':
     start = time.clock()
-    coop_index = ssp_parallel(8, 3*np.power(10, 5), 12, [[1, 0], [0, 1]])
+    coop_index = ssp_parallel(8, 3*np.power(10, 5), 10, [[1, 0], [0, 1]])
     # coop_index += ssp_parallel(8, 3*np.power(10, 4), 12, [[1, 0], [0, 1]])
     # coop_index += ssp_parallel(16, 3*np.power(10, 4), 12, [[1, 0], [0, 1]])
     # coop_index += ssp_parallel(16, 3*np.power(10, 4), 12, [[1, 0], [0, 1]])
