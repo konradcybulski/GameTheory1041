@@ -331,3 +331,6 @@ misc.xml
 modules.xml
 Python_Resources.iml
 workspace.xml
+
+# Learning Cython folder
+/Documents/Misc/learning_cython/

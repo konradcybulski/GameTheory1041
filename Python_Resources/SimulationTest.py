@@ -6,7 +6,7 @@ import numpy as np
 
 class MyTestCase(unittest.TestCase):
 
-    def test_fitness_function_action(self):
+    def test_payoff_function_action(self):
         runs = 1
         generations = 1
         population_size = 2
@@ -67,11 +67,11 @@ class MyTestCase(unittest.TestCase):
         for test_case in test_cases:
             variables.population = test_case[0]
             variables.reputation = test_case[1]
-            payoff = SimulationInstance.fitness_function(0, 1, variables)
+            payoff = SimulationInstance.payoff_function(0, 1, variables)
             self.assertEqual(payoff, test_case[2], "Payoff for " + test_case[3] + " playing against " + test_case[4] +
                              " should be " + str(test_case[2]) + " but is " + str(payoff))
 
-    def test_fitness_function_reputation_sj(self):
+    def test_payoff_function_reputation_sj(self):
         runs = 1
         generations = 1
         population_size = 2
@@ -152,13 +152,13 @@ class MyTestCase(unittest.TestCase):
         for test_case in test_cases:
             variables.population = test_case[0]
             variables.reputation = test_case[1]
-            payoff = SimulationInstance.fitness_function(0, 1, variables)
+            payoff = SimulationInstance.payoff_function(0, 1, variables)
             new_rep = variables.reputation
             self.assertEqual(new_rep, test_case[2], "Reputations for " + test_case[3] + " playing against " + test_case[4] +
                              ", with social norm + " + str(variables.socialnorm) + " should be " +
                              str(test_case[2]) + " but is " + str(new_rep))
 
-    def test_fitness_function_reputation_ss(self):
+    def test_payoff_function_reputation_ss(self):
         runs = 1
         generations = 1
         population_size = 2
@@ -239,7 +239,7 @@ class MyTestCase(unittest.TestCase):
         for test_case in test_cases:
             variables.population = test_case[0]
             variables.reputation = test_case[1]
-            payoff = SimulationInstance.fitness_function(0, 1, variables)
+            payoff = SimulationInstance.payoff_function(0, 1, variables)
             new_rep = variables.reputation
             self.assertEqual(new_rep, test_case[2], "Reputations for " + test_case[3] + " playing against " + test_case[4] +
                              ", with social norm + " + str(variables.socialnorm) + " should be " +

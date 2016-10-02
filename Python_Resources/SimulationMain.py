@@ -24,17 +24,18 @@ def ssp_parallel(runs, generations, Z, socialnorm):
     num_threads = multiprocessing.cpu_count()
     runs_per_thread = int(np.ceil(float(runs) / float(num_threads)))
     pool = multiprocessing.Pool(num_threads)
-    results = [pool.apply_async(SantosSantosPacheco.simulation,
-                                args=(runs_per_thread, generations, Z, socialnorm)) for i in range(num_threads)]
-    """
-    result is the cooperation index
-    """
     cooperation_index_average = float(0)
-    for result in results:
-        cooperation_index_values_i = result.get()
-        cooperation_index_average += float(cooperation_index_values_i)
-        print(cooperation_index_values_i)
-    cooperation_index_average /= float(num_threads)
+    for i in range(runs_per_thread):
+        results = [pool.apply_async(SantosSantosPacheco.simulation,
+                                    args=(runs_per_thread, generations, Z, socialnorm)) for i in range(num_threads)]
+        """
+        result is the cooperation index
+        """
+        for result in results:
+            cooperation_index_values_i = result.get()
+            cooperation_index_average += float(cooperation_index_values_i)
+            print(cooperation_index_values_i)
+    cooperation_index_average /= float(num_threads*runs_per_thread)
     return cooperation_index_average
 
 
@@ -61,12 +62,16 @@ def ssp_tofile(filename, population_size, socialnorm):
 
 if __name__ == '__main__':
     start = time.clock()
-    coop_index = ssp_parallel(8, 3*np.power(10, 5), 10, [[1, 0], [0, 1]])
-    # coop_index += ssp_parallel(8, 3*np.power(10, 4), 12, [[1, 0], [0, 1]])
-    # coop_index += ssp_parallel(16, 3*np.power(10, 4), 12, [[1, 0], [0, 1]])
-    # coop_index += ssp_parallel(16, 3*np.power(10, 4), 12, [[1, 0], [0, 1]])
-    # coop_index /= 4.0
+    coop_index = ssp_parallel(16, 3*np.power(10, 5), 12, [[1, 0], [0, 1]])
     print("Z: " + str(12) +
+          ", Cooperation Index: " + str(coop_index))
+    end = time.clock()
+    print("Simulation completed in " + str(end - start))
+
+    print("_____________________________________\n")
+    start = time.clock()
+    coop_index = ssp_parallel(16, 3*np.power(10, 5), 50, [[1, 0], [0, 1]])
+    print("Z: " + str(50) +
           ", Cooperation Index: " + str(coop_index))
     end = time.clock()
     print("Simulation completed in " + str(end - start))

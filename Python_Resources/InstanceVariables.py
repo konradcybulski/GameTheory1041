@@ -18,7 +18,7 @@ class InstanceVariables:
         self.reputation_assignment_error = reputation_assignment_error
         self.assessment_error = private_assessment_error
         self.reputation_update_rate = reputation_update_rate
-        self.socialnorm = socialnorm  # matrix determining the reputation dynamic with
+        self.socialnorm = np.array(socialnorm)  # matrix determining the reputation dynamic with
         # regard to the action taken and the reputation
         # of the other agent
         self.cost = cost  # cost defining the payoff matrix cost

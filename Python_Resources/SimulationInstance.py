@@ -16,16 +16,17 @@ from InstanceVariables import InstanceVariables
 """
 
 #              B  G
-strategies = [[0, 0],  # AllD
+strategies = np.array([[0, 0],  # AllD
               [1, 0],  # pDisc
               [0, 1],  # Disc
-              [1, 1]]  # AllC
+              [1, 1]])  # AllC
 
 # Data saving variables
 generation_data_save_wait = -1
 generation_data_save_filename = ""
 
-def save_generation_data(gen_num, fitness_a, fitness_b, strat_a, strat_b, variables):
+
+def save_generation_data(gen_num, variables):
     counter = Counter(variables.population)
     alld_count = counter[0]
     pdisc_count = counter[1]
@@ -39,21 +40,17 @@ def save_generation_data(gen_num, fitness_a, fitness_b, strat_a, strat_b, variab
         str(float(alld_count)/float(variables.population_size)) + "," +\
         str(float(pdisc_count)/float(variables.population_size)) + "," +\
         str(float(disc_count)/float(variables.population_size)) + "," +\
-        str(float(allc_count)/float(variables.population_size)) + "," +\
-        str(fitness_a) + "," +\
-        str(fitness_b) + "," +\
-        str(strat_a) + "," +\
-        str(strat_b) + "," +\
-        ",\n"
+        str(float(allc_count)/float(variables.population_size)) + ",\n"
     file_out = open(generation_data_save_filename, 'a')
     file_out.write(out_string)
     file_out.close()
 
 
-def fitness_function(x, y, variables):
+def payoff_function(x, y, variables):
     """
     :param x: the index of agent-x in population
     :param y: the index of agent-y in population
+    :param variables: the class containing simulation instance variables.
     :return: the fitness of x after
     """
     # Action of X:
@@ -102,10 +99,40 @@ def fitness_function(x, y, variables):
     return (variables.benefit * cy) - (variables.cost * cx)
 
 
+def fitness_function(agent_x, agent_y, variables):
+    Z = variables.population_size
+
+    fitness_x = 0
+    fitness_y = 0
+
+    # Creating tournament arrays
+    probabilities_x = np.ones(Z, dtype=np.float) / float(Z - 1)
+    probabilities_x[agent_x] = 0
+    probabilities_y = np.ones(Z, dtype=np.float) / float(Z - 1)
+    probabilities_y[agent_y] = 0
+
+    tournament_sample_x = np.random.choice(Z, size=2 * Z, p=probabilities_x,
+                                           replace=True)
+    tournament_sample_y = np.random.choice(Z, size=2 * Z, p=probabilities_y,
+                                           replace=True)
+
+    for c in range(0, 2 * Z):
+        agent_three = tournament_sample_x[c]
+        # Update Fitness of A and Reputation of A & C
+        fitness_x += payoff_function(agent_x, agent_three, variables)
+
+        agent_three = tournament_sample_y[c]
+        # Update Fitness of B and Reputation of B & C
+        fitness_y += payoff_function(agent_y, agent_three, variables)
+    fitness_x /= (2 * Z)
+    fitness_y /= (2 * Z)
+    return [fitness_x, fitness_y]
+
+
 def simulate(runs, generations, population_size, mutation_rate,
-                 execution_error, reputation_assignment_error,
-                 private_assessment_error, reputation_update_prob,
-                 socialnorm, cost, benefit):
+             execution_error, reputation_assignment_error,
+             private_assessment_error, reputation_update_prob,
+             socialnorm, cost, benefit):
     variables = InstanceVariables(runs, generations, population_size, mutation_rate,
                                   execution_error, reputation_assignment_error,
                                   private_assessment_error, reputation_update_prob,
@@ -121,50 +148,28 @@ def simulate(runs, generations, population_size, mutation_rate,
         for t in range(0, variables.generations):
 
             mutation_probs = np.random.rand(Z) < variables.mutation_rate
-            agent_pairs = [np.random.choice(Z, size=2, replace=False)]*Z
+            agent_pairs = [np.random.choice(Z, size=2, replace=False) for _ in range(Z)]
             for i in range(Z):
 
                 agent_one = agent_pairs[i][0]
+                agent_two = agent_pairs[i][1]
 
                 # Random mutation probability
                 if mutation_probs[i]:
                     variables.population[agent_one] = np.random.randint(4)
 
-                # Make sure B != A
-                agent_two = agent_pairs[i][1]
-
-                fitness_a = 0
-                fitness_b = 0
-
-                # Creating tournament arrays
-                probabilities_a = np.ones(Z, dtype=np.float) / float(Z - 1)
-                probabilities_a[agent_one] = 0
-                probabilities_b = np.ones(Z, dtype=np.float) / float(Z - 1)
-                probabilities_b[agent_two] = 0
-
-                tournament_sample_a = np.random.choice(Z, size=2 * Z, p=probabilities_a,
-                                                       replace=True)
-                tournament_sample_b = np.random.choice(Z, size=2 * Z, p=probabilities_b,
-                                                       replace=True)
-
-                for c in range(0, 2 * Z):
-                    agent_three = tournament_sample_a[c]
-                    # Update Fitness of A and Reputation of A & C
-                    fitness_a += fitness_function(agent_one, agent_three, variables)
-
-                    agent_three = tournament_sample_b[c]
-                    # Update Fitness of B and Reputation of B & C
-                    fitness_b += fitness_function(agent_two, agent_three, variables)
-                fitness_a /= (2 * Z)
-                fitness_b /= (2 * Z)
-
-                if generation_data_save_filename != "":
-                    if t % generation_data_save_wait == 0:
-                        save_generation_data(t, fitness_a, fitness_b, variables.population[agent_one],
-                                             variables.population[agent_two], variables)
+                # Calculate fitness of agents
+                fitness = fitness_function(agent_one, agent_two, variables)
+                fitness_a = fitness[0]
+                fitness_b = fitness[1]
 
                 if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
                     variables.population[agent_one] = variables.population[agent_two]
+
+                # Save generation information.
+                if generation_data_save_filename != "":
+                    if t % generation_data_save_wait == 0:
+                        save_generation_data(t, variables)
     # Simulation ends
     # Return cooperation index.
     coop_index = variables.get_average_coop_index()
