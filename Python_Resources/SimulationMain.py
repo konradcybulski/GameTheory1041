@@ -7,7 +7,7 @@ import numpy as np
 import time
 import multiprocessing
 import SantosSantosPacheco
-import Cython_resources.main as simulation_cython
+# import Cython_resources.main as simulation_cython
 
 
 def ssp_parallel_generation_information(Z, generations, socialnorm, data_delay, socialnorm_name):
@@ -40,34 +40,34 @@ def ssp_parallel(runs, generations, Z, socialnorm):
     return cooperation_index_average
 
 
-def ssp_cython_parallel(runs, generations, Z, socialnorm):
-    mutation_rate = float(np.power(float(10 * Z), float(-1)))
-    execution_error = 0.08
-    reputation_assignment_error = 0.01
-    private_assessment_error = 0.01
-    reputation_update_prob = 1
-    cost = 1
-    benefit = 5
-
-    num_threads = multiprocessing.cpu_count()
-    runs_per_thread = int(np.ceil(float(runs) / float(num_threads)))
-    pool = multiprocessing.Pool(num_threads)
-    cooperation_index_average = float(0)
-    for i in range(runs_per_thread):
-        results = [pool.apply_async(simulation_cython.simulate,
-                                    args=(runs, generations, Z, mutation_rate,
-                                        execution_error, reputation_assignment_error,
-                                        private_assessment_error, reputation_update_prob,
-                                        socialnorm, cost, benefit)) for _ in range(num_threads)]
-        """
-        result is the cooperation index
-        """
-        for result in results:
-            cooperation_index_values_i = result.get()
-            cooperation_index_average += float(cooperation_index_values_i)
-            print(cooperation_index_values_i)
-    cooperation_index_average /= float(num_threads * runs_per_thread)
-    return cooperation_index_average
+# def ssp_cython_parallel(runs, generations, Z, socialnorm):
+#     mutation_rate = float(np.power(float(10 * Z), float(-1)))
+#     execution_error = 0.08
+#     reputation_assignment_error = 0.01
+#     private_assessment_error = 0.01
+#     reputation_update_prob = 1
+#     cost = 1
+#     benefit = 5
+#
+#     num_threads = multiprocessing.cpu_count()
+#     runs_per_thread = int(np.ceil(float(runs) / float(num_threads)))
+#     pool = multiprocessing.Pool(num_threads)
+#     cooperation_index_average = float(0)
+#     for i in range(runs_per_thread):
+#         results = [pool.apply_async(simulation_cython.simulate,
+#                                     args=(runs, generations, Z, mutation_rate,
+#                                         execution_error, reputation_assignment_error,
+#                                         private_assessment_error, reputation_update_prob,
+#                                         socialnorm, cost, benefit)) for _ in range(num_threads)]
+#         """
+#         result is the cooperation index
+#         """
+#         for result in results:
+#             cooperation_index_values_i = result.get()
+#             cooperation_index_average += float(cooperation_index_values_i)
+#             print(cooperation_index_values_i)
+#     cooperation_index_average /= float(num_threads * runs_per_thread)
+#     return cooperation_index_average
 
 
 def ssp_tofile(filename, population_size, socialnorm):
@@ -101,7 +101,7 @@ if __name__ == '__main__':
 
     print("_____________________________________\n")
     start = time.clock()
-    coop_index = ssp_parallel(8, 3*np.power(10, 5), 50, [[1, 0], [0, 1]])
+    coop_index = ssp_parallel(8, 3*np.power(10, 3), 12, [[1, 0], [0, 1]])
     print("Z: " + str(50) +
           ", Cooperation Index: " + str(coop_index))
     end = time.clock()

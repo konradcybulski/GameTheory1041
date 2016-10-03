@@ -7,5 +7,6 @@ import numpy
 
 setup(
     ext_modules=cythonize("simulation_instance.pyx"),
+    package_dir={'Cython_resources': ''},
     include_dirs=[numpy.get_include()],
 )

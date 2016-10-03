@@ -9,13 +9,6 @@ DFLOAT = np.float
 ctypedef np.int_t DINT_t
 ctypedef np.float_t DFLOAT_t
 
-@cython.boundscheck(False)
-@cython.wraparound(False)
-@cython.nonecheck(False)
-cdef float frand():
-    return float(rand()) / float(RAND_MAX)
-    # return np.random.rand()
-
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -27,7 +20,7 @@ cdef np.ndarray[DINT_t, ndim=1] choice_weighted(int length, int size, np.ndarray
     cdef DFLOAT_t cs
     cdef DFLOAT_t r
     for arr_i in range(size):
-        random = frand()
+        random = np.random.rand()
         cs = 0.0
         i = 0
         while cs < random and i < length:
@@ -40,52 +33,53 @@ cdef np.ndarray[DINT_t, ndim=1] choice_weighted(int length, int size, np.ndarray
 @cython.boundscheck(False)
 @cython.nonecheck(False)
 @cython.wraparound(False)
-cdef float payoff_function(int x, int y, InstanceVariables variables):
+def payoff_function(int x, int y, InstanceVariables variables):
     # Action of X:
     cdef np.ndarray[DINT_t, ndim=1] xstrategy = variables.strategies[variables.population[x]]
     cdef int cx, cy, rx, ry
     cdef float cur_cooperation_index
-    if frand() < variables.private_assessment_error:
-        if frand() < variables.execution_error and xstrategy[1 - variables.reputation[y]]:
+    if np.random.rand() < variables.private_assessment_error:
+        if np.random.rand() < variables.execution_error and xstrategy[1 - variables.reputation[y]]:
             cx = 1 - xstrategy[1 - variables.reputation[y]]
         else:
             cx = xstrategy[1 - variables.reputation[y]]
     else:
-        if frand() < variables.execution_error and xstrategy[variables.reputation[y]]:
+        if np.random.rand() < variables.execution_error and xstrategy[variables.reputation[y]]:
             cx = 1 - xstrategy[variables.reputation[y]]
         else:
             cx = xstrategy[variables.reputation[y]]
     # Action of Y:
     cdef np.ndarray[DINT_t, ndim=1] ystrategy = variables.strategies[variables.population[y]]
-    if frand() < variables.private_assessment_error:
-        if frand() < variables.execution_error and ystrategy[1 - variables.reputation[x]]:
+    if np.random.rand() < variables.private_assessment_error:
+        if np.random.rand() < variables.execution_error and ystrategy[1 - variables.reputation[x]]:
             cy = 1 - ystrategy[1 - variables.reputation[x]]
         else:
             cy = ystrategy[1 - variables.reputation[x]]
     else:
-        if frand() < variables.execution_error and ystrategy[variables.reputation[x]]:
+        if np.random.rand() < variables.execution_error and ystrategy[variables.reputation[x]]:
             cy = 1 - ystrategy[variables.reputation[x]]
         else:
             cy = ystrategy[variables.reputation[x]]
     rx = variables.reputation[x]
     ry = variables.reputation[y]
     # Update Reputation of X:
-    if frand() < variables.reputation_update_rate:
-        if frand() < variables.reputation_assignment_error:
+    if np.random.rand() < variables.reputation_update_rate:
+        if np.random.rand() < variables.reputation_assignment_error:
             rx = 1 - variables.socialnorm[1 - cx][1 - variables.reputation[y]]
         else:
             rx = variables.socialnorm[1 - cx][1 - variables.reputation[y]]
     # Update Reputation of Y:
-    if frand() < variables.reputation_update_rate:
-        if frand() < variables.reputation_assignment_error:
+    if np.random.rand() < variables.reputation_update_rate:
+        if np.random.rand() < variables.reputation_assignment_error:
             ry = 1 - variables.socialnorm[1 - cy][1 - variables.reputation[x]]
         else:
             ry = variables.socialnorm[1 - cy][1 - variables.reputation[x]]
     variables.reputation[x] = rx
     variables.reputation[y] = ry
     # Track cooperation
-    cur_cooperation_index = float(float(cy + cx)/2.0)
-    variables.increment_coop_index(cur_cooperation_index)
+    if variables.track_coop:
+        cur_cooperation_index = float(float(cy + cx)/2.0)
+        variables.increment_coop_index(cur_cooperation_index)
     return (variables.benefit * cy) - (variables.cost * cx)
 
 @cython.boundscheck(False)
@@ -113,8 +107,8 @@ cdef np.ndarray[DFLOAT_t, ndim=1] fitness_function(int x, int y, InstanceVariabl
         agent_z = t_arr_y[c]
         fitness_y += payoff_function(y, agent_z, variables)
 
-    fitness_x /= 2 * Z
-    fitness_y /= 2 * Z
+    fitness_x /= float(2 * Z)
+    fitness_y /= float(2 * Z)
     cdef np.ndarray[DFLOAT_t, ndim=1] return_arr = np.array([fitness_x, fitness_y])
     return return_arr
 
@@ -141,7 +135,9 @@ cdef float simulate(int runs, int generations, int population_size, float mutati
         variables.population = np.random.randint(4, size=Z)  # equivalent to U(0, 3)
         variables.reputation = np.random.randint(2, size=Z)  # equivalent to U(0, 1)
         for g in range(0, variables.generations):
-            mutation_probs = np.array([1 if frand() < variables.mutation_rate else 0 for _ in range(Z)])
+            if g > variables.generations // 10:
+                variables.track_coop = 1
+            mutation_probs = np.array([1 if np.random.rand() < variables.mutation_rate else 0 for _ in range(Z)])
             agent_pairs = np.array([np.random.choice(Z, size=2, replace=False) for _ in range(Z)])
             for i in range(Z):
 
@@ -150,28 +146,34 @@ cdef float simulate(int runs, int generations, int population_size, float mutati
 
                 # Random mutation probability
                 if mutation_probs[i]:
-                    variables.population[agent_one] = int(frand() * 4.0) #np.randomom.randomint(4)
+                    variables.population[agent_one] = np.random.randint(4)
 
                 # Calculate fitness of agents
                 fitness = fitness_function(agent_one, agent_two, variables)
                 fitness_a = fitness[0]
                 fitness_b = fitness[1]
 
-                if frand() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
+                if np.random.rand() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
                     variables.population[agent_one] = variables.population[agent_two]
+            # if g % 100 == 0:
+            #     if variables.track_coop:
+            #         print("Coop: " + str(variables.get_average_coop_index()))
+            #     else:
+            #         print("Gen: " + str(g))
 
-    result = variables.get_average_coop_index()
+    cdef float result = variables.get_average_coop_index()
     return result
 
 def run_instance(int runs, int generations, int population_size, float mutation_rate,
                  float execution_error, float reputation_assignment_error,
                  float private_assessment_error, float reputation_update_rate,
                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
-    result = simulate(runs, generations, population_size, mutation_rate,
+    cdef float result = simulate(runs, generations, population_size, mutation_rate,
                                   execution_error, reputation_assignment_error,
                                   private_assessment_error, reputation_update_rate,
                                   socialnorm, cost, benefit)
-    return result
+    return [result, population_size, socialnorm]
+
 
 cdef class InstanceVariables:
     cdef public int runs
@@ -193,6 +195,7 @@ cdef class InstanceVariables:
 
     cdef float coop_index_sum
     cdef float interaction_count
+    cdef int track_coop
 
     def __cinit__(self, int runs, int generations, int population_size, float mutation_rate,
                  float execution_error, float reputation_assignment_error,
@@ -228,6 +231,7 @@ cdef class InstanceVariables:
         # Cooperation Tracking
         self.coop_index_sum = float(0)
         self.interaction_count = float(0)
+        self.track_coop = int(0)
 
     @cython.boundscheck(False)
     @cython.nonecheck(False)
