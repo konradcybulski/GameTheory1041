@@ -234,8 +234,9 @@ def simulate():
                         fitness_a = fitness_function(agent_one, tournament_sample_a, False)
                         fitness_b = fitness_function(agent_two, tournament_sample_b, False)
 
-                fitness_a /= (2 * population_size)
-                fitness_b /= (2 * population_size)
+                fitness_a /= (2 * (population_size-1))
+                fitness_b /= (2 * (population_size-1))
+                print(fitness_a, fitness_b)
 
                 if generation_data_save_filename != "":
                     if t % generation_data_save_wait == 0:
@@ -335,3 +336,11 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
                    float(cooperation_index_sum) / float((runs*generations*4*(population_size-1)) -
                                                         cooperation_index_zeros)]
     return return_list
+
+
+if __name__ == "__main__":
+    result = run_instance(1, 3000, 12, np.power(10*12, -1),
+                 0.08, 0.01,
+                 0.01, 1.0,
+                 1, [[1, 0], [0, 1]], 1, 5)
+    print(result)

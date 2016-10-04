@@ -5,20 +5,20 @@ import cython
 cimport numpy as np
 import numpy as np
 DINT = np.int
-DFLOAT = np.float
+DDOUBLE = np.double
 ctypedef np.int_t DINT_t
-ctypedef np.float_t DFLOAT_t
+ctypedef np.double_t DDOUBLE_t
 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.nonecheck(False)
-cdef np.ndarray[DINT_t, ndim=1] choice_weighted(int length, int size, np.ndarray[DFLOAT_t, ndim=1] weights):
+cdef np.ndarray[DINT_t, ndim=1] choice_weighted(int length, int size, np.ndarray[DDOUBLE_t, ndim=1] weights):
     cdef np.ndarray[DINT_t, ndim=1] arr = np.zeros(size, dtype=DINT)
     cdef int arr_i
     cdef int idx, i
-    cdef DFLOAT_t cs
-    cdef DFLOAT_t r
+    cdef DDOUBLE_t cs
+    cdef DDOUBLE_t r
     for arr_i in range(size):
         random = np.random.rand()
         cs = 0.0
@@ -37,7 +37,7 @@ def payoff_function(int x, int y, InstanceVariables variables):
     # Action of X:
     cdef np.ndarray[DINT_t, ndim=1] xstrategy = variables.strategies[variables.population[x]]
     cdef int cx, cy, rx, ry
-    cdef float cur_cooperation_index
+    cdef double cur_cooperation_index
     if np.random.rand() < variables.private_assessment_error:
         if np.random.rand() < variables.execution_error and xstrategy[1 - variables.reputation[y]]:
             cx = 1 - xstrategy[1 - variables.reputation[y]]
@@ -85,17 +85,17 @@ def payoff_function(int x, int y, InstanceVariables variables):
 @cython.boundscheck(False)
 @cython.nonecheck(False)
 @cython.wraparound(False)
-cdef np.ndarray[DFLOAT_t, ndim=1] fitness_function(int x, int y, InstanceVariables variables):
+cdef np.ndarray[DDOUBLE_t, ndim=1] fitness_function(int x, int y, InstanceVariables variables):
     cdef int Z = variables.population_size
 
-    cdef float fitness_x = 0
-    cdef float fitness_y = 0
+    cdef double fitness_x = 0
+    cdef double fitness_y = 0
     cdef int t_size = 2 * Z
     cdef int agent_z, c
 
-    cdef np.ndarray[DFLOAT_t] probabilities_x = np.ones(Z, dtype=DFLOAT) / float(Z - 1)
+    cdef np.ndarray[DDOUBLE_t] probabilities_x = np.ones(Z, dtype=DDOUBLE) / float(Z - 1)
     probabilities_x[x] = 0
-    cdef np.ndarray[DFLOAT_t] probabilities_y = np.ones(Z, dtype=DFLOAT) / float(Z - 1)
+    cdef np.ndarray[DDOUBLE_t] probabilities_y = np.ones(Z, dtype=DDOUBLE) / float(Z - 1)
     probabilities_y[y] = 0
 
     cdef np.ndarray[DINT_t] t_arr_x = choice_weighted(Z, size=2 * Z, weights=probabilities_x)
@@ -109,16 +109,16 @@ cdef np.ndarray[DFLOAT_t, ndim=1] fitness_function(int x, int y, InstanceVariabl
 
     fitness_x /= float(2 * Z)
     fitness_y /= float(2 * Z)
-    cdef np.ndarray[DFLOAT_t, ndim=1] return_arr = np.array([fitness_x, fitness_y])
+    cdef np.ndarray[DDOUBLE_t, ndim=1] return_arr = np.array([fitness_x, fitness_y])
     return return_arr
 
 
 @cython.boundscheck(False)
 @cython.nonecheck(False)
 @cython.wraparound(False)
-cdef float simulate(int runs, int generations, int population_size, float mutation_rate,
-                 float execution_error, float reputation_assignment_error,
-                 float private_assessment_error, float reputation_update_rate,
+cdef double simulate(int runs, int generations, int population_size, double mutation_rate,
+                 double execution_error, double reputation_assignment_error,
+                 double private_assessment_error, double reputation_update_rate,
                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
     cdef InstanceVariables variables = InstanceVariables(runs, generations, population_size, mutation_rate,
                                   execution_error, reputation_assignment_error,
@@ -128,8 +128,8 @@ cdef float simulate(int runs, int generations, int population_size, float mutati
     cdef int Z = variables.population_size
     cdef np.ndarray[DINT_t, ndim=1] mutation_probs
     cdef np.ndarray[DINT_t, ndim=2] agent_pairs
-    cdef float fitness_a, fitness_b, random
-    cdef np.ndarray[DFLOAT_t, ndim=1] fitness
+    cdef double fitness_a, fitness_b, random
+    cdef np.ndarray[DDOUBLE_t, ndim=1] fitness
 
     for r in range(0, variables.runs):
         variables.population = np.random.randint(4, size=Z)  # equivalent to U(0, 3)
@@ -161,14 +161,14 @@ cdef float simulate(int runs, int generations, int population_size, float mutati
             #     else:
             #         print("Gen: " + str(g))
 
-    cdef float result = variables.get_average_coop_index()
+    cdef double result = variables.get_average_coop_index()
     return result
 
-def run_instance(int runs, int generations, int population_size, float mutation_rate,
-                 float execution_error, float reputation_assignment_error,
-                 float private_assessment_error, float reputation_update_rate,
+def run_instance(int runs, int generations, int population_size, double mutation_rate,
+                 double execution_error, double reputation_assignment_error,
+                 double private_assessment_error, double reputation_update_rate,
                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
-    cdef float result = simulate(runs, generations, population_size, mutation_rate,
+    cdef double result = simulate(runs, generations, population_size, mutation_rate,
                                   execution_error, reputation_assignment_error,
                                   private_assessment_error, reputation_update_rate,
                                   socialnorm, cost, benefit)
@@ -179,11 +179,11 @@ cdef class InstanceVariables:
     cdef public int runs
     cdef public int generations
     cdef public int population_size
-    cdef public float mutation_rate,
-    cdef public float execution_error
-    cdef public float reputation_assignment_error
-    cdef public float private_assessment_error
-    cdef public float reputation_update_rate
+    cdef public double mutation_rate,
+    cdef public double execution_error
+    cdef public double reputation_assignment_error
+    cdef public double private_assessment_error
+    cdef public double reputation_update_rate
     cdef public np.ndarray socialnorm
     cdef public int cost
     cdef public int benefit
@@ -193,13 +193,13 @@ cdef class InstanceVariables:
     cdef public np.ndarray population
     cdef public np.ndarray reputation
 
-    cdef float coop_index_sum
-    cdef float interaction_count
+    cdef double coop_index_sum
+    cdef double interaction_count
     cdef int track_coop
 
-    def __cinit__(self, int runs, int generations, int population_size, float mutation_rate,
-                 float execution_error, float reputation_assignment_error,
-                 float private_assessment_error, float reputation_update_rate,
+    def __cinit__(self, int runs, int generations, int population_size, double mutation_rate,
+                 double execution_error, double reputation_assignment_error,
+                 double private_assessment_error, double reputation_update_rate,
                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
         self.runs = runs
         self.generations = generations
@@ -236,12 +236,12 @@ cdef class InstanceVariables:
     @cython.boundscheck(False)
     @cython.nonecheck(False)
     @cython.wraparound(False)
-    cdef void increment_coop_index(self, float coop_index):
+    cdef void increment_coop_index(self, double coop_index):
         self.coop_index_sum += coop_index
         self.interaction_count += 1.0
 
     @cython.boundscheck(False)
     @cython.nonecheck(False)
     @cython.wraparound(False)
-    cdef float get_average_coop_index(self):
+    cdef double get_average_coop_index(self):
         return self.coop_index_sum/self.interaction_count

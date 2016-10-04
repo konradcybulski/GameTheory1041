@@ -96,28 +96,28 @@ if __name__ == '__main__':
     #                            socialnorm, cost, benefit)
     # print("Coop_: " + str(result))
 
-    # Generate Z = 12
+    # # Generate Z = 12
     SJ = [[1, 0], [0, 1]]
     SS = [[1, 1], [0, 1]]
     ZERO = [[0, 0], [0, 0]]
     IS = [[1, 1], [0, 0]]
 
     run_number = 1
-    generation_number = 3 * np.power(10, 4)
+    generation_number = 3 * np.power(10, 5)
     simulation_data = [
-        ["Z5_Data.txt", 5, SS],
-        ["Z5_Data.txt", 5, SJ],
-        ["Z5_Data.txt", 5, ZERO],
-        ["Z5_Data.txt", 5, IS],
+        # ["Z5_Data.txt", 5, SS],
+        # ["Z5_Data.txt", 5, SJ],
+        # ["Z5_Data.txt", 5, ZERO],
+        # ["Z5_Data.txt", 5, IS],
 
-        ["Z12_Data.txt", 12, SS],
-        ["Z12_Data.txt", 12, SJ],
-        ["Z12_Data.txt", 12, ZERO],
-        ["Z12_Data.txt", 12, IS],
-
-        ["Z25_Data.txt", 25, SS],
-        ["Z25_Data.txt", 25, SJ],
-        ["Z25_Data.txt", 25, ZERO],
+        # ["Z12_Data.txt", 12, SS],
+        # ["Z12_Data.txt", 12, SJ],
+        # ["Z12_Data.txt", 12, ZERO],
+        # ["Z12_Data.txt", 12, IS],
+        #
+        # ["Z25_Data.txt", 25, SS],
+        # ["Z25_Data.txt", 25, SJ],
+        # ["Z25_Data.txt", 25, ZERO],
         ["Z25_Data.txt", 25, IS],
 
         ["Z50_Data.txt", 50, SS],
