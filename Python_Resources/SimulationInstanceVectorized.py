@@ -7,10 +7,11 @@ Code written utilising pseudocode provided
  societies' by Santos, Santos, Pacheco
 """
 import numpy as np
-import numpy.ma as ma
 import time
-from numba import jit
+import multiprocessing
 from collections import Counter
+
+from InstanceVariables import InstanceVariables
 
 """
     Static Variables
@@ -22,66 +23,8 @@ strategies = np.array([[0, 0],  # AllD
                       [0, 1],  # Disc
                       [1, 1]])  # AllC
 
-"""
-    Simulation Variables
-"""
-runs = 0  # number of runs
-generations = 0  # number of generations
-population_size = 0  # population size
-population = []  # vector of all individual strategies
-# population[k] : strategy of individual k
-# population[k] = [0,0], [1,0], [0,1] or [1,1]
-reputation = []  # vector of all individual public reputations
-# reputation[k] : public reputation of individual k
-# reputation[k] = 0 or 1
-mutation_probability = 0  # mutation probability
-execution_error = 0  # execution error probability
-reputation_assignment_error = 0  # reputation assignment error probability
-assessment_error = 0  # private assessment error probability
-reputation_update_rate = 0  # reputation update probability
-randomseed = 0  # seed used to generate randomness
-socialnorm = np.array([[1, 0], [0, 1]])  # matrix determining the reputation dynamic with
-# regard to the action taken and the reputation
-# of the other agent
-cost = 1  # cost defining the payoff matrix cost
-benefit = 5  # benefit defined as the payoff matrix benefit
 
-### Tracking Variables
-cooperation_index_sum = 0
-cooperation_index_min = 1
-cooperation_index_max = 0
-cooperation_index_average = 0
-cooperation_index_zeros = 0
-
-# Data saving variables
-generation_data_save_wait = -1
-generation_data_save_filename = ""
-
-def save_generation_data(gen_num, fitness_a, fitness_b, strat_a, strat_b):
-    counter = Counter(population)
-    alld_count = counter[0]
-    pdisc_count = counter[1]
-    disc_count = counter[2]
-    allc_count = counter[3]
-    out_string = str(gen_num) + "," +\
-        str(alld_count) + "," +\
-        str(pdisc_count) + "," +\
-        str(disc_count) + "," +\
-        str(allc_count) + "," +\
-        str(float(alld_count)/float(population_size)) + "," +\
-        str(float(pdisc_count)/float(population_size)) + "," +\
-        str(float(disc_count)/float(population_size)) + "," +\
-        str(float(allc_count)/float(population_size)) + "," +\
-        str(fitness_a) + "," +\
-        str(fitness_b) + "," +\
-        str(strat_a) + "," +\
-        str(strat_b) + "," +\
-        ",\n"
-    file_out = open(generation_data_save_filename, 'a')
-    file_out.write(out_string)
-    file_out.close()
-
-def fitness_function(x, y_array, track_cooperation):
+def fitness_function(x, y_array, variables):
     """
     :param x: the index of agent-x in population
     :param y_array: the array of indices of agent-y's in population
@@ -90,9 +33,9 @@ def fitness_function(x, y_array, track_cooperation):
     # Action of X:
     arr_len = y_array.size
 
-    p_rep = reputation[y_array]
+    p_rep = variables.reputation[y_array]
 
-    x_strategy = strategies[population[x]]
+    x_strategy = strategies[variables.population[x]]
     xactionbad = x_strategy[0]
     xactiongood = x_strategy[1]
 
@@ -102,40 +45,40 @@ def fitness_function(x, y_array, track_cooperation):
     cx = xactiongood*p_rep + xactionbad*(1 - p_rep)
 
     # Adjust for assessment error
-    assessment_error_changes = np.random.binomial(arr_len, assessment_error)
+    assessment_error_changes = np.random.binomial(arr_len, variables.assessment_error)
     mask_assessment_error = np.random.randint(arr_len, size=assessment_error_changes)
     cx[mask_assessment_error] = (xactiongood*(1 - p_rep[mask_assessment_error]) +
                                  xactionbad*p_rep[mask_assessment_error])
 
     # Adjust for execution error
-    elements_to_change_execution_error = np.random.binomial(arr_len, execution_error)
+    elements_to_change_execution_error = np.random.binomial(arr_len, variables.execution_error)
     mask_execution_error = np.random.randint(arr_len, size=elements_to_change_execution_error)
     cx[mask_execution_error] = 0
 
     """
         Update Reputation of X with errors
     """
-    reputation_x_vector = np.insert(socialnorm[(1 - cx, 1 - p_rep)], 0, reputation[x])
+    reputation_x_vector = np.insert(variables.socialnorm[(1 - cx, 1 - p_rep)], 0, variables.reputation[x])
 
     # Reputation update rate:
-    elements_to_change_reputation_update_rate = np.random.binomial(arr_len, (float(1) - reputation_update_rate))
+    elements_to_change_reputation_update_rate = np.random.binomial(arr_len, (float(1) - variables.reputation_update_rate))
     mask_reputation_update_rate = np.random.randint(1, arr_len,
                                                     size=elements_to_change_reputation_update_rate)
     reputation_x_vector[mask_reputation_update_rate] = reputation_x_vector[mask_reputation_update_rate - 1]
 
     # Reputation assignment error:
-    elements_to_change_reputation_assignment_error = np.random.binomial(arr_len, reputation_assignment_error)
+    elements_to_change_reputation_assignment_error = np.random.binomial(arr_len, variables.reputation_assignment_error)
     mask_reputation_assignment_error = np.random.randint(
         1, arr_len, size=elements_to_change_reputation_assignment_error)
     reputation_x_vector[mask_reputation_assignment_error] = 1 - reputation_x_vector[mask_reputation_assignment_error]
 
-    reputation[x] = reputation_x_vector[len(reputation_x_vector)-1]
+    variables.reputation[x] = reputation_x_vector[len(reputation_x_vector)-1]
     mask = np.ones(reputation_x_vector.shape, dtype=bool)
     mask[arr_len] = False
     reputation_x_vector = reputation_x_vector[mask]
 
     # Action of Y:
-    pstratindex = population[y_array]
+    pstratindex = variables.population[y_array]
     pstrategy = strategies[pstratindex]
     pactionbad = pstrategy[:, 0]
     pactiongood = pstrategy[:, 1]
@@ -145,136 +88,89 @@ def fitness_function(x, y_array, track_cooperation):
     """
     cy = reputation_x_vector*pactiongood + (1 - reputation_x_vector)*pactionbad
     # Adjust for assessment error
-    elements_to_change_assessment_error = np.random.binomial(arr_len, assessment_error)
+    elements_to_change_assessment_error = np.random.binomial(arr_len, variables.assessment_error)
     mask_assessment_error = np.random.randint(arr_len, size=elements_to_change_assessment_error)
     cy[mask_assessment_error] = pactiongood[mask_assessment_error]*(1 - reputation_x_vector[mask_assessment_error]) +\
         pactionbad[mask_assessment_error]*reputation_x_vector[mask_assessment_error]
     # # Adjust for execution error
-    elements_to_change_execution_error = np.random.binomial(arr_len, execution_error)
+    elements_to_change_execution_error = np.random.binomial(arr_len, variables.execution_error)
     mask_execution_error = np.random.randint(arr_len, size=elements_to_change_execution_error)
     cy[mask_execution_error] = 0
 
     """
         Update Reputation of Y with errors
     """
-    reputation_y_vector = socialnorm[(1 - cy, 1 - reputation_x_vector)]
+    reputation_y_vector = variables.socialnorm[(1 - cy, 1 - reputation_x_vector)]
     # Reputation update rate:
-    elements_to_change_reputation_update_rate = np.random.binomial(arr_len, (float(1) - reputation_update_rate))
+    elements_to_change_reputation_update_rate = np.random.binomial(arr_len, (float(1) - variables.reputation_update_rate))
     mask_reputation_update_rate = np.random.randint(arr_len, size=elements_to_change_reputation_update_rate)
-    reputation_y_vector[mask_reputation_update_rate] = reputation[y_array[mask_reputation_update_rate]]
+    reputation_y_vector[mask_reputation_update_rate] = variables.reputation[y_array[mask_reputation_update_rate]]
     # Reputation assignment error:
-    elements_to_change_reputation_assignment_error = np.random.binomial(arr_len, reputation_assignment_error)
+    elements_to_change_reputation_assignment_error = np.random.binomial(arr_len, variables.reputation_assignment_error)
     mask_reputation_assignment_error = np.random.randint(
         arr_len, size=elements_to_change_reputation_assignment_error)
     reputation_y_vector[mask_reputation_assignment_error] = 1 - reputation_y_vector[mask_reputation_assignment_error]
-    reputation[y_array] = reputation_y_vector
+    variables.reputation[y_array] = reputation_y_vector
 
     # Track cooperation
     coops_y = np.sum(cy)
     coops_x = np.sum(cx)
-    if track_cooperation:
-        global cooperation_index_sum
-        global cooperation_index_min
-        global cooperation_index_max
-        global cooperation_index_zeros
+    if variables.track_cooperation:
         cur_cooperation_index = float(float(coops_y + coops_x)/float(2 * arr_len))
-        cooperation_index_sum += cur_cooperation_index
-        cooperation_index_min = min(cooperation_index_min, cur_cooperation_index)
-        cooperation_index_max = max(cooperation_index_max, cur_cooperation_index)
-        if cur_cooperation_index < float(np.power(float(10), float(-5))):
-            cooperation_index_zeros += 1
+        variables.increment_coop_index(cur_cooperation_index)
 
-    return (benefit * coops_y) - (cost * coops_x)
+    return float((variables.benefit * coops_y) - (variables.cost * coops_x))
 
 
-def simulate():
-    for r in range(0, runs):
+def simulate(variables):
+    for r in range(0, variables.runs):
 
         # Initialise random population
-        global population
-        global reputation
-        population = np.random.randint(4, size=population_size)  # equivalent to U(0, 3)
-        reputation = np.random.randint(2, size=population_size)  # equivalent to U(0, 1)
+        variables.population = np.random.randint(4, size=variables.population_size)  # equivalent to U(0, 3)
+        variables.reputation = np.random.randint(2, size=variables.population_size)  # equivalent to U(0, 1)
 
-        for t in range(0, generations):
+        for t in range(0, variables.generations):
+            # Check if after transient period
+            if t > variables.generations // 10:
+                variables.track_cooperation = True
 
-            mutation_probabilities = np.random.rand(population_size) < mutation_probability
-            for i in range(population_size):
+            mutation_probabilities = np.random.rand(variables.population_size) < variables.mutation_rate
+            for i in range(variables.population_size):
 
-                fitness_a = 0
-                fitness_b = 0
+                fitness_a = 0.0
+                fitness_b = 0.0
 
-                agent_one = np.random.randint(population_size)
+                agent_one = np.random.randint(variables.population_size)
 
                 # Random mutation probability
                 if mutation_probabilities[i]:
-                    population[agent_one] = np.random.randint(4)
+                    variables.population[agent_one] = np.random.randint(4)
 
                 # Make sure B != A
-                agent_two = np.random.randint(population_size)
+                agent_two = np.random.randint(variables.population_size)
                 while agent_two == agent_one:
-                    agent_two = np.random.randint(population_size)
+                    agent_two = np.random.randint(variables.population_size)
 
                 # Creating tournament arrays
-                probabilities_a = np.ones(population_size, dtype=np.float) / float(population_size - 1)
-                probabilities_a[agent_one] = 0
-                probabilities_b = np.ones(population_size, dtype=np.float) / float(population_size - 1)
-                probabilities_b[agent_two] = 0
+                probabilities_a = np.ones(variables.population_size, dtype=np.float) / float(variables.population_size - 1)
+                probabilities_a[agent_one] = 0.0
+                probabilities_b = np.ones(variables.population_size, dtype=np.float) / float(variables.population_size - 1)
+                probabilities_b[agent_two] = 0.0
 
-                for _ in range(2):
-                    tournament_sample_a = np.random.choice(population_size, size=population_size - 1, p=probabilities_a,
+                for _ in range(4):
+                    tournament_sample_a = np.random.choice(variables.population_size, size=(variables.population_size - 1)//2, p=probabilities_a,
                                                            replace=False)
-                    tournament_sample_b = np.random.choice(population_size, size=population_size - 1, p=probabilities_b,
+                    tournament_sample_b = np.random.choice(variables.population_size, size=(variables.population_size - 1)//2, p=probabilities_b,
                                                            replace=False)
-                    # Check if after transient period
-                    if t > generations // 10:
-                        fitness_a = fitness_function(agent_one, tournament_sample_a, True)
-                        fitness_b = fitness_function(agent_two, tournament_sample_b, True)
-                    else:
-                        fitness_a = fitness_function(agent_one, tournament_sample_a, False)
-                        fitness_b = fitness_function(agent_two, tournament_sample_b, False)
+                    fitness_a += fitness_function(agent_one, tournament_sample_a, variables)
+                    fitness_b += fitness_function(agent_two, tournament_sample_b, variables)
 
-                fitness_a /= (2 * population_size)
-                fitness_b /= (2 * population_size)
+                fitness_a /= float(2.0 * variables.population_size)
+                fitness_b /= float(2.0 * variables.population_size)
 
-                if generation_data_save_filename != "":
-                    if t % generation_data_save_wait == 0:
-                        save_generation_data(t, fitness_a, fitness_b, population[agent_one], population[agent_two])
+                if np.random.random() < np.power(1.0 + np.exp(float(1)*float(fitness_a - fitness_b)), -1.0):
+                    variables.population[agent_one] = variables.population[agent_two]
 
-                if np.random.random() < np.power(1 + np.exp(float(1)*float(fitness_a - fitness_b)), -1):
-                    population[agent_one] = population[agent_two]
-    global cooperation_index_sum
-    global cooperation_index_average
-    cooperation_index_average = float(cooperation_index_sum)/float(runs*generations*4*(population_size-1))
-
-
-def run_instance_generation_information(NumRuns, NumGenerations, PopulationSize, MutationRate,
-                 ExecutionError, ReputationAssignmentError,
-                 PrivateAssessmentError, ReputationUpdateProbability,
-                 RandomSeed, SocialNormMatrix, CostValue, BenefitValue,
-                 GenerationDataSaveWait, GenerationDataSaveFilename):
-    global generation_data_save_wait
-    global generation_data_save_filename
-    generation_data_save_wait = GenerationDataSaveWait
-    generation_data_save_filename = GenerationDataSaveFilename
-    file_out = open(generation_data_save_filename, 'w+')
-    file_out.write("Generation Number,AllD Count,pDisc Count,Disc Count,AllC Count," +
-                   "AllD Ratio,pDisc Ratio,Disc Ratio,AllC Ratio,\n")
-    file_out.close()
-    output = run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
-                 ExecutionError, ReputationAssignmentError,
-                 PrivateAssessmentError, ReputationUpdateProbability,
-                 RandomSeed, SocialNormMatrix, CostValue, BenefitValue)
-    final_string = str(population_size) + ',' +\
-                 str(output[0]) + ',' +\
-                 str(output[1]) + ',' +\
-                 str(output[2]) + ',' +\
-                 str(output[3]) + ',' +\
-                 str(output[4]) + ',\n'
-    file_out = open(generation_data_save_filename, 'a')
-    file_out.write("---,---,---,---,---,---,---,---,---,\n")
-    file_out.write(final_string)
-    file_out.close()
 
 def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
                  ExecutionError, ReputationAssignmentError,
@@ -288,50 +184,32 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
             cooperation_index_zero_proportion,
             cooperation_index_without_zeros]
     """
-    global runs
-    global generations
-    global population_size
-    global population
-    global reputation
-    global mutation_probability
-    global execution_error
-    global reputation_assignment_error
-    global assessment_error
-    global reputation_update_rate
-    global randomseed
-    global socialnorm
-    global cost
-    global benefit
-    runs = NumRuns
-    generations = NumGenerations
-    population_size = PopulationSize
+    variables = InstanceVariables(NumRuns, NumGenerations, PopulationSize, MutationRate,
+                                  ExecutionError, ReputationAssignmentError,
+                                  PrivateAssessmentError, ReputationUpdateProbability,
+                                  SocialNormMatrix, CostValue, BenefitValue)
 
-    mutation_probability = MutationRate
-    execution_error = ExecutionError
-    reputation_assignment_error = ReputationAssignmentError
-    assessment_error = PrivateAssessmentError
-    reputation_update_rate = ReputationUpdateProbability
-    socialnorm = np.array(SocialNormMatrix)
-    cost = CostValue
-    benefit = BenefitValue
+    simulate(variables)
+    result = variables.get_average_coop_index()
+    return result
 
-    ### Reset tracking variables
-    global cooperation_index_sum
-    global cooperation_index_average
-    global cooperation_index_min
-    global cooperation_index_max
-    global cooperation_index_zeros
-    cooperation_index_min = 1
-    cooperation_index_max = 0
-    cooperation_index_zeros = 0
-    cooperation_index_sum = 0
-    cooperation_index_average = 0
-
-    simulate()
-    return_list = [cooperation_index_average,
-                   cooperation_index_min,
-                   cooperation_index_max,
-                   float(cooperation_index_zeros) / float(runs*generations*4*(population_size-1)),
-                   float(cooperation_index_sum) / float((runs*generations*4*(population_size-1)) -
-                                                        cooperation_index_zeros)]
-    return return_list
+if __name__ == "__main__":
+    start = time.clock()
+    num_threads = multiprocessing.cpu_count()
+    pool = multiprocessing.Pool(num_threads)
+    cooperation_index_avg = 0.0
+    results = [pool.apply_async(run_instance,
+                                args=(1, 3*np.power(10, 4), 12, np.power(10*12, -1.0),
+                                      0.08, 0.01, 0.01, 1.0,
+                                      1, [[1, 0], [0, 1]], 1, 5)) for _ in range(num_threads)]
+    """
+    result is the cooperation index
+    """
+    for result in results:
+        cooperation_index_values_i = result.get()
+        cooperation_index_avg += float(cooperation_index_values_i)
+        print(cooperation_index_values_i)
+    cooperation_index_avg /= float(num_threads)
+    end = time.clock()
+    print(cooperation_index_avg)
+    print("Simulation completed in " + str(end - start) + " seconds.")

@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{scrextend}
 \author{Konrad Cybulski}
 \title{Using agent-based simulations to verify the predictions made by Santos, Santos, Pacheco.}
 \begin{document}
@@ -22,8 +23,9 @@ The main research paper on which this project is based is “\textit{Social Norm
 In the paper a number of simulation parameters and methods are introduced and those specifications are replicated in this project in order to verify the results of the simulations performed in the paper.
 \\\\
 \section{Introduction}
-What is the effect of reputation in fostering collaboration amongst decision makers? Verifying the results and simulations developed by Santos, Santos, Pacheco in their paper \textit{Social Norms of Cooperation in Small-Scale Societies}.
 The primary aim of this project is to replicate the findings of Santos, Santos, and Pacheco which will allow further exploration into more detailed models of the prisoner’s dilemma game within populations. The paper outlines simulation parameters based on equations to model the process in which the prisoner’s dilemma game is played over time in a population. In order to allow for greater research to be done in this area based on the simulation developed to verify the mathematical model developed by Santos et al. it is necessary that the simulation can be recreated and tested under similar variables and constraints to verify their results.
+\\\\
+
 \section{Literature Review}
 
 \section{Methodology}
@@ -47,7 +49,7 @@ The following computations were required:
 \\ 4. Vector of the reputation of each agent after each interaction with X. \\\\
 
 The equations defining the actions of both agent X (\emph{$C_{x}$}) and each agent in the tournament vector (\emph{$C_{y}$}) are defined as:\\
-$A_{i}$ = the vector of size two defining the possible actions of agent i against another agent Y, this vector contains the action if Y has reputation G and if Y has reputation B.
+$A_{i}$ = the vector of size two defining the possible actions of agent i against another agent Y, this vector contains the action if Y has reputation G and if Y has reputation B.\\
 $(A_{i})_{G}$ = the action of agent X if the reputation of some agent Y is G (0 is defection, 1 is cooperation). \\
 $(A_{i})_{B}$ = the action of agent X if the reputation of some agent Y is B (0 is defection, 1 is cooperation). \\
 R = the reputations of the agents defined in the tournament vector (0 is B, 1 is G). \\
@@ -70,9 +72,42 @@ $\\\\ $
 \subsection{Analysis of optimization}
 The optimizations made to increase the program's time complexity were measured utilizing \emph{Jupyter Notebook} to measure improvements in execution time for given functions. 
 
+$\\\\ $
+
 \section{Results}
 
 \section{Discussion}
+
+\pagebreak
+\section{Extension}
+The method by which Santos, Santos and Pacheco incorporate private assessment errors of the reputation of any other agent in the simulation involves the use of a single variable $\chi$ which determines this error for all agents.
+The error $\chi$ determines the probability that a given agent will wrongly assess the reputation of another agent in a given interaction.
+The extension on this project aimed to investigate the effect of dynamic assessment errors and the delay of reputation information propagation on rates of cooperation.
+The process by which this variable assessment error is incorporated into the simulation is outlined in \textit{Methodology (7.1)}
+$ \\\\ $
+While it is expected that the cooperation index for smaller population sizes will stay relatively constant for a given social norm in comparison to a constant private assessment error, for larger population sizes, this propagation delay may have a greater impact on the rate of cooperation.
+
+$ $
+
+\subsection{Methodology}
+The likelihood of wrongly assessing the reputation of a given individual is defined as a function of the time since the last update of that individual's reputation.
+In turn this process emulates the delay that exists between the creation of new information about an agent's reputation and when any other agent in the population comes into that knowledge.
+The way that this is done, while maintaining the stochastic framework of the simulation itself, is by utilizing a function for the private assessment error for a given individual \textit{i} (denoted further as $\chi_{i}$) and keeping track only of the number of time steps (interactions, denoted as $\textit{t}_{i}$) since agent-\textit{i}'s reputation was \emph{changed}.
+While we may update an agent's reputation after every interaction, $\textit{t}_{i}$ is only reset to 0 when $R_{i}$ has been changed to a value other than its current value.
+\\
+The private assessment error the function is defined as: \\
+\begin{addmargin}[1em]{2em}
+$\chi_{min}$ = the minimum private assessment error. \\
+Z = the population size. \\
+$R_{s}$ = the rate of information spread, $0 < R_{s} \leq 1$. 
+\begin{addmargin}[2em]{1em}
+$R_{s}$ of value \textbf{\textit{a}} signifies that at each interaction every agent with knowledge of agent-\textit{i}'s reputation will give this information to another agent with probability \textbf{\textit{a}}.
+\end{addmargin}
+\end{addmargin}
+\begin{center}
+$ \chi(t) = 1 - \chi_{min} - \dfrac{(1 + R_{s})^{t}}{Z}$ \\
+$ \chi_{i} = \textbf{max}(\chi(t_{i}), \chi_{min}) $
+\end{center}
 
 \section{Conclusion}
 
