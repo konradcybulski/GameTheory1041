@@ -47,8 +47,11 @@ cdef payoff_function(int x, int y, InstanceVariables variables):
     cdef double[8] rands
     for i in range(8):
         rands[i] = rand()*1.0/RAND_MAX
+    cdef double assessment_error_x =\
+        1.0 - variables.min_private_assessment_error - \
+        pow(1.0 + variables.reputation_spread_prob, float(variables.private_assessment_error[x]))/float(variables.population_size)
 
-    if rands[0] < variables.private_assessment_error:
+    if rands[0] < assessment_error_x:
         if rands[1] < variables.execution_error and xstrategy[1 - variables.reputation[y]]:
             cx = 1 - xstrategy[1 - variables.reputation[y]]
         else:
@@ -60,8 +63,12 @@ cdef payoff_function(int x, int y, InstanceVariables variables):
             cx = xstrategy[variables.reputation[y]]
 
     # Action of Y:
+    cdef double assessment_error_y =\
+        1.0 - variables.min_private_assessment_error - \
+        pow(1.0 + variables.reputation_spread_prob, float(variables.private_assessment_error[y]))/float(variables.population_size)
+
     cdef int[:] ystrategy = variables.strategies[variables.population[y]]
-    if rands[2] < variables.private_assessment_error:
+    if rands[2] < assessment_error_y:
         if rands[3] < variables.execution_error and ystrategy[1 - variables.reputation[x]]:
             cy = 1 - ystrategy[1 - variables.reputation[x]]
         else:
@@ -86,6 +93,16 @@ cdef payoff_function(int x, int y, InstanceVariables variables):
             ry = 1 - variables.socialnorm[1 - cy][1 - variables.reputation[x]]
         else:
             ry = variables.socialnorm[1 - cy][1 - variables.reputation[x]]
+
+    if rx != variables.reputation[x]:
+        variables.private_assessment_error[x] = 0.0
+    if ry != variables.reputation[y]:
+        variables.private_assessment_error[y] = 0.0
+
+    for i in range(len(variables.private_assessment_error)):
+        variables.private_assessment_error[i] += 1.0
+        if variables.private_assessment_error[i] > variables.private_assessment_error_max_t:
+            variables.private_assessment_error[i] = variables.private_assessment_error_max_t
 
     variables.reputation[x] = rx
     variables.reputation[y] = ry
@@ -202,8 +219,11 @@ cdef class InstanceVariables:
     cdef public double mutation_rate,
     cdef public double execution_error
     cdef public double reputation_assignment_error
-    cdef public double private_assessment_error
+    cdef public double[:] private_assessment_error
+    cdef public double private_assessment_error_max_t
+    cdef public double min_private_assessment_error
     cdef public double reputation_update_rate
+    cdef public double reputation_spread_prob
     cdef public int[:,:] socialnorm
     cdef public int cost
     cdef public int benefit
@@ -222,7 +242,8 @@ cdef class InstanceVariables:
     @cython.wraparound(False)
     def __cinit__(self, int runs, int generations, int population_size, double mutation_rate,
                  double execution_error, double reputation_assignment_error,
-                 double private_assessment_error, double reputation_update_rate,
+                 double min_private_assessment_error, double reputation_update_rate,
+                 double reputation_spread_prob,
                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
         self.runs = runs
         self.generations = generations
@@ -230,8 +251,9 @@ cdef class InstanceVariables:
         self.mutation_rate = mutation_rate
         self.execution_error = execution_error
         self.reputation_assignment_error = reputation_assignment_error
-        self.private_assessment_error = private_assessment_error
+        self.min_private_assessment_error = min_private_assessment_error
         self.reputation_update_rate = reputation_update_rate
+        self.reputation_spread_prob = reputation_spread_prob
         self.socialnorm = socialnorm  # matrix determining the reputation dynamic with
         # regard to the action taken and the reputation
         # of the other agent
@@ -245,6 +267,8 @@ cdef class InstanceVariables:
         self.reputation = np.zeros(population_size, dtype=DINT)  # vector of all individual public reputations
         # reputation[k] : public reputation of individual k
         # reputation[k] = 0 or 1
+        self.private_assessment_error = np.ones(population_size, dtype=DDOUBLE)  # equivalent to assessment_error = 0.5 for all
+        self.private_assessment_error_max_t = np.log(population_size*(1.0 - 2.0*min_private_assessment_error))/np.log(1.0 + reputation_spread_prob)
         self.strategies = np.array([[0, 0],
                                     [1, 0],
                                     [0, 1],

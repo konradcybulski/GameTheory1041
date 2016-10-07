@@ -35,10 +35,11 @@ class InstanceVariables:
         # Cooperation Tracking
         self.coop_index_sum = float(0)
         self.interaction_count = float(0)
+        self.track_cooperation = False
 
     def increment_coop_index(self, coop_index):
         self.coop_index_sum += float(coop_index)
-        self.interaction_count += 1
+        self.interaction_count += 1.0
 
     def get_average_coop_index(self):
         return float(self.coop_index_sum)/float(self.interaction_count)
