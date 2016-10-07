@@ -1,10 +1,6 @@
-import pyximport
 import numpy as np
-pyximport.install(setup_args={"include_dirs":np.get_include(),
-                              'extra_compile_args':["-ffast-math"]},
-                  reload_support=True)
-import simulation_instance
-import simulation_instance_comms
+import Cython_resources.build.simulation_instance
+import Cython_resources.build.simulation_instance_comms as simulation_instance_comms
 import time
 import multiprocessing
 
@@ -22,25 +18,24 @@ def simulate(runs, generations, population_size, mutation_rate,
 
 def simulate_parallel(runs, generations, population_size, mutation_rate,
              execution_error, reputation_assignment_error,
-             private_assessment_error, reputation_update_prob,
+             private_assessment_error, reputation_update_prob, reputation_spread_rate,
              socialnorm, cost, benefit):
     num_threads = multiprocessing.cpu_count()
     runs_per_thread = int(np.ceil(float(runs) / float(num_threads)))
     pool = multiprocessing.Pool(num_threads)
     cooperation_index_average = float(0)
-    for i in range(runs_per_thread):
-        results = [pool.apply_async(simulation_instance.run_instance,
-                                    args=(runs, generations, population_size, mutation_rate,
-                                          execution_error, reputation_assignment_error,
-                                          private_assessment_error, reputation_update_prob,
-                                          socialnorm, cost, benefit)) for _ in range(num_threads)]
-        """
-        result is the cooperation index
-        """
-        for result in results:
-            cooperation_index_values_i = result.get()
-            cooperation_index_average += float(cooperation_index_values_i)
-            print(cooperation_index_values_i)
+    results = [pool.apply_async(simulation_instance_comms.run_instance,
+                                args=(runs, generations, population_size, mutation_rate,
+                                      execution_error, reputation_assignment_error,
+                                      private_assessment_error, reputation_update_prob, reputation_spread_rate,
+                                      socialnorm, cost, benefit)) for _ in range(num_threads)]
+    """
+    result is the cooperation index
+    """
+    for result in results:
+        cooperation_index_values_i = result.get()
+        cooperation_index_average += float(cooperation_index_values_i[0])
+        print(cooperation_index_values_i)
     cooperation_index_average /= float(num_threads * runs_per_thread)
     return cooperation_index_average
 
@@ -78,6 +73,8 @@ def simulate_data(filename, runs_per_thread, generations, Z, socialnorm):
         file_out.close()
         print(out_string)
     cooperation_index_average /= float(num_threads)
+    # pool.join()
+    # pool.terminate()
     return cooperation_index_average
 
 if __name__ == '__main__':
@@ -95,11 +92,11 @@ if __name__ == '__main__':
     # cost = 1
     # benefit = 5
     #
-    # result = simulation_instance_comms.run_instance(runs, generations, population_size, mutation_rate,
-    #                                                 execution_error, reputation_assignment_error,
-    #                                                 private_assessment_error, reputation_update_prob,
-    #                                                 reputation_spread_rate,
-    #                                                 socialnorm, cost, benefit)
+    # result = simulate_parallel(runs, generations, population_size, mutation_rate,
+    #                             execution_error, reputation_assignment_error,
+    #                             private_assessment_error, reputation_update_prob,
+    #                             reputation_spread_rate,
+    #                             socialnorm, cost, benefit)
     # print("Coop_: " + str(result))
 
     # # Generate Z = 12
@@ -111,15 +108,15 @@ if __name__ == '__main__':
     run_number = 1
     generation_number = 3 * np.power(10, 5)
     simulation_data = [
-        ["Z5_Data_Comms.txt", 5, SS],
-        ["Z5_Data_Comms.txt", 5, SJ],
-        ["Z5_Data_Comms.txt", 5, ZERO],
-        ["Z5_Data_Comms.txt", 5, IS],
-
-        ["Z12_Data_Comms.txt", 12, SS],
-        ["Z12_Data_Comms.txt", 12, SJ],
-        ["Z12_Data_Comms.txt", 12, ZERO],
-        ["Z12_Data_Comms.txt", 12, IS],
+        # ["Z5_Data_Comms.txt", 5, SS],
+        # ["Z5_Data_Comms.txt", 5, SJ],
+        # ["Z5_Data_Comms.txt", 5, ZERO],
+        # ["Z5_Data_Comms.txt", 5, IS],
+        #
+        # ["Z12_Data_Comms.txt", 12, SS],
+        # ["Z12_Data_Comms.txt", 12, SJ],
+        # ["Z12_Data_Comms.txt", 12, ZERO],
+        # ["Z12_Data_Comms.txt", 12, IS],
 
         ["Z25_Data_Comms.txt", 25, SS],
         ["Z25_Data_Comms.txt", 25, SJ],

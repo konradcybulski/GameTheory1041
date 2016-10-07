@@ -185,7 +185,7 @@ def run_instance(int runs, int generations, int population_size, double mutation
                  double private_assessment_error, double reputation_update_rate,
                  double reputation_spread_prob,
                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
-    cdef double result = simulate(runs, generations, population_size, mutation_rate,
+    cdef double result = simulate(1, generations, population_size, mutation_rate,
                                   execution_error, reputation_assignment_error,
                                   private_assessment_error, reputation_update_rate,
                                   reputation_spread_prob,

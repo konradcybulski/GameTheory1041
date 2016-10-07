@@ -266,8 +266,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__Cython_resources__simulation_instance_comms
-#define __PYX_HAVE_API__Cython_resources__simulation_instance_comms
+#define __PYX_HAVE__Cython_resources__simulation_instance
+#define __PYX_HAVE_API__Cython_resources__simulation_instance
 #include "string.h"
 #include "stdlib.h"
 #include "math.h"
@@ -513,7 +513,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "Cython_resources\\simulation_instance_comms.pyx",
+  "Cython_resources\\simulation_instance.pyx",
   "__init__.pxd",
   "Cython_resources\\stringsource",
   "type.pxd",
@@ -803,23 +803,23 @@ typedef npy_double __pyx_t_5numpy_double_t;
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
 
-/* "Cython_resources/simulation_instance_comms.pyx":10
+/* "Cython_resources/simulation_instance.pyx":10
  * DINT = np.int
  * DDOUBLE = np.double
  * ctypedef np.int_t DINT_t             # <<<<<<<<<<<<<<
  * ctypedef np.double_t DDOUBLE_t
  * 
  */
-typedef __pyx_t_5numpy_int_t __pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t;
+typedef __pyx_t_5numpy_int_t __pyx_t_16Cython_resources_19simulation_instance_DINT_t;
 
-/* "Cython_resources/simulation_instance_comms.pyx":11
+/* "Cython_resources/simulation_instance.pyx":11
  * DDOUBLE = np.double
  * ctypedef np.int_t DINT_t
  * ctypedef np.double_t DDOUBLE_t             # <<<<<<<<<<<<<<
  * 
  * 
  */
-typedef __pyx_t_5numpy_double_t __pyx_t_16Cython_resources_25simulation_instance_comms_DDOUBLE_t;
+typedef __pyx_t_5numpy_double_t __pyx_t_16Cython_resources_19simulation_instance_DDOUBLE_t;
 /* None.proto */
 #if CYTHON_CCOMPLEX
   #ifdef __cplusplus
@@ -844,7 +844,7 @@ typedef __pyx_t_5numpy_double_t __pyx_t_16Cython_resources_25simulation_instance
 
 
 /*--- Type declarations ---*/
-struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables;
+struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables;
 struct __pyx_array_obj;
 struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
@@ -886,35 +886,32 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "Cython_resources/simulation_instance_comms.pyx":215
+/* "Cython_resources/simulation_instance.pyx":198
  * @cython.nonecheck(False)
  * @cython.wraparound(False)
  * cdef class InstanceVariables:             # <<<<<<<<<<<<<<
  *     cdef public int runs
  *     cdef public int generations
  */
-struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables {
+struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables {
   PyObject_HEAD
-  struct __pyx_vtabstruct_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_vtab;
+  struct __pyx_vtabstruct_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_vtab;
   int runs;
   int generations;
   int population_size;
   double mutation_rate;
   double execution_error;
   double reputation_assignment_error;
-  __Pyx_memviewslice private_assessment_error;
-  double private_assessment_error_max_t;
-  double min_private_assessment_error;
+  double private_assessment_error;
   double reputation_update_rate;
-  double reputation_spread_prob;
   __Pyx_memviewslice socialnorm;
   int cost;
   int benefit;
   __Pyx_memviewslice strategies;
   __Pyx_memviewslice population;
   __Pyx_memviewslice reputation;
-  long double coop_index_sum;
-  long double interaction_count;
+  double coop_index_sum;
+  double interaction_count;
   int track_coop;
 };
 
@@ -997,7 +994,7 @@ struct __pyx_memoryviewslice_obj {
 
 
 
-/* "Cython_resources/simulation_instance_comms.pyx":215
+/* "Cython_resources/simulation_instance.pyx":198
  * @cython.nonecheck(False)
  * @cython.wraparound(False)
  * cdef class InstanceVariables:             # <<<<<<<<<<<<<<
@@ -1005,11 +1002,11 @@ struct __pyx_memoryviewslice_obj {
  *     cdef public int generations
  */
 
-struct __pyx_vtabstruct_16Cython_resources_25simulation_instance_comms_InstanceVariables {
-  void (*increment_coop_index)(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *, double);
-  double (*get_average_coop_index)(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *);
+struct __pyx_vtabstruct_16Cython_resources_19simulation_instance_InstanceVariables {
+  void (*increment_coop_index)(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *, double);
+  double (*get_average_coop_index)(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *);
 };
-static struct __pyx_vtabstruct_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_vtabptr_16Cython_resources_25simulation_instance_comms_InstanceVariables;
+static struct __pyx_vtabstruct_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_vtabptr_16Cython_resources_19simulation_instance_InstanceVariables;
 
 
 /* "View.MemoryView":103
@@ -1209,9 +1206,6 @@ static CYTHON_INLINE int __pyx_sub_acquisition_count_locked(
 static CYTHON_INLINE void __Pyx_INC_MEMVIEW(__Pyx_memviewslice *, int, int);
 static CYTHON_INLINE void __Pyx_XDEC_MEMVIEW(__Pyx_memviewslice *, int, int);
 
-/* pow2.proto */
-#define __Pyx_PyNumber_Power2(a, b) PyNumber_Power(a, b, Py_None)
-
 /* IncludeStringH.proto */
 #include <string.h>
 
@@ -1250,6 +1244,9 @@ static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
 static void __Pyx_RaiseBufferFallbackError(void);
 
 #define __Pyx_BufPtrCContig1d(type, buf, i0, s0) ((type)buf + i0)
+/* pow2.proto */
+#define __Pyx_PyNumber_Power2(a, b) PyNumber_Power(a, b, Py_None)
+
 /* PyThreadStateGet.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
 #define __Pyx_PyThreadState_declare  PyThreadState *__pyx_tstate;
@@ -1526,10 +1523,6 @@ static CYTHON_INLINE PyObject *__pyx_capsule_create(void *p, const char *sig);
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
 
-/* MemviewDtypeToObject.proto */
-static CYTHON_INLINE PyObject *__pyx_memview_get_double(const char *itemp);
-static CYTHON_INLINE int __pyx_memview_set_double(const char *itemp, PyObject *obj);
-
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 
@@ -1660,10 +1653,10 @@ static struct __pyx_typeinfo_string __Pyx_TypeInfoToFormat(__Pyx_TypeInfo *type)
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
 
 /* CIntFromPy.proto */
-static CYTHON_INLINE char __Pyx_PyInt_As_char(PyObject *);
+static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
 
 /* CIntFromPy.proto */
-static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
+static CYTHON_INLINE char __Pyx_PyInt_As_char(PyObject *);
 
 /* TypeInfoCompare.proto */
 static int __pyx_typeinfo_cmp(__Pyx_TypeInfo *a, __Pyx_TypeInfo *b);
@@ -1709,8 +1702,8 @@ static PyTypeObject *__Pyx_ImportType(const char *module_name, const char *class
 /* InitStrings.proto */
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
-static void __pyx_f_16Cython_resources_25simulation_instance_comms_17InstanceVariables_increment_coop_index(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, double __pyx_v_coop_index); /* proto*/
-static double __pyx_f_16Cython_resources_25simulation_instance_comms_17InstanceVariables_get_average_coop_index(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto*/
+static void __pyx_f_16Cython_resources_19simulation_instance_17InstanceVariables_increment_coop_index(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, double __pyx_v_coop_index); /* proto*/
+static double __pyx_f_16Cython_resources_19simulation_instance_17InstanceVariables_get_average_coop_index(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto*/
 static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self); /* proto*/
 static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__pyx_v_self, PyObject *__pyx_v_index); /* proto*/
 static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_self, PyObject *__pyx_v_obj); /* proto*/
@@ -1758,8 +1751,8 @@ static PyTypeObject *__pyx_ptype_5numpy_ndarray = 0;
 static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;
 static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *, char *, char *, int *); /*proto*/
 
-/* Module declarations from 'Cython_resources.simulation_instance_comms' */
-static PyTypeObject *__pyx_ptype_16Cython_resources_25simulation_instance_comms_InstanceVariables = 0;
+/* Module declarations from 'Cython_resources.simulation_instance' */
+static PyTypeObject *__pyx_ptype_16Cython_resources_19simulation_instance_InstanceVariables = 0;
 static PyTypeObject *__pyx_array_type = 0;
 static PyTypeObject *__pyx_MemviewEnum_type = 0;
 static PyTypeObject *__pyx_memoryview_type = 0;
@@ -1771,10 +1764,10 @@ static PyObject *contiguous = 0;
 static PyObject *indirect_contiguous = 0;
 static int __pyx_memoryview_thread_locks_used;
 static PyThread_type_lock __pyx_memoryview_thread_locks[8];
-static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms_choice_weighted(int, int, __Pyx_memviewslice); /*proto*/
-static PyObject *__pyx_f_16Cython_resources_25simulation_instance_comms_payoff_function(int, int, struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *); /*proto*/
-static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms_fitness_function(int, int, struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *); /*proto*/
-static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(int, int, int, double, double, double, double, double, double, PyArrayObject *, int, int); /*proto*/
+static __Pyx_memviewslice __pyx_f_16Cython_resources_19simulation_instance_choice_weighted(int, int, __Pyx_memviewslice); /*proto*/
+static PyObject *__pyx_f_16Cython_resources_19simulation_instance_payoff_function(int, int, struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *); /*proto*/
+static __Pyx_memviewslice __pyx_f_16Cython_resources_19simulation_instance_fitness_function(int, int, struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *); /*proto*/
+static double __pyx_f_16Cython_resources_19simulation_instance_simulate(int, int, int, double, double, double, double, double, double, PyArrayObject *, int, int); /*proto*/
 static struct __pyx_array_obj *__pyx_array_new(PyObject *, Py_ssize_t, char *, char *, char *); /*proto*/
 static void *__pyx_align_pointer(void *, size_t); /*proto*/
 static PyObject *__pyx_memoryview_new(PyObject *, int, int, __Pyx_TypeInfo *); /*proto*/
@@ -1809,12 +1802,12 @@ static void __pyx_memoryview_slice_assign_scalar(__Pyx_memviewslice *, int, size
 static void __pyx_memoryview__slice_assign_scalar(char *, Py_ssize_t *, Py_ssize_t *, int, size_t, void *); /*proto*/
 static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *); /*proto*/
 static __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
-static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t = { "DINT_t", NULL, sizeof(__pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t), { 0 }, 0, IS_UNSIGNED(__pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t) ? 'U' : 'I', IS_UNSIGNED(__pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t), 0 };
+static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_16Cython_resources_19simulation_instance_DINT_t = { "DINT_t", NULL, sizeof(__pyx_t_16Cython_resources_19simulation_instance_DINT_t), { 0 }, 0, IS_UNSIGNED(__pyx_t_16Cython_resources_19simulation_instance_DINT_t) ? 'U' : 'I', IS_UNSIGNED(__pyx_t_16Cython_resources_19simulation_instance_DINT_t), 0 };
 static __Pyx_TypeInfo __Pyx_TypeInfo_int = { "int", NULL, sizeof(int), { 0 }, 0, IS_UNSIGNED(int) ? 'U' : 'I', IS_UNSIGNED(int), 0 };
-#define __Pyx_MODULE_NAME "Cython_resources.simulation_instance_comms"
-int __pyx_module_is_main_Cython_resources__simulation_instance_comms = 0;
+#define __Pyx_MODULE_NAME "Cython_resources.simulation_instance"
+int __pyx_module_is_main_Cython_resources__simulation_instance = 0;
 
-/* Implementation of 'Cython_resources.simulation_instance_comms' */
+/* Implementation of 'Cython_resources.simulation_instance' */
 static PyObject *__pyx_builtin_range;
 static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_RuntimeError;
@@ -1836,7 +1829,6 @@ static const char __pyx_k_T[] = "T{";
 static const char __pyx_k__25[] = "}";
 static const char __pyx_k__26[] = ",";
 static const char __pyx_k_int[] = "int";
-static const char __pyx_k_log[] = "log";
 static const char __pyx_k_obj[] = "obj";
 static const char __pyx_k_DINT[] = "DINT";
 static const char __pyx_k_base[] = "base";
@@ -1912,14 +1904,13 @@ static const char __pyx_k_Invalid_shape_in_axis_d_d[] = "Invalid shape in axis %
 static const char __pyx_k_itemsize_0_for_cython_array[] = "itemsize <= 0 for cython.array";
 static const char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";
 static const char __pyx_k_reputation_assignment_error[] = "reputation_assignment_error";
-static const char __pyx_k_min_private_assessment_error[] = "min_private_assessment_error";
 static const char __pyx_k_unable_to_allocate_array_data[] = "unable to allocate array data.";
 static const char __pyx_k_strided_and_direct_or_indirect[] = "<strided and direct or indirect>";
-static const char __pyx_k_C_Users_kocyb_000_Documents_Uni[] = "C:\\Users\\kocyb_000\\Documents\\Uni\\GameTheory1041\\Python_Resources\\Cython_resources\\simulation_instance_comms.pyx";
+static const char __pyx_k_C_Users_kocyb_000_Documents_Uni[] = "C:\\Users\\kocyb_000\\Documents\\Uni\\GameTheory1041\\Python_Resources\\Cython_resources\\simulation_instance.pyx";
 static const char __pyx_k_unknown_dtype_code_in_numpy_pxd[] = "unknown dtype code in numpy.pxd (%d)";
 static const char __pyx_k_Buffer_view_does_not_expose_stri[] = "Buffer view does not expose strides";
 static const char __pyx_k_Can_only_create_a_buffer_that_is[] = "Can only create a buffer that is contiguous in memory.";
-static const char __pyx_k_Cython_resources_simulation_inst[] = "Cython_resources.simulation_instance_comms";
+static const char __pyx_k_Cython_resources_simulation_inst[] = "Cython_resources.simulation_instance";
 static const char __pyx_k_Empty_shape_tuple_for_cython_arr[] = "Empty shape tuple for cython.array";
 static const char __pyx_k_Format_string_allocated_too_shor[] = "Format string allocated too short, see comment in numpy.pxd";
 static const char __pyx_k_Indirect_dimensions_not_supporte[] = "Indirect dimensions not supported";
@@ -1993,10 +1984,8 @@ static PyObject *__pyx_n_s_int;
 static PyObject *__pyx_n_s_itemsize;
 static PyObject *__pyx_kp_s_itemsize_0_for_cython_array;
 static PyObject *__pyx_n_s_join;
-static PyObject *__pyx_n_s_log;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_memview;
-static PyObject *__pyx_n_s_min_private_assessment_error;
 static PyObject *__pyx_n_s_mode;
 static PyObject *__pyx_n_s_mutation_rate;
 static PyObject *__pyx_n_s_name;
@@ -2040,42 +2029,36 @@ static PyObject *__pyx_kp_s_unable_to_allocate_shape_and_str;
 static PyObject *__pyx_kp_u_unknown_dtype_code_in_numpy_pxd;
 static PyObject *__pyx_n_s_unpack;
 static PyObject *__pyx_n_s_zeros;
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_run_instance(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_runs, int __pyx_v_generations, int __pyx_v_population_size, double __pyx_v_mutation_rate, double __pyx_v_execution_error, double __pyx_v_reputation_assignment_error, double __pyx_v_private_assessment_error, double __pyx_v_reputation_update_rate, double __pyx_v_reputation_spread_prob, PyArrayObject *__pyx_v_socialnorm, int __pyx_v_cost, int __pyx_v_benefit); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables___cinit__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, int __pyx_v_runs, int __pyx_v_generations, int __pyx_v_population_size, double __pyx_v_mutation_rate, double __pyx_v_execution_error, double __pyx_v_reputation_assignment_error, double __pyx_v_min_private_assessment_error, double __pyx_v_reputation_update_rate, double __pyx_v_reputation_spread_prob, PyArrayObject *__pyx_v_socialnorm, int __pyx_v_cost, int __pyx_v_benefit); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4runs___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4runs_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_11generations___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_11generations_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15population_size___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15population_size_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_13mutation_rate___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_13mutation_rate_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15execution_error___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15execution_error_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_27reputation_assignment_error___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_27reputation_assignment_error_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_24private_assessment_error___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_24private_assessment_error_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_30private_assessment_error_max_t___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_30private_assessment_error_max_t_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_28min_private_assessment_error___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_28min_private_assessment_error_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_update_rate___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_update_rate_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_spread_prob___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_spread_prob_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10socialnorm___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10socialnorm_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4cost___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4cost_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_7benefit___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_7benefit_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10strategies___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10strategies_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10population___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10population_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10reputation___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self); /* proto */
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10reputation_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_run_instance(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED int __pyx_v_runs, int __pyx_v_generations, int __pyx_v_population_size, double __pyx_v_mutation_rate, double __pyx_v_execution_error, double __pyx_v_reputation_assignment_error, double __pyx_v_private_assessment_error, double __pyx_v_reputation_update_rate, double __pyx_v_reputation_spread_prob, PyArrayObject *__pyx_v_socialnorm, int __pyx_v_cost, int __pyx_v_benefit); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables___cinit__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, int __pyx_v_runs, int __pyx_v_generations, int __pyx_v_population_size, double __pyx_v_mutation_rate, double __pyx_v_execution_error, double __pyx_v_reputation_assignment_error, double __pyx_v_private_assessment_error, double __pyx_v_reputation_update_rate, PyArrayObject *__pyx_v_socialnorm, int __pyx_v_cost, int __pyx_v_benefit); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_4runs___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_4runs_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_11generations___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_11generations_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_15population_size___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_15population_size_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_13mutation_rate___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_13mutation_rate_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_15execution_error___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_15execution_error_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_27reputation_assignment_error___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_27reputation_assignment_error_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_24private_assessment_error___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_24private_assessment_error_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_22reputation_update_rate___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_22reputation_update_rate_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10socialnorm___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10socialnorm_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_4cost___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_4cost_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_7benefit___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_7benefit_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10strategies___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10strategies_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10population___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10population_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10reputation___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self); /* proto */
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10reputation_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
@@ -2110,7 +2093,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
 static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22copy_fortran(struct __pyx_memoryview_obj *__pyx_v_self); /* proto */
 static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewslice___dealloc__(struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_15View_dot_MemoryView_16_memoryviewslice_4base___get__(struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
-static PyObject *__pyx_tp_new_16Cython_resources_25simulation_instance_comms_InstanceVariables(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_16Cython_resources_19simulation_instance_InstanceVariables(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -2149,7 +2132,7 @@ static PyObject *__pyx_tuple__32;
 static PyObject *__pyx_tuple__33;
 static PyObject *__pyx_codeobj__28;
 
-/* "Cython_resources/simulation_instance_comms.pyx":17
+/* "Cython_resources/simulation_instance.pyx":17
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef int[:] choice_weighted(int length, int size, double[:] weights):             # <<<<<<<<<<<<<<
@@ -2157,7 +2140,7 @@ static PyObject *__pyx_codeobj__28;
  *     cdef int arr_i
  */
 
-static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms_choice_weighted(int __pyx_v_length, int __pyx_v_size, __Pyx_memviewslice __pyx_v_weights) {
+static __Pyx_memviewslice __pyx_f_16Cython_resources_19simulation_instance_choice_weighted(int __pyx_v_length, int __pyx_v_size, __Pyx_memviewslice __pyx_v_weights) {
   __Pyx_memviewslice __pyx_v_arr = { 0, 0, { 0 }, { 0 }, { 0 } };
   int __pyx_v_arr_i;
   int __pyx_v_i;
@@ -2178,7 +2161,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   Py_ssize_t __pyx_t_11;
   __Pyx_RefNannySetupContext("choice_weighted", 0);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":18
+  /* "Cython_resources/simulation_instance.pyx":18
  * @cython.nonecheck(False)
  * cdef int[:] choice_weighted(int length, int size, double[:] weights):
  *     cdef int[:] arr = np.zeros(size, dtype=DINT)             # <<<<<<<<<<<<<<
@@ -2215,7 +2198,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   __pyx_t_5.memview = NULL;
   __pyx_t_5.data = NULL;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":22
+  /* "Cython_resources/simulation_instance.pyx":22
  *     cdef int idx, i
  *     cdef double cs, random
  *     cdef randoms = np.random.random(size=size)             # <<<<<<<<<<<<<<
@@ -2243,7 +2226,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   __pyx_v_randoms = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":23
+  /* "Cython_resources/simulation_instance.pyx":23
  *     cdef double cs, random
  *     cdef randoms = np.random.random(size=size)
  *     for arr_i in range(size):             # <<<<<<<<<<<<<<
@@ -2254,7 +2237,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
     __pyx_v_arr_i = __pyx_t_7;
 
-    /* "Cython_resources/simulation_instance_comms.pyx":24
+    /* "Cython_resources/simulation_instance.pyx":24
  *     cdef randoms = np.random.random(size=size)
  *     for arr_i in range(size):
  *         cs = 0.0             # <<<<<<<<<<<<<<
@@ -2263,7 +2246,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
  */
     __pyx_v_cs = 0.0;
 
-    /* "Cython_resources/simulation_instance_comms.pyx":25
+    /* "Cython_resources/simulation_instance.pyx":25
  *     for arr_i in range(size):
  *         cs = 0.0
  *         i = 0             # <<<<<<<<<<<<<<
@@ -2272,7 +2255,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
  */
     __pyx_v_i = 0;
 
-    /* "Cython_resources/simulation_instance_comms.pyx":26
+    /* "Cython_resources/simulation_instance.pyx":26
  *         cs = 0.0
  *         i = 0
  *         while cs < randoms[arr_i] and i < length:             # <<<<<<<<<<<<<<
@@ -2299,7 +2282,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
       __pyx_L7_bool_binop_done:;
       if (!__pyx_t_8) break;
 
-      /* "Cython_resources/simulation_instance_comms.pyx":27
+      /* "Cython_resources/simulation_instance.pyx":27
  *         i = 0
  *         while cs < randoms[arr_i] and i < length:
  *             cs += weights[i]             # <<<<<<<<<<<<<<
@@ -2309,7 +2292,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
       __pyx_t_10 = __pyx_v_i;
       __pyx_v_cs = (__pyx_v_cs + (*((double *) ( /* dim=0 */ (__pyx_v_weights.data + __pyx_t_10 * __pyx_v_weights.strides[0]) ))));
 
-      /* "Cython_resources/simulation_instance_comms.pyx":28
+      /* "Cython_resources/simulation_instance.pyx":28
  *         while cs < randoms[arr_i] and i < length:
  *             cs += weights[i]
  *             i += 1             # <<<<<<<<<<<<<<
@@ -2319,7 +2302,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
       __pyx_v_i = (__pyx_v_i + 1);
     }
 
-    /* "Cython_resources/simulation_instance_comms.pyx":29
+    /* "Cython_resources/simulation_instance.pyx":29
  *             cs += weights[i]
  *             i += 1
  *         arr[arr_i] = i - 1             # <<<<<<<<<<<<<<
@@ -2330,7 +2313,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
     *((int *) ( /* dim=0 */ (__pyx_v_arr.data + __pyx_t_11 * __pyx_v_arr.strides[0]) )) = (__pyx_v_i - 1);
   }
 
-  /* "Cython_resources/simulation_instance_comms.pyx":30
+  /* "Cython_resources/simulation_instance.pyx":30
  *             i += 1
  *         arr[arr_i] = i - 1
  *     return arr             # <<<<<<<<<<<<<<
@@ -2341,7 +2324,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   __pyx_r = __pyx_v_arr;
   goto __pyx_L0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":17
+  /* "Cython_resources/simulation_instance.pyx":17
  * @cython.wraparound(False)
  * @cython.nonecheck(False)
  * cdef int[:] choice_weighted(int length, int size, double[:] weights):             # <<<<<<<<<<<<<<
@@ -2358,7 +2341,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   __PYX_XDEC_MEMVIEW(&__pyx_t_5, 1);
   __pyx_r.data = NULL;
   __pyx_r.memview = NULL;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.choice_weighted", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.choice_weighted", __pyx_clineno, __pyx_lineno, __pyx_filename);
 
   goto __pyx_L2;
   __pyx_L0:;
@@ -2372,7 +2355,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":36
+/* "Cython_resources/simulation_instance.pyx":36
  * @cython.nonecheck(False)
  * @cython.wraparound(False)
  * cdef payoff_function(int x, int y, InstanceVariables variables):             # <<<<<<<<<<<<<<
@@ -2380,7 +2363,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
  *     """
  */
 
-static PyObject *__pyx_f_16Cython_resources_25simulation_instance_comms_payoff_function(int __pyx_v_x, int __pyx_v_y, struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_variables) {
+static PyObject *__pyx_f_16Cython_resources_19simulation_instance_payoff_function(int __pyx_v_x, int __pyx_v_y, struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_variables) {
   __Pyx_memviewslice __pyx_v_xstrategy = { 0, 0, { 0 }, { 0 }, { 0 } };
   int __pyx_v_cx;
   int __pyx_v_cy;
@@ -2388,23 +2371,21 @@ static PyObject *__pyx_f_16Cython_resources_25simulation_instance_comms_payoff_f
   int __pyx_v_ry;
   double __pyx_v_cur_cooperation_index;
   double __pyx_v_rands[8];
-  Py_ssize_t __pyx_v_i;
-  double __pyx_v_assessment_error_x;
-  double __pyx_v_assessment_error_y;
+  long __pyx_v_i;
   __Pyx_memviewslice __pyx_v_ystrategy = { 0, 0, { 0 }, { 0 }, { 0 } };
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   Py_ssize_t __pyx_t_1;
   __Pyx_memviewslice __pyx_t_2 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  Py_ssize_t __pyx_t_3;
+  long __pyx_t_3;
   double __pyx_t_4;
-  PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_5;
+  int __pyx_t_6;
   Py_ssize_t __pyx_t_7;
-  PyObject *__pyx_t_8 = NULL;
-  PyObject *__pyx_t_9 = NULL;
-  int __pyx_t_10;
-  int __pyx_t_11;
+  Py_ssize_t __pyx_t_8;
+  Py_ssize_t __pyx_t_9;
+  Py_ssize_t __pyx_t_10;
+  Py_ssize_t __pyx_t_11;
   Py_ssize_t __pyx_t_12;
   Py_ssize_t __pyx_t_13;
   Py_ssize_t __pyx_t_14;
@@ -2437,23 +2418,10 @@ static PyObject *__pyx_f_16Cython_resources_25simulation_instance_comms_payoff_f
   Py_ssize_t __pyx_t_41;
   Py_ssize_t __pyx_t_42;
   Py_ssize_t __pyx_t_43;
-  Py_ssize_t __pyx_t_44;
-  Py_ssize_t __pyx_t_45;
-  Py_ssize_t __pyx_t_46;
-  Py_ssize_t __pyx_t_47;
-  Py_ssize_t __pyx_t_48;
-  Py_ssize_t __pyx_t_49;
-  Py_ssize_t __pyx_t_50;
-  Py_ssize_t __pyx_t_51;
-  Py_ssize_t __pyx_t_52;
-  Py_ssize_t __pyx_t_53;
-  Py_ssize_t __pyx_t_54;
-  Py_ssize_t __pyx_t_55;
-  Py_ssize_t __pyx_t_56;
-  Py_ssize_t __pyx_t_57;
+  PyObject *__pyx_t_44 = NULL;
   __Pyx_RefNannySetupContext("payoff_function", 0);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":44
+  /* "Cython_resources/simulation_instance.pyx":44
  *     mode='c']
  *     """
  *     cdef int[:] xstrategy = variables.strategies[variables.population[x]]             # <<<<<<<<<<<<<<
@@ -2487,22 +2455,22 @@ __pyx_v_xstrategy = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":48
+  /* "Cython_resources/simulation_instance.pyx":48
  *     cdef double cur_cooperation_index
  *     cdef double[8] rands
  *     for i in range(8):             # <<<<<<<<<<<<<<
  *         rands[i] = rand()*1.0/RAND_MAX
- *     cdef double assessment_error_x =\
+ * 
  */
   for (__pyx_t_3 = 0; __pyx_t_3 < 8; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "Cython_resources/simulation_instance_comms.pyx":49
+    /* "Cython_resources/simulation_instance.pyx":49
  *     cdef double[8] rands
  *     for i in range(8):
  *         rands[i] = rand()*1.0/RAND_MAX             # <<<<<<<<<<<<<<
- *     cdef double assessment_error_x =\
- *         1.0 - variables.min_private_assessment_error - \
+ * 
+ *     if rands[0] < variables.private_assessment_error:
  */
     __pyx_t_4 = (rand() * 1.0);
     if (unlikely(RAND_MAX == 0)) {
@@ -2512,101 +2480,52 @@ __pyx_v_xstrategy = __pyx_t_2;
     (__pyx_v_rands[__pyx_v_i]) = (__pyx_t_4 / RAND_MAX);
   }
 
-  /* "Cython_resources/simulation_instance_comms.pyx":51
+  /* "Cython_resources/simulation_instance.pyx":51
  *         rands[i] = rand()*1.0/RAND_MAX
- *     cdef double assessment_error_x =\
- *         1.0 - variables.min_private_assessment_error - \             # <<<<<<<<<<<<<<
- *         pow(1.0 + variables.reputation_spread_prob, float(variables.private_assessment_error[x]))/float(variables.population_size)
  * 
- */
-  __pyx_t_5 = PyFloat_FromDouble((1.0 - __pyx_v_variables->min_private_assessment_error)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 51, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-
-  /* "Cython_resources/simulation_instance_comms.pyx":52
- *     cdef double assessment_error_x =\
- *         1.0 - variables.min_private_assessment_error - \
- *         pow(1.0 + variables.reputation_spread_prob, float(variables.private_assessment_error[x]))/float(variables.population_size)             # <<<<<<<<<<<<<<
- * 
- *     if rands[0] < assessment_error_x:
- */
-  __pyx_t_6 = PyFloat_FromDouble((1.0 + __pyx_v_variables->reputation_spread_prob)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 52, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  if (unlikely(!__pyx_v_variables->private_assessment_error.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 52, __pyx_L1_error)}
-  __pyx_t_7 = __pyx_v_x;
-  __pyx_t_8 = PyFloat_FromDouble((*((double *) ( /* dim=0 */ (__pyx_v_variables->private_assessment_error.data + __pyx_t_7 * __pyx_v_variables->private_assessment_error.strides[0]) )))); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 52, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = __Pyx_PyNumber_Power2(__pyx_t_6, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 52, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_9);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = PyFloat_FromDouble(((double)__pyx_v_variables->population_size)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 52, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_t_9, __pyx_t_8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 52, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-
-  /* "Cython_resources/simulation_instance_comms.pyx":51
- *         rands[i] = rand()*1.0/RAND_MAX
- *     cdef double assessment_error_x =\
- *         1.0 - variables.min_private_assessment_error - \             # <<<<<<<<<<<<<<
- *         pow(1.0 + variables.reputation_spread_prob, float(variables.private_assessment_error[x]))/float(variables.population_size)
- * 
- */
-  __pyx_t_8 = PyNumber_Subtract(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 51, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_4 = __pyx_PyFloat_AsDouble(__pyx_t_8); if (unlikely((__pyx_t_4 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 51, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_v_assessment_error_x = __pyx_t_4;
-
-  /* "Cython_resources/simulation_instance_comms.pyx":54
- *         pow(1.0 + variables.reputation_spread_prob, float(variables.private_assessment_error[x]))/float(variables.population_size)
- * 
- *     if rands[0] < assessment_error_x:             # <<<<<<<<<<<<<<
+ *     if rands[0] < variables.private_assessment_error:             # <<<<<<<<<<<<<<
  *         if rands[1] < variables.execution_error and xstrategy[1 - variables.reputation[y]]:
  *             cx = 1 - xstrategy[1 - variables.reputation[y]]
  */
-  __pyx_t_10 = (((__pyx_v_rands[0]) < __pyx_v_assessment_error_x) != 0);
-  if (__pyx_t_10) {
+  __pyx_t_5 = (((__pyx_v_rands[0]) < __pyx_v_variables->private_assessment_error) != 0);
+  if (__pyx_t_5) {
 
-    /* "Cython_resources/simulation_instance_comms.pyx":55
+    /* "Cython_resources/simulation_instance.pyx":52
  * 
- *     if rands[0] < assessment_error_x:
+ *     if rands[0] < variables.private_assessment_error:
  *         if rands[1] < variables.execution_error and xstrategy[1 - variables.reputation[y]]:             # <<<<<<<<<<<<<<
  *             cx = 1 - xstrategy[1 - variables.reputation[y]]
  *         else:
  */
-    __pyx_t_11 = (((__pyx_v_rands[1]) < __pyx_v_variables->execution_error) != 0);
-    if (__pyx_t_11) {
+    __pyx_t_6 = (((__pyx_v_rands[1]) < __pyx_v_variables->execution_error) != 0);
+    if (__pyx_t_6) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_5 = __pyx_t_6;
       goto __pyx_L7_bool_binop_done;
     }
-    if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 55, __pyx_L1_error)}
-    __pyx_t_12 = __pyx_v_y;
-    __pyx_t_13 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_12 * __pyx_v_variables->reputation.strides[0]) ))));
-    __pyx_t_11 = ((*((int *) ( /* dim=0 */ (__pyx_v_xstrategy.data + __pyx_t_13 * __pyx_v_xstrategy.strides[0]) ))) != 0);
-    __pyx_t_10 = __pyx_t_11;
+    if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 52, __pyx_L1_error)}
+    __pyx_t_7 = __pyx_v_y;
+    __pyx_t_8 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_7 * __pyx_v_variables->reputation.strides[0]) ))));
+    __pyx_t_6 = ((*((int *) ( /* dim=0 */ (__pyx_v_xstrategy.data + __pyx_t_8 * __pyx_v_xstrategy.strides[0]) ))) != 0);
+    __pyx_t_5 = __pyx_t_6;
     __pyx_L7_bool_binop_done:;
-    if (__pyx_t_10) {
+    if (__pyx_t_5) {
 
-      /* "Cython_resources/simulation_instance_comms.pyx":56
- *     if rands[0] < assessment_error_x:
+      /* "Cython_resources/simulation_instance.pyx":53
+ *     if rands[0] < variables.private_assessment_error:
  *         if rands[1] < variables.execution_error and xstrategy[1 - variables.reputation[y]]:
  *             cx = 1 - xstrategy[1 - variables.reputation[y]]             # <<<<<<<<<<<<<<
  *         else:
  *             cx = xstrategy[1 - variables.reputation[y]]
  */
-      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 56, __pyx_L1_error)}
-      __pyx_t_14 = __pyx_v_y;
-      __pyx_t_15 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_14 * __pyx_v_variables->reputation.strides[0]) ))));
-      __pyx_v_cx = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_xstrategy.data + __pyx_t_15 * __pyx_v_xstrategy.strides[0]) ))));
+      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 53, __pyx_L1_error)}
+      __pyx_t_9 = __pyx_v_y;
+      __pyx_t_10 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_9 * __pyx_v_variables->reputation.strides[0]) ))));
+      __pyx_v_cx = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_xstrategy.data + __pyx_t_10 * __pyx_v_xstrategy.strides[0]) ))));
 
-      /* "Cython_resources/simulation_instance_comms.pyx":55
+      /* "Cython_resources/simulation_instance.pyx":52
  * 
- *     if rands[0] < assessment_error_x:
+ *     if rands[0] < variables.private_assessment_error:
  *         if rands[1] < variables.execution_error and xstrategy[1 - variables.reputation[y]]:             # <<<<<<<<<<<<<<
  *             cx = 1 - xstrategy[1 - variables.reputation[y]]
  *         else:
@@ -2614,7 +2533,7 @@ __pyx_v_xstrategy = __pyx_t_2;
       goto __pyx_L6;
     }
 
-    /* "Cython_resources/simulation_instance_comms.pyx":58
+    /* "Cython_resources/simulation_instance.pyx":55
  *             cx = 1 - xstrategy[1 - variables.reputation[y]]
  *         else:
  *             cx = xstrategy[1 - variables.reputation[y]]             # <<<<<<<<<<<<<<
@@ -2622,24 +2541,24 @@ __pyx_v_xstrategy = __pyx_t_2;
  *         if rands[1] < variables.execution_error and xstrategy[variables.reputation[y]]:
  */
     /*else*/ {
-      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 58, __pyx_L1_error)}
-      __pyx_t_16 = __pyx_v_y;
-      __pyx_t_17 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_16 * __pyx_v_variables->reputation.strides[0]) ))));
-      __pyx_v_cx = (*((int *) ( /* dim=0 */ (__pyx_v_xstrategy.data + __pyx_t_17 * __pyx_v_xstrategy.strides[0]) )));
+      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 55, __pyx_L1_error)}
+      __pyx_t_11 = __pyx_v_y;
+      __pyx_t_12 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_11 * __pyx_v_variables->reputation.strides[0]) ))));
+      __pyx_v_cx = (*((int *) ( /* dim=0 */ (__pyx_v_xstrategy.data + __pyx_t_12 * __pyx_v_xstrategy.strides[0]) )));
     }
     __pyx_L6:;
 
-    /* "Cython_resources/simulation_instance_comms.pyx":54
- *         pow(1.0 + variables.reputation_spread_prob, float(variables.private_assessment_error[x]))/float(variables.population_size)
+    /* "Cython_resources/simulation_instance.pyx":51
+ *         rands[i] = rand()*1.0/RAND_MAX
  * 
- *     if rands[0] < assessment_error_x:             # <<<<<<<<<<<<<<
+ *     if rands[0] < variables.private_assessment_error:             # <<<<<<<<<<<<<<
  *         if rands[1] < variables.execution_error and xstrategy[1 - variables.reputation[y]]:
  *             cx = 1 - xstrategy[1 - variables.reputation[y]]
  */
     goto __pyx_L5;
   }
 
-  /* "Cython_resources/simulation_instance_comms.pyx":60
+  /* "Cython_resources/simulation_instance.pyx":57
  *             cx = xstrategy[1 - variables.reputation[y]]
  *     else:
  *         if rands[1] < variables.execution_error and xstrategy[variables.reputation[y]]:             # <<<<<<<<<<<<<<
@@ -2647,33 +2566,33 @@ __pyx_v_xstrategy = __pyx_t_2;
  *         else:
  */
   /*else*/ {
-    __pyx_t_11 = (((__pyx_v_rands[1]) < __pyx_v_variables->execution_error) != 0);
-    if (__pyx_t_11) {
+    __pyx_t_6 = (((__pyx_v_rands[1]) < __pyx_v_variables->execution_error) != 0);
+    if (__pyx_t_6) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_5 = __pyx_t_6;
       goto __pyx_L10_bool_binop_done;
     }
-    if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 60, __pyx_L1_error)}
-    __pyx_t_18 = __pyx_v_y;
-    __pyx_t_19 = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_18 * __pyx_v_variables->reputation.strides[0]) )));
-    __pyx_t_11 = ((*((int *) ( /* dim=0 */ (__pyx_v_xstrategy.data + __pyx_t_19 * __pyx_v_xstrategy.strides[0]) ))) != 0);
-    __pyx_t_10 = __pyx_t_11;
+    if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 57, __pyx_L1_error)}
+    __pyx_t_13 = __pyx_v_y;
+    __pyx_t_14 = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_13 * __pyx_v_variables->reputation.strides[0]) )));
+    __pyx_t_6 = ((*((int *) ( /* dim=0 */ (__pyx_v_xstrategy.data + __pyx_t_14 * __pyx_v_xstrategy.strides[0]) ))) != 0);
+    __pyx_t_5 = __pyx_t_6;
     __pyx_L10_bool_binop_done:;
-    if (__pyx_t_10) {
+    if (__pyx_t_5) {
 
-      /* "Cython_resources/simulation_instance_comms.pyx":61
+      /* "Cython_resources/simulation_instance.pyx":58
  *     else:
  *         if rands[1] < variables.execution_error and xstrategy[variables.reputation[y]]:
  *             cx = 1 - xstrategy[variables.reputation[y]]             # <<<<<<<<<<<<<<
  *         else:
  *             cx = xstrategy[variables.reputation[y]]
  */
-      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 61, __pyx_L1_error)}
-      __pyx_t_20 = __pyx_v_y;
-      __pyx_t_21 = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_20 * __pyx_v_variables->reputation.strides[0]) )));
-      __pyx_v_cx = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_xstrategy.data + __pyx_t_21 * __pyx_v_xstrategy.strides[0]) ))));
+      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 58, __pyx_L1_error)}
+      __pyx_t_15 = __pyx_v_y;
+      __pyx_t_16 = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_15 * __pyx_v_variables->reputation.strides[0]) )));
+      __pyx_v_cx = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_xstrategy.data + __pyx_t_16 * __pyx_v_xstrategy.strides[0]) ))));
 
-      /* "Cython_resources/simulation_instance_comms.pyx":60
+      /* "Cython_resources/simulation_instance.pyx":57
  *             cx = xstrategy[1 - variables.reputation[y]]
  *     else:
  *         if rands[1] < variables.execution_error and xstrategy[variables.reputation[y]]:             # <<<<<<<<<<<<<<
@@ -2683,7 +2602,7 @@ __pyx_v_xstrategy = __pyx_t_2;
       goto __pyx_L9;
     }
 
-    /* "Cython_resources/simulation_instance_comms.pyx":63
+    /* "Cython_resources/simulation_instance.pyx":60
  *             cx = 1 - xstrategy[variables.reputation[y]]
  *         else:
  *             cx = xstrategy[variables.reputation[y]]             # <<<<<<<<<<<<<<
@@ -2691,86 +2610,37 @@ __pyx_v_xstrategy = __pyx_t_2;
  *     # Action of Y:
  */
     /*else*/ {
-      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 63, __pyx_L1_error)}
-      __pyx_t_22 = __pyx_v_y;
-      __pyx_t_23 = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_22 * __pyx_v_variables->reputation.strides[0]) )));
-      __pyx_v_cx = (*((int *) ( /* dim=0 */ (__pyx_v_xstrategy.data + __pyx_t_23 * __pyx_v_xstrategy.strides[0]) )));
+      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 60, __pyx_L1_error)}
+      __pyx_t_17 = __pyx_v_y;
+      __pyx_t_18 = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_17 * __pyx_v_variables->reputation.strides[0]) )));
+      __pyx_v_cx = (*((int *) ( /* dim=0 */ (__pyx_v_xstrategy.data + __pyx_t_18 * __pyx_v_xstrategy.strides[0]) )));
     }
     __pyx_L9:;
   }
   __pyx_L5:;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":67
+  /* "Cython_resources/simulation_instance.pyx":63
+ * 
  *     # Action of Y:
- *     cdef double assessment_error_y =\
- *         1.0 - variables.min_private_assessment_error - \             # <<<<<<<<<<<<<<
- *         pow(1.0 + variables.reputation_spread_prob, float(variables.private_assessment_error[y]))/float(variables.population_size)
- * 
- */
-  __pyx_t_8 = PyFloat_FromDouble((1.0 - __pyx_v_variables->min_private_assessment_error)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
-
-  /* "Cython_resources/simulation_instance_comms.pyx":68
- *     cdef double assessment_error_y =\
- *         1.0 - variables.min_private_assessment_error - \
- *         pow(1.0 + variables.reputation_spread_prob, float(variables.private_assessment_error[y]))/float(variables.population_size)             # <<<<<<<<<<<<<<
- * 
- *     cdef int[:] ystrategy = variables.strategies[variables.population[y]]
- */
-  __pyx_t_6 = PyFloat_FromDouble((1.0 + __pyx_v_variables->reputation_spread_prob)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 68, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  if (unlikely(!__pyx_v_variables->private_assessment_error.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 68, __pyx_L1_error)}
-  __pyx_t_24 = __pyx_v_y;
-  __pyx_t_5 = PyFloat_FromDouble((*((double *) ( /* dim=0 */ (__pyx_v_variables->private_assessment_error.data + __pyx_t_24 * __pyx_v_variables->private_assessment_error.strides[0]) )))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_9 = __Pyx_PyNumber_Power2(__pyx_t_6, __pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 68, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_9);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyFloat_FromDouble(((double)__pyx_v_variables->population_size)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_t_9, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 68, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-  /* "Cython_resources/simulation_instance_comms.pyx":67
- *     # Action of Y:
- *     cdef double assessment_error_y =\
- *         1.0 - variables.min_private_assessment_error - \             # <<<<<<<<<<<<<<
- *         pow(1.0 + variables.reputation_spread_prob, float(variables.private_assessment_error[y]))/float(variables.population_size)
- * 
- */
-  __pyx_t_5 = PyNumber_Subtract(__pyx_t_8, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_4 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_4 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_v_assessment_error_y = __pyx_t_4;
-
-  /* "Cython_resources/simulation_instance_comms.pyx":70
- *         pow(1.0 + variables.reputation_spread_prob, float(variables.private_assessment_error[y]))/float(variables.population_size)
- * 
  *     cdef int[:] ystrategy = variables.strategies[variables.population[y]]             # <<<<<<<<<<<<<<
- *     if rands[2] < assessment_error_y:
+ *     if rands[2] < variables.private_assessment_error:
  *         if rands[3] < variables.execution_error and ystrategy[1 - variables.reputation[x]]:
  */
-  if (unlikely(!__pyx_v_variables->strategies.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 70, __pyx_L1_error)}
-  if (unlikely(!__pyx_v_variables->population.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 70, __pyx_L1_error)}
-  __pyx_t_25 = __pyx_v_y;
+  if (unlikely(!__pyx_v_variables->strategies.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 63, __pyx_L1_error)}
+  if (unlikely(!__pyx_v_variables->population.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 63, __pyx_L1_error)}
+  __pyx_t_19 = __pyx_v_y;
   __pyx_t_2.data = __pyx_v_variables->strategies.data;
   __pyx_t_2.memview = __pyx_v_variables->strategies.memview;
   __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
   {
-    Py_ssize_t __pyx_tmp_idx = (*((int *) ( /* dim=0 */ (__pyx_v_variables->population.data + __pyx_t_25 * __pyx_v_variables->population.strides[0]) )));
+    Py_ssize_t __pyx_tmp_idx = (*((int *) ( /* dim=0 */ (__pyx_v_variables->population.data + __pyx_t_19 * __pyx_v_variables->population.strides[0]) )));
     Py_ssize_t __pyx_tmp_shape = __pyx_v_variables->strategies.shape[0];
     Py_ssize_t __pyx_tmp_stride = __pyx_v_variables->strategies.strides[0];
     if (0 && (__pyx_tmp_idx < 0))
         __pyx_tmp_idx += __pyx_tmp_shape;
     if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
         PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-        __PYX_ERR(0, 70, __pyx_L1_error)
+        __PYX_ERR(0, 63, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -2783,52 +2653,52 @@ __pyx_v_ystrategy = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":71
- * 
+  /* "Cython_resources/simulation_instance.pyx":64
+ *     # Action of Y:
  *     cdef int[:] ystrategy = variables.strategies[variables.population[y]]
- *     if rands[2] < assessment_error_y:             # <<<<<<<<<<<<<<
+ *     if rands[2] < variables.private_assessment_error:             # <<<<<<<<<<<<<<
  *         if rands[3] < variables.execution_error and ystrategy[1 - variables.reputation[x]]:
  *             cy = 1 - ystrategy[1 - variables.reputation[x]]
  */
-  __pyx_t_10 = (((__pyx_v_rands[2]) < __pyx_v_assessment_error_y) != 0);
-  if (__pyx_t_10) {
+  __pyx_t_5 = (((__pyx_v_rands[2]) < __pyx_v_variables->private_assessment_error) != 0);
+  if (__pyx_t_5) {
 
-    /* "Cython_resources/simulation_instance_comms.pyx":72
+    /* "Cython_resources/simulation_instance.pyx":65
  *     cdef int[:] ystrategy = variables.strategies[variables.population[y]]
- *     if rands[2] < assessment_error_y:
+ *     if rands[2] < variables.private_assessment_error:
  *         if rands[3] < variables.execution_error and ystrategy[1 - variables.reputation[x]]:             # <<<<<<<<<<<<<<
  *             cy = 1 - ystrategy[1 - variables.reputation[x]]
  *         else:
  */
-    __pyx_t_11 = (((__pyx_v_rands[3]) < __pyx_v_variables->execution_error) != 0);
-    if (__pyx_t_11) {
+    __pyx_t_6 = (((__pyx_v_rands[3]) < __pyx_v_variables->execution_error) != 0);
+    if (__pyx_t_6) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_5 = __pyx_t_6;
       goto __pyx_L14_bool_binop_done;
     }
-    if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 72, __pyx_L1_error)}
-    __pyx_t_26 = __pyx_v_x;
-    __pyx_t_27 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_26 * __pyx_v_variables->reputation.strides[0]) ))));
-    __pyx_t_11 = ((*((int *) ( /* dim=0 */ (__pyx_v_ystrategy.data + __pyx_t_27 * __pyx_v_ystrategy.strides[0]) ))) != 0);
-    __pyx_t_10 = __pyx_t_11;
+    if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 65, __pyx_L1_error)}
+    __pyx_t_20 = __pyx_v_x;
+    __pyx_t_21 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_20 * __pyx_v_variables->reputation.strides[0]) ))));
+    __pyx_t_6 = ((*((int *) ( /* dim=0 */ (__pyx_v_ystrategy.data + __pyx_t_21 * __pyx_v_ystrategy.strides[0]) ))) != 0);
+    __pyx_t_5 = __pyx_t_6;
     __pyx_L14_bool_binop_done:;
-    if (__pyx_t_10) {
+    if (__pyx_t_5) {
 
-      /* "Cython_resources/simulation_instance_comms.pyx":73
- *     if rands[2] < assessment_error_y:
+      /* "Cython_resources/simulation_instance.pyx":66
+ *     if rands[2] < variables.private_assessment_error:
  *         if rands[3] < variables.execution_error and ystrategy[1 - variables.reputation[x]]:
  *             cy = 1 - ystrategy[1 - variables.reputation[x]]             # <<<<<<<<<<<<<<
  *         else:
  *             cy = ystrategy[1 - variables.reputation[x]]
  */
-      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 73, __pyx_L1_error)}
-      __pyx_t_28 = __pyx_v_x;
-      __pyx_t_29 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_28 * __pyx_v_variables->reputation.strides[0]) ))));
-      __pyx_v_cy = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_ystrategy.data + __pyx_t_29 * __pyx_v_ystrategy.strides[0]) ))));
+      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 66, __pyx_L1_error)}
+      __pyx_t_22 = __pyx_v_x;
+      __pyx_t_23 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_22 * __pyx_v_variables->reputation.strides[0]) ))));
+      __pyx_v_cy = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_ystrategy.data + __pyx_t_23 * __pyx_v_ystrategy.strides[0]) ))));
 
-      /* "Cython_resources/simulation_instance_comms.pyx":72
+      /* "Cython_resources/simulation_instance.pyx":65
  *     cdef int[:] ystrategy = variables.strategies[variables.population[y]]
- *     if rands[2] < assessment_error_y:
+ *     if rands[2] < variables.private_assessment_error:
  *         if rands[3] < variables.execution_error and ystrategy[1 - variables.reputation[x]]:             # <<<<<<<<<<<<<<
  *             cy = 1 - ystrategy[1 - variables.reputation[x]]
  *         else:
@@ -2836,7 +2706,7 @@ __pyx_v_ystrategy = __pyx_t_2;
       goto __pyx_L13;
     }
 
-    /* "Cython_resources/simulation_instance_comms.pyx":75
+    /* "Cython_resources/simulation_instance.pyx":68
  *             cy = 1 - ystrategy[1 - variables.reputation[x]]
  *         else:
  *             cy = ystrategy[1 - variables.reputation[x]]             # <<<<<<<<<<<<<<
@@ -2844,24 +2714,24 @@ __pyx_v_ystrategy = __pyx_t_2;
  *         if rands[3] < variables.execution_error and ystrategy[variables.reputation[x]]:
  */
     /*else*/ {
-      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 75, __pyx_L1_error)}
-      __pyx_t_30 = __pyx_v_x;
-      __pyx_t_31 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_30 * __pyx_v_variables->reputation.strides[0]) ))));
-      __pyx_v_cy = (*((int *) ( /* dim=0 */ (__pyx_v_ystrategy.data + __pyx_t_31 * __pyx_v_ystrategy.strides[0]) )));
+      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 68, __pyx_L1_error)}
+      __pyx_t_24 = __pyx_v_x;
+      __pyx_t_25 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_24 * __pyx_v_variables->reputation.strides[0]) ))));
+      __pyx_v_cy = (*((int *) ( /* dim=0 */ (__pyx_v_ystrategy.data + __pyx_t_25 * __pyx_v_ystrategy.strides[0]) )));
     }
     __pyx_L13:;
 
-    /* "Cython_resources/simulation_instance_comms.pyx":71
- * 
+    /* "Cython_resources/simulation_instance.pyx":64
+ *     # Action of Y:
  *     cdef int[:] ystrategy = variables.strategies[variables.population[y]]
- *     if rands[2] < assessment_error_y:             # <<<<<<<<<<<<<<
+ *     if rands[2] < variables.private_assessment_error:             # <<<<<<<<<<<<<<
  *         if rands[3] < variables.execution_error and ystrategy[1 - variables.reputation[x]]:
  *             cy = 1 - ystrategy[1 - variables.reputation[x]]
  */
     goto __pyx_L12;
   }
 
-  /* "Cython_resources/simulation_instance_comms.pyx":77
+  /* "Cython_resources/simulation_instance.pyx":70
  *             cy = ystrategy[1 - variables.reputation[x]]
  *     else:
  *         if rands[3] < variables.execution_error and ystrategy[variables.reputation[x]]:             # <<<<<<<<<<<<<<
@@ -2869,33 +2739,33 @@ __pyx_v_ystrategy = __pyx_t_2;
  *         else:
  */
   /*else*/ {
-    __pyx_t_11 = (((__pyx_v_rands[3]) < __pyx_v_variables->execution_error) != 0);
-    if (__pyx_t_11) {
+    __pyx_t_6 = (((__pyx_v_rands[3]) < __pyx_v_variables->execution_error) != 0);
+    if (__pyx_t_6) {
     } else {
-      __pyx_t_10 = __pyx_t_11;
+      __pyx_t_5 = __pyx_t_6;
       goto __pyx_L17_bool_binop_done;
     }
-    if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 77, __pyx_L1_error)}
-    __pyx_t_32 = __pyx_v_x;
-    __pyx_t_33 = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_32 * __pyx_v_variables->reputation.strides[0]) )));
-    __pyx_t_11 = ((*((int *) ( /* dim=0 */ (__pyx_v_ystrategy.data + __pyx_t_33 * __pyx_v_ystrategy.strides[0]) ))) != 0);
-    __pyx_t_10 = __pyx_t_11;
+    if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 70, __pyx_L1_error)}
+    __pyx_t_26 = __pyx_v_x;
+    __pyx_t_27 = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_26 * __pyx_v_variables->reputation.strides[0]) )));
+    __pyx_t_6 = ((*((int *) ( /* dim=0 */ (__pyx_v_ystrategy.data + __pyx_t_27 * __pyx_v_ystrategy.strides[0]) ))) != 0);
+    __pyx_t_5 = __pyx_t_6;
     __pyx_L17_bool_binop_done:;
-    if (__pyx_t_10) {
+    if (__pyx_t_5) {
 
-      /* "Cython_resources/simulation_instance_comms.pyx":78
+      /* "Cython_resources/simulation_instance.pyx":71
  *     else:
  *         if rands[3] < variables.execution_error and ystrategy[variables.reputation[x]]:
  *             cy = 1 - ystrategy[variables.reputation[x]]             # <<<<<<<<<<<<<<
  *         else:
  *             cy = ystrategy[variables.reputation[x]]
  */
-      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 78, __pyx_L1_error)}
-      __pyx_t_34 = __pyx_v_x;
-      __pyx_t_35 = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_34 * __pyx_v_variables->reputation.strides[0]) )));
-      __pyx_v_cy = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_ystrategy.data + __pyx_t_35 * __pyx_v_ystrategy.strides[0]) ))));
+      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 71, __pyx_L1_error)}
+      __pyx_t_28 = __pyx_v_x;
+      __pyx_t_29 = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_28 * __pyx_v_variables->reputation.strides[0]) )));
+      __pyx_v_cy = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_ystrategy.data + __pyx_t_29 * __pyx_v_ystrategy.strides[0]) ))));
 
-      /* "Cython_resources/simulation_instance_comms.pyx":77
+      /* "Cython_resources/simulation_instance.pyx":70
  *             cy = ystrategy[1 - variables.reputation[x]]
  *     else:
  *         if rands[3] < variables.execution_error and ystrategy[variables.reputation[x]]:             # <<<<<<<<<<<<<<
@@ -2905,7 +2775,7 @@ __pyx_v_ystrategy = __pyx_t_2;
       goto __pyx_L16;
     }
 
-    /* "Cython_resources/simulation_instance_comms.pyx":80
+    /* "Cython_resources/simulation_instance.pyx":73
  *             cy = 1 - ystrategy[variables.reputation[x]]
  *         else:
  *             cy = ystrategy[variables.reputation[x]]             # <<<<<<<<<<<<<<
@@ -2913,70 +2783,180 @@ __pyx_v_ystrategy = __pyx_t_2;
  *     ry = variables.reputation[y]
  */
     /*else*/ {
-      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 80, __pyx_L1_error)}
-      __pyx_t_36 = __pyx_v_x;
-      __pyx_t_37 = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_36 * __pyx_v_variables->reputation.strides[0]) )));
-      __pyx_v_cy = (*((int *) ( /* dim=0 */ (__pyx_v_ystrategy.data + __pyx_t_37 * __pyx_v_ystrategy.strides[0]) )));
+      if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 73, __pyx_L1_error)}
+      __pyx_t_30 = __pyx_v_x;
+      __pyx_t_31 = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_30 * __pyx_v_variables->reputation.strides[0]) )));
+      __pyx_v_cy = (*((int *) ( /* dim=0 */ (__pyx_v_ystrategy.data + __pyx_t_31 * __pyx_v_ystrategy.strides[0]) )));
     }
     __pyx_L16:;
   }
   __pyx_L12:;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":81
+  /* "Cython_resources/simulation_instance.pyx":74
  *         else:
  *             cy = ystrategy[variables.reputation[x]]
  *     rx = variables.reputation[x]             # <<<<<<<<<<<<<<
  *     ry = variables.reputation[y]
  *     # Update Reputation of X:
  */
-  if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 81, __pyx_L1_error)}
-  __pyx_t_38 = __pyx_v_x;
-  __pyx_v_rx = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_38 * __pyx_v_variables->reputation.strides[0]) )));
+  if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 74, __pyx_L1_error)}
+  __pyx_t_32 = __pyx_v_x;
+  __pyx_v_rx = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_32 * __pyx_v_variables->reputation.strides[0]) )));
 
-  /* "Cython_resources/simulation_instance_comms.pyx":82
+  /* "Cython_resources/simulation_instance.pyx":75
  *             cy = ystrategy[variables.reputation[x]]
  *     rx = variables.reputation[x]
  *     ry = variables.reputation[y]             # <<<<<<<<<<<<<<
  *     # Update Reputation of X:
  *     if rands[4] < variables.reputation_update_rate:
  */
-  if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 82, __pyx_L1_error)}
-  __pyx_t_39 = __pyx_v_y;
-  __pyx_v_ry = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_39 * __pyx_v_variables->reputation.strides[0]) )));
+  if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 75, __pyx_L1_error)}
+  __pyx_t_33 = __pyx_v_y;
+  __pyx_v_ry = (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_33 * __pyx_v_variables->reputation.strides[0]) )));
 
-  /* "Cython_resources/simulation_instance_comms.pyx":84
+  /* "Cython_resources/simulation_instance.pyx":77
  *     ry = variables.reputation[y]
  *     # Update Reputation of X:
  *     if rands[4] < variables.reputation_update_rate:             # <<<<<<<<<<<<<<
  *         if rands[5] < variables.reputation_assignment_error:
  *             rx = 1 - variables.socialnorm[1 - cx][1 - variables.reputation[y]]
  */
-  __pyx_t_10 = (((__pyx_v_rands[4]) < __pyx_v_variables->reputation_update_rate) != 0);
-  if (__pyx_t_10) {
+  __pyx_t_5 = (((__pyx_v_rands[4]) < __pyx_v_variables->reputation_update_rate) != 0);
+  if (__pyx_t_5) {
 
-    /* "Cython_resources/simulation_instance_comms.pyx":85
+    /* "Cython_resources/simulation_instance.pyx":78
  *     # Update Reputation of X:
  *     if rands[4] < variables.reputation_update_rate:
  *         if rands[5] < variables.reputation_assignment_error:             # <<<<<<<<<<<<<<
  *             rx = 1 - variables.socialnorm[1 - cx][1 - variables.reputation[y]]
  *         else:
  */
-    __pyx_t_10 = (((__pyx_v_rands[5]) < __pyx_v_variables->reputation_assignment_error) != 0);
-    if (__pyx_t_10) {
+    __pyx_t_5 = (((__pyx_v_rands[5]) < __pyx_v_variables->reputation_assignment_error) != 0);
+    if (__pyx_t_5) {
 
-      /* "Cython_resources/simulation_instance_comms.pyx":86
+      /* "Cython_resources/simulation_instance.pyx":79
  *     if rands[4] < variables.reputation_update_rate:
  *         if rands[5] < variables.reputation_assignment_error:
  *             rx = 1 - variables.socialnorm[1 - cx][1 - variables.reputation[y]]             # <<<<<<<<<<<<<<
  *         else:
  *             rx = variables.socialnorm[1 - cx][1 - variables.reputation[y]]
  */
-      if (unlikely(!__pyx_v_variables->socialnorm.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 86, __pyx_L1_error)}
+      if (unlikely(!__pyx_v_variables->socialnorm.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 79, __pyx_L1_error)}
       __pyx_t_2.data = __pyx_v_variables->socialnorm.data;
       __pyx_t_2.memview = __pyx_v_variables->socialnorm.memview;
       __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
       {
     Py_ssize_t __pyx_tmp_idx = (1 - __pyx_v_cx);
+    Py_ssize_t __pyx_tmp_shape = __pyx_v_variables->socialnorm.shape[0];
+    Py_ssize_t __pyx_tmp_stride = __pyx_v_variables->socialnorm.strides[0];
+    if (0 && (__pyx_tmp_idx < 0))
+        __pyx_tmp_idx += __pyx_tmp_shape;
+    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
+        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
+        __PYX_ERR(0, 79, __pyx_L1_error)
+    }
+        __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
+}
+
+__pyx_t_2.shape[0] = __pyx_v_variables->socialnorm.shape[1];
+__pyx_t_2.strides[0] = __pyx_v_variables->socialnorm.strides[1];
+    __pyx_t_2.suboffsets[0] = -1;
+
+if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 79, __pyx_L1_error)}
+      __pyx_t_34 = __pyx_v_y;
+      __pyx_t_35 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_34 * __pyx_v_variables->reputation.strides[0]) ))));
+      __pyx_v_rx = (1 - (*((int *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_35 * __pyx_t_2.strides[0]) ))));
+      __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
+
+      /* "Cython_resources/simulation_instance.pyx":78
+ *     # Update Reputation of X:
+ *     if rands[4] < variables.reputation_update_rate:
+ *         if rands[5] < variables.reputation_assignment_error:             # <<<<<<<<<<<<<<
+ *             rx = 1 - variables.socialnorm[1 - cx][1 - variables.reputation[y]]
+ *         else:
+ */
+      goto __pyx_L20;
+    }
+
+    /* "Cython_resources/simulation_instance.pyx":81
+ *             rx = 1 - variables.socialnorm[1 - cx][1 - variables.reputation[y]]
+ *         else:
+ *             rx = variables.socialnorm[1 - cx][1 - variables.reputation[y]]             # <<<<<<<<<<<<<<
+ * 
+ *     # Update Reputation of Y:
+ */
+    /*else*/ {
+      if (unlikely(!__pyx_v_variables->socialnorm.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 81, __pyx_L1_error)}
+      __pyx_t_2.data = __pyx_v_variables->socialnorm.data;
+      __pyx_t_2.memview = __pyx_v_variables->socialnorm.memview;
+      __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
+      {
+    Py_ssize_t __pyx_tmp_idx = (1 - __pyx_v_cx);
+    Py_ssize_t __pyx_tmp_shape = __pyx_v_variables->socialnorm.shape[0];
+    Py_ssize_t __pyx_tmp_stride = __pyx_v_variables->socialnorm.strides[0];
+    if (0 && (__pyx_tmp_idx < 0))
+        __pyx_tmp_idx += __pyx_tmp_shape;
+    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
+        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
+        __PYX_ERR(0, 81, __pyx_L1_error)
+    }
+        __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
+}
+
+__pyx_t_2.shape[0] = __pyx_v_variables->socialnorm.shape[1];
+__pyx_t_2.strides[0] = __pyx_v_variables->socialnorm.strides[1];
+    __pyx_t_2.suboffsets[0] = -1;
+
+if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 81, __pyx_L1_error)}
+      __pyx_t_36 = __pyx_v_y;
+      __pyx_t_37 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_36 * __pyx_v_variables->reputation.strides[0]) ))));
+      __pyx_v_rx = (*((int *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_37 * __pyx_t_2.strides[0]) )));
+      __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
+    }
+    __pyx_L20:;
+
+    /* "Cython_resources/simulation_instance.pyx":77
+ *     ry = variables.reputation[y]
+ *     # Update Reputation of X:
+ *     if rands[4] < variables.reputation_update_rate:             # <<<<<<<<<<<<<<
+ *         if rands[5] < variables.reputation_assignment_error:
+ *             rx = 1 - variables.socialnorm[1 - cx][1 - variables.reputation[y]]
+ */
+  }
+
+  /* "Cython_resources/simulation_instance.pyx":84
+ * 
+ *     # Update Reputation of Y:
+ *     if rands[6] < variables.reputation_update_rate:             # <<<<<<<<<<<<<<
+ *         if rands[7] < variables.reputation_assignment_error:
+ *             ry = 1 - variables.socialnorm[1 - cy][1 - variables.reputation[x]]
+ */
+  __pyx_t_5 = (((__pyx_v_rands[6]) < __pyx_v_variables->reputation_update_rate) != 0);
+  if (__pyx_t_5) {
+
+    /* "Cython_resources/simulation_instance.pyx":85
+ *     # Update Reputation of Y:
+ *     if rands[6] < variables.reputation_update_rate:
+ *         if rands[7] < variables.reputation_assignment_error:             # <<<<<<<<<<<<<<
+ *             ry = 1 - variables.socialnorm[1 - cy][1 - variables.reputation[x]]
+ *         else:
+ */
+    __pyx_t_5 = (((__pyx_v_rands[7]) < __pyx_v_variables->reputation_assignment_error) != 0);
+    if (__pyx_t_5) {
+
+      /* "Cython_resources/simulation_instance.pyx":86
+ *     if rands[6] < variables.reputation_update_rate:
+ *         if rands[7] < variables.reputation_assignment_error:
+ *             ry = 1 - variables.socialnorm[1 - cy][1 - variables.reputation[x]]             # <<<<<<<<<<<<<<
+ *         else:
+ *             ry = variables.socialnorm[1 - cy][1 - variables.reputation[x]]
+ */
+      if (unlikely(!__pyx_v_variables->socialnorm.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 86, __pyx_L1_error)}
+      __pyx_t_2.data = __pyx_v_variables->socialnorm.data;
+      __pyx_t_2.memview = __pyx_v_variables->socialnorm.memview;
+      __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
+      {
+    Py_ssize_t __pyx_tmp_idx = (1 - __pyx_v_cy);
     Py_ssize_t __pyx_tmp_shape = __pyx_v_variables->socialnorm.shape[0];
     Py_ssize_t __pyx_tmp_stride = __pyx_v_variables->socialnorm.strides[0];
     if (0 && (__pyx_tmp_idx < 0))
@@ -2993,27 +2973,27 @@ __pyx_t_2.strides[0] = __pyx_v_variables->socialnorm.strides[1];
     __pyx_t_2.suboffsets[0] = -1;
 
 if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 86, __pyx_L1_error)}
-      __pyx_t_40 = __pyx_v_y;
-      __pyx_t_41 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_40 * __pyx_v_variables->reputation.strides[0]) ))));
-      __pyx_v_rx = (1 - (*((int *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_41 * __pyx_t_2.strides[0]) ))));
+      __pyx_t_38 = __pyx_v_x;
+      __pyx_t_39 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_38 * __pyx_v_variables->reputation.strides[0]) ))));
+      __pyx_v_ry = (1 - (*((int *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_39 * __pyx_t_2.strides[0]) ))));
       __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
 
-      /* "Cython_resources/simulation_instance_comms.pyx":85
- *     # Update Reputation of X:
- *     if rands[4] < variables.reputation_update_rate:
- *         if rands[5] < variables.reputation_assignment_error:             # <<<<<<<<<<<<<<
- *             rx = 1 - variables.socialnorm[1 - cx][1 - variables.reputation[y]]
+      /* "Cython_resources/simulation_instance.pyx":85
+ *     # Update Reputation of Y:
+ *     if rands[6] < variables.reputation_update_rate:
+ *         if rands[7] < variables.reputation_assignment_error:             # <<<<<<<<<<<<<<
+ *             ry = 1 - variables.socialnorm[1 - cy][1 - variables.reputation[x]]
  *         else:
  */
-      goto __pyx_L20;
+      goto __pyx_L22;
     }
 
-    /* "Cython_resources/simulation_instance_comms.pyx":88
- *             rx = 1 - variables.socialnorm[1 - cx][1 - variables.reputation[y]]
+    /* "Cython_resources/simulation_instance.pyx":88
+ *             ry = 1 - variables.socialnorm[1 - cy][1 - variables.reputation[x]]
  *         else:
- *             rx = variables.socialnorm[1 - cx][1 - variables.reputation[y]]             # <<<<<<<<<<<<<<
+ *             ry = variables.socialnorm[1 - cy][1 - variables.reputation[x]]             # <<<<<<<<<<<<<<
  * 
- *     # Update Reputation of Y:
+ *     variables.reputation[x] = rx
  */
     /*else*/ {
       if (unlikely(!__pyx_v_variables->socialnorm.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 88, __pyx_L1_error)}
@@ -3021,7 +3001,7 @@ if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_Att
       __pyx_t_2.memview = __pyx_v_variables->socialnorm.memview;
       __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
       {
-    Py_ssize_t __pyx_tmp_idx = (1 - __pyx_v_cx);
+    Py_ssize_t __pyx_tmp_idx = (1 - __pyx_v_cy);
     Py_ssize_t __pyx_tmp_shape = __pyx_v_variables->socialnorm.shape[0];
     Py_ssize_t __pyx_tmp_stride = __pyx_v_variables->socialnorm.strides[0];
     if (0 && (__pyx_tmp_idx < 0))
@@ -3038,124 +3018,14 @@ __pyx_t_2.strides[0] = __pyx_v_variables->socialnorm.strides[1];
     __pyx_t_2.suboffsets[0] = -1;
 
 if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 88, __pyx_L1_error)}
-      __pyx_t_42 = __pyx_v_y;
-      __pyx_t_43 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_42 * __pyx_v_variables->reputation.strides[0]) ))));
-      __pyx_v_rx = (*((int *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_43 * __pyx_t_2.strides[0]) )));
-      __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
-    }
-    __pyx_L20:;
-
-    /* "Cython_resources/simulation_instance_comms.pyx":84
- *     ry = variables.reputation[y]
- *     # Update Reputation of X:
- *     if rands[4] < variables.reputation_update_rate:             # <<<<<<<<<<<<<<
- *         if rands[5] < variables.reputation_assignment_error:
- *             rx = 1 - variables.socialnorm[1 - cx][1 - variables.reputation[y]]
- */
-  }
-
-  /* "Cython_resources/simulation_instance_comms.pyx":91
- * 
- *     # Update Reputation of Y:
- *     if rands[6] < variables.reputation_update_rate:             # <<<<<<<<<<<<<<
- *         if rands[7] < variables.reputation_assignment_error:
- *             ry = 1 - variables.socialnorm[1 - cy][1 - variables.reputation[x]]
- */
-  __pyx_t_10 = (((__pyx_v_rands[6]) < __pyx_v_variables->reputation_update_rate) != 0);
-  if (__pyx_t_10) {
-
-    /* "Cython_resources/simulation_instance_comms.pyx":92
- *     # Update Reputation of Y:
- *     if rands[6] < variables.reputation_update_rate:
- *         if rands[7] < variables.reputation_assignment_error:             # <<<<<<<<<<<<<<
- *             ry = 1 - variables.socialnorm[1 - cy][1 - variables.reputation[x]]
- *         else:
- */
-    __pyx_t_10 = (((__pyx_v_rands[7]) < __pyx_v_variables->reputation_assignment_error) != 0);
-    if (__pyx_t_10) {
-
-      /* "Cython_resources/simulation_instance_comms.pyx":93
- *     if rands[6] < variables.reputation_update_rate:
- *         if rands[7] < variables.reputation_assignment_error:
- *             ry = 1 - variables.socialnorm[1 - cy][1 - variables.reputation[x]]             # <<<<<<<<<<<<<<
- *         else:
- *             ry = variables.socialnorm[1 - cy][1 - variables.reputation[x]]
- */
-      if (unlikely(!__pyx_v_variables->socialnorm.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 93, __pyx_L1_error)}
-      __pyx_t_2.data = __pyx_v_variables->socialnorm.data;
-      __pyx_t_2.memview = __pyx_v_variables->socialnorm.memview;
-      __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
-      {
-    Py_ssize_t __pyx_tmp_idx = (1 - __pyx_v_cy);
-    Py_ssize_t __pyx_tmp_shape = __pyx_v_variables->socialnorm.shape[0];
-    Py_ssize_t __pyx_tmp_stride = __pyx_v_variables->socialnorm.strides[0];
-    if (0 && (__pyx_tmp_idx < 0))
-        __pyx_tmp_idx += __pyx_tmp_shape;
-    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
-        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-        __PYX_ERR(0, 93, __pyx_L1_error)
-    }
-        __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
-}
-
-__pyx_t_2.shape[0] = __pyx_v_variables->socialnorm.shape[1];
-__pyx_t_2.strides[0] = __pyx_v_variables->socialnorm.strides[1];
-    __pyx_t_2.suboffsets[0] = -1;
-
-if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 93, __pyx_L1_error)}
-      __pyx_t_44 = __pyx_v_x;
-      __pyx_t_45 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_44 * __pyx_v_variables->reputation.strides[0]) ))));
-      __pyx_v_ry = (1 - (*((int *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_45 * __pyx_t_2.strides[0]) ))));
-      __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
-
-      /* "Cython_resources/simulation_instance_comms.pyx":92
- *     # Update Reputation of Y:
- *     if rands[6] < variables.reputation_update_rate:
- *         if rands[7] < variables.reputation_assignment_error:             # <<<<<<<<<<<<<<
- *             ry = 1 - variables.socialnorm[1 - cy][1 - variables.reputation[x]]
- *         else:
- */
-      goto __pyx_L22;
-    }
-
-    /* "Cython_resources/simulation_instance_comms.pyx":95
- *             ry = 1 - variables.socialnorm[1 - cy][1 - variables.reputation[x]]
- *         else:
- *             ry = variables.socialnorm[1 - cy][1 - variables.reputation[x]]             # <<<<<<<<<<<<<<
- * 
- *     if rx != variables.reputation[x]:
- */
-    /*else*/ {
-      if (unlikely(!__pyx_v_variables->socialnorm.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 95, __pyx_L1_error)}
-      __pyx_t_2.data = __pyx_v_variables->socialnorm.data;
-      __pyx_t_2.memview = __pyx_v_variables->socialnorm.memview;
-      __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
-      {
-    Py_ssize_t __pyx_tmp_idx = (1 - __pyx_v_cy);
-    Py_ssize_t __pyx_tmp_shape = __pyx_v_variables->socialnorm.shape[0];
-    Py_ssize_t __pyx_tmp_stride = __pyx_v_variables->socialnorm.strides[0];
-    if (0 && (__pyx_tmp_idx < 0))
-        __pyx_tmp_idx += __pyx_tmp_shape;
-    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
-        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-        __PYX_ERR(0, 95, __pyx_L1_error)
-    }
-        __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
-}
-
-__pyx_t_2.shape[0] = __pyx_v_variables->socialnorm.shape[1];
-__pyx_t_2.strides[0] = __pyx_v_variables->socialnorm.strides[1];
-    __pyx_t_2.suboffsets[0] = -1;
-
-if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 95, __pyx_L1_error)}
-      __pyx_t_46 = __pyx_v_x;
-      __pyx_t_47 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_46 * __pyx_v_variables->reputation.strides[0]) ))));
-      __pyx_v_ry = (*((int *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_47 * __pyx_t_2.strides[0]) )));
+      __pyx_t_40 = __pyx_v_x;
+      __pyx_t_41 = (1 - (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_40 * __pyx_v_variables->reputation.strides[0]) ))));
+      __pyx_v_ry = (*((int *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_41 * __pyx_t_2.strides[0]) )));
       __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
     }
     __pyx_L22:;
 
-    /* "Cython_resources/simulation_instance_comms.pyx":91
+    /* "Cython_resources/simulation_instance.pyx":84
  * 
  *     # Update Reputation of Y:
  *     if rands[6] < variables.reputation_update_rate:             # <<<<<<<<<<<<<<
@@ -3164,163 +3034,39 @@ if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_Att
  */
   }
 
-  /* "Cython_resources/simulation_instance_comms.pyx":97
+  /* "Cython_resources/simulation_instance.pyx":90
  *             ry = variables.socialnorm[1 - cy][1 - variables.reputation[x]]
- * 
- *     if rx != variables.reputation[x]:             # <<<<<<<<<<<<<<
- *         variables.private_assessment_error[x] = 0.0
- *     if ry != variables.reputation[y]:
- */
-  if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 97, __pyx_L1_error)}
-  __pyx_t_48 = __pyx_v_x;
-  __pyx_t_10 = ((__pyx_v_rx != (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_48 * __pyx_v_variables->reputation.strides[0]) )))) != 0);
-  if (__pyx_t_10) {
-
-    /* "Cython_resources/simulation_instance_comms.pyx":98
- * 
- *     if rx != variables.reputation[x]:
- *         variables.private_assessment_error[x] = 0.0             # <<<<<<<<<<<<<<
- *     if ry != variables.reputation[y]:
- *         variables.private_assessment_error[y] = 0.0
- */
-    if (unlikely(!__pyx_v_variables->private_assessment_error.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 98, __pyx_L1_error)}
-    __pyx_t_49 = __pyx_v_x;
-    *((double *) ( /* dim=0 */ (__pyx_v_variables->private_assessment_error.data + __pyx_t_49 * __pyx_v_variables->private_assessment_error.strides[0]) )) = 0.0;
-
-    /* "Cython_resources/simulation_instance_comms.pyx":97
- *             ry = variables.socialnorm[1 - cy][1 - variables.reputation[x]]
- * 
- *     if rx != variables.reputation[x]:             # <<<<<<<<<<<<<<
- *         variables.private_assessment_error[x] = 0.0
- *     if ry != variables.reputation[y]:
- */
-  }
-
-  /* "Cython_resources/simulation_instance_comms.pyx":99
- *     if rx != variables.reputation[x]:
- *         variables.private_assessment_error[x] = 0.0
- *     if ry != variables.reputation[y]:             # <<<<<<<<<<<<<<
- *         variables.private_assessment_error[y] = 0.0
- * 
- */
-  if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 99, __pyx_L1_error)}
-  __pyx_t_50 = __pyx_v_y;
-  __pyx_t_10 = ((__pyx_v_ry != (*((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_50 * __pyx_v_variables->reputation.strides[0]) )))) != 0);
-  if (__pyx_t_10) {
-
-    /* "Cython_resources/simulation_instance_comms.pyx":100
- *         variables.private_assessment_error[x] = 0.0
- *     if ry != variables.reputation[y]:
- *         variables.private_assessment_error[y] = 0.0             # <<<<<<<<<<<<<<
- * 
- *     for i in range(len(variables.private_assessment_error)):
- */
-    if (unlikely(!__pyx_v_variables->private_assessment_error.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 100, __pyx_L1_error)}
-    __pyx_t_51 = __pyx_v_y;
-    *((double *) ( /* dim=0 */ (__pyx_v_variables->private_assessment_error.data + __pyx_t_51 * __pyx_v_variables->private_assessment_error.strides[0]) )) = 0.0;
-
-    /* "Cython_resources/simulation_instance_comms.pyx":99
- *     if rx != variables.reputation[x]:
- *         variables.private_assessment_error[x] = 0.0
- *     if ry != variables.reputation[y]:             # <<<<<<<<<<<<<<
- *         variables.private_assessment_error[y] = 0.0
- * 
- */
-  }
-
-  /* "Cython_resources/simulation_instance_comms.pyx":102
- *         variables.private_assessment_error[y] = 0.0
- * 
- *     for i in range(len(variables.private_assessment_error)):             # <<<<<<<<<<<<<<
- *         variables.private_assessment_error[i] += 1.0
- *         if variables.private_assessment_error[i] > variables.private_assessment_error_max_t:
- */
-  if (unlikely(!__pyx_v_variables->private_assessment_error.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 102, __pyx_L1_error)}
-  __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_v_variables->private_assessment_error, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = PyObject_Length(__pyx_t_5); if (unlikely(__pyx_t_3 == -1)) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  for (__pyx_t_52 = 0; __pyx_t_52 < __pyx_t_3; __pyx_t_52+=1) {
-    __pyx_v_i = __pyx_t_52;
-
-    /* "Cython_resources/simulation_instance_comms.pyx":103
- * 
- *     for i in range(len(variables.private_assessment_error)):
- *         variables.private_assessment_error[i] += 1.0             # <<<<<<<<<<<<<<
- *         if variables.private_assessment_error[i] > variables.private_assessment_error_max_t:
- *             variables.private_assessment_error[i] = variables.private_assessment_error_max_t
- */
-    if (unlikely(!__pyx_v_variables->private_assessment_error.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 103, __pyx_L1_error)}
-    __pyx_t_53 = __pyx_v_i;
-    *((double *) ( /* dim=0 */ (__pyx_v_variables->private_assessment_error.data + __pyx_t_53 * __pyx_v_variables->private_assessment_error.strides[0]) )) += 1.0;
-
-    /* "Cython_resources/simulation_instance_comms.pyx":104
- *     for i in range(len(variables.private_assessment_error)):
- *         variables.private_assessment_error[i] += 1.0
- *         if variables.private_assessment_error[i] > variables.private_assessment_error_max_t:             # <<<<<<<<<<<<<<
- *             variables.private_assessment_error[i] = variables.private_assessment_error_max_t
- * 
- */
-    if (unlikely(!__pyx_v_variables->private_assessment_error.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 104, __pyx_L1_error)}
-    __pyx_t_54 = __pyx_v_i;
-    __pyx_t_10 = (((*((double *) ( /* dim=0 */ (__pyx_v_variables->private_assessment_error.data + __pyx_t_54 * __pyx_v_variables->private_assessment_error.strides[0]) ))) > __pyx_v_variables->private_assessment_error_max_t) != 0);
-    if (__pyx_t_10) {
-
-      /* "Cython_resources/simulation_instance_comms.pyx":105
- *         variables.private_assessment_error[i] += 1.0
- *         if variables.private_assessment_error[i] > variables.private_assessment_error_max_t:
- *             variables.private_assessment_error[i] = variables.private_assessment_error_max_t             # <<<<<<<<<<<<<<
- * 
- *     variables.reputation[x] = rx
- */
-      __pyx_t_4 = __pyx_v_variables->private_assessment_error_max_t;
-      if (unlikely(!__pyx_v_variables->private_assessment_error.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 105, __pyx_L1_error)}
-      __pyx_t_55 = __pyx_v_i;
-      *((double *) ( /* dim=0 */ (__pyx_v_variables->private_assessment_error.data + __pyx_t_55 * __pyx_v_variables->private_assessment_error.strides[0]) )) = __pyx_t_4;
-
-      /* "Cython_resources/simulation_instance_comms.pyx":104
- *     for i in range(len(variables.private_assessment_error)):
- *         variables.private_assessment_error[i] += 1.0
- *         if variables.private_assessment_error[i] > variables.private_assessment_error_max_t:             # <<<<<<<<<<<<<<
- *             variables.private_assessment_error[i] = variables.private_assessment_error_max_t
- * 
- */
-    }
-  }
-
-  /* "Cython_resources/simulation_instance_comms.pyx":107
- *             variables.private_assessment_error[i] = variables.private_assessment_error_max_t
  * 
  *     variables.reputation[x] = rx             # <<<<<<<<<<<<<<
  *     variables.reputation[y] = ry
  *     # Track cooperation
  */
-  if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 107, __pyx_L1_error)}
-  __pyx_t_56 = __pyx_v_x;
-  *((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_56 * __pyx_v_variables->reputation.strides[0]) )) = __pyx_v_rx;
+  if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 90, __pyx_L1_error)}
+  __pyx_t_42 = __pyx_v_x;
+  *((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_42 * __pyx_v_variables->reputation.strides[0]) )) = __pyx_v_rx;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":108
+  /* "Cython_resources/simulation_instance.pyx":91
  * 
  *     variables.reputation[x] = rx
  *     variables.reputation[y] = ry             # <<<<<<<<<<<<<<
  *     # Track cooperation
  *     if variables.track_coop:
  */
-  if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 108, __pyx_L1_error)}
-  __pyx_t_57 = __pyx_v_y;
-  *((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_57 * __pyx_v_variables->reputation.strides[0]) )) = __pyx_v_ry;
+  if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 91, __pyx_L1_error)}
+  __pyx_t_43 = __pyx_v_y;
+  *((int *) ( /* dim=0 */ (__pyx_v_variables->reputation.data + __pyx_t_43 * __pyx_v_variables->reputation.strides[0]) )) = __pyx_v_ry;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":110
+  /* "Cython_resources/simulation_instance.pyx":93
  *     variables.reputation[y] = ry
  *     # Track cooperation
  *     if variables.track_coop:             # <<<<<<<<<<<<<<
  *         cur_cooperation_index = float(float(cy + cx)/2.0)
  *         variables.increment_coop_index(cur_cooperation_index)
  */
-  __pyx_t_10 = (__pyx_v_variables->track_coop != 0);
-  if (__pyx_t_10) {
+  __pyx_t_5 = (__pyx_v_variables->track_coop != 0);
+  if (__pyx_t_5) {
 
-    /* "Cython_resources/simulation_instance_comms.pyx":111
+    /* "Cython_resources/simulation_instance.pyx":94
  *     # Track cooperation
  *     if variables.track_coop:
  *         cur_cooperation_index = float(float(cy + cx)/2.0)             # <<<<<<<<<<<<<<
@@ -3329,16 +3075,16 @@ if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_Att
  */
     __pyx_v_cur_cooperation_index = (((double)(__pyx_v_cy + __pyx_v_cx)) / 2.0);
 
-    /* "Cython_resources/simulation_instance_comms.pyx":112
+    /* "Cython_resources/simulation_instance.pyx":95
  *     if variables.track_coop:
  *         cur_cooperation_index = float(float(cy + cx)/2.0)
  *         variables.increment_coop_index(cur_cooperation_index)             # <<<<<<<<<<<<<<
  *     return float((variables.benefit * cy) - (variables.cost * cx))
  * 
  */
-    ((struct __pyx_vtabstruct_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_variables->__pyx_vtab)->increment_coop_index(__pyx_v_variables, __pyx_v_cur_cooperation_index);
+    ((struct __pyx_vtabstruct_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_variables->__pyx_vtab)->increment_coop_index(__pyx_v_variables, __pyx_v_cur_cooperation_index);
 
-    /* "Cython_resources/simulation_instance_comms.pyx":110
+    /* "Cython_resources/simulation_instance.pyx":93
  *     variables.reputation[y] = ry
  *     # Track cooperation
  *     if variables.track_coop:             # <<<<<<<<<<<<<<
@@ -3347,7 +3093,7 @@ if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_Att
  */
   }
 
-  /* "Cython_resources/simulation_instance_comms.pyx":113
+  /* "Cython_resources/simulation_instance.pyx":96
  *         cur_cooperation_index = float(float(cy + cx)/2.0)
  *         variables.increment_coop_index(cur_cooperation_index)
  *     return float((variables.benefit * cy) - (variables.cost * cx))             # <<<<<<<<<<<<<<
@@ -3355,13 +3101,13 @@ if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_Att
  * @cython.boundscheck(False)
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = PyFloat_FromDouble(((double)((__pyx_v_variables->benefit * __pyx_v_cy) - (__pyx_v_variables->cost * __pyx_v_cx)))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 113, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_r = __pyx_t_5;
-  __pyx_t_5 = 0;
+  __pyx_t_44 = PyFloat_FromDouble(((double)((__pyx_v_variables->benefit * __pyx_v_cy) - (__pyx_v_variables->cost * __pyx_v_cx)))); if (unlikely(!__pyx_t_44)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_44);
+  __pyx_r = __pyx_t_44;
+  __pyx_t_44 = 0;
   goto __pyx_L0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":36
+  /* "Cython_resources/simulation_instance.pyx":36
  * @cython.nonecheck(False)
  * @cython.wraparound(False)
  * cdef payoff_function(int x, int y, InstanceVariables variables):             # <<<<<<<<<<<<<<
@@ -3372,11 +3118,8 @@ if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_Att
   /* function exit code */
   __pyx_L1_error:;
   __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.payoff_function", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_XDECREF(__pyx_t_44);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.payoff_function", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __PYX_XDEC_MEMVIEW(&__pyx_v_xstrategy, 1);
@@ -3386,7 +3129,7 @@ if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_Att
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":118
+/* "Cython_resources/simulation_instance.pyx":101
  * @cython.nonecheck(False)
  * @cython.wraparound(False)
  * cdef double[:] fitness_function(int x, int y, InstanceVariables variables):             # <<<<<<<<<<<<<<
@@ -3394,7 +3137,7 @@ if (unlikely(!__pyx_v_variables->reputation.memview)) {PyErr_SetString(PyExc_Att
  * 
  */
 
-static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms_fitness_function(int __pyx_v_x, int __pyx_v_y, struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_variables) {
+static __Pyx_memviewslice __pyx_f_16Cython_resources_19simulation_instance_fitness_function(int __pyx_v_x, int __pyx_v_y, struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_variables) {
   int __pyx_v_Z;
   double __pyx_v_fitness_x;
   double __pyx_v_fitness_y;
@@ -3425,7 +3168,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   struct __pyx_array_obj *__pyx_t_15 = NULL;
   __Pyx_RefNannySetupContext("fitness_function", 0);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":119
+  /* "Cython_resources/simulation_instance.pyx":102
  * @cython.wraparound(False)
  * cdef double[:] fitness_function(int x, int y, InstanceVariables variables):
  *     cdef int Z = variables.population_size             # <<<<<<<<<<<<<<
@@ -3435,7 +3178,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   __pyx_t_1 = __pyx_v_variables->population_size;
   __pyx_v_Z = __pyx_t_1;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":121
+  /* "Cython_resources/simulation_instance.pyx":104
  *     cdef int Z = variables.population_size
  * 
  *     cdef double fitness_x = 0.0             # <<<<<<<<<<<<<<
@@ -3444,7 +3187,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
  */
   __pyx_v_fitness_x = 0.0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":122
+  /* "Cython_resources/simulation_instance.pyx":105
  * 
  *     cdef double fitness_x = 0.0
  *     cdef double fitness_y = 0.0             # <<<<<<<<<<<<<<
@@ -3453,7 +3196,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
  */
   __pyx_v_fitness_y = 0.0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":123
+  /* "Cython_resources/simulation_instance.pyx":106
  *     cdef double fitness_x = 0.0
  *     cdef double fitness_y = 0.0
  *     cdef int t_size = 2 * Z             # <<<<<<<<<<<<<<
@@ -3462,50 +3205,50 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
  */
   __pyx_v_t_size = (2 * __pyx_v_Z);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":126
+  /* "Cython_resources/simulation_instance.pyx":109
  *     cdef int agent_z, c
  * 
  *     cdef double[:] probabilities_x = np.ones(Z, dtype=DDOUBLE) / float(Z - 1)             # <<<<<<<<<<<<<<
  *     probabilities_x[x] = 0
  *     cdef double[:] probabilities_y = np.ones(Z, dtype=DDOUBLE) / float(Z - 1)
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_ones); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_ones); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_Z); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_Z); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DDOUBLE); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DDOUBLE); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyFloat_FromDouble(((double)(__pyx_v_Z - 1))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(((double)(__pyx_v_Z - 1))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_t_4);
-  if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_probabilities_x = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":127
+  /* "Cython_resources/simulation_instance.pyx":110
  * 
  *     cdef double[:] probabilities_x = np.ones(Z, dtype=DDOUBLE) / float(Z - 1)
  *     probabilities_x[x] = 0             # <<<<<<<<<<<<<<
@@ -3515,50 +3258,50 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   __pyx_t_7 = __pyx_v_x;
   *((double *) ( /* dim=0 */ (__pyx_v_probabilities_x.data + __pyx_t_7 * __pyx_v_probabilities_x.strides[0]) )) = 0.0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":128
+  /* "Cython_resources/simulation_instance.pyx":111
  *     cdef double[:] probabilities_x = np.ones(Z, dtype=DDOUBLE) / float(Z - 1)
  *     probabilities_x[x] = 0
  *     cdef double[:] probabilities_y = np.ones(Z, dtype=DDOUBLE) / float(Z - 1)             # <<<<<<<<<<<<<<
  *     probabilities_y[y] = 0
  * 
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_ones); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_ones); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_Z); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_Z); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4);
   __pyx_t_4 = 0;
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_DDOUBLE); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_DDOUBLE); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 128, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyFloat_FromDouble(((double)(__pyx_v_Z - 1))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(((double)(__pyx_v_Z - 1))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_t_5);
-  if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 128, __pyx_L1_error)
+  if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_probabilities_y = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":129
+  /* "Cython_resources/simulation_instance.pyx":112
  *     probabilities_x[x] = 0
  *     cdef double[:] probabilities_y = np.ones(Z, dtype=DDOUBLE) / float(Z - 1)
  *     probabilities_y[y] = 0             # <<<<<<<<<<<<<<
@@ -3568,31 +3311,31 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   __pyx_t_8 = __pyx_v_y;
   *((double *) ( /* dim=0 */ (__pyx_v_probabilities_y.data + __pyx_t_8 * __pyx_v_probabilities_y.strides[0]) )) = 0.0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":131
+  /* "Cython_resources/simulation_instance.pyx":114
  *     probabilities_y[y] = 0
  * 
  *     cdef int[:] t_arr_x = choice_weighted(Z, size=2 * Z, weights=probabilities_x)             # <<<<<<<<<<<<<<
  *     cdef int[:] t_arr_y = choice_weighted(Z, size=2 * Z, weights=probabilities_y)
  *     for c in range(0, 2 * Z):
  */
-  __pyx_t_9 = __pyx_f_16Cython_resources_25simulation_instance_comms_choice_weighted(__pyx_v_Z, (2 * __pyx_v_Z), __pyx_v_probabilities_x); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_t_9 = __pyx_f_16Cython_resources_19simulation_instance_choice_weighted(__pyx_v_Z, (2 * __pyx_v_Z), __pyx_v_probabilities_x); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 114, __pyx_L1_error)
   __pyx_v_t_arr_x = __pyx_t_9;
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":132
+  /* "Cython_resources/simulation_instance.pyx":115
  * 
  *     cdef int[:] t_arr_x = choice_weighted(Z, size=2 * Z, weights=probabilities_x)
  *     cdef int[:] t_arr_y = choice_weighted(Z, size=2 * Z, weights=probabilities_y)             # <<<<<<<<<<<<<<
  *     for c in range(0, 2 * Z):
  *         agent_z = t_arr_x[c]
  */
-  __pyx_t_9 = __pyx_f_16Cython_resources_25simulation_instance_comms_choice_weighted(__pyx_v_Z, (2 * __pyx_v_Z), __pyx_v_probabilities_y); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_9 = __pyx_f_16Cython_resources_19simulation_instance_choice_weighted(__pyx_v_Z, (2 * __pyx_v_Z), __pyx_v_probabilities_y); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 115, __pyx_L1_error)
   __pyx_v_t_arr_y = __pyx_t_9;
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":133
+  /* "Cython_resources/simulation_instance.pyx":116
  *     cdef int[:] t_arr_x = choice_weighted(Z, size=2 * Z, weights=probabilities_x)
  *     cdef int[:] t_arr_y = choice_weighted(Z, size=2 * Z, weights=probabilities_y)
  *     for c in range(0, 2 * Z):             # <<<<<<<<<<<<<<
@@ -3603,7 +3346,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   for (__pyx_t_1 = 0; __pyx_t_1 < __pyx_t_10; __pyx_t_1+=1) {
     __pyx_v_c = __pyx_t_1;
 
-    /* "Cython_resources/simulation_instance_comms.pyx":134
+    /* "Cython_resources/simulation_instance.pyx":117
  *     cdef int[:] t_arr_y = choice_weighted(Z, size=2 * Z, weights=probabilities_y)
  *     for c in range(0, 2 * Z):
  *         agent_z = t_arr_x[c]             # <<<<<<<<<<<<<<
@@ -3613,26 +3356,26 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
     __pyx_t_11 = __pyx_v_c;
     __pyx_v_agent_z = (*((int *) ( /* dim=0 */ (__pyx_v_t_arr_x.data + __pyx_t_11 * __pyx_v_t_arr_x.strides[0]) )));
 
-    /* "Cython_resources/simulation_instance_comms.pyx":135
+    /* "Cython_resources/simulation_instance.pyx":118
  *     for c in range(0, 2 * Z):
  *         agent_z = t_arr_x[c]
  *         fitness_x += payoff_function(x, agent_z, variables)             # <<<<<<<<<<<<<<
  *         agent_z = t_arr_y[c]
  *         fitness_y += payoff_function(y, agent_z, variables)
  */
-    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_fitness_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_fitness_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __pyx_f_16Cython_resources_25simulation_instance_comms_payoff_function(__pyx_v_x, __pyx_v_agent_z, __pyx_v_variables); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_4 = __pyx_f_16Cython_resources_19simulation_instance_payoff_function(__pyx_v_x, __pyx_v_agent_z, __pyx_v_variables); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_fitness_x = __pyx_t_12;
 
-    /* "Cython_resources/simulation_instance_comms.pyx":136
+    /* "Cython_resources/simulation_instance.pyx":119
  *         agent_z = t_arr_x[c]
  *         fitness_x += payoff_function(x, agent_z, variables)
  *         agent_z = t_arr_y[c]             # <<<<<<<<<<<<<<
@@ -3642,27 +3385,27 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
     __pyx_t_13 = __pyx_v_c;
     __pyx_v_agent_z = (*((int *) ( /* dim=0 */ (__pyx_v_t_arr_y.data + __pyx_t_13 * __pyx_v_t_arr_y.strides[0]) )));
 
-    /* "Cython_resources/simulation_instance_comms.pyx":137
+    /* "Cython_resources/simulation_instance.pyx":120
  *         fitness_x += payoff_function(x, agent_z, variables)
  *         agent_z = t_arr_y[c]
  *         fitness_y += payoff_function(y, agent_z, variables)             # <<<<<<<<<<<<<<
  * 
  *     fitness_x /= float(2 * Z)
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_fitness_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_fitness_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __pyx_f_16Cython_resources_25simulation_instance_comms_payoff_function(__pyx_v_y, __pyx_v_agent_z, __pyx_v_variables); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 137, __pyx_L1_error)
+    __pyx_t_4 = __pyx_f_16Cython_resources_19simulation_instance_payoff_function(__pyx_v_y, __pyx_v_agent_z, __pyx_v_variables); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyNumber_InPlaceAdd(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 137, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_InPlaceAdd(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 137, __pyx_L1_error)
+    __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_fitness_y = __pyx_t_12;
   }
 
-  /* "Cython_resources/simulation_instance_comms.pyx":139
+  /* "Cython_resources/simulation_instance.pyx":122
  *         fitness_y += payoff_function(y, agent_z, variables)
  * 
  *     fitness_x /= float(2 * Z)             # <<<<<<<<<<<<<<
@@ -3671,11 +3414,11 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
  */
   if (unlikely(((double)(2 * __pyx_v_Z)) == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 139, __pyx_L1_error)
+    __PYX_ERR(0, 122, __pyx_L1_error)
   }
   __pyx_v_fitness_x = (__pyx_v_fitness_x / ((double)(2 * __pyx_v_Z)));
 
-  /* "Cython_resources/simulation_instance_comms.pyx":140
+  /* "Cython_resources/simulation_instance.pyx":123
  * 
  *     fitness_x /= float(2 * Z)
  *     fitness_y /= float(2 * Z)             # <<<<<<<<<<<<<<
@@ -3684,11 +3427,11 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
  */
   if (unlikely(((double)(2 * __pyx_v_Z)) == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 140, __pyx_L1_error)
+    __PYX_ERR(0, 123, __pyx_L1_error)
   }
   __pyx_v_fitness_y = (__pyx_v_fitness_y / ((double)(2 * __pyx_v_Z)));
 
-  /* "Cython_resources/simulation_instance_comms.pyx":142
+  /* "Cython_resources/simulation_instance.pyx":125
  *     fitness_y /= float(2 * Z)
  *     cdef double[2] return_arr
  *     return_arr[:] = [fitness_x, fitness_y]             # <<<<<<<<<<<<<<
@@ -3699,7 +3442,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   __pyx_t_14[1] = __pyx_v_fitness_y;
   memcpy(&(__pyx_v_return_arr[0]), __pyx_t_14, sizeof(__pyx_v_return_arr[0]) * (2));
 
-  /* "Cython_resources/simulation_instance_comms.pyx":143
+  /* "Cython_resources/simulation_instance.pyx":126
  *     cdef double[2] return_arr
  *     return_arr[:] = [fitness_x, fitness_y]
  *     return return_arr             # <<<<<<<<<<<<<<
@@ -3708,23 +3451,23 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
  */
   __pyx_t_4 = __pyx_format_from_typeinfo(&__Pyx_TypeInfo_double);
   __pyx_t_5 = Py_BuildValue((char*) "("  __PYX_BUILD_PY_SSIZE_T  ")", ((Py_ssize_t)2));
-  if (unlikely(!__pyx_t_4 || !__pyx_t_5 || !PyBytes_AsString(__pyx_t_4))) __PYX_ERR(0, 143, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4 || !__pyx_t_5 || !PyBytes_AsString(__pyx_t_4))) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_15 = __pyx_array_new(__pyx_t_5, sizeof(double), PyBytes_AS_STRING(__pyx_t_4), (char *) "fortran", (char *) __pyx_v_return_arr);
-  if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 143, __pyx_L1_error)
+  if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_15);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_t_15));
-  if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 143, __pyx_L1_error)
+  if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_DECREF(((PyObject *)__pyx_t_15)); __pyx_t_15 = 0;
   __pyx_r = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
   goto __pyx_L0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":118
+  /* "Cython_resources/simulation_instance.pyx":101
  * @cython.nonecheck(False)
  * @cython.wraparound(False)
  * cdef double[:] fitness_function(int x, int y, InstanceVariables variables):             # <<<<<<<<<<<<<<
@@ -3743,7 +3486,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   __Pyx_XDECREF(((PyObject *)__pyx_t_15));
   __pyx_r.data = NULL;
   __pyx_r.memview = NULL;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.fitness_function", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.fitness_function", __pyx_clineno, __pyx_lineno, __pyx_filename);
 
   goto __pyx_L2;
   __pyx_L0:;
@@ -3759,7 +3502,7 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":149
+/* "Cython_resources/simulation_instance.pyx":132
  * @cython.nonecheck(False)
  * @cython.wraparound(False)
  * cdef double simulate(int runs, int generations, int population_size, double mutation_rate,             # <<<<<<<<<<<<<<
@@ -3767,8 +3510,8 @@ static __Pyx_memviewslice __pyx_f_16Cython_resources_25simulation_instance_comms
  *                  double private_assessment_error, double reputation_update_rate,
  */
 
-static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(int __pyx_v_runs, int __pyx_v_generations, int __pyx_v_population_size, double __pyx_v_mutation_rate, double __pyx_v_execution_error, double __pyx_v_reputation_assignment_error, double __pyx_v_private_assessment_error, double __pyx_v_reputation_update_rate, double __pyx_v_reputation_spread_prob, PyArrayObject *__pyx_v_socialnorm, int __pyx_v_cost, int __pyx_v_benefit) {
-  struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_variables = 0;
+static double __pyx_f_16Cython_resources_19simulation_instance_simulate(int __pyx_v_runs, int __pyx_v_generations, int __pyx_v_population_size, double __pyx_v_mutation_rate, double __pyx_v_execution_error, double __pyx_v_reputation_assignment_error, double __pyx_v_private_assessment_error, double __pyx_v_reputation_update_rate, double __pyx_v_reputation_spread_prob, PyArrayObject *__pyx_v_socialnorm, int __pyx_v_cost, int __pyx_v_benefit) {
+  struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_variables = 0;
   CYTHON_UNUSED int __pyx_v_r;
   int __pyx_v_g;
   int __pyx_v_i;
@@ -3839,80 +3582,80 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
   __pyx_pybuffernd_socialnorm.rcbuffer = &__pyx_pybuffer_socialnorm;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_socialnorm.rcbuffer->pybuffer, (PyObject*)__pyx_v_socialnorm, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 149, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_socialnorm.rcbuffer->pybuffer, (PyObject*)__pyx_v_socialnorm, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_19simulation_instance_DINT_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 132, __pyx_L1_error)
   }
   __pyx_pybuffernd_socialnorm.diminfo[0].strides = __pyx_pybuffernd_socialnorm.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_socialnorm.diminfo[0].shape = __pyx_pybuffernd_socialnorm.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_socialnorm.diminfo[1].strides = __pyx_pybuffernd_socialnorm.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_socialnorm.diminfo[1].shape = __pyx_pybuffernd_socialnorm.rcbuffer->pybuffer.shape[1];
 
-  /* "Cython_resources/simulation_instance_comms.pyx":154
+  /* "Cython_resources/simulation_instance.pyx":137
  *                  double reputation_spread_prob,
  *                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
  *     cdef InstanceVariables variables = InstanceVariables(runs, generations, population_size, mutation_rate,             # <<<<<<<<<<<<<<
  *                                   execution_error, reputation_assignment_error,
  *                                   private_assessment_error, reputation_update_rate,
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_runs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_runs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_generations); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_generations); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_population_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_population_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_mutation_rate); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_mutation_rate); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":155
+  /* "Cython_resources/simulation_instance.pyx":138
  *                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
  *     cdef InstanceVariables variables = InstanceVariables(runs, generations, population_size, mutation_rate,
  *                                   execution_error, reputation_assignment_error,             # <<<<<<<<<<<<<<
  *                                   private_assessment_error, reputation_update_rate,
  *                                   reputation_spread_prob,
  */
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_execution_error); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_execution_error); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_reputation_assignment_error); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_reputation_assignment_error); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":156
+  /* "Cython_resources/simulation_instance.pyx":139
  *     cdef InstanceVariables variables = InstanceVariables(runs, generations, population_size, mutation_rate,
  *                                   execution_error, reputation_assignment_error,
  *                                   private_assessment_error, reputation_update_rate,             # <<<<<<<<<<<<<<
  *                                   reputation_spread_prob,
  *                                   socialnorm, cost, benefit)
  */
-  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_private_assessment_error); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_7 = PyFloat_FromDouble(__pyx_v_private_assessment_error); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = PyFloat_FromDouble(__pyx_v_reputation_update_rate); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_8 = PyFloat_FromDouble(__pyx_v_reputation_update_rate); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":157
+  /* "Cython_resources/simulation_instance.pyx":140
  *                                   execution_error, reputation_assignment_error,
  *                                   private_assessment_error, reputation_update_rate,
  *                                   reputation_spread_prob,             # <<<<<<<<<<<<<<
  *                                   socialnorm, cost, benefit)
  *     cdef int r, g, i
  */
-  __pyx_t_9 = PyFloat_FromDouble(__pyx_v_reputation_spread_prob); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_9 = PyFloat_FromDouble(__pyx_v_reputation_spread_prob); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":158
+  /* "Cython_resources/simulation_instance.pyx":141
  *                                   private_assessment_error, reputation_update_rate,
  *                                   reputation_spread_prob,
  *                                   socialnorm, cost, benefit)             # <<<<<<<<<<<<<<
  *     cdef int r, g, i
  *     cdef int Z = variables.population_size
  */
-  __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_cost); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_cost); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_benefit); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_benefit); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":154
+  /* "Cython_resources/simulation_instance.pyx":137
  *                  double reputation_spread_prob,
  *                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
  *     cdef InstanceVariables variables = InstanceVariables(runs, generations, population_size, mutation_rate,             # <<<<<<<<<<<<<<
  *                                   execution_error, reputation_assignment_error,
  *                                   private_assessment_error, reputation_update_rate,
  */
-  __pyx_t_12 = PyTuple_New(12); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_12 = PyTuple_New(12); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_1);
@@ -3950,13 +3693,13 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
   __pyx_t_9 = 0;
   __pyx_t_10 = 0;
   __pyx_t_11 = 0;
-  __pyx_t_11 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_16Cython_resources_25simulation_instance_comms_InstanceVariables), __pyx_t_12, NULL); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_16Cython_resources_19simulation_instance_InstanceVariables), __pyx_t_12, NULL); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-  __pyx_v_variables = ((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_t_11);
+  __pyx_v_variables = ((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_t_11);
   __pyx_t_11 = 0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":160
+  /* "Cython_resources/simulation_instance.pyx":143
  *                                   socialnorm, cost, benefit)
  *     cdef int r, g, i
  *     cdef int Z = variables.population_size             # <<<<<<<<<<<<<<
@@ -3966,7 +3709,7 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
   __pyx_t_13 = __pyx_v_variables->population_size;
   __pyx_v_Z = __pyx_t_13;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":167
+  /* "Cython_resources/simulation_instance.pyx":150
  *     cdef int agent_one, agent_two
  * 
  *     for r in range(0, variables.runs):             # <<<<<<<<<<<<<<
@@ -3977,73 +3720,73 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
   for (__pyx_t_14 = 0; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
     __pyx_v_r = __pyx_t_14;
 
-    /* "Cython_resources/simulation_instance_comms.pyx":168
+    /* "Cython_resources/simulation_instance.pyx":151
  * 
  *     for r in range(0, variables.runs):
  *         variables.population = np.random.randint(4, size=Z)  # equivalent to U(0, 3)             # <<<<<<<<<<<<<<
  *         variables.reputation = np.random.randint(2, size=Z)  # equivalent to U(0, 1)
  *         for g in range(0, variables.generations):
  */
-    __pyx_t_11 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
-    __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_random); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_random); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_randint); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_randint); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-    __pyx_t_12 = PyDict_New(); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __pyx_t_12 = PyDict_New(); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
-    __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_Z); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_Z); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    if (PyDict_SetItem(__pyx_t_12, __pyx_n_s_size, __pyx_t_10) < 0) __PYX_ERR(0, 168, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_12, __pyx_n_s_size, __pyx_t_10) < 0) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_11, __pyx_tuple_, __pyx_t_12); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_11, __pyx_tuple_, __pyx_t_12); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     __pyx_t_15 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_t_10);
-    if (unlikely(!__pyx_t_15.memview)) __PYX_ERR(0, 168, __pyx_L1_error)
+    if (unlikely(!__pyx_t_15.memview)) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_variables->population, 0);
     __pyx_v_variables->population = __pyx_t_15;
     __pyx_t_15.memview = NULL;
     __pyx_t_15.data = NULL;
 
-    /* "Cython_resources/simulation_instance_comms.pyx":169
+    /* "Cython_resources/simulation_instance.pyx":152
  *     for r in range(0, variables.runs):
  *         variables.population = np.random.randint(4, size=Z)  # equivalent to U(0, 3)
  *         variables.reputation = np.random.randint(2, size=Z)  # equivalent to U(0, 1)             # <<<<<<<<<<<<<<
  *         for g in range(0, variables.generations):
  *             if g > variables.generations // 10:
  */
-    __pyx_t_10 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 169, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_random); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 169, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_random); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_randint); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 169, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_randint); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-    __pyx_t_12 = PyDict_New(); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 169, __pyx_L1_error)
+    __pyx_t_12 = PyDict_New(); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
-    __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_Z); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 169, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_Z); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
-    if (PyDict_SetItem(__pyx_t_12, __pyx_n_s_size, __pyx_t_11) < 0) __PYX_ERR(0, 169, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_12, __pyx_n_s_size, __pyx_t_11) < 0) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_tuple__2, __pyx_t_12); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 169, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_tuple__2, __pyx_t_12); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     __pyx_t_15 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_t_11);
-    if (unlikely(!__pyx_t_15.memview)) __PYX_ERR(0, 169, __pyx_L1_error)
+    if (unlikely(!__pyx_t_15.memview)) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_variables->reputation, 0);
     __pyx_v_variables->reputation = __pyx_t_15;
     __pyx_t_15.memview = NULL;
     __pyx_t_15.data = NULL;
 
-    /* "Cython_resources/simulation_instance_comms.pyx":170
+    /* "Cython_resources/simulation_instance.pyx":153
  *         variables.population = np.random.randint(4, size=Z)  # equivalent to U(0, 3)
  *         variables.reputation = np.random.randint(2, size=Z)  # equivalent to U(0, 1)
  *         for g in range(0, variables.generations):             # <<<<<<<<<<<<<<
@@ -4054,7 +3797,7 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
     for (__pyx_t_17 = 0; __pyx_t_17 < __pyx_t_16; __pyx_t_17+=1) {
       __pyx_v_g = __pyx_t_17;
 
-      /* "Cython_resources/simulation_instance_comms.pyx":171
+      /* "Cython_resources/simulation_instance.pyx":154
  *         variables.reputation = np.random.randint(2, size=Z)  # equivalent to U(0, 1)
  *         for g in range(0, variables.generations):
  *             if g > variables.generations // 10:             # <<<<<<<<<<<<<<
@@ -4064,7 +3807,7 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
       __pyx_t_18 = ((__pyx_v_g > __Pyx_div_long(__pyx_v_variables->generations, 10)) != 0);
       if (__pyx_t_18) {
 
-        /* "Cython_resources/simulation_instance_comms.pyx":172
+        /* "Cython_resources/simulation_instance.pyx":155
  *         for g in range(0, variables.generations):
  *             if g > variables.generations // 10:
  *                 variables.track_coop = 1             # <<<<<<<<<<<<<<
@@ -4073,7 +3816,7 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
  */
         __pyx_v_variables->track_coop = 1;
 
-        /* "Cython_resources/simulation_instance_comms.pyx":171
+        /* "Cython_resources/simulation_instance.pyx":154
  *         variables.reputation = np.random.randint(2, size=Z)  # equivalent to U(0, 1)
  *         for g in range(0, variables.generations):
  *             if g > variables.generations // 10:             # <<<<<<<<<<<<<<
@@ -4082,19 +3825,19 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
  */
       }
 
-      /* "Cython_resources/simulation_instance_comms.pyx":173
+      /* "Cython_resources/simulation_instance.pyx":156
  *             if g > variables.generations // 10:
  *                 variables.track_coop = 1
  *             mutation_probs = np.array([1 if (rand()*1.0/RAND_MAX) < variables.mutation_rate else 0 for _ in range(Z)])             # <<<<<<<<<<<<<<
  *             agent_pairs = np.array([np.random.choice(Z, size=2, replace=False) for _ in range(Z)])
  *             for i in range(Z):
  */
-      __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 173, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 156, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
-      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_array); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 173, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_array); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 156, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-      __pyx_t_12 = PyList_New(0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 173, __pyx_L1_error)
+      __pyx_t_12 = PyList_New(0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 156, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
       __pyx_t_19 = __pyx_v_Z;
       for (__pyx_t_20 = 0; __pyx_t_20 < __pyx_t_19; __pyx_t_20+=1) {
@@ -4102,7 +3845,7 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
         __pyx_t_21 = (rand() * 1.0);
         if (unlikely(RAND_MAX == 0)) {
           PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-          __PYX_ERR(0, 173, __pyx_L1_error)
+          __PYX_ERR(0, 156, __pyx_L1_error)
         }
         if ((((__pyx_t_21 / RAND_MAX) < __pyx_v_variables->mutation_rate) != 0)) {
           __Pyx_INCREF(__pyx_int_1);
@@ -4111,7 +3854,7 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
           __Pyx_INCREF(__pyx_int_0);
           __pyx_t_9 = __pyx_int_0;
         }
-        if (unlikely(__Pyx_ListComp_Append(__pyx_t_12, (PyObject*)__pyx_t_9))) __PYX_ERR(0, 173, __pyx_L1_error)
+        if (unlikely(__Pyx_ListComp_Append(__pyx_t_12, (PyObject*)__pyx_t_9))) __PYX_ERR(0, 156, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       }
       __pyx_t_9 = NULL;
@@ -4125,30 +3868,30 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
         }
       }
       if (!__pyx_t_9) {
-        __pyx_t_11 = __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_12); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 173, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_12); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 156, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
         __Pyx_GOTREF(__pyx_t_11);
       } else {
-        __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 173, __pyx_L1_error)
+        __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 156, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_9); __pyx_t_9 = NULL;
         __Pyx_GIVEREF(__pyx_t_12);
         PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_12);
         __pyx_t_12 = 0;
-        __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_8, NULL); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 173, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_8, NULL); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 156, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       }
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      if (!(likely(((__pyx_t_11) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_11, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 173, __pyx_L1_error)
+      if (!(likely(((__pyx_t_11) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_11, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 156, __pyx_L1_error)
       __pyx_t_22 = ((PyArrayObject *)__pyx_t_11);
       {
         __Pyx_BufFmt_StackElem __pyx_stack[1];
         __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_mutation_probs.rcbuffer->pybuffer);
-        __pyx_t_19 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_mutation_probs.rcbuffer->pybuffer, (PyObject*)__pyx_t_22, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack);
+        __pyx_t_19 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_mutation_probs.rcbuffer->pybuffer, (PyObject*)__pyx_t_22, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_19simulation_instance_DINT_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack);
         if (unlikely(__pyx_t_19 < 0)) {
           PyErr_Fetch(&__pyx_t_23, &__pyx_t_24, &__pyx_t_25);
-          if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_mutation_probs.rcbuffer->pybuffer, (PyObject*)__pyx_v_mutation_probs, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) {
+          if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_mutation_probs.rcbuffer->pybuffer, (PyObject*)__pyx_v_mutation_probs, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_19simulation_instance_DINT_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) {
             Py_XDECREF(__pyx_t_23); Py_XDECREF(__pyx_t_24); Py_XDECREF(__pyx_t_25);
             __Pyx_RaiseBufferFallbackError();
           } else {
@@ -4156,54 +3899,54 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
           }
         }
         __pyx_pybuffernd_mutation_probs.diminfo[0].strides = __pyx_pybuffernd_mutation_probs.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_mutation_probs.diminfo[0].shape = __pyx_pybuffernd_mutation_probs.rcbuffer->pybuffer.shape[0];
-        if (unlikely(__pyx_t_19 < 0)) __PYX_ERR(0, 173, __pyx_L1_error)
+        if (unlikely(__pyx_t_19 < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
       }
       __pyx_t_22 = 0;
       __Pyx_XDECREF_SET(__pyx_v_mutation_probs, ((PyArrayObject *)__pyx_t_11));
       __pyx_t_11 = 0;
 
-      /* "Cython_resources/simulation_instance_comms.pyx":174
+      /* "Cython_resources/simulation_instance.pyx":157
  *                 variables.track_coop = 1
  *             mutation_probs = np.array([1 if (rand()*1.0/RAND_MAX) < variables.mutation_rate else 0 for _ in range(Z)])
  *             agent_pairs = np.array([np.random.choice(Z, size=2, replace=False) for _ in range(Z)])             # <<<<<<<<<<<<<<
  *             for i in range(Z):
  * 
  */
-      __pyx_t_10 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 174, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 157, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_array); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 174, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_array); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 157, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_10 = PyList_New(0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 174, __pyx_L1_error)
+      __pyx_t_10 = PyList_New(0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 157, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __pyx_t_19 = __pyx_v_Z;
       for (__pyx_t_20 = 0; __pyx_t_20 < __pyx_t_19; __pyx_t_20+=1) {
         __pyx_v__ = __pyx_t_20;
-        __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 174, __pyx_L1_error)
+        __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 157, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_12);
-        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_random); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 174, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_random); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 157, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-        __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_choice); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 174, __pyx_L1_error)
+        __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_choice); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 157, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_12);
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_Z); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 174, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_Z); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 157, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 174, __pyx_L1_error)
+        __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 157, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_GIVEREF(__pyx_t_9);
         PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_9);
         __pyx_t_9 = 0;
-        __pyx_t_9 = PyDict_New(); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 174, __pyx_L1_error)
+        __pyx_t_9 = PyDict_New(); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 157, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
-        if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_size, __pyx_int_2) < 0) __PYX_ERR(0, 174, __pyx_L1_error)
-        if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_replace, Py_False) < 0) __PYX_ERR(0, 174, __pyx_L1_error)
-        __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_7, __pyx_t_9); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 174, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_size, __pyx_int_2) < 0) __PYX_ERR(0, 157, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_replace, Py_False) < 0) __PYX_ERR(0, 157, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_7, __pyx_t_9); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 157, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        if (unlikely(__Pyx_ListComp_Append(__pyx_t_10, (PyObject*)__pyx_t_6))) __PYX_ERR(0, 174, __pyx_L1_error)
+        if (unlikely(__Pyx_ListComp_Append(__pyx_t_10, (PyObject*)__pyx_t_6))) __PYX_ERR(0, 157, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       }
       __pyx_t_6 = NULL;
@@ -4217,30 +3960,30 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
         }
       }
       if (!__pyx_t_6) {
-        __pyx_t_11 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_10); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 174, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_10); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 157, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_GOTREF(__pyx_t_11);
       } else {
-        __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 174, __pyx_L1_error)
+        __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 157, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_6); __pyx_t_6 = NULL;
         __Pyx_GIVEREF(__pyx_t_10);
         PyTuple_SET_ITEM(__pyx_t_9, 0+1, __pyx_t_10);
         __pyx_t_10 = 0;
-        __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_9, NULL); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 174, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_9, NULL); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 157, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       }
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      if (!(likely(((__pyx_t_11) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_11, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 174, __pyx_L1_error)
+      if (!(likely(((__pyx_t_11) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_11, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 157, __pyx_L1_error)
       __pyx_t_26 = ((PyArrayObject *)__pyx_t_11);
       {
         __Pyx_BufFmt_StackElem __pyx_stack[1];
         __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_agent_pairs.rcbuffer->pybuffer);
-        __pyx_t_19 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_agent_pairs.rcbuffer->pybuffer, (PyObject*)__pyx_t_26, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack);
+        __pyx_t_19 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_agent_pairs.rcbuffer->pybuffer, (PyObject*)__pyx_t_26, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_19simulation_instance_DINT_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack);
         if (unlikely(__pyx_t_19 < 0)) {
           PyErr_Fetch(&__pyx_t_25, &__pyx_t_24, &__pyx_t_23);
-          if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_agent_pairs.rcbuffer->pybuffer, (PyObject*)__pyx_v_agent_pairs, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack) == -1)) {
+          if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_agent_pairs.rcbuffer->pybuffer, (PyObject*)__pyx_v_agent_pairs, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_19simulation_instance_DINT_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack) == -1)) {
             Py_XDECREF(__pyx_t_25); Py_XDECREF(__pyx_t_24); Py_XDECREF(__pyx_t_23);
             __Pyx_RaiseBufferFallbackError();
           } else {
@@ -4248,13 +3991,13 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
           }
         }
         __pyx_pybuffernd_agent_pairs.diminfo[0].strides = __pyx_pybuffernd_agent_pairs.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_agent_pairs.diminfo[0].shape = __pyx_pybuffernd_agent_pairs.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_agent_pairs.diminfo[1].strides = __pyx_pybuffernd_agent_pairs.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_agent_pairs.diminfo[1].shape = __pyx_pybuffernd_agent_pairs.rcbuffer->pybuffer.shape[1];
-        if (unlikely(__pyx_t_19 < 0)) __PYX_ERR(0, 174, __pyx_L1_error)
+        if (unlikely(__pyx_t_19 < 0)) __PYX_ERR(0, 157, __pyx_L1_error)
       }
       __pyx_t_26 = 0;
       __Pyx_XDECREF_SET(__pyx_v_agent_pairs, ((PyArrayObject *)__pyx_t_11));
       __pyx_t_11 = 0;
 
-      /* "Cython_resources/simulation_instance_comms.pyx":175
+      /* "Cython_resources/simulation_instance.pyx":158
  *             mutation_probs = np.array([1 if (rand()*1.0/RAND_MAX) < variables.mutation_rate else 0 for _ in range(Z)])
  *             agent_pairs = np.array([np.random.choice(Z, size=2, replace=False) for _ in range(Z)])
  *             for i in range(Z):             # <<<<<<<<<<<<<<
@@ -4265,39 +4008,39 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
       for (__pyx_t_20 = 0; __pyx_t_20 < __pyx_t_19; __pyx_t_20+=1) {
         __pyx_v_i = __pyx_t_20;
 
-        /* "Cython_resources/simulation_instance_comms.pyx":177
+        /* "Cython_resources/simulation_instance.pyx":160
  *             for i in range(Z):
  * 
  *                 agent_one = agent_pairs[i][0]             # <<<<<<<<<<<<<<
  *                 agent_two = agent_pairs[i][1]
  * 
  */
-        __pyx_t_11 = __Pyx_GetItemInt(((PyObject *)__pyx_v_agent_pairs), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 177, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_GetItemInt(((PyObject *)__pyx_v_agent_pairs), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 160, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
-        __pyx_t_8 = __Pyx_GetItemInt(__pyx_t_11, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 177, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_GetItemInt(__pyx_t_11, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 160, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-        __pyx_t_27 = __Pyx_PyInt_As_int(__pyx_t_8); if (unlikely((__pyx_t_27 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 177, __pyx_L1_error)
+        __pyx_t_27 = __Pyx_PyInt_As_int(__pyx_t_8); if (unlikely((__pyx_t_27 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 160, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __pyx_v_agent_one = __pyx_t_27;
 
-        /* "Cython_resources/simulation_instance_comms.pyx":178
+        /* "Cython_resources/simulation_instance.pyx":161
  * 
  *                 agent_one = agent_pairs[i][0]
  *                 agent_two = agent_pairs[i][1]             # <<<<<<<<<<<<<<
  * 
  *                 # Random mutation probability
  */
-        __pyx_t_8 = __Pyx_GetItemInt(((PyObject *)__pyx_v_agent_pairs), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 178, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_GetItemInt(((PyObject *)__pyx_v_agent_pairs), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 161, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_11 = __Pyx_GetItemInt(__pyx_t_8, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 178, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_GetItemInt(__pyx_t_8, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 161, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __pyx_t_27 = __Pyx_PyInt_As_int(__pyx_t_11); if (unlikely((__pyx_t_27 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 178, __pyx_L1_error)
+        __pyx_t_27 = __Pyx_PyInt_As_int(__pyx_t_11); if (unlikely((__pyx_t_27 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 161, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         __pyx_v_agent_two = __pyx_t_27;
 
-        /* "Cython_resources/simulation_instance_comms.pyx":181
+        /* "Cython_resources/simulation_instance.pyx":164
  * 
  *                 # Random mutation probability
  *                 if mutation_probs[i]:             # <<<<<<<<<<<<<<
@@ -4305,10 +4048,10 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
  * 
  */
         __pyx_t_28 = __pyx_v_i;
-        __pyx_t_18 = ((*__Pyx_BufPtrCContig1d(__pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t *, __pyx_pybuffernd_mutation_probs.rcbuffer->pybuffer.buf, __pyx_t_28, __pyx_pybuffernd_mutation_probs.diminfo[0].strides)) != 0);
+        __pyx_t_18 = ((*__Pyx_BufPtrCContig1d(__pyx_t_16Cython_resources_19simulation_instance_DINT_t *, __pyx_pybuffernd_mutation_probs.rcbuffer->pybuffer.buf, __pyx_t_28, __pyx_pybuffernd_mutation_probs.diminfo[0].strides)) != 0);
         if (__pyx_t_18) {
 
-          /* "Cython_resources/simulation_instance_comms.pyx":182
+          /* "Cython_resources/simulation_instance.pyx":165
  *                 # Random mutation probability
  *                 if mutation_probs[i]:
  *                     variables.population[agent_one] = int(rand()*4.0/RAND_MAX) #np.random.randint(4)             # <<<<<<<<<<<<<<
@@ -4318,13 +4061,13 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
           __pyx_t_21 = (rand() * 4.0);
           if (unlikely(RAND_MAX == 0)) {
             PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-            __PYX_ERR(0, 182, __pyx_L1_error)
+            __PYX_ERR(0, 165, __pyx_L1_error)
           }
-          if (unlikely(!__pyx_v_variables->population.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 182, __pyx_L1_error)}
+          if (unlikely(!__pyx_v_variables->population.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 165, __pyx_L1_error)}
           __pyx_t_29 = __pyx_v_agent_one;
           *((int *) ( /* dim=0 */ (__pyx_v_variables->population.data + __pyx_t_29 * __pyx_v_variables->population.strides[0]) )) = ((int)(__pyx_t_21 / RAND_MAX));
 
-          /* "Cython_resources/simulation_instance_comms.pyx":181
+          /* "Cython_resources/simulation_instance.pyx":164
  * 
  *                 # Random mutation probability
  *                 if mutation_probs[i]:             # <<<<<<<<<<<<<<
@@ -4333,20 +4076,20 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
  */
         }
 
-        /* "Cython_resources/simulation_instance_comms.pyx":185
+        /* "Cython_resources/simulation_instance.pyx":168
  * 
  *                 # Calculate fitness of agents
  *                 fitness = fitness_function(agent_one, agent_two, variables)             # <<<<<<<<<<<<<<
  *                 fitness_a = fitness[0]
  *                 fitness_b = fitness[1]
  */
-        __pyx_t_30 = __pyx_f_16Cython_resources_25simulation_instance_comms_fitness_function(__pyx_v_agent_one, __pyx_v_agent_two, __pyx_v_variables); if (unlikely(!__pyx_t_30.memview)) __PYX_ERR(0, 185, __pyx_L1_error)
+        __pyx_t_30 = __pyx_f_16Cython_resources_19simulation_instance_fitness_function(__pyx_v_agent_one, __pyx_v_agent_two, __pyx_v_variables); if (unlikely(!__pyx_t_30.memview)) __PYX_ERR(0, 168, __pyx_L1_error)
         __PYX_XDEC_MEMVIEW(&__pyx_v_fitness, 1);
         __pyx_v_fitness = __pyx_t_30;
         __pyx_t_30.memview = NULL;
         __pyx_t_30.data = NULL;
 
-        /* "Cython_resources/simulation_instance_comms.pyx":186
+        /* "Cython_resources/simulation_instance.pyx":169
  *                 # Calculate fitness of agents
  *                 fitness = fitness_function(agent_one, agent_two, variables)
  *                 fitness_a = fitness[0]             # <<<<<<<<<<<<<<
@@ -4356,7 +4099,7 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
         __pyx_t_31 = 0;
         __pyx_v_fitness_a = (*((double *) ( /* dim=0 */ (__pyx_v_fitness.data + __pyx_t_31 * __pyx_v_fitness.strides[0]) )));
 
-        /* "Cython_resources/simulation_instance_comms.pyx":187
+        /* "Cython_resources/simulation_instance.pyx":170
  *                 fitness = fitness_function(agent_one, agent_two, variables)
  *                 fitness_a = fitness[0]
  *                 fitness_b = fitness[1]             # <<<<<<<<<<<<<<
@@ -4366,7 +4109,7 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
         __pyx_t_32 = 1;
         __pyx_v_fitness_b = (*((double *) ( /* dim=0 */ (__pyx_v_fitness.data + __pyx_t_32 * __pyx_v_fitness.strides[0]) )));
 
-        /* "Cython_resources/simulation_instance_comms.pyx":189
+        /* "Cython_resources/simulation_instance.pyx":172
  *                 fitness_b = fitness[1]
  * 
  *                 if (rand()*1.0/RAND_MAX) < pow(1 + exp(fitness_a - fitness_b), -1):             # <<<<<<<<<<<<<<
@@ -4376,36 +4119,36 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
         __pyx_t_21 = (rand() * 1.0);
         if (unlikely(RAND_MAX == 0)) {
           PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-          __PYX_ERR(0, 189, __pyx_L1_error)
+          __PYX_ERR(0, 172, __pyx_L1_error)
         }
-        __pyx_t_11 = PyFloat_FromDouble((__pyx_t_21 / RAND_MAX)); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __pyx_t_11 = PyFloat_FromDouble((__pyx_t_21 / RAND_MAX)); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 172, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
-        __pyx_t_8 = PyFloat_FromDouble((1.0 + exp((__pyx_v_fitness_a - __pyx_v_fitness_b)))); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __pyx_t_8 = PyFloat_FromDouble((1.0 + exp((__pyx_v_fitness_a - __pyx_v_fitness_b)))); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 172, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_9 = __Pyx_PyNumber_Power2(__pyx_t_8, __pyx_int_neg_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyNumber_Power2(__pyx_t_8, __pyx_int_neg_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 172, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __pyx_t_8 = PyObject_RichCompare(__pyx_t_11, __pyx_t_9, Py_LT); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __pyx_t_8 = PyObject_RichCompare(__pyx_t_11, __pyx_t_9, Py_LT); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 172, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __pyx_t_18 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __pyx_t_18 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 172, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         if (__pyx_t_18) {
 
-          /* "Cython_resources/simulation_instance_comms.pyx":190
+          /* "Cython_resources/simulation_instance.pyx":173
  * 
  *                 if (rand()*1.0/RAND_MAX) < pow(1 + exp(fitness_a - fitness_b), -1):
  *                     variables.population[agent_one] = variables.population[agent_two]             # <<<<<<<<<<<<<<
  *             # if g % 100 == 0:
  *             #     if variables.track_coop:
  */
-          if (unlikely(!__pyx_v_variables->population.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 190, __pyx_L1_error)}
+          if (unlikely(!__pyx_v_variables->population.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 173, __pyx_L1_error)}
           __pyx_t_33 = __pyx_v_agent_two;
-          if (unlikely(!__pyx_v_variables->population.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 190, __pyx_L1_error)}
+          if (unlikely(!__pyx_v_variables->population.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 173, __pyx_L1_error)}
           __pyx_t_34 = __pyx_v_agent_one;
           *((int *) ( /* dim=0 */ (__pyx_v_variables->population.data + __pyx_t_34 * __pyx_v_variables->population.strides[0]) )) = (*((int *) ( /* dim=0 */ (__pyx_v_variables->population.data + __pyx_t_33 * __pyx_v_variables->population.strides[0]) )));
 
-          /* "Cython_resources/simulation_instance_comms.pyx":189
+          /* "Cython_resources/simulation_instance.pyx":172
  *                 fitness_b = fitness[1]
  * 
  *                 if (rand()*1.0/RAND_MAX) < pow(1 + exp(fitness_a - fitness_b), -1):             # <<<<<<<<<<<<<<
@@ -4417,16 +4160,16 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
     }
   }
 
-  /* "Cython_resources/simulation_instance_comms.pyx":197
+  /* "Cython_resources/simulation_instance.pyx":180
  *             #         print("Gen: " + str(g))
  * 
  *     cdef double result = variables.get_average_coop_index()             # <<<<<<<<<<<<<<
  *     return result
  * 
  */
-  __pyx_v_result = ((struct __pyx_vtabstruct_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_variables->__pyx_vtab)->get_average_coop_index(__pyx_v_variables);
+  __pyx_v_result = ((struct __pyx_vtabstruct_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_variables->__pyx_vtab)->get_average_coop_index(__pyx_v_variables);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":198
+  /* "Cython_resources/simulation_instance.pyx":181
  * 
  *     cdef double result = variables.get_average_coop_index()
  *     return result             # <<<<<<<<<<<<<<
@@ -4436,7 +4179,7 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":149
+  /* "Cython_resources/simulation_instance.pyx":132
  * @cython.nonecheck(False)
  * @cython.wraparound(False)
  * cdef double simulate(int runs, int generations, int population_size, double mutation_rate,             # <<<<<<<<<<<<<<
@@ -4468,7 +4211,7 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_mutation_probs.rcbuffer->pybuffer);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_socialnorm.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_WriteUnraisable("Cython_resources.simulation_instance_comms.simulate", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
+  __Pyx_WriteUnraisable("Cython_resources.simulation_instance.simulate", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
   __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
@@ -4484,7 +4227,7 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":200
+/* "Cython_resources/simulation_instance.pyx":183
  *     return result
  * 
  * def run_instance(int runs, int generations, int population_size, double mutation_rate,             # <<<<<<<<<<<<<<
@@ -4493,10 +4236,10 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(in
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_1run_instance(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_16Cython_resources_25simulation_instance_comms_1run_instance = {"run_instance", (PyCFunction)__pyx_pw_16Cython_resources_25simulation_instance_comms_1run_instance, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_1run_instance(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  int __pyx_v_runs;
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_1run_instance(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_16Cython_resources_19simulation_instance_1run_instance = {"run_instance", (PyCFunction)__pyx_pw_16Cython_resources_19simulation_instance_1run_instance, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_1run_instance(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  CYTHON_UNUSED int __pyx_v_runs;
   int __pyx_v_generations;
   int __pyx_v_population_size;
   double __pyx_v_mutation_rate;
@@ -4541,61 +4284,61 @@ static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_1run_in
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_generations)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 1); __PYX_ERR(0, 200, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 1); __PYX_ERR(0, 183, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_population_size)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 2); __PYX_ERR(0, 200, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 2); __PYX_ERR(0, 183, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_mutation_rate)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 3); __PYX_ERR(0, 200, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 3); __PYX_ERR(0, 183, __pyx_L3_error)
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_execution_error)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 4); __PYX_ERR(0, 200, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 4); __PYX_ERR(0, 183, __pyx_L3_error)
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_reputation_assignment_error)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 5); __PYX_ERR(0, 200, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 5); __PYX_ERR(0, 183, __pyx_L3_error)
         }
         case  6:
         if (likely((values[6] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_private_assessment_error)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 6); __PYX_ERR(0, 200, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 6); __PYX_ERR(0, 183, __pyx_L3_error)
         }
         case  7:
         if (likely((values[7] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_reputation_update_rate)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 7); __PYX_ERR(0, 200, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 7); __PYX_ERR(0, 183, __pyx_L3_error)
         }
         case  8:
         if (likely((values[8] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_reputation_spread_prob)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 8); __PYX_ERR(0, 200, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 8); __PYX_ERR(0, 183, __pyx_L3_error)
         }
         case  9:
         if (likely((values[9] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_socialnorm)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 9); __PYX_ERR(0, 200, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 9); __PYX_ERR(0, 183, __pyx_L3_error)
         }
         case 10:
         if (likely((values[10] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_cost)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 10); __PYX_ERR(0, 200, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 10); __PYX_ERR(0, 183, __pyx_L3_error)
         }
         case 11:
         if (likely((values[11] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_benefit)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 11); __PYX_ERR(0, 200, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, 11); __PYX_ERR(0, 183, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "run_instance") < 0)) __PYX_ERR(0, 200, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "run_instance") < 0)) __PYX_ERR(0, 183, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 12) {
       goto __pyx_L5_argtuple_error;
@@ -4613,29 +4356,29 @@ static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_1run_in
       values[10] = PyTuple_GET_ITEM(__pyx_args, 10);
       values[11] = PyTuple_GET_ITEM(__pyx_args, 11);
     }
-    __pyx_v_runs = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_runs == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 200, __pyx_L3_error)
-    __pyx_v_generations = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_generations == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 200, __pyx_L3_error)
-    __pyx_v_population_size = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_population_size == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 200, __pyx_L3_error)
-    __pyx_v_mutation_rate = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_mutation_rate == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 200, __pyx_L3_error)
-    __pyx_v_execution_error = __pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_execution_error == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 201, __pyx_L3_error)
-    __pyx_v_reputation_assignment_error = __pyx_PyFloat_AsDouble(values[5]); if (unlikely((__pyx_v_reputation_assignment_error == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 201, __pyx_L3_error)
-    __pyx_v_private_assessment_error = __pyx_PyFloat_AsDouble(values[6]); if (unlikely((__pyx_v_private_assessment_error == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 202, __pyx_L3_error)
-    __pyx_v_reputation_update_rate = __pyx_PyFloat_AsDouble(values[7]); if (unlikely((__pyx_v_reputation_update_rate == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 202, __pyx_L3_error)
-    __pyx_v_reputation_spread_prob = __pyx_PyFloat_AsDouble(values[8]); if (unlikely((__pyx_v_reputation_spread_prob == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 203, __pyx_L3_error)
+    __pyx_v_runs = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_runs == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 183, __pyx_L3_error)
+    __pyx_v_generations = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_generations == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 183, __pyx_L3_error)
+    __pyx_v_population_size = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_population_size == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 183, __pyx_L3_error)
+    __pyx_v_mutation_rate = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_mutation_rate == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 183, __pyx_L3_error)
+    __pyx_v_execution_error = __pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_execution_error == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 184, __pyx_L3_error)
+    __pyx_v_reputation_assignment_error = __pyx_PyFloat_AsDouble(values[5]); if (unlikely((__pyx_v_reputation_assignment_error == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 184, __pyx_L3_error)
+    __pyx_v_private_assessment_error = __pyx_PyFloat_AsDouble(values[6]); if (unlikely((__pyx_v_private_assessment_error == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 185, __pyx_L3_error)
+    __pyx_v_reputation_update_rate = __pyx_PyFloat_AsDouble(values[7]); if (unlikely((__pyx_v_reputation_update_rate == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 185, __pyx_L3_error)
+    __pyx_v_reputation_spread_prob = __pyx_PyFloat_AsDouble(values[8]); if (unlikely((__pyx_v_reputation_spread_prob == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 186, __pyx_L3_error)
     __pyx_v_socialnorm = ((PyArrayObject *)values[9]);
-    __pyx_v_cost = __Pyx_PyInt_As_int(values[10]); if (unlikely((__pyx_v_cost == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 204, __pyx_L3_error)
-    __pyx_v_benefit = __Pyx_PyInt_As_int(values[11]); if (unlikely((__pyx_v_benefit == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 204, __pyx_L3_error)
+    __pyx_v_cost = __Pyx_PyInt_As_int(values[10]); if (unlikely((__pyx_v_cost == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 187, __pyx_L3_error)
+    __pyx_v_benefit = __Pyx_PyInt_As_int(values[11]); if (unlikely((__pyx_v_benefit == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 187, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 200, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("run_instance", 1, 12, 12, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 183, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.run_instance", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.run_instance", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_socialnorm), __pyx_ptype_5numpy_ndarray, 1, "socialnorm", 0))) __PYX_ERR(0, 204, __pyx_L1_error)
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_run_instance(__pyx_self, __pyx_v_runs, __pyx_v_generations, __pyx_v_population_size, __pyx_v_mutation_rate, __pyx_v_execution_error, __pyx_v_reputation_assignment_error, __pyx_v_private_assessment_error, __pyx_v_reputation_update_rate, __pyx_v_reputation_spread_prob, __pyx_v_socialnorm, __pyx_v_cost, __pyx_v_benefit);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_socialnorm), __pyx_ptype_5numpy_ndarray, 1, "socialnorm", 0))) __PYX_ERR(0, 187, __pyx_L1_error)
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_run_instance(__pyx_self, __pyx_v_runs, __pyx_v_generations, __pyx_v_population_size, __pyx_v_mutation_rate, __pyx_v_execution_error, __pyx_v_reputation_assignment_error, __pyx_v_private_assessment_error, __pyx_v_reputation_update_rate, __pyx_v_reputation_spread_prob, __pyx_v_socialnorm, __pyx_v_cost, __pyx_v_benefit);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4646,7 +4389,7 @@ static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_1run_in
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_run_instance(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_runs, int __pyx_v_generations, int __pyx_v_population_size, double __pyx_v_mutation_rate, double __pyx_v_execution_error, double __pyx_v_reputation_assignment_error, double __pyx_v_private_assessment_error, double __pyx_v_reputation_update_rate, double __pyx_v_reputation_spread_prob, PyArrayObject *__pyx_v_socialnorm, int __pyx_v_cost, int __pyx_v_benefit) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_run_instance(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED int __pyx_v_runs, int __pyx_v_generations, int __pyx_v_population_size, double __pyx_v_mutation_rate, double __pyx_v_execution_error, double __pyx_v_reputation_assignment_error, double __pyx_v_private_assessment_error, double __pyx_v_reputation_update_rate, double __pyx_v_reputation_spread_prob, PyArrayObject *__pyx_v_socialnorm, int __pyx_v_cost, int __pyx_v_benefit) {
   double __pyx_v_result;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_socialnorm;
   __Pyx_Buffer __pyx_pybuffer_socialnorm;
@@ -4662,20 +4405,20 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_run_ins
   __pyx_pybuffernd_socialnorm.rcbuffer = &__pyx_pybuffer_socialnorm;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_socialnorm.rcbuffer->pybuffer, (PyObject*)__pyx_v_socialnorm, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 200, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_socialnorm.rcbuffer->pybuffer, (PyObject*)__pyx_v_socialnorm, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_19simulation_instance_DINT_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 183, __pyx_L1_error)
   }
   __pyx_pybuffernd_socialnorm.diminfo[0].strides = __pyx_pybuffernd_socialnorm.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_socialnorm.diminfo[0].shape = __pyx_pybuffernd_socialnorm.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_socialnorm.diminfo[1].strides = __pyx_pybuffernd_socialnorm.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_socialnorm.diminfo[1].shape = __pyx_pybuffernd_socialnorm.rcbuffer->pybuffer.shape[1];
 
-  /* "Cython_resources/simulation_instance_comms.pyx":205
+  /* "Cython_resources/simulation_instance.pyx":188
  *                  double reputation_spread_prob,
  *                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
- *     cdef double result = simulate(runs, generations, population_size, mutation_rate,             # <<<<<<<<<<<<<<
+ *     cdef double result = simulate(1, generations, population_size, mutation_rate,             # <<<<<<<<<<<<<<
  *                                   execution_error, reputation_assignment_error,
  *                                   private_assessment_error, reputation_update_rate,
  */
-  __pyx_v_result = __pyx_f_16Cython_resources_25simulation_instance_comms_simulate(__pyx_v_runs, __pyx_v_generations, __pyx_v_population_size, __pyx_v_mutation_rate, __pyx_v_execution_error, __pyx_v_reputation_assignment_error, __pyx_v_private_assessment_error, __pyx_v_reputation_update_rate, __pyx_v_reputation_spread_prob, ((PyArrayObject *)__pyx_v_socialnorm), __pyx_v_cost, __pyx_v_benefit);
+  __pyx_v_result = __pyx_f_16Cython_resources_19simulation_instance_simulate(1, __pyx_v_generations, __pyx_v_population_size, __pyx_v_mutation_rate, __pyx_v_execution_error, __pyx_v_reputation_assignment_error, __pyx_v_private_assessment_error, __pyx_v_reputation_update_rate, __pyx_v_reputation_spread_prob, ((PyArrayObject *)__pyx_v_socialnorm), __pyx_v_cost, __pyx_v_benefit);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":210
+  /* "Cython_resources/simulation_instance.pyx":193
  *                                   reputation_spread_prob,
  *                                   socialnorm, cost, benefit)
  *     return [result, population_size, socialnorm]             # <<<<<<<<<<<<<<
@@ -4683,11 +4426,11 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_run_ins
  * @cython.boundscheck(False)
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_result); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_result); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_population_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_population_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyList_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyList_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
@@ -4702,7 +4445,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_run_ins
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":200
+  /* "Cython_resources/simulation_instance.pyx":183
  *     return result
  * 
  * def run_instance(int runs, int generations, int population_size, double mutation_rate,             # <<<<<<<<<<<<<<
@@ -4721,7 +4464,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_run_ins
     __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_socialnorm.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.run_instance", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.run_instance", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   goto __pyx_L2;
   __pyx_L0:;
@@ -4732,26 +4475,25 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_run_ins
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":243
+/* "Cython_resources/simulation_instance.pyx":223
  *     @cython.nonecheck(False)
  *     @cython.wraparound(False)
  *     def __cinit__(self, int runs, int generations, int population_size, double mutation_rate,             # <<<<<<<<<<<<<<
  *                  double execution_error, double reputation_assignment_error,
- *                  double min_private_assessment_error, double reputation_update_rate,
+ *                  double private_assessment_error, double reputation_update_rate,
  */
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   int __pyx_v_runs;
   int __pyx_v_generations;
   int __pyx_v_population_size;
   double __pyx_v_mutation_rate;
   double __pyx_v_execution_error;
   double __pyx_v_reputation_assignment_error;
-  double __pyx_v_min_private_assessment_error;
+  double __pyx_v_private_assessment_error;
   double __pyx_v_reputation_update_rate;
-  double __pyx_v_reputation_spread_prob;
   PyArrayObject *__pyx_v_socialnorm = 0;
   int __pyx_v_cost;
   int __pyx_v_benefit;
@@ -4759,13 +4501,12 @@ static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVar
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__ (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_runs,&__pyx_n_s_generations,&__pyx_n_s_population_size,&__pyx_n_s_mutation_rate,&__pyx_n_s_execution_error,&__pyx_n_s_reputation_assignment_error,&__pyx_n_s_min_private_assessment_error,&__pyx_n_s_reputation_update_rate,&__pyx_n_s_reputation_spread_prob,&__pyx_n_s_socialnorm,&__pyx_n_s_cost,&__pyx_n_s_benefit,0};
-    PyObject* values[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_runs,&__pyx_n_s_generations,&__pyx_n_s_population_size,&__pyx_n_s_mutation_rate,&__pyx_n_s_execution_error,&__pyx_n_s_reputation_assignment_error,&__pyx_n_s_private_assessment_error,&__pyx_n_s_reputation_update_rate,&__pyx_n_s_socialnorm,&__pyx_n_s_cost,&__pyx_n_s_benefit,0};
+    PyObject* values[11] = {0,0,0,0,0,0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
-        case 12: values[11] = PyTuple_GET_ITEM(__pyx_args, 11);
         case 11: values[10] = PyTuple_GET_ITEM(__pyx_args, 10);
         case 10: values[9] = PyTuple_GET_ITEM(__pyx_args, 9);
         case  9: values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
@@ -4788,63 +4529,58 @@ static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVar
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_generations)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 12, 12, 1); __PYX_ERR(0, 243, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 11, 11, 1); __PYX_ERR(0, 223, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_population_size)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 12, 12, 2); __PYX_ERR(0, 243, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 11, 11, 2); __PYX_ERR(0, 223, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_mutation_rate)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 12, 12, 3); __PYX_ERR(0, 243, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 11, 11, 3); __PYX_ERR(0, 223, __pyx_L3_error)
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_execution_error)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 12, 12, 4); __PYX_ERR(0, 243, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 11, 11, 4); __PYX_ERR(0, 223, __pyx_L3_error)
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_reputation_assignment_error)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 12, 12, 5); __PYX_ERR(0, 243, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 11, 11, 5); __PYX_ERR(0, 223, __pyx_L3_error)
         }
         case  6:
-        if (likely((values[6] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_min_private_assessment_error)) != 0)) kw_args--;
+        if (likely((values[6] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_private_assessment_error)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 12, 12, 6); __PYX_ERR(0, 243, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 11, 11, 6); __PYX_ERR(0, 223, __pyx_L3_error)
         }
         case  7:
         if (likely((values[7] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_reputation_update_rate)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 12, 12, 7); __PYX_ERR(0, 243, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 11, 11, 7); __PYX_ERR(0, 223, __pyx_L3_error)
         }
         case  8:
-        if (likely((values[8] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_reputation_spread_prob)) != 0)) kw_args--;
+        if (likely((values[8] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_socialnorm)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 12, 12, 8); __PYX_ERR(0, 243, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 11, 11, 8); __PYX_ERR(0, 223, __pyx_L3_error)
         }
         case  9:
-        if (likely((values[9] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_socialnorm)) != 0)) kw_args--;
+        if (likely((values[9] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_cost)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 12, 12, 9); __PYX_ERR(0, 243, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 11, 11, 9); __PYX_ERR(0, 223, __pyx_L3_error)
         }
         case 10:
-        if (likely((values[10] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_cost)) != 0)) kw_args--;
+        if (likely((values[10] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_benefit)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 12, 12, 10); __PYX_ERR(0, 243, __pyx_L3_error)
-        }
-        case 11:
-        if (likely((values[11] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_benefit)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 12, 12, 11); __PYX_ERR(0, 243, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 11, 11, 10); __PYX_ERR(0, 223, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 243, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 223, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 12) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 11) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -4858,31 +4594,29 @@ static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVar
       values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
       values[9] = PyTuple_GET_ITEM(__pyx_args, 9);
       values[10] = PyTuple_GET_ITEM(__pyx_args, 10);
-      values[11] = PyTuple_GET_ITEM(__pyx_args, 11);
     }
-    __pyx_v_runs = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_runs == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 243, __pyx_L3_error)
-    __pyx_v_generations = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_generations == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 243, __pyx_L3_error)
-    __pyx_v_population_size = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_population_size == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 243, __pyx_L3_error)
-    __pyx_v_mutation_rate = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_mutation_rate == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 243, __pyx_L3_error)
-    __pyx_v_execution_error = __pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_execution_error == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 244, __pyx_L3_error)
-    __pyx_v_reputation_assignment_error = __pyx_PyFloat_AsDouble(values[5]); if (unlikely((__pyx_v_reputation_assignment_error == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 244, __pyx_L3_error)
-    __pyx_v_min_private_assessment_error = __pyx_PyFloat_AsDouble(values[6]); if (unlikely((__pyx_v_min_private_assessment_error == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 245, __pyx_L3_error)
-    __pyx_v_reputation_update_rate = __pyx_PyFloat_AsDouble(values[7]); if (unlikely((__pyx_v_reputation_update_rate == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 245, __pyx_L3_error)
-    __pyx_v_reputation_spread_prob = __pyx_PyFloat_AsDouble(values[8]); if (unlikely((__pyx_v_reputation_spread_prob == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 246, __pyx_L3_error)
-    __pyx_v_socialnorm = ((PyArrayObject *)values[9]);
-    __pyx_v_cost = __Pyx_PyInt_As_int(values[10]); if (unlikely((__pyx_v_cost == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 247, __pyx_L3_error)
-    __pyx_v_benefit = __Pyx_PyInt_As_int(values[11]); if (unlikely((__pyx_v_benefit == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 247, __pyx_L3_error)
+    __pyx_v_runs = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_runs == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 223, __pyx_L3_error)
+    __pyx_v_generations = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_generations == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 223, __pyx_L3_error)
+    __pyx_v_population_size = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_population_size == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 223, __pyx_L3_error)
+    __pyx_v_mutation_rate = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_mutation_rate == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 223, __pyx_L3_error)
+    __pyx_v_execution_error = __pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_execution_error == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 224, __pyx_L3_error)
+    __pyx_v_reputation_assignment_error = __pyx_PyFloat_AsDouble(values[5]); if (unlikely((__pyx_v_reputation_assignment_error == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 224, __pyx_L3_error)
+    __pyx_v_private_assessment_error = __pyx_PyFloat_AsDouble(values[6]); if (unlikely((__pyx_v_private_assessment_error == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 225, __pyx_L3_error)
+    __pyx_v_reputation_update_rate = __pyx_PyFloat_AsDouble(values[7]); if (unlikely((__pyx_v_reputation_update_rate == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 225, __pyx_L3_error)
+    __pyx_v_socialnorm = ((PyArrayObject *)values[8]);
+    __pyx_v_cost = __Pyx_PyInt_As_int(values[9]); if (unlikely((__pyx_v_cost == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 226, __pyx_L3_error)
+    __pyx_v_benefit = __Pyx_PyInt_As_int(values[10]); if (unlikely((__pyx_v_benefit == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 226, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 12, 12, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 243, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 11, 11, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 223, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_socialnorm), __pyx_ptype_5numpy_ndarray, 1, "socialnorm", 0))) __PYX_ERR(0, 247, __pyx_L1_error)
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables___cinit__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), __pyx_v_runs, __pyx_v_generations, __pyx_v_population_size, __pyx_v_mutation_rate, __pyx_v_execution_error, __pyx_v_reputation_assignment_error, __pyx_v_min_private_assessment_error, __pyx_v_reputation_update_rate, __pyx_v_reputation_spread_prob, __pyx_v_socialnorm, __pyx_v_cost, __pyx_v_benefit);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_socialnorm), __pyx_ptype_5numpy_ndarray, 1, "socialnorm", 0))) __PYX_ERR(0, 226, __pyx_L1_error)
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables___cinit__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), __pyx_v_runs, __pyx_v_generations, __pyx_v_population_size, __pyx_v_mutation_rate, __pyx_v_execution_error, __pyx_v_reputation_assignment_error, __pyx_v_private_assessment_error, __pyx_v_reputation_update_rate, __pyx_v_socialnorm, __pyx_v_cost, __pyx_v_benefit);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4893,7 +4627,7 @@ static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVar
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables___cinit__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, int __pyx_v_runs, int __pyx_v_generations, int __pyx_v_population_size, double __pyx_v_mutation_rate, double __pyx_v_execution_error, double __pyx_v_reputation_assignment_error, double __pyx_v_min_private_assessment_error, double __pyx_v_reputation_update_rate, double __pyx_v_reputation_spread_prob, PyArrayObject *__pyx_v_socialnorm, int __pyx_v_cost, int __pyx_v_benefit) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables___cinit__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, int __pyx_v_runs, int __pyx_v_generations, int __pyx_v_population_size, double __pyx_v_mutation_rate, double __pyx_v_execution_error, double __pyx_v_reputation_assignment_error, double __pyx_v_private_assessment_error, double __pyx_v_reputation_update_rate, PyArrayObject *__pyx_v_socialnorm, int __pyx_v_cost, int __pyx_v_benefit) {
   __Pyx_LocalBuf_ND __pyx_pybuffernd_socialnorm;
   __Pyx_Buffer __pyx_pybuffer_socialnorm;
   int __pyx_r;
@@ -4904,11 +4638,9 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
   __Pyx_memviewslice __pyx_t_6 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  __Pyx_memviewslice __pyx_t_7 = { 0, 0, { 0 }, { 0 }, { 0 } };
+  PyObject *__pyx_t_7 = NULL;
   PyObject *__pyx_t_8 = NULL;
   PyObject *__pyx_t_9 = NULL;
-  double __pyx_t_10;
-  PyObject *__pyx_t_11 = NULL;
   __Pyx_RefNannySetupContext("__cinit__", 0);
   __pyx_pybuffer_socialnorm.pybuffer.buf = NULL;
   __pyx_pybuffer_socialnorm.refcount = 0;
@@ -4916,12 +4648,12 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
   __pyx_pybuffernd_socialnorm.rcbuffer = &__pyx_pybuffer_socialnorm;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_socialnorm.rcbuffer->pybuffer, (PyObject*)__pyx_v_socialnorm, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_25simulation_instance_comms_DINT_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 243, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_socialnorm.rcbuffer->pybuffer, (PyObject*)__pyx_v_socialnorm, &__Pyx_TypeInfo_nn___pyx_t_16Cython_resources_19simulation_instance_DINT_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 223, __pyx_L1_error)
   }
   __pyx_pybuffernd_socialnorm.diminfo[0].strides = __pyx_pybuffernd_socialnorm.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_socialnorm.diminfo[0].shape = __pyx_pybuffernd_socialnorm.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_socialnorm.diminfo[1].strides = __pyx_pybuffernd_socialnorm.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_socialnorm.diminfo[1].shape = __pyx_pybuffernd_socialnorm.rcbuffer->pybuffer.shape[1];
 
-  /* "Cython_resources/simulation_instance_comms.pyx":248
- *                  double reputation_spread_prob,
+  /* "Cython_resources/simulation_instance.pyx":227
+ *                  double private_assessment_error, double reputation_update_rate,
  *                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
  *         self.runs = runs             # <<<<<<<<<<<<<<
  *         self.generations = generations
@@ -4929,7 +4661,7 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
   __pyx_v_self->runs = __pyx_v_runs;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":249
+  /* "Cython_resources/simulation_instance.pyx":228
  *                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
  *         self.runs = runs
  *         self.generations = generations             # <<<<<<<<<<<<<<
@@ -4938,7 +4670,7 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
   __pyx_v_self->generations = __pyx_v_generations;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":250
+  /* "Cython_resources/simulation_instance.pyx":229
  *         self.runs = runs
  *         self.generations = generations
  *         self.population_size = population_size             # <<<<<<<<<<<<<<
@@ -4947,7 +4679,7 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
   __pyx_v_self->population_size = __pyx_v_population_size;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":251
+  /* "Cython_resources/simulation_instance.pyx":230
  *         self.generations = generations
  *         self.population_size = population_size
  *         self.mutation_rate = mutation_rate             # <<<<<<<<<<<<<<
@@ -4956,66 +4688,57 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
   __pyx_v_self->mutation_rate = __pyx_v_mutation_rate;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":252
+  /* "Cython_resources/simulation_instance.pyx":231
  *         self.population_size = population_size
  *         self.mutation_rate = mutation_rate
  *         self.execution_error = execution_error             # <<<<<<<<<<<<<<
  *         self.reputation_assignment_error = reputation_assignment_error
- *         self.min_private_assessment_error = min_private_assessment_error
+ *         self.private_assessment_error = private_assessment_error
  */
   __pyx_v_self->execution_error = __pyx_v_execution_error;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":253
+  /* "Cython_resources/simulation_instance.pyx":232
  *         self.mutation_rate = mutation_rate
  *         self.execution_error = execution_error
  *         self.reputation_assignment_error = reputation_assignment_error             # <<<<<<<<<<<<<<
- *         self.min_private_assessment_error = min_private_assessment_error
+ *         self.private_assessment_error = private_assessment_error
  *         self.reputation_update_rate = reputation_update_rate
  */
   __pyx_v_self->reputation_assignment_error = __pyx_v_reputation_assignment_error;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":254
+  /* "Cython_resources/simulation_instance.pyx":233
  *         self.execution_error = execution_error
  *         self.reputation_assignment_error = reputation_assignment_error
- *         self.min_private_assessment_error = min_private_assessment_error             # <<<<<<<<<<<<<<
+ *         self.private_assessment_error = private_assessment_error             # <<<<<<<<<<<<<<
  *         self.reputation_update_rate = reputation_update_rate
- *         self.reputation_spread_prob = reputation_spread_prob
- */
-  __pyx_v_self->min_private_assessment_error = __pyx_v_min_private_assessment_error;
-
-  /* "Cython_resources/simulation_instance_comms.pyx":255
- *         self.reputation_assignment_error = reputation_assignment_error
- *         self.min_private_assessment_error = min_private_assessment_error
- *         self.reputation_update_rate = reputation_update_rate             # <<<<<<<<<<<<<<
- *         self.reputation_spread_prob = reputation_spread_prob
  *         self.socialnorm = socialnorm  # matrix determining the reputation dynamic with
  */
-  __pyx_v_self->reputation_update_rate = __pyx_v_reputation_update_rate;
+  __pyx_v_self->private_assessment_error = __pyx_v_private_assessment_error;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":256
- *         self.min_private_assessment_error = min_private_assessment_error
- *         self.reputation_update_rate = reputation_update_rate
- *         self.reputation_spread_prob = reputation_spread_prob             # <<<<<<<<<<<<<<
+  /* "Cython_resources/simulation_instance.pyx":234
+ *         self.reputation_assignment_error = reputation_assignment_error
+ *         self.private_assessment_error = private_assessment_error
+ *         self.reputation_update_rate = reputation_update_rate             # <<<<<<<<<<<<<<
  *         self.socialnorm = socialnorm  # matrix determining the reputation dynamic with
  *         # regard to the action taken and the reputation
  */
-  __pyx_v_self->reputation_spread_prob = __pyx_v_reputation_spread_prob;
+  __pyx_v_self->reputation_update_rate = __pyx_v_reputation_update_rate;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":257
+  /* "Cython_resources/simulation_instance.pyx":235
+ *         self.private_assessment_error = private_assessment_error
  *         self.reputation_update_rate = reputation_update_rate
- *         self.reputation_spread_prob = reputation_spread_prob
  *         self.socialnorm = socialnorm  # matrix determining the reputation dynamic with             # <<<<<<<<<<<<<<
  *         # regard to the action taken and the reputation
  *         # of the other agent
  */
   __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(((PyObject *)__pyx_v_socialnorm));
-  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 257, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 235, __pyx_L1_error)
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->socialnorm, 0);
   __pyx_v_self->socialnorm = __pyx_t_1;
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":260
+  /* "Cython_resources/simulation_instance.pyx":238
  *         # regard to the action taken and the reputation
  *         # of the other agent
  *         self.cost = cost  # cost defining the payoff matrix cost             # <<<<<<<<<<<<<<
@@ -5024,7 +4747,7 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
   __pyx_v_self->cost = __pyx_v_cost;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":261
+  /* "Cython_resources/simulation_instance.pyx":239
  *         # of the other agent
  *         self.cost = cost  # cost defining the payoff matrix cost
  *         self.benefit = benefit  # benefit defined as the payoff matrix benefit             # <<<<<<<<<<<<<<
@@ -5033,326 +4756,207 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
   __pyx_v_self->benefit = __pyx_v_benefit;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":264
+  /* "Cython_resources/simulation_instance.pyx":242
  * 
  *         # Population and reputation arrays
  *         self.population = np.zeros(population_size, dtype=DINT)  # vector of all individual strategies             # <<<<<<<<<<<<<<
  *         # population[k] : strategy of individual k
  *         # population[k] = 0, 1, 2 or 3
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_population_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_population_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DINT); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_DINT); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 264, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_t_5);
-  if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 264, __pyx_L1_error)
+  if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->population, 0);
   __pyx_v_self->population = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":267
+  /* "Cython_resources/simulation_instance.pyx":245
  *         # population[k] : strategy of individual k
  *         # population[k] = 0, 1, 2 or 3
  *         self.reputation = np.zeros(population_size, dtype=DINT)  # vector of all individual public reputations             # <<<<<<<<<<<<<<
  *         # reputation[k] : public reputation of individual k
  *         # reputation[k] = 0 or 1
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_population_size); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_population_size); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_DINT); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_DINT); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 267, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_t_3);
-  if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 267, __pyx_L1_error)
+  if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->reputation, 0);
   __pyx_v_self->reputation = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":270
+  /* "Cython_resources/simulation_instance.pyx":248
  *         # reputation[k] : public reputation of individual k
  *         # reputation[k] = 0 or 1
- *         self.private_assessment_error = np.ones(population_size, dtype=DDOUBLE)  # equivalent to assessment_error = 0.5 for all             # <<<<<<<<<<<<<<
- *         self.private_assessment_error_max_t = np.log(population_size*(1.0 - 2.0*min_private_assessment_error))/np.log(1.0 + reputation_spread_prob)
- *         self.strategies = np.array([[0, 0],
- */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 270, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_ones); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 270, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_population_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 270, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 270, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_3);
-  PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3);
-  __pyx_t_3 = 0;
-  __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 270, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_DDOUBLE); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_2) < 0) __PYX_ERR(0, 270, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_t_2);
-  if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 270, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __PYX_XDEC_MEMVIEW(&__pyx_v_self->private_assessment_error, 0);
-  __pyx_v_self->private_assessment_error = __pyx_t_7;
-  __pyx_t_7.memview = NULL;
-  __pyx_t_7.data = NULL;
-
-  /* "Cython_resources/simulation_instance_comms.pyx":271
- *         # reputation[k] = 0 or 1
- *         self.private_assessment_error = np.ones(population_size, dtype=DDOUBLE)  # equivalent to assessment_error = 0.5 for all
- *         self.private_assessment_error_max_t = np.log(population_size*(1.0 - 2.0*min_private_assessment_error))/np.log(1.0 + reputation_spread_prob)             # <<<<<<<<<<<<<<
- *         self.strategies = np.array([[0, 0],
- *                                     [1, 0],
- */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_log); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyFloat_FromDouble((__pyx_v_population_size * (1.0 - (2.0 * __pyx_v_min_private_assessment_error)))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_5)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_5);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-    }
-  }
-  if (!__pyx_t_5) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 271, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_GOTREF(__pyx_t_2);
-  } else {
-    __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 271, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5); __pyx_t_5 = NULL;
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_3);
-    __pyx_t_3 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 271, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 271, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_log); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = PyFloat_FromDouble((1.0 + __pyx_v_reputation_spread_prob)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 271, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_5 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_5)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_5);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  if (!__pyx_t_5) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __Pyx_GOTREF(__pyx_t_4);
-  } else {
-    __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 271, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_9);
-    __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_5); __pyx_t_5 = NULL;
-    __Pyx_GIVEREF(__pyx_t_8);
-    PyTuple_SET_ITEM(__pyx_t_9, 0+1, __pyx_t_8);
-    __pyx_t_8 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 271, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_self->private_assessment_error_max_t = __pyx_t_10;
-
-  /* "Cython_resources/simulation_instance_comms.pyx":272
- *         self.private_assessment_error = np.ones(population_size, dtype=DDOUBLE)  # equivalent to assessment_error = 0.5 for all
- *         self.private_assessment_error_max_t = np.log(population_size*(1.0 - 2.0*min_private_assessment_error))/np.log(1.0 + reputation_spread_prob)
  *         self.strategies = np.array([[0, 0],             # <<<<<<<<<<<<<<
  *                                     [1, 0],
  *                                     [0, 1],
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_array); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 248, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 272, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyList_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 272, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = PyList_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
-  PyList_SET_ITEM(__pyx_t_4, 0, __pyx_int_0);
+  PyList_SET_ITEM(__pyx_t_5, 0, __pyx_int_0);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
-  PyList_SET_ITEM(__pyx_t_4, 1, __pyx_int_0);
+  PyList_SET_ITEM(__pyx_t_5, 1, __pyx_int_0);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":273
- *         self.private_assessment_error_max_t = np.log(population_size*(1.0 - 2.0*min_private_assessment_error))/np.log(1.0 + reputation_spread_prob)
+  /* "Cython_resources/simulation_instance.pyx":249
+ *         # reputation[k] = 0 or 1
  *         self.strategies = np.array([[0, 0],
  *                                     [1, 0],             # <<<<<<<<<<<<<<
  *                                     [0, 1],
  *                                     [1, 1]])
  */
-  __pyx_t_9 = PyList_New(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 273, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_9);
+  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_int_1);
   __Pyx_GIVEREF(__pyx_int_1);
-  PyList_SET_ITEM(__pyx_t_9, 0, __pyx_int_1);
+  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_int_1);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
-  PyList_SET_ITEM(__pyx_t_9, 1, __pyx_int_0);
+  PyList_SET_ITEM(__pyx_t_2, 1, __pyx_int_0);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":274
+  /* "Cython_resources/simulation_instance.pyx":250
  *         self.strategies = np.array([[0, 0],
  *                                     [1, 0],
  *                                     [0, 1],             # <<<<<<<<<<<<<<
  *                                     [1, 1]])
  * 
  */
-  __pyx_t_8 = PyList_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 274, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_t_7 = PyList_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 250, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
-  PyList_SET_ITEM(__pyx_t_8, 0, __pyx_int_0);
+  PyList_SET_ITEM(__pyx_t_7, 0, __pyx_int_0);
   __Pyx_INCREF(__pyx_int_1);
   __Pyx_GIVEREF(__pyx_int_1);
-  PyList_SET_ITEM(__pyx_t_8, 1, __pyx_int_1);
+  PyList_SET_ITEM(__pyx_t_7, 1, __pyx_int_1);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":275
+  /* "Cython_resources/simulation_instance.pyx":251
  *                                     [1, 0],
  *                                     [0, 1],
  *                                     [1, 1]])             # <<<<<<<<<<<<<<
  * 
  *         # Cooperation Tracking
  */
-  __pyx_t_5 = PyList_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 275, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_8 = PyList_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 251, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
   __Pyx_INCREF(__pyx_int_1);
   __Pyx_GIVEREF(__pyx_int_1);
-  PyList_SET_ITEM(__pyx_t_5, 0, __pyx_int_1);
+  PyList_SET_ITEM(__pyx_t_8, 0, __pyx_int_1);
   __Pyx_INCREF(__pyx_int_1);
   __Pyx_GIVEREF(__pyx_int_1);
-  PyList_SET_ITEM(__pyx_t_5, 1, __pyx_int_1);
+  PyList_SET_ITEM(__pyx_t_8, 1, __pyx_int_1);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":272
- *         self.private_assessment_error = np.ones(population_size, dtype=DDOUBLE)  # equivalent to assessment_error = 0.5 for all
- *         self.private_assessment_error_max_t = np.log(population_size*(1.0 - 2.0*min_private_assessment_error))/np.log(1.0 + reputation_spread_prob)
+  /* "Cython_resources/simulation_instance.pyx":248
+ *         # reputation[k] : public reputation of individual k
+ *         # reputation[k] = 0 or 1
  *         self.strategies = np.array([[0, 0],             # <<<<<<<<<<<<<<
  *                                     [1, 0],
  *                                     [0, 1],
  */
-  __pyx_t_11 = PyList_New(4); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 272, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_11);
-  __Pyx_GIVEREF(__pyx_t_4);
-  PyList_SET_ITEM(__pyx_t_11, 0, __pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_9);
-  PyList_SET_ITEM(__pyx_t_11, 1, __pyx_t_9);
-  __Pyx_GIVEREF(__pyx_t_8);
-  PyList_SET_ITEM(__pyx_t_11, 2, __pyx_t_8);
+  __pyx_t_9 = PyList_New(4); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_9);
   __Pyx_GIVEREF(__pyx_t_5);
-  PyList_SET_ITEM(__pyx_t_11, 3, __pyx_t_5);
-  __pyx_t_4 = 0;
-  __pyx_t_9 = 0;
-  __pyx_t_8 = 0;
+  PyList_SET_ITEM(__pyx_t_9, 0, __pyx_t_5);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyList_SET_ITEM(__pyx_t_9, 1, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_7);
+  PyList_SET_ITEM(__pyx_t_9, 2, __pyx_t_7);
+  __Pyx_GIVEREF(__pyx_t_8);
+  PyList_SET_ITEM(__pyx_t_9, 3, __pyx_t_8);
   __pyx_t_5 = 0;
-  __pyx_t_5 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_5)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_5);
+  __pyx_t_2 = 0;
+  __pyx_t_7 = 0;
+  __pyx_t_8 = 0;
+  __pyx_t_8 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_8)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_8);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
     }
   }
-  if (!__pyx_t_5) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_11); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 272, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+  if (!__pyx_t_8) {
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_GOTREF(__pyx_t_3);
   } else {
-    __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 272, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5); __pyx_t_5 = NULL;
-    __Pyx_GIVEREF(__pyx_t_11);
-    PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_11);
-    __pyx_t_11 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_8, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 272, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 248, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_8); __pyx_t_8 = NULL;
+    __Pyx_GIVEREF(__pyx_t_9);
+    PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_9);
+    __pyx_t_9 = 0;
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(__pyx_t_3);
-  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 272, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 248, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->strategies, 0);
   __pyx_v_self->strategies = __pyx_t_1;
   __pyx_t_1.memview = NULL;
   __pyx_t_1.data = NULL;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":278
+  /* "Cython_resources/simulation_instance.pyx":254
  * 
  *         # Cooperation Tracking
  *         self.coop_index_sum = 0.0             # <<<<<<<<<<<<<<
@@ -5361,7 +4965,7 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
   __pyx_v_self->coop_index_sum = 0.0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":279
+  /* "Cython_resources/simulation_instance.pyx":255
  *         # Cooperation Tracking
  *         self.coop_index_sum = 0.0
  *         self.interaction_count = 0.0             # <<<<<<<<<<<<<<
@@ -5370,7 +4974,7 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
   __pyx_v_self->interaction_count = 0.0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":280
+  /* "Cython_resources/simulation_instance.pyx":256
  *         self.coop_index_sum = 0.0
  *         self.interaction_count = 0.0
  *         self.track_coop = 0             # <<<<<<<<<<<<<<
@@ -5379,12 +4983,12 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
   __pyx_v_self->track_coop = 0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":243
+  /* "Cython_resources/simulation_instance.pyx":223
  *     @cython.nonecheck(False)
  *     @cython.wraparound(False)
  *     def __cinit__(self, int runs, int generations, int population_size, double mutation_rate,             # <<<<<<<<<<<<<<
  *                  double execution_error, double reputation_assignment_error,
- *                  double min_private_assessment_error, double reputation_update_rate,
+ *                  double private_assessment_error, double reputation_update_rate,
  */
 
   /* function exit code */
@@ -5397,17 +5001,16 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
-  __PYX_XDEC_MEMVIEW(&__pyx_t_7, 1);
+  __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_XDECREF(__pyx_t_11);
   { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
     __Pyx_PyThreadState_declare
     __Pyx_PyThreadState_assign
     __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_socialnorm.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   goto __pyx_L2;
   __pyx_L0:;
@@ -5417,7 +5020,7 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":285
+/* "Cython_resources/simulation_instance.pyx":261
  *     @cython.nonecheck(False)
  *     @cython.wraparound(False)
  *     cdef void increment_coop_index(self, double coop_index):             # <<<<<<<<<<<<<<
@@ -5425,11 +5028,11 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  *         self.interaction_count += 1.0
  */
 
-static void __pyx_f_16Cython_resources_25simulation_instance_comms_17InstanceVariables_increment_coop_index(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, double __pyx_v_coop_index) {
+static void __pyx_f_16Cython_resources_19simulation_instance_17InstanceVariables_increment_coop_index(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, double __pyx_v_coop_index) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("increment_coop_index", 0);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":286
+  /* "Cython_resources/simulation_instance.pyx":262
  *     @cython.wraparound(False)
  *     cdef void increment_coop_index(self, double coop_index):
  *         self.coop_index_sum += coop_index             # <<<<<<<<<<<<<<
@@ -5438,7 +5041,7 @@ static void __pyx_f_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
   __pyx_v_self->coop_index_sum = (__pyx_v_self->coop_index_sum + __pyx_v_coop_index);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":287
+  /* "Cython_resources/simulation_instance.pyx":263
  *     cdef void increment_coop_index(self, double coop_index):
  *         self.coop_index_sum += coop_index
  *         self.interaction_count += 1.0             # <<<<<<<<<<<<<<
@@ -5447,7 +5050,7 @@ static void __pyx_f_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
   __pyx_v_self->interaction_count = (__pyx_v_self->interaction_count + 1.0);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":285
+  /* "Cython_resources/simulation_instance.pyx":261
  *     @cython.nonecheck(False)
  *     @cython.wraparound(False)
  *     cdef void increment_coop_index(self, double coop_index):             # <<<<<<<<<<<<<<
@@ -5459,31 +5062,31 @@ static void __pyx_f_16Cython_resources_25simulation_instance_comms_17InstanceVar
   __Pyx_RefNannyFinishContext();
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":292
+/* "Cython_resources/simulation_instance.pyx":268
  *     @cython.nonecheck(False)
  *     @cython.wraparound(False)
  *     cdef double get_average_coop_index(self):             # <<<<<<<<<<<<<<
  *         return self.coop_index_sum/self.interaction_count
  */
 
-static double __pyx_f_16Cython_resources_25simulation_instance_comms_17InstanceVariables_get_average_coop_index(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static double __pyx_f_16Cython_resources_19simulation_instance_17InstanceVariables_get_average_coop_index(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   double __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_average_coop_index", 0);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":293
+  /* "Cython_resources/simulation_instance.pyx":269
  *     @cython.wraparound(False)
  *     cdef double get_average_coop_index(self):
  *         return self.coop_index_sum/self.interaction_count             # <<<<<<<<<<<<<<
  */
   if (unlikely(__pyx_v_self->interaction_count == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 293, __pyx_L1_error)
+    __PYX_ERR(0, 269, __pyx_L1_error)
   }
   __pyx_r = (__pyx_v_self->coop_index_sum / __pyx_v_self->interaction_count);
   goto __pyx_L0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":292
+  /* "Cython_resources/simulation_instance.pyx":268
  *     @cython.nonecheck(False)
  *     @cython.wraparound(False)
  *     cdef double get_average_coop_index(self):             # <<<<<<<<<<<<<<
@@ -5492,14 +5095,14 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_17InstanceV
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_WriteUnraisable("Cython_resources.simulation_instance_comms.InstanceVariables.get_average_coop_index", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
+  __Pyx_WriteUnraisable("Cython_resources.simulation_instance.InstanceVariables.get_average_coop_index", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":216
+/* "Cython_resources/simulation_instance.pyx":199
  * @cython.wraparound(False)
  * cdef class InstanceVariables:
  *     cdef public int runs             # <<<<<<<<<<<<<<
@@ -5508,25 +5111,25 @@ static double __pyx_f_16Cython_resources_25simulation_instance_comms_17InstanceV
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4runs_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4runs_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_4runs_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_4runs_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4runs___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_4runs___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4runs___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_4runs___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->runs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->runs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 199, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5535,7 +5138,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.runs.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.runs.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5544,38 +5147,38 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4runs_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4runs_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_4runs_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_4runs_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4runs_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_4runs_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4runs_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_4runs_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 199, __pyx_L1_error)
   __pyx_v_self->runs = __pyx_t_1;
 
   /* function exit code */
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.runs.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.runs.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":217
+/* "Cython_resources/simulation_instance.pyx":200
  * cdef class InstanceVariables:
  *     cdef public int runs
  *     cdef public int generations             # <<<<<<<<<<<<<<
@@ -5584,25 +5187,25 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_11generations_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_11generations_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_11generations_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_11generations_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_11generations___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_11generations___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_11generations___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_11generations___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->generations); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->generations); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5611,7 +5214,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.generations.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.generations.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5620,38 +5223,38 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_11generations_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_11generations_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_11generations_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_11generations_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_11generations_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_11generations_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_11generations_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_11generations_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 200, __pyx_L1_error)
   __pyx_v_self->generations = __pyx_t_1;
 
   /* function exit code */
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.generations.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.generations.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":218
+/* "Cython_resources/simulation_instance.pyx":201
  *     cdef public int runs
  *     cdef public int generations
  *     cdef public int population_size             # <<<<<<<<<<<<<<
@@ -5660,25 +5263,25 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15population_size_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15population_size_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_15population_size_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_15population_size_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15population_size___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_15population_size___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15population_size___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_15population_size___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->population_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->population_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5687,7 +5290,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.population_size.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.population_size.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5696,38 +5299,38 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15population_size_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15population_size_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_15population_size_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_15population_size_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15population_size_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_15population_size_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15population_size_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_15population_size_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 201, __pyx_L1_error)
   __pyx_v_self->population_size = __pyx_t_1;
 
   /* function exit code */
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.population_size.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.population_size.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":219
+/* "Cython_resources/simulation_instance.pyx":202
  *     cdef public int generations
  *     cdef public int population_size
  *     cdef public double mutation_rate,             # <<<<<<<<<<<<<<
@@ -5736,25 +5339,25 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_13mutation_rate_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_13mutation_rate_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_13mutation_rate_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_13mutation_rate_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_13mutation_rate___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_13mutation_rate___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_13mutation_rate___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_13mutation_rate___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->mutation_rate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->mutation_rate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5763,7 +5366,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.mutation_rate.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.mutation_rate.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5772,65 +5375,65 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_13mutation_rate_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_13mutation_rate_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_13mutation_rate_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_13mutation_rate_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_13mutation_rate_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_13mutation_rate_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_13mutation_rate_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_13mutation_rate_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 202, __pyx_L1_error)
   __pyx_v_self->mutation_rate = __pyx_t_1;
 
   /* function exit code */
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.mutation_rate.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.mutation_rate.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":220
+/* "Cython_resources/simulation_instance.pyx":203
  *     cdef public int population_size
  *     cdef public double mutation_rate,
  *     cdef public double execution_error             # <<<<<<<<<<<<<<
  *     cdef public double reputation_assignment_error
- *     cdef public double[:] private_assessment_error
+ *     cdef public double private_assessment_error
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15execution_error_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15execution_error_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_15execution_error_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_15execution_error_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15execution_error___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_15execution_error___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15execution_error___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_15execution_error___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->execution_error); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->execution_error); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5839,7 +5442,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.execution_error.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.execution_error.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5848,65 +5451,65 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15execution_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15execution_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_15execution_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_15execution_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15execution_error_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_15execution_error_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15execution_error_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_15execution_error_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 203, __pyx_L1_error)
   __pyx_v_self->execution_error = __pyx_t_1;
 
   /* function exit code */
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.execution_error.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.execution_error.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":221
+/* "Cython_resources/simulation_instance.pyx":204
  *     cdef public double mutation_rate,
  *     cdef public double execution_error
  *     cdef public double reputation_assignment_error             # <<<<<<<<<<<<<<
- *     cdef public double[:] private_assessment_error
- *     cdef public double private_assessment_error_max_t
+ *     cdef public double private_assessment_error
+ *     cdef public double reputation_update_rate
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_27reputation_assignment_error_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_27reputation_assignment_error_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_27reputation_assignment_error_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_27reputation_assignment_error_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_27reputation_assignment_error___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_27reputation_assignment_error___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_27reputation_assignment_error___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_27reputation_assignment_error___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->reputation_assignment_error); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->reputation_assignment_error); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5915,7 +5518,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.reputation_assignment_error.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.reputation_assignment_error.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5924,299 +5527,65 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_27reputation_assignment_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_27reputation_assignment_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_27reputation_assignment_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_27reputation_assignment_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_27reputation_assignment_error_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_27reputation_assignment_error_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_27reputation_assignment_error_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_27reputation_assignment_error_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 204, __pyx_L1_error)
   __pyx_v_self->reputation_assignment_error = __pyx_t_1;
 
   /* function exit code */
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.reputation_assignment_error.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.reputation_assignment_error.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":222
+/* "Cython_resources/simulation_instance.pyx":205
  *     cdef public double execution_error
  *     cdef public double reputation_assignment_error
- *     cdef public double[:] private_assessment_error             # <<<<<<<<<<<<<<
- *     cdef public double private_assessment_error_max_t
- *     cdef public double min_private_assessment_error
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_24private_assessment_error_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_24private_assessment_error_1__get__(PyObject *__pyx_v_self) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_24private_assessment_error___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_24private_assessment_error___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("__get__", 0);
-  __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_self->private_assessment_error.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 222, __pyx_L1_error)}
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_self->private_assessment_error, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 222, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.private_assessment_error.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_24private_assessment_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_24private_assessment_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_24private_assessment_error_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_24private_assessment_error_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  __Pyx_memviewslice __pyx_t_1 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_value);
-  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 222, __pyx_L1_error)
-  __PYX_XDEC_MEMVIEW(&__pyx_v_self->private_assessment_error, 0);
-  __pyx_v_self->private_assessment_error = __pyx_t_1;
-  __pyx_t_1.memview = NULL;
-  __pyx_t_1.data = NULL;
-
-  /* function exit code */
-  __pyx_r = 0;
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __PYX_XDEC_MEMVIEW(&__pyx_t_1, 1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.private_assessment_error.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = -1;
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "Cython_resources/simulation_instance_comms.pyx":223
- *     cdef public double reputation_assignment_error
- *     cdef public double[:] private_assessment_error
- *     cdef public double private_assessment_error_max_t             # <<<<<<<<<<<<<<
- *     cdef public double min_private_assessment_error
+ *     cdef public double private_assessment_error             # <<<<<<<<<<<<<<
  *     cdef public double reputation_update_rate
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_30private_assessment_error_max_t_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_30private_assessment_error_max_t_1__get__(PyObject *__pyx_v_self) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_30private_assessment_error_max_t___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_30private_assessment_error_max_t___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("__get__", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->private_assessment_error_max_t); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 223, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.private_assessment_error_max_t.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_30private_assessment_error_max_t_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_30private_assessment_error_max_t_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_30private_assessment_error_max_t_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_30private_assessment_error_max_t_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  double __pyx_t_1;
-  __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 223, __pyx_L1_error)
-  __pyx_v_self->private_assessment_error_max_t = __pyx_t_1;
-
-  /* function exit code */
-  __pyx_r = 0;
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.private_assessment_error_max_t.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = -1;
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "Cython_resources/simulation_instance_comms.pyx":224
- *     cdef public double[:] private_assessment_error
- *     cdef public double private_assessment_error_max_t
- *     cdef public double min_private_assessment_error             # <<<<<<<<<<<<<<
- *     cdef public double reputation_update_rate
- *     cdef public double reputation_spread_prob
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_28min_private_assessment_error_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_28min_private_assessment_error_1__get__(PyObject *__pyx_v_self) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_28min_private_assessment_error___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_28min_private_assessment_error___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("__get__", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->min_private_assessment_error); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 224, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.min_private_assessment_error.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_28min_private_assessment_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_28min_private_assessment_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_28min_private_assessment_error_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_28min_private_assessment_error_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  double __pyx_t_1;
-  __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 224, __pyx_L1_error)
-  __pyx_v_self->min_private_assessment_error = __pyx_t_1;
-
-  /* function exit code */
-  __pyx_r = 0;
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.min_private_assessment_error.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = -1;
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "Cython_resources/simulation_instance_comms.pyx":225
- *     cdef public double private_assessment_error_max_t
- *     cdef public double min_private_assessment_error
- *     cdef public double reputation_update_rate             # <<<<<<<<<<<<<<
- *     cdef public double reputation_spread_prob
  *     cdef public int[:,:] socialnorm
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_update_rate_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_update_rate_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_24private_assessment_error_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_24private_assessment_error_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_update_rate___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_24private_assessment_error___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_update_rate___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_24private_assessment_error___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->reputation_update_rate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 225, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->private_assessment_error); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6225,7 +5594,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.reputation_update_rate.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.private_assessment_error.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6234,142 +5603,142 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_update_rate_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_update_rate_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_24private_assessment_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_24private_assessment_error_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_update_rate_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_24private_assessment_error_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_update_rate_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_24private_assessment_error_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 225, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 205, __pyx_L1_error)
+  __pyx_v_self->private_assessment_error = __pyx_t_1;
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.private_assessment_error.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "Cython_resources/simulation_instance.pyx":206
+ *     cdef public double reputation_assignment_error
+ *     cdef public double private_assessment_error
+ *     cdef public double reputation_update_rate             # <<<<<<<<<<<<<<
+ *     cdef public int[:,:] socialnorm
+ *     cdef public int cost
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_22reputation_update_rate_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_22reputation_update_rate_1__get__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_22reputation_update_rate___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_22reputation_update_rate___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("__get__", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->reputation_update_rate); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.reputation_update_rate.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_22reputation_update_rate_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_22reputation_update_rate_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_22reputation_update_rate_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_22reputation_update_rate_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  double __pyx_t_1;
+  __Pyx_RefNannySetupContext("__set__", 0);
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 206, __pyx_L1_error)
   __pyx_v_self->reputation_update_rate = __pyx_t_1;
 
   /* function exit code */
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.reputation_update_rate.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.reputation_update_rate.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":226
- *     cdef public double min_private_assessment_error
+/* "Cython_resources/simulation_instance.pyx":207
+ *     cdef public double private_assessment_error
  *     cdef public double reputation_update_rate
- *     cdef public double reputation_spread_prob             # <<<<<<<<<<<<<<
- *     cdef public int[:,:] socialnorm
- *     cdef public int cost
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_spread_prob_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_spread_prob_1__get__(PyObject *__pyx_v_self) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_spread_prob___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_spread_prob___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("__get__", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->reputation_spread_prob); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.reputation_spread_prob.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_spread_prob_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_spread_prob_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_spread_prob_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_spread_prob_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  double __pyx_t_1;
-  __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 226, __pyx_L1_error)
-  __pyx_v_self->reputation_spread_prob = __pyx_t_1;
-
-  /* function exit code */
-  __pyx_r = 0;
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.reputation_spread_prob.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = -1;
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "Cython_resources/simulation_instance_comms.pyx":227
- *     cdef public double reputation_update_rate
- *     cdef public double reputation_spread_prob
  *     cdef public int[:,:] socialnorm             # <<<<<<<<<<<<<<
  *     cdef public int cost
  *     cdef public int benefit
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10socialnorm_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10socialnorm_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10socialnorm_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10socialnorm_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10socialnorm___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10socialnorm___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10socialnorm___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10socialnorm___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_self->socialnorm.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 227, __pyx_L1_error)}
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_self->socialnorm, 2, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 227, __pyx_L1_error)
+  if (unlikely(!__pyx_v_self->socialnorm.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 207, __pyx_L1_error)}
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_self->socialnorm, 2, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6378,7 +5747,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.socialnorm.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.socialnorm.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6387,25 +5756,25 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10socialnorm_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10socialnorm_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10socialnorm_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10socialnorm_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10socialnorm_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10socialnorm_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10socialnorm_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10socialnorm_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_memviewslice __pyx_t_1 = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_RefNannySetupContext("__set__", 0);
   __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(__pyx_v_value);
-  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 227, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 207, __pyx_L1_error)
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->socialnorm, 0);
   __pyx_v_self->socialnorm = __pyx_t_1;
   __pyx_t_1.memview = NULL;
@@ -6416,15 +5785,15 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
   goto __pyx_L0;
   __pyx_L1_error:;
   __PYX_XDEC_MEMVIEW(&__pyx_t_1, 1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.socialnorm.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.socialnorm.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":228
- *     cdef public double reputation_spread_prob
+/* "Cython_resources/simulation_instance.pyx":208
+ *     cdef public double reputation_update_rate
  *     cdef public int[:,:] socialnorm
  *     cdef public int cost             # <<<<<<<<<<<<<<
  *     cdef public int benefit
@@ -6432,25 +5801,25 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4cost_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4cost_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_4cost_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_4cost_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4cost___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_4cost___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4cost___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_4cost___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6459,7 +5828,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.cost.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.cost.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6468,38 +5837,38 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4cost_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4cost_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_4cost_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_4cost_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4cost_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_4cost_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4cost_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_4cost_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 228, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 208, __pyx_L1_error)
   __pyx_v_self->cost = __pyx_t_1;
 
   /* function exit code */
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.cost.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.cost.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":229
+/* "Cython_resources/simulation_instance.pyx":209
  *     cdef public int[:,:] socialnorm
  *     cdef public int cost
  *     cdef public int benefit             # <<<<<<<<<<<<<<
@@ -6508,25 +5877,25 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_7benefit_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_7benefit_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_7benefit_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_7benefit_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_7benefit___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_7benefit___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_7benefit___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_7benefit___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->benefit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 229, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->benefit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6535,7 +5904,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.benefit.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.benefit.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6544,38 +5913,38 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_7benefit_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_7benefit_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_7benefit_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_7benefit_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_7benefit_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_7benefit_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_7benefit_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_7benefit_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 229, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_value); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 209, __pyx_L1_error)
   __pyx_v_self->benefit = __pyx_t_1;
 
   /* function exit code */
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.benefit.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.benefit.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":231
+/* "Cython_resources/simulation_instance.pyx":211
  *     cdef public int benefit
  * 
  *     cdef public int[:,:] strategies             # <<<<<<<<<<<<<<
@@ -6584,26 +5953,26 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10strategies_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10strategies_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10strategies_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10strategies_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10strategies___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10strategies___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10strategies___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10strategies___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_self->strategies.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 231, __pyx_L1_error)}
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_self->strategies, 2, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
+  if (unlikely(!__pyx_v_self->strategies.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 211, __pyx_L1_error)}
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_self->strategies, 2, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6612,7 +5981,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.strategies.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.strategies.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6621,25 +5990,25 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10strategies_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10strategies_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10strategies_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10strategies_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10strategies_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10strategies_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10strategies_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10strategies_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_memviewslice __pyx_t_1 = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_RefNannySetupContext("__set__", 0);
   __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(__pyx_v_value);
-  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 231, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 211, __pyx_L1_error)
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->strategies, 0);
   __pyx_v_self->strategies = __pyx_t_1;
   __pyx_t_1.memview = NULL;
@@ -6650,14 +6019,14 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
   goto __pyx_L0;
   __pyx_L1_error:;
   __PYX_XDEC_MEMVIEW(&__pyx_t_1, 1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.strategies.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.strategies.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":233
+/* "Cython_resources/simulation_instance.pyx":213
  *     cdef public int[:,:] strategies
  * 
  *     cdef public int[:] population             # <<<<<<<<<<<<<<
@@ -6666,26 +6035,26 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10population_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10population_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10population_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10population_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10population___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10population___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10population___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10population___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_self->population.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 233, __pyx_L1_error)}
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_self->population, 1, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
+  if (unlikely(!__pyx_v_self->population.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 213, __pyx_L1_error)}
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_self->population, 1, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6694,7 +6063,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.population.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.population.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6703,25 +6072,25 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10population_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10population_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10population_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10population_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10population_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10population_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10population_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10population_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_memviewslice __pyx_t_1 = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_RefNannySetupContext("__set__", 0);
   __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_v_value);
-  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 233, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 213, __pyx_L1_error)
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->population, 0);
   __pyx_v_self->population = __pyx_t_1;
   __pyx_t_1.memview = NULL;
@@ -6732,42 +6101,42 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
   goto __pyx_L0;
   __pyx_L1_error:;
   __PYX_XDEC_MEMVIEW(&__pyx_t_1, 1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.population.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.population.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "Cython_resources/simulation_instance_comms.pyx":234
+/* "Cython_resources/simulation_instance.pyx":214
  * 
  *     cdef public int[:] population
  *     cdef public int[:] reputation             # <<<<<<<<<<<<<<
  * 
- *     cdef long double coop_index_sum
+ *     cdef double coop_index_sum
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10reputation_1__get__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10reputation_1__get__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10reputation_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10reputation_1__get__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10reputation___get__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10reputation___get__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10reputation___get__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self) {
+static PyObject *__pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10reputation___get__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_self->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 234, __pyx_L1_error)}
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_self->reputation, 1, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
+  if (unlikely(!__pyx_v_self->reputation.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");__PYX_ERR(0, 214, __pyx_L1_error)}
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_self->reputation, 1, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6776,7 +6145,7 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.reputation.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.reputation.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6785,25 +6154,25 @@ static PyObject *__pyx_pf_16Cython_resources_25simulation_instance_comms_17Insta
 }
 
 /* Python wrapper */
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10reputation_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10reputation_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10reputation_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10reputation_3__set__(PyObject *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__set__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10reputation_2__set__(((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10reputation_2__set__(((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)__pyx_v_self), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10reputation_2__set__(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
+static int __pyx_pf_16Cython_resources_19simulation_instance_17InstanceVariables_10reputation_2__set__(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *__pyx_v_self, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_memviewslice __pyx_t_1 = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_RefNannySetupContext("__set__", 0);
   __pyx_t_1 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(__pyx_v_value);
-  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 234, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 214, __pyx_L1_error)
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->reputation, 0);
   __pyx_v_self->reputation = __pyx_t_1;
   __pyx_t_1.memview = NULL;
@@ -6814,7 +6183,7 @@ static int __pyx_pf_16Cython_resources_25simulation_instance_comms_17InstanceVar
   goto __pyx_L0;
   __pyx_L1_error:;
   __PYX_XDEC_MEMVIEW(&__pyx_t_1, 1);
-  __Pyx_AddTraceback("Cython_resources.simulation_instance_comms.InstanceVariables.reputation.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Cython_resources.simulation_instance.InstanceVariables.reputation.__set__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -20867,10 +20236,10 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-static struct __pyx_vtabstruct_16Cython_resources_25simulation_instance_comms_InstanceVariables __pyx_vtable_16Cython_resources_25simulation_instance_comms_InstanceVariables;
+static struct __pyx_vtabstruct_16Cython_resources_19simulation_instance_InstanceVariables __pyx_vtable_16Cython_resources_19simulation_instance_InstanceVariables;
 
-static PyObject *__pyx_tp_new_16Cython_resources_25simulation_instance_comms_InstanceVariables(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *p;
+static PyObject *__pyx_tp_new_16Cython_resources_19simulation_instance_InstanceVariables(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *p;
   PyObject *o;
   if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
     o = (*t->tp_alloc)(t, 0);
@@ -20878,10 +20247,8 @@ static PyObject *__pyx_tp_new_16Cython_resources_25simulation_instance_comms_Ins
     o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
   }
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)o);
-  p->__pyx_vtab = __pyx_vtabptr_16Cython_resources_25simulation_instance_comms_InstanceVariables;
-  p->private_assessment_error.data = NULL;
-  p->private_assessment_error.memview = NULL;
+  p = ((struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)o);
+  p->__pyx_vtab = __pyx_vtabptr_16Cython_resources_19simulation_instance_InstanceVariables;
   p->socialnorm.data = NULL;
   p->socialnorm.memview = NULL;
   p->strategies.data = NULL;
@@ -20890,20 +20257,19 @@ static PyObject *__pyx_tp_new_16Cython_resources_25simulation_instance_comms_Ins
   p->population.memview = NULL;
   p->reputation.data = NULL;
   p->reputation.memview = NULL;
-  if (unlikely(__pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_1__cinit__(o, a, k) < 0)) {
+  if (unlikely(__pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_1__cinit__(o, a, k) < 0)) {
     Py_DECREF(o); o = 0;
   }
   return o;
 }
 
-static void __pyx_tp_dealloc_16Cython_resources_25simulation_instance_comms_InstanceVariables(PyObject *o) {
-  struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *p = (struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *)o;
+static void __pyx_tp_dealloc_16Cython_resources_19simulation_instance_InstanceVariables(PyObject *o) {
+  struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *p = (struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *)o;
   #if PY_VERSION_HEX >= 0x030400a1
   if (unlikely(Py_TYPE(o)->tp_finalize) && (!PyType_IS_GC(Py_TYPE(o)) || !_PyGC_FINALIZED(o))) {
     if (PyObject_CallFinalizerFromDealloc(o)) return;
   }
   #endif
-  __PYX_XDEC_MEMVIEW(&p->private_assessment_error, 1);
   __PYX_XDEC_MEMVIEW(&p->socialnorm, 1);
   __PYX_XDEC_MEMVIEW(&p->strategies, 1);
   __PYX_XDEC_MEMVIEW(&p->population, 1);
@@ -20911,13 +20277,13 @@ static void __pyx_tp_dealloc_16Cython_resources_25simulation_instance_comms_Inst
   (*Py_TYPE(o)->tp_free)(o);
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_runs(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4runs_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_runs(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_4runs_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_runs(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_runs(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4runs_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_4runs_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -20925,13 +20291,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_generations(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_11generations_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_generations(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_11generations_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_generations(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_generations(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_11generations_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_11generations_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -20939,13 +20305,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_population_size(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15population_size_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_population_size(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_15population_size_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_population_size(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_population_size(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15population_size_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_15population_size_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -20953,13 +20319,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_mutation_rate(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_13mutation_rate_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_mutation_rate(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_13mutation_rate_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_mutation_rate(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_mutation_rate(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_13mutation_rate_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_13mutation_rate_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -20967,13 +20333,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_execution_error(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15execution_error_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_execution_error(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_15execution_error_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_execution_error(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_execution_error(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_15execution_error_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_15execution_error_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -20981,13 +20347,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation_assignment_error(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_27reputation_assignment_error_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_reputation_assignment_error(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_27reputation_assignment_error_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation_assignment_error(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_reputation_assignment_error(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_27reputation_assignment_error_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_27reputation_assignment_error_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -20995,13 +20361,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_private_assessment_error(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_24private_assessment_error_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_private_assessment_error(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_24private_assessment_error_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_private_assessment_error(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_private_assessment_error(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_24private_assessment_error_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_24private_assessment_error_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -21009,13 +20375,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_private_assessment_error_max_t(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_30private_assessment_error_max_t_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_reputation_update_rate(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_22reputation_update_rate_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_private_assessment_error_max_t(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_reputation_update_rate(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_30private_assessment_error_max_t_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_22reputation_update_rate_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -21023,13 +20389,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_min_private_assessment_error(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_28min_private_assessment_error_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_socialnorm(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10socialnorm_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_min_private_assessment_error(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_socialnorm(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_28min_private_assessment_error_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10socialnorm_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -21037,13 +20403,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation_update_rate(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_update_rate_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_cost(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_4cost_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation_update_rate(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_cost(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_update_rate_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_4cost_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -21051,13 +20417,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation_spread_prob(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_spread_prob_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_benefit(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_7benefit_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation_spread_prob(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_benefit(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_22reputation_spread_prob_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_7benefit_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -21065,13 +20431,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_socialnorm(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10socialnorm_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_strategies(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10strategies_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_socialnorm(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_strategies(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10socialnorm_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10strategies_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -21079,13 +20445,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_cost(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4cost_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_population(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10population_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_cost(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_population(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_4cost_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10population_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -21093,13 +20459,13 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_benefit(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_7benefit_1__get__(o);
+static PyObject *__pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_reputation(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10reputation_1__get__(o);
 }
 
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_benefit(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
+static int __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_reputation(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
   if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_7benefit_3__set__(o, v);
+    return __pyx_pw_16Cython_resources_19simulation_instance_17InstanceVariables_10reputation_3__set__(o, v);
   }
   else {
     PyErr_SetString(PyExc_NotImplementedError, "__del__");
@@ -21107,79 +20473,34 @@ static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17Instan
   }
 }
 
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_strategies(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10strategies_1__get__(o);
-}
-
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_strategies(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
-  if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10strategies_3__set__(o, v);
-  }
-  else {
-    PyErr_SetString(PyExc_NotImplementedError, "__del__");
-    return -1;
-  }
-}
-
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_population(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10population_1__get__(o);
-}
-
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_population(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
-  if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10population_3__set__(o, v);
-  }
-  else {
-    PyErr_SetString(PyExc_NotImplementedError, "__del__");
-    return -1;
-  }
-}
-
-static PyObject *__pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation(PyObject *o, CYTHON_UNUSED void *x) {
-  return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10reputation_1__get__(o);
-}
-
-static int __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation(PyObject *o, PyObject *v, CYTHON_UNUSED void *x) {
-  if (v) {
-    return __pyx_pw_16Cython_resources_25simulation_instance_comms_17InstanceVariables_10reputation_3__set__(o, v);
-  }
-  else {
-    PyErr_SetString(PyExc_NotImplementedError, "__del__");
-    return -1;
-  }
-}
-
-static PyMethodDef __pyx_methods_16Cython_resources_25simulation_instance_comms_InstanceVariables[] = {
+static PyMethodDef __pyx_methods_16Cython_resources_19simulation_instance_InstanceVariables[] = {
   {0, 0, 0, 0}
 };
 
-static struct PyGetSetDef __pyx_getsets_16Cython_resources_25simulation_instance_comms_InstanceVariables[] = {
-  {(char *)"runs", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_runs, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_runs, (char *)0, 0},
-  {(char *)"generations", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_generations, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_generations, (char *)0, 0},
-  {(char *)"population_size", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_population_size, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_population_size, (char *)0, 0},
-  {(char *)"mutation_rate", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_mutation_rate, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_mutation_rate, (char *)0, 0},
-  {(char *)"execution_error", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_execution_error, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_execution_error, (char *)0, 0},
-  {(char *)"reputation_assignment_error", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation_assignment_error, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation_assignment_error, (char *)0, 0},
-  {(char *)"private_assessment_error", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_private_assessment_error, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_private_assessment_error, (char *)0, 0},
-  {(char *)"private_assessment_error_max_t", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_private_assessment_error_max_t, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_private_assessment_error_max_t, (char *)0, 0},
-  {(char *)"min_private_assessment_error", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_min_private_assessment_error, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_min_private_assessment_error, (char *)0, 0},
-  {(char *)"reputation_update_rate", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation_update_rate, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation_update_rate, (char *)0, 0},
-  {(char *)"reputation_spread_prob", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation_spread_prob, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation_spread_prob, (char *)0, 0},
-  {(char *)"socialnorm", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_socialnorm, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_socialnorm, (char *)0, 0},
-  {(char *)"cost", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_cost, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_cost, (char *)0, 0},
-  {(char *)"benefit", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_benefit, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_benefit, (char *)0, 0},
-  {(char *)"strategies", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_strategies, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_strategies, (char *)0, 0},
-  {(char *)"population", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_population, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_population, (char *)0, 0},
-  {(char *)"reputation", __pyx_getprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation, __pyx_setprop_16Cython_resources_25simulation_instance_comms_17InstanceVariables_reputation, (char *)0, 0},
+static struct PyGetSetDef __pyx_getsets_16Cython_resources_19simulation_instance_InstanceVariables[] = {
+  {(char *)"runs", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_runs, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_runs, (char *)0, 0},
+  {(char *)"generations", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_generations, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_generations, (char *)0, 0},
+  {(char *)"population_size", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_population_size, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_population_size, (char *)0, 0},
+  {(char *)"mutation_rate", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_mutation_rate, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_mutation_rate, (char *)0, 0},
+  {(char *)"execution_error", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_execution_error, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_execution_error, (char *)0, 0},
+  {(char *)"reputation_assignment_error", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_reputation_assignment_error, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_reputation_assignment_error, (char *)0, 0},
+  {(char *)"private_assessment_error", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_private_assessment_error, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_private_assessment_error, (char *)0, 0},
+  {(char *)"reputation_update_rate", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_reputation_update_rate, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_reputation_update_rate, (char *)0, 0},
+  {(char *)"socialnorm", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_socialnorm, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_socialnorm, (char *)0, 0},
+  {(char *)"cost", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_cost, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_cost, (char *)0, 0},
+  {(char *)"benefit", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_benefit, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_benefit, (char *)0, 0},
+  {(char *)"strategies", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_strategies, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_strategies, (char *)0, 0},
+  {(char *)"population", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_population, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_population, (char *)0, 0},
+  {(char *)"reputation", __pyx_getprop_16Cython_resources_19simulation_instance_17InstanceVariables_reputation, __pyx_setprop_16Cython_resources_19simulation_instance_17InstanceVariables_reputation, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 
-static PyTypeObject __pyx_type_16Cython_resources_25simulation_instance_comms_InstanceVariables = {
+static PyTypeObject __pyx_type_16Cython_resources_19simulation_instance_InstanceVariables = {
   PyVarObject_HEAD_INIT(0, 0)
-  "Cython_resources.simulation_instance_comms.InstanceVariables", /*tp_name*/
-  sizeof(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables), /*tp_basicsize*/
+  "Cython_resources.simulation_instance.InstanceVariables", /*tp_name*/
+  sizeof(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_16Cython_resources_25simulation_instance_comms_InstanceVariables, /*tp_dealloc*/
+  __pyx_tp_dealloc_16Cython_resources_19simulation_instance_InstanceVariables, /*tp_dealloc*/
   0, /*tp_print*/
   0, /*tp_getattr*/
   0, /*tp_setattr*/
@@ -21207,9 +20528,9 @@ static PyTypeObject __pyx_type_16Cython_resources_25simulation_instance_comms_In
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_16Cython_resources_25simulation_instance_comms_InstanceVariables, /*tp_methods*/
+  __pyx_methods_16Cython_resources_19simulation_instance_InstanceVariables, /*tp_methods*/
   0, /*tp_members*/
-  __pyx_getsets_16Cython_resources_25simulation_instance_comms_InstanceVariables, /*tp_getset*/
+  __pyx_getsets_16Cython_resources_19simulation_instance_InstanceVariables, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
@@ -21217,7 +20538,7 @@ static PyTypeObject __pyx_type_16Cython_resources_25simulation_instance_comms_In
   0, /*tp_dictoffset*/
   0, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_16Cython_resources_25simulation_instance_comms_InstanceVariables, /*tp_new*/
+  __pyx_tp_new_16Cython_resources_19simulation_instance_InstanceVariables, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -21351,7 +20672,7 @@ static PyBufferProcs __pyx_tp_as_buffer_array = {
 
 static PyTypeObject __pyx_type___pyx_array = {
   PyVarObject_HEAD_INIT(0, 0)
-  "Cython_resources.simulation_instance_comms.array", /*tp_name*/
+  "Cython_resources.simulation_instance.array", /*tp_name*/
   sizeof(struct __pyx_array_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_array, /*tp_dealloc*/
@@ -21457,7 +20778,7 @@ static PyMethodDef __pyx_methods_Enum[] = {
 
 static PyTypeObject __pyx_type___pyx_MemviewEnum = {
   PyVarObject_HEAD_INIT(0, 0)
-  "Cython_resources.simulation_instance_comms.Enum", /*tp_name*/
+  "Cython_resources.simulation_instance.Enum", /*tp_name*/
   sizeof(struct __pyx_MemviewEnum_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_Enum, /*tp_dealloc*/
@@ -21704,7 +21025,7 @@ static PyBufferProcs __pyx_tp_as_buffer_memoryview = {
 
 static PyTypeObject __pyx_type___pyx_memoryview = {
   PyVarObject_HEAD_INIT(0, 0)
-  "Cython_resources.simulation_instance_comms.memoryview", /*tp_name*/
+  "Cython_resources.simulation_instance.memoryview", /*tp_name*/
   sizeof(struct __pyx_memoryview_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_memoryview, /*tp_dealloc*/
@@ -21829,7 +21150,7 @@ static struct PyGetSetDef __pyx_getsets__memoryviewslice[] = {
 
 static PyTypeObject __pyx_type___pyx_memoryviewslice = {
   PyVarObject_HEAD_INIT(0, 0)
-  "Cython_resources.simulation_instance_comms._memoryviewslice", /*tp_name*/
+  "Cython_resources.simulation_instance._memoryviewslice", /*tp_name*/
   sizeof(struct __pyx_memoryviewslice_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc__memoryviewslice, /*tp_dealloc*/
@@ -21904,7 +21225,7 @@ static struct PyModuleDef __pyx_moduledef = {
   #else
     PyModuleDef_HEAD_INIT,
   #endif
-    "simulation_instance_comms",
+    "simulation_instance",
     0, /* m_doc */
     -1, /* m_size */
     __pyx_methods /* m_methods */,
@@ -21978,10 +21299,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_itemsize, __pyx_k_itemsize, sizeof(__pyx_k_itemsize), 0, 0, 1, 1},
   {&__pyx_kp_s_itemsize_0_for_cython_array, __pyx_k_itemsize_0_for_cython_array, sizeof(__pyx_k_itemsize_0_for_cython_array), 0, 0, 1, 0},
   {&__pyx_n_s_join, __pyx_k_join, sizeof(__pyx_k_join), 0, 0, 1, 1},
-  {&__pyx_n_s_log, __pyx_k_log, sizeof(__pyx_k_log), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_memview, __pyx_k_memview, sizeof(__pyx_k_memview), 0, 0, 1, 1},
-  {&__pyx_n_s_min_private_assessment_error, __pyx_k_min_private_assessment_error, sizeof(__pyx_k_min_private_assessment_error), 0, 0, 1, 1},
   {&__pyx_n_s_mode, __pyx_k_mode, sizeof(__pyx_k_mode), 0, 0, 1, 1},
   {&__pyx_n_s_mutation_rate, __pyx_k_mutation_rate, sizeof(__pyx_k_mutation_rate), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
@@ -22046,25 +21365,25 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":168
+  /* "Cython_resources/simulation_instance.pyx":151
  * 
  *     for r in range(0, variables.runs):
  *         variables.population = np.random.randint(4, size=Z)  # equivalent to U(0, 3)             # <<<<<<<<<<<<<<
  *         variables.reputation = np.random.randint(2, size=Z)  # equivalent to U(0, 1)
  *         for g in range(0, variables.generations):
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_int_4); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_int_4); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":169
+  /* "Cython_resources/simulation_instance.pyx":152
  *     for r in range(0, variables.runs):
  *         variables.population = np.random.randint(4, size=Z)  # equivalent to U(0, 3)
  *         variables.reputation = np.random.randint(2, size=Z)  # equivalent to U(0, 1)             # <<<<<<<<<<<<<<
  *         for g in range(0, variables.generations):
  *             if g > variables.generations // 10:
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_int_2); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 169, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_int_2); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
@@ -22280,17 +21599,17 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
 
-  /* "Cython_resources/simulation_instance_comms.pyx":200
+  /* "Cython_resources/simulation_instance.pyx":183
  *     return result
  * 
  * def run_instance(int runs, int generations, int population_size, double mutation_rate,             # <<<<<<<<<<<<<<
  *                  double execution_error, double reputation_assignment_error,
  *                  double private_assessment_error, double reputation_update_rate,
  */
-  __pyx_tuple__27 = PyTuple_Pack(13, __pyx_n_s_runs, __pyx_n_s_generations, __pyx_n_s_population_size, __pyx_n_s_mutation_rate, __pyx_n_s_execution_error, __pyx_n_s_reputation_assignment_error, __pyx_n_s_private_assessment_error, __pyx_n_s_reputation_update_rate, __pyx_n_s_reputation_spread_prob, __pyx_n_s_socialnorm, __pyx_n_s_cost, __pyx_n_s_benefit, __pyx_n_s_result); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_tuple__27 = PyTuple_Pack(13, __pyx_n_s_runs, __pyx_n_s_generations, __pyx_n_s_population_size, __pyx_n_s_mutation_rate, __pyx_n_s_execution_error, __pyx_n_s_reputation_assignment_error, __pyx_n_s_private_assessment_error, __pyx_n_s_reputation_update_rate, __pyx_n_s_reputation_spread_prob, __pyx_n_s_socialnorm, __pyx_n_s_cost, __pyx_n_s_benefit, __pyx_n_s_result); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__27);
   __Pyx_GIVEREF(__pyx_tuple__27);
-  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(12, 0, 13, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_C_Users_kocyb_000_Documents_Uni, __pyx_n_s_run_instance, 200, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(12, 0, 13, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_C_Users_kocyb_000_Documents_Uni, __pyx_n_s_run_instance, 183, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 183, __pyx_L1_error)
 
   /* "View.MemoryView":282
  *         return self.name
@@ -22366,11 +21685,11 @@ static int __Pyx_InitGlobals(void) {
 }
 
 #if PY_MAJOR_VERSION < 3
-PyMODINIT_FUNC initsimulation_instance_comms(void); /*proto*/
-PyMODINIT_FUNC initsimulation_instance_comms(void)
+PyMODINIT_FUNC initsimulation_instance(void); /*proto*/
+PyMODINIT_FUNC initsimulation_instance(void)
 #else
-PyMODINIT_FUNC PyInit_simulation_instance_comms(void); /*proto*/
-PyMODINIT_FUNC PyInit_simulation_instance_comms(void)
+PyMODINIT_FUNC PyInit_simulation_instance(void); /*proto*/
+PyMODINIT_FUNC PyInit_simulation_instance(void)
 #endif
 {
   PyObject *__pyx_t_1 = NULL;
@@ -22386,7 +21705,7 @@ PyMODINIT_FUNC PyInit_simulation_instance_comms(void)
           Py_FatalError("failed to import 'refnanny' module");
   }
   #endif
-  __Pyx_RefNannySetupContext("PyMODINIT_FUNC PyInit_simulation_instance_comms(void)", 0);
+  __Pyx_RefNannySetupContext("PyMODINIT_FUNC PyInit_simulation_instance(void)", 0);
   if (__Pyx_check_binary_version() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_empty_tuple = PyTuple_New(0); if (unlikely(!__pyx_empty_tuple)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_empty_bytes = PyBytes_FromStringAndSize("", 0); if (unlikely(!__pyx_empty_bytes)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -22415,7 +21734,7 @@ PyMODINIT_FUNC PyInit_simulation_instance_comms(void)
   #endif
   /*--- Module creation code ---*/
   #if PY_MAJOR_VERSION < 3
-  __pyx_m = Py_InitModule4("simulation_instance_comms", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  __pyx_m = Py_InitModule4("simulation_instance", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
   #else
   __pyx_m = PyModule_Create(&__pyx_moduledef);
   #endif
@@ -22432,14 +21751,14 @@ PyMODINIT_FUNC PyInit_simulation_instance_comms(void)
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_Cython_resources__simulation_instance_comms) {
+  if (__pyx_module_is_main_Cython_resources__simulation_instance) {
     if (PyObject_SetAttrString(__pyx_m, "__name__", __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "Cython_resources.simulation_instance_comms")) {
-      if (unlikely(PyDict_SetItemString(modules, "Cython_resources.simulation_instance_comms", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "Cython_resources.simulation_instance")) {
+      if (unlikely(PyDict_SetItemString(modules, "Cython_resources.simulation_instance", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -22456,14 +21775,14 @@ PyMODINIT_FUNC PyInit_simulation_instance_comms(void)
   /*--- Variable export code ---*/
   /*--- Function export code ---*/
   /*--- Type init code ---*/
-  __pyx_vtabptr_16Cython_resources_25simulation_instance_comms_InstanceVariables = &__pyx_vtable_16Cython_resources_25simulation_instance_comms_InstanceVariables;
-  __pyx_vtable_16Cython_resources_25simulation_instance_comms_InstanceVariables.increment_coop_index = (void (*)(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *, double))__pyx_f_16Cython_resources_25simulation_instance_comms_17InstanceVariables_increment_coop_index;
-  __pyx_vtable_16Cython_resources_25simulation_instance_comms_InstanceVariables.get_average_coop_index = (double (*)(struct __pyx_obj_16Cython_resources_25simulation_instance_comms_InstanceVariables *))__pyx_f_16Cython_resources_25simulation_instance_comms_17InstanceVariables_get_average_coop_index;
-  if (PyType_Ready(&__pyx_type_16Cython_resources_25simulation_instance_comms_InstanceVariables) < 0) __PYX_ERR(0, 215, __pyx_L1_error)
-  __pyx_type_16Cython_resources_25simulation_instance_comms_InstanceVariables.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_16Cython_resources_25simulation_instance_comms_InstanceVariables.tp_dict, __pyx_vtabptr_16Cython_resources_25simulation_instance_comms_InstanceVariables) < 0) __PYX_ERR(0, 215, __pyx_L1_error)
-  if (PyObject_SetAttrString(__pyx_m, "InstanceVariables", (PyObject *)&__pyx_type_16Cython_resources_25simulation_instance_comms_InstanceVariables) < 0) __PYX_ERR(0, 215, __pyx_L1_error)
-  __pyx_ptype_16Cython_resources_25simulation_instance_comms_InstanceVariables = &__pyx_type_16Cython_resources_25simulation_instance_comms_InstanceVariables;
+  __pyx_vtabptr_16Cython_resources_19simulation_instance_InstanceVariables = &__pyx_vtable_16Cython_resources_19simulation_instance_InstanceVariables;
+  __pyx_vtable_16Cython_resources_19simulation_instance_InstanceVariables.increment_coop_index = (void (*)(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *, double))__pyx_f_16Cython_resources_19simulation_instance_17InstanceVariables_increment_coop_index;
+  __pyx_vtable_16Cython_resources_19simulation_instance_InstanceVariables.get_average_coop_index = (double (*)(struct __pyx_obj_16Cython_resources_19simulation_instance_InstanceVariables *))__pyx_f_16Cython_resources_19simulation_instance_17InstanceVariables_get_average_coop_index;
+  if (PyType_Ready(&__pyx_type_16Cython_resources_19simulation_instance_InstanceVariables) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_type_16Cython_resources_19simulation_instance_InstanceVariables.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_16Cython_resources_19simulation_instance_InstanceVariables.tp_dict, __pyx_vtabptr_16Cython_resources_19simulation_instance_InstanceVariables) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "InstanceVariables", (PyObject *)&__pyx_type_16Cython_resources_19simulation_instance_InstanceVariables) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_ptype_16Cython_resources_19simulation_instance_InstanceVariables = &__pyx_type_16Cython_resources_19simulation_instance_InstanceVariables;
   __pyx_vtabptr_array = &__pyx_vtable_array;
   __pyx_vtable_array.get_memview = (PyObject *(*)(struct __pyx_array_obj *))__pyx_array_get_memview;
   if (PyType_Ready(&__pyx_type___pyx_array) < 0) __PYX_ERR(2, 103, __pyx_L1_error)
@@ -22514,7 +21833,7 @@ PyMODINIT_FUNC PyInit_simulation_instance_comms(void)
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "Cython_resources/simulation_instance_comms.pyx":6
+  /* "Cython_resources/simulation_instance.pyx":6
  * from libc.math cimport exp
  * import cython
  * import numpy as np             # <<<<<<<<<<<<<<
@@ -22526,7 +21845,7 @@ PyMODINIT_FUNC PyInit_simulation_instance_comms(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":8
+  /* "Cython_resources/simulation_instance.pyx":8
  * import numpy as np
  * cimport numpy as np
  * DINT = np.int             # <<<<<<<<<<<<<<
@@ -22541,7 +21860,7 @@ PyMODINIT_FUNC PyInit_simulation_instance_comms(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_DINT, __pyx_t_2) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":9
+  /* "Cython_resources/simulation_instance.pyx":9
  * cimport numpy as np
  * DINT = np.int
  * DDOUBLE = np.double             # <<<<<<<<<<<<<<
@@ -22556,19 +21875,19 @@ PyMODINIT_FUNC PyInit_simulation_instance_comms(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_DDOUBLE, __pyx_t_1) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":200
+  /* "Cython_resources/simulation_instance.pyx":183
  *     return result
  * 
  * def run_instance(int runs, int generations, int population_size, double mutation_rate,             # <<<<<<<<<<<<<<
  *                  double execution_error, double reputation_assignment_error,
  *                  double private_assessment_error, double reputation_update_rate,
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_16Cython_resources_25simulation_instance_comms_1run_instance, NULL, __pyx_n_s_Cython_resources_simulation_inst); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_16Cython_resources_19simulation_instance_1run_instance, NULL, __pyx_n_s_Cython_resources_simulation_inst); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_run_instance, __pyx_t_1) < 0) __PYX_ERR(0, 200, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_run_instance, __pyx_t_1) < 0) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Cython_resources/simulation_instance_comms.pyx":1
+  /* "Cython_resources/simulation_instance.pyx":1
  * # cdef extern from "stdlib.h":             # <<<<<<<<<<<<<<
  * #     double drand48()
  * from libc.stdlib cimport rand, RAND_MAX
@@ -22729,11 +22048,11 @@ PyMODINIT_FUNC PyInit_simulation_instance_comms(void)
   __Pyx_XDECREF(__pyx_t_2);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init Cython_resources.simulation_instance_comms", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init Cython_resources.simulation_instance", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_DECREF(__pyx_m); __pyx_m = 0;
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init Cython_resources.simulation_instance_comms");
+    PyErr_SetString(PyExc_ImportError, "init Cython_resources.simulation_instance");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -24881,18 +24200,6 @@ __pyx_capsule_create(void *p, CYTHON_UNUSED const char *sig)
     }
 }
 
-/* MemviewDtypeToObject */
-          static CYTHON_INLINE PyObject *__pyx_memview_get_double(const char *itemp) {
-    return (PyObject *) PyFloat_FromDouble(*(double *) itemp);
-}
-static CYTHON_INLINE int __pyx_memview_set_double(const char *itemp, PyObject *obj) {
-    double value = __pyx_PyFloat_AsDouble(obj);
-    if ((value == (double)-1) && PyErr_Occurred())
-        return 0;
-    *(double *) itemp = value;
-    return 1;
-}
-
 /* CIntToPy */
           static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
     const long neg_one = (long) -1, const_zero = (long) 0;
@@ -25500,191 +24807,6 @@ raise_neg_overflow:
 }
 
 /* CIntFromPy */
-          static CYTHON_INLINE char __Pyx_PyInt_As_char(PyObject *x) {
-    const char neg_one = (char) -1, const_zero = (char) 0;
-    const int is_unsigned = neg_one > const_zero;
-#if PY_MAJOR_VERSION < 3
-    if (likely(PyInt_Check(x))) {
-        if (sizeof(char) < sizeof(long)) {
-            __PYX_VERIFY_RETURN_INT(char, long, PyInt_AS_LONG(x))
-        } else {
-            long val = PyInt_AS_LONG(x);
-            if (is_unsigned && unlikely(val < 0)) {
-                goto raise_neg_overflow;
-            }
-            return (char) val;
-        }
-    } else
-#endif
-    if (likely(PyLong_Check(x))) {
-        if (is_unsigned) {
-#if CYTHON_USE_PYLONG_INTERNALS
-            const digit* digits = ((PyLongObject*)x)->ob_digit;
-            switch (Py_SIZE(x)) {
-                case  0: return (char) 0;
-                case  1: __PYX_VERIFY_RETURN_INT(char, digit, digits[0])
-                case 2:
-                    if (8 * sizeof(char) > 1 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(char, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(char) >= 2 * PyLong_SHIFT) {
-                            return (char) (((((char)digits[1]) << PyLong_SHIFT) | (char)digits[0]));
-                        }
-                    }
-                    break;
-                case 3:
-                    if (8 * sizeof(char) > 2 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(char, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(char) >= 3 * PyLong_SHIFT) {
-                            return (char) (((((((char)digits[2]) << PyLong_SHIFT) | (char)digits[1]) << PyLong_SHIFT) | (char)digits[0]));
-                        }
-                    }
-                    break;
-                case 4:
-                    if (8 * sizeof(char) > 3 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(char, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(char) >= 4 * PyLong_SHIFT) {
-                            return (char) (((((((((char)digits[3]) << PyLong_SHIFT) | (char)digits[2]) << PyLong_SHIFT) | (char)digits[1]) << PyLong_SHIFT) | (char)digits[0]));
-                        }
-                    }
-                    break;
-            }
-#endif
-#if CYTHON_COMPILING_IN_CPYTHON
-            if (unlikely(Py_SIZE(x) < 0)) {
-                goto raise_neg_overflow;
-            }
-#else
-            {
-                int result = PyObject_RichCompareBool(x, Py_False, Py_LT);
-                if (unlikely(result < 0))
-                    return (char) -1;
-                if (unlikely(result == 1))
-                    goto raise_neg_overflow;
-            }
-#endif
-            if (sizeof(char) <= sizeof(unsigned long)) {
-                __PYX_VERIFY_RETURN_INT_EXC(char, unsigned long, PyLong_AsUnsignedLong(x))
-            } else if (sizeof(char) <= sizeof(unsigned PY_LONG_LONG)) {
-                __PYX_VERIFY_RETURN_INT_EXC(char, unsigned PY_LONG_LONG, PyLong_AsUnsignedLongLong(x))
-            }
-        } else {
-#if CYTHON_USE_PYLONG_INTERNALS
-            const digit* digits = ((PyLongObject*)x)->ob_digit;
-            switch (Py_SIZE(x)) {
-                case  0: return (char) 0;
-                case -1: __PYX_VERIFY_RETURN_INT(char, sdigit, (sdigit) (-(sdigit)digits[0]))
-                case  1: __PYX_VERIFY_RETURN_INT(char,  digit, +digits[0])
-                case -2:
-                    if (8 * sizeof(char) - 1 > 1 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(char, long, -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(char) - 1 > 2 * PyLong_SHIFT) {
-                            return (char) (((char)-1)*(((((char)digits[1]) << PyLong_SHIFT) | (char)digits[0])));
-                        }
-                    }
-                    break;
-                case 2:
-                    if (8 * sizeof(char) > 1 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(char, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(char) - 1 > 2 * PyLong_SHIFT) {
-                            return (char) ((((((char)digits[1]) << PyLong_SHIFT) | (char)digits[0])));
-                        }
-                    }
-                    break;
-                case -3:
-                    if (8 * sizeof(char) - 1 > 2 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(char, long, -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(char) - 1 > 3 * PyLong_SHIFT) {
-                            return (char) (((char)-1)*(((((((char)digits[2]) << PyLong_SHIFT) | (char)digits[1]) << PyLong_SHIFT) | (char)digits[0])));
-                        }
-                    }
-                    break;
-                case 3:
-                    if (8 * sizeof(char) > 2 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(char, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(char) - 1 > 3 * PyLong_SHIFT) {
-                            return (char) ((((((((char)digits[2]) << PyLong_SHIFT) | (char)digits[1]) << PyLong_SHIFT) | (char)digits[0])));
-                        }
-                    }
-                    break;
-                case -4:
-                    if (8 * sizeof(char) - 1 > 3 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(char, long, -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(char) - 1 > 4 * PyLong_SHIFT) {
-                            return (char) (((char)-1)*(((((((((char)digits[3]) << PyLong_SHIFT) | (char)digits[2]) << PyLong_SHIFT) | (char)digits[1]) << PyLong_SHIFT) | (char)digits[0])));
-                        }
-                    }
-                    break;
-                case 4:
-                    if (8 * sizeof(char) > 3 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(char, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(char) - 1 > 4 * PyLong_SHIFT) {
-                            return (char) ((((((((((char)digits[3]) << PyLong_SHIFT) | (char)digits[2]) << PyLong_SHIFT) | (char)digits[1]) << PyLong_SHIFT) | (char)digits[0])));
-                        }
-                    }
-                    break;
-            }
-#endif
-            if (sizeof(char) <= sizeof(long)) {
-                __PYX_VERIFY_RETURN_INT_EXC(char, long, PyLong_AsLong(x))
-            } else if (sizeof(char) <= sizeof(PY_LONG_LONG)) {
-                __PYX_VERIFY_RETURN_INT_EXC(char, PY_LONG_LONG, PyLong_AsLongLong(x))
-            }
-        }
-        {
-#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
-            PyErr_SetString(PyExc_RuntimeError,
-                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
-#else
-            char val;
-            PyObject *v = __Pyx_PyNumber_IntOrLong(x);
- #if PY_MAJOR_VERSION < 3
-            if (likely(v) && !PyLong_Check(v)) {
-                PyObject *tmp = v;
-                v = PyNumber_Long(tmp);
-                Py_DECREF(tmp);
-            }
- #endif
-            if (likely(v)) {
-                int one = 1; int is_little = (int)*(unsigned char *)&one;
-                unsigned char *bytes = (unsigned char *)&val;
-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
-                                              bytes, sizeof(val),
-                                              is_little, !is_unsigned);
-                Py_DECREF(v);
-                if (likely(!ret))
-                    return val;
-            }
-#endif
-            return (char) -1;
-        }
-    } else {
-        char val;
-        PyObject *tmp = __Pyx_PyNumber_IntOrLong(x);
-        if (!tmp) return (char) -1;
-        val = __Pyx_PyInt_As_char(tmp);
-        Py_DECREF(tmp);
-        return val;
-    }
-raise_overflow:
-    PyErr_SetString(PyExc_OverflowError,
-        "value too large to convert to char");
-    return (char) -1;
-raise_neg_overflow:
-    PyErr_SetString(PyExc_OverflowError,
-        "can't convert negative value to char");
-    return (char) -1;
-}
-
-/* CIntFromPy */
           static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *x) {
     const long neg_one = (long) -1, const_zero = (long) 0;
     const int is_unsigned = neg_one > const_zero;
@@ -25867,6 +24989,191 @@ raise_neg_overflow:
     PyErr_SetString(PyExc_OverflowError,
         "can't convert negative value to long");
     return (long) -1;
+}
+
+/* CIntFromPy */
+          static CYTHON_INLINE char __Pyx_PyInt_As_char(PyObject *x) {
+    const char neg_one = (char) -1, const_zero = (char) 0;
+    const int is_unsigned = neg_one > const_zero;
+#if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_Check(x))) {
+        if (sizeof(char) < sizeof(long)) {
+            __PYX_VERIFY_RETURN_INT(char, long, PyInt_AS_LONG(x))
+        } else {
+            long val = PyInt_AS_LONG(x);
+            if (is_unsigned && unlikely(val < 0)) {
+                goto raise_neg_overflow;
+            }
+            return (char) val;
+        }
+    } else
+#endif
+    if (likely(PyLong_Check(x))) {
+        if (is_unsigned) {
+#if CYTHON_USE_PYLONG_INTERNALS
+            const digit* digits = ((PyLongObject*)x)->ob_digit;
+            switch (Py_SIZE(x)) {
+                case  0: return (char) 0;
+                case  1: __PYX_VERIFY_RETURN_INT(char, digit, digits[0])
+                case 2:
+                    if (8 * sizeof(char) > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(char, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(char) >= 2 * PyLong_SHIFT) {
+                            return (char) (((((char)digits[1]) << PyLong_SHIFT) | (char)digits[0]));
+                        }
+                    }
+                    break;
+                case 3:
+                    if (8 * sizeof(char) > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(char, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(char) >= 3 * PyLong_SHIFT) {
+                            return (char) (((((((char)digits[2]) << PyLong_SHIFT) | (char)digits[1]) << PyLong_SHIFT) | (char)digits[0]));
+                        }
+                    }
+                    break;
+                case 4:
+                    if (8 * sizeof(char) > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(char, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(char) >= 4 * PyLong_SHIFT) {
+                            return (char) (((((((((char)digits[3]) << PyLong_SHIFT) | (char)digits[2]) << PyLong_SHIFT) | (char)digits[1]) << PyLong_SHIFT) | (char)digits[0]));
+                        }
+                    }
+                    break;
+            }
+#endif
+#if CYTHON_COMPILING_IN_CPYTHON
+            if (unlikely(Py_SIZE(x) < 0)) {
+                goto raise_neg_overflow;
+            }
+#else
+            {
+                int result = PyObject_RichCompareBool(x, Py_False, Py_LT);
+                if (unlikely(result < 0))
+                    return (char) -1;
+                if (unlikely(result == 1))
+                    goto raise_neg_overflow;
+            }
+#endif
+            if (sizeof(char) <= sizeof(unsigned long)) {
+                __PYX_VERIFY_RETURN_INT_EXC(char, unsigned long, PyLong_AsUnsignedLong(x))
+            } else if (sizeof(char) <= sizeof(unsigned PY_LONG_LONG)) {
+                __PYX_VERIFY_RETURN_INT_EXC(char, unsigned PY_LONG_LONG, PyLong_AsUnsignedLongLong(x))
+            }
+        } else {
+#if CYTHON_USE_PYLONG_INTERNALS
+            const digit* digits = ((PyLongObject*)x)->ob_digit;
+            switch (Py_SIZE(x)) {
+                case  0: return (char) 0;
+                case -1: __PYX_VERIFY_RETURN_INT(char, sdigit, (sdigit) (-(sdigit)digits[0]))
+                case  1: __PYX_VERIFY_RETURN_INT(char,  digit, +digits[0])
+                case -2:
+                    if (8 * sizeof(char) - 1 > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(char, long, -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(char) - 1 > 2 * PyLong_SHIFT) {
+                            return (char) (((char)-1)*(((((char)digits[1]) << PyLong_SHIFT) | (char)digits[0])));
+                        }
+                    }
+                    break;
+                case 2:
+                    if (8 * sizeof(char) > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(char, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(char) - 1 > 2 * PyLong_SHIFT) {
+                            return (char) ((((((char)digits[1]) << PyLong_SHIFT) | (char)digits[0])));
+                        }
+                    }
+                    break;
+                case -3:
+                    if (8 * sizeof(char) - 1 > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(char, long, -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(char) - 1 > 3 * PyLong_SHIFT) {
+                            return (char) (((char)-1)*(((((((char)digits[2]) << PyLong_SHIFT) | (char)digits[1]) << PyLong_SHIFT) | (char)digits[0])));
+                        }
+                    }
+                    break;
+                case 3:
+                    if (8 * sizeof(char) > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(char, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(char) - 1 > 3 * PyLong_SHIFT) {
+                            return (char) ((((((((char)digits[2]) << PyLong_SHIFT) | (char)digits[1]) << PyLong_SHIFT) | (char)digits[0])));
+                        }
+                    }
+                    break;
+                case -4:
+                    if (8 * sizeof(char) - 1 > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(char, long, -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(char) - 1 > 4 * PyLong_SHIFT) {
+                            return (char) (((char)-1)*(((((((((char)digits[3]) << PyLong_SHIFT) | (char)digits[2]) << PyLong_SHIFT) | (char)digits[1]) << PyLong_SHIFT) | (char)digits[0])));
+                        }
+                    }
+                    break;
+                case 4:
+                    if (8 * sizeof(char) > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(char, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(char) - 1 > 4 * PyLong_SHIFT) {
+                            return (char) ((((((((((char)digits[3]) << PyLong_SHIFT) | (char)digits[2]) << PyLong_SHIFT) | (char)digits[1]) << PyLong_SHIFT) | (char)digits[0])));
+                        }
+                    }
+                    break;
+            }
+#endif
+            if (sizeof(char) <= sizeof(long)) {
+                __PYX_VERIFY_RETURN_INT_EXC(char, long, PyLong_AsLong(x))
+            } else if (sizeof(char) <= sizeof(PY_LONG_LONG)) {
+                __PYX_VERIFY_RETURN_INT_EXC(char, PY_LONG_LONG, PyLong_AsLongLong(x))
+            }
+        }
+        {
+#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
+            PyErr_SetString(PyExc_RuntimeError,
+                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
+#else
+            char val;
+            PyObject *v = __Pyx_PyNumber_IntOrLong(x);
+ #if PY_MAJOR_VERSION < 3
+            if (likely(v) && !PyLong_Check(v)) {
+                PyObject *tmp = v;
+                v = PyNumber_Long(tmp);
+                Py_DECREF(tmp);
+            }
+ #endif
+            if (likely(v)) {
+                int one = 1; int is_little = (int)*(unsigned char *)&one;
+                unsigned char *bytes = (unsigned char *)&val;
+                int ret = _PyLong_AsByteArray((PyLongObject *)v,
+                                              bytes, sizeof(val),
+                                              is_little, !is_unsigned);
+                Py_DECREF(v);
+                if (likely(!ret))
+                    return val;
+            }
+#endif
+            return (char) -1;
+        }
+    } else {
+        char val;
+        PyObject *tmp = __Pyx_PyNumber_IntOrLong(x);
+        if (!tmp) return (char) -1;
+        val = __Pyx_PyInt_As_char(tmp);
+        Py_DECREF(tmp);
+        return val;
+    }
+raise_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "value too large to convert to char");
+    return (char) -1;
+raise_neg_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "can't convert negative value to char");
+    return (char) -1;
 }
 
 /* TypeInfoCompare */

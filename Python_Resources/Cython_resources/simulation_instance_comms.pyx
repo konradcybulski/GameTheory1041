@@ -233,8 +233,8 @@ cdef class InstanceVariables:
     cdef public int[:] population
     cdef public int[:] reputation
 
-    cdef double coop_index_sum
-    cdef double interaction_count
+    cdef long double coop_index_sum
+    cdef long double interaction_count
     cdef int track_coop
 
     @cython.boundscheck(False)
