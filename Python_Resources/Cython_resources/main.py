@@ -40,7 +40,7 @@ def simulate_parallel(runs, generations, population_size, mutation_rate,
     return cooperation_index_average
 
 
-def simulate_data(filename, runs_per_thread, generations, Z, socialnorm):
+def simulate_data(filename, runs_per_thread, generations, Z, socialnorm, rep_spread):
 
     runs = runs_per_thread
     population_size = Z
@@ -48,7 +48,7 @@ def simulate_data(filename, runs_per_thread, generations, Z, socialnorm):
     execution_error = 0.08
     reputation_assignment_error = 0.01
     private_assessment_error = 0.01
-    reputation_spread_rate = 1.0
+    reputation_spread_rate = rep_spread
     reputation_update_prob = 1.0
     cost = 1
     benefit = 5
@@ -67,7 +67,8 @@ def simulate_data(filename, runs_per_thread, generations, Z, socialnorm):
         cooperation_index_values_i = result.get()
         cooperation_index_average += float(cooperation_index_values_i[0])
         out_string = str(cooperation_index_values_i[0]) + ", Z: " + \
-            str(cooperation_index_values_i[1]) + " of " + str(np.ndarray.tolist(cooperation_index_values_i[2]))
+            str(cooperation_index_values_i[1]) + " of " + str(np.ndarray.tolist(cooperation_index_values_i[2])) + \
+            ", Reputation spread rate: " + str(reputation_spread_rate)
         file_out = open(filename, 'a')
         file_out.write(out_string + "\n")
         file_out.close()
@@ -118,18 +119,38 @@ if __name__ == '__main__':
         # ["Z12_Data_Comms.txt", 12, ZERO],
         # ["Z12_Data_Comms.txt", 12, IS],
 
-        ["Z25_Data_Comms.txt", 25, SS],
-        ["Z25_Data_Comms.txt", 25, SJ],
-        ["Z25_Data_Comms.txt", 25, ZERO],
-        ["Z25_Data_Comms.txt", 25, IS],
+        ["Z25_Data_Comms.txt", 25, SS, 1.0],
+        ["Z25_Data_Comms.txt", 25, SJ, 1.0],
+        ["Z25_Data_Comms.txt", 25, ZERO, 1.0],
+        ["Z25_Data_Comms.txt", 25, IS, 1.0],
 
-        ["Z50_Data_Comms.txt", 50, SS],
-        ["Z50_Data_Comms.txt", 50, SJ],
-        ["Z50_Data_Comms.txt", 50, ZERO],
-        ["Z50_Data_Comms.txt", 50, IS],
+        ["Z50_Data_Comms.txt", 50, SS, 1.0],
+        ["Z50_Data_Comms.txt", 50, SJ, 1.0],
+        ["Z50_Data_Comms.txt", 50, ZERO, 1.0],
+        ["Z50_Data_Comms.txt", 50, IS, 1.0],
+
+        ["Z5_Data_Comms.txt", 5, SS, 0.5],
+        ["Z5_Data_Comms.txt", 5, SJ, 0.5],
+        ["Z5_Data_Comms.txt", 5, ZERO, 0.5],
+        ["Z5_Data_Comms.txt", 5, IS, 0.5],
+
+        ["Z12_Data_Comms.txt", 12, SS, 0.5],
+        ["Z12_Data_Comms.txt", 12, SJ, 0.5],
+        ["Z12_Data_Comms.txt", 12, ZERO, 0.5],
+        ["Z12_Data_Comms.txt", 12, IS, 0.5],
+
+        ["Z25_Data_Comms.txt", 25, SS, 0.5],
+        ["Z25_Data_Comms.txt", 25, SJ, 0.5],
+        ["Z25_Data_Comms.txt", 25, ZERO, 0.5],
+        ["Z25_Data_Comms.txt", 25, IS, 0.5],
+
+        ["Z50_Data_Comms.txt", 50, SS, 0.5],
+        ["Z50_Data_Comms.txt", 50, SJ, 0.5],
+        ["Z50_Data_Comms.txt", 50, ZERO, 0.5],
+        ["Z50_Data_Comms.txt", 50, IS, 0.5],
     ]
 
     for data in simulation_data:
-        simulate_data(data[0], run_number, generation_number, data[1], data[2])
+        simulate_data(data[0], run_number, generation_number, data[1], data[2], data[3])
     end = time.clock()
     print("\nSimulation completed in " + str(end - start))
