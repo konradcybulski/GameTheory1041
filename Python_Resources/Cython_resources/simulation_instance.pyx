@@ -132,12 +132,10 @@ cdef double[:] fitness_function(int x, int y, InstanceVariables variables):
 cdef double simulate(int runs, int generations, int population_size, double mutation_rate,
                  double execution_error, double reputation_assignment_error,
                  double private_assessment_error, double reputation_update_rate,
-                 double reputation_spread_prob,
                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
     cdef InstanceVariables variables = InstanceVariables(runs, generations, population_size, mutation_rate,
                                   execution_error, reputation_assignment_error,
                                   private_assessment_error, reputation_update_rate,
-                                  reputation_spread_prob,
                                   socialnorm, cost, benefit)
     cdef int r, g, i
     cdef int Z = variables.population_size
@@ -183,12 +181,10 @@ cdef double simulate(int runs, int generations, int population_size, double muta
 def run_instance(int runs, int generations, int population_size, double mutation_rate,
                  double execution_error, double reputation_assignment_error,
                  double private_assessment_error, double reputation_update_rate,
-                 double reputation_spread_prob,
                  np.ndarray[DINT_t, ndim=2] socialnorm, int cost, int benefit):
     cdef double result = simulate(1, generations, population_size, mutation_rate,
                                   execution_error, reputation_assignment_error,
                                   private_assessment_error, reputation_update_rate,
-                                  reputation_spread_prob,
                                   socialnorm, cost, benefit)
     return [result, population_size, socialnorm]
 

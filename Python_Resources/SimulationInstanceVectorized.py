@@ -24,7 +24,7 @@ strategies = np.array([[0, 0],  # AllD
                       [1, 1]])  # AllC
 
 
-def fitness_function(x, y_array, variables):
+def payoff_function(x, y_array, variables):
     """
     :param x: the index of agent-x in population
     :param y_array: the array of indices of agent-y's in population
@@ -122,7 +122,36 @@ def fitness_function(x, y_array, variables):
     return float((variables.benefit * coops_y) - (variables.cost * coops_x))
 
 
+def fitness_function(agent_x, agent_y, variables):
+    Z = variables.population_size
+
+    fitness_x = 0.0
+    fitness_y = 0.0
+
+    # Creating tournament arrays
+    probabilities_x = np.ones(variables.population_size, dtype=np.float) / float(variables.population_size - 1)
+    probabilities_x[agent_x] = 0.0
+    probabilities_y = np.ones(variables.population_size, dtype=np.float) / float(variables.population_size - 1)
+    probabilities_y[agent_y] = 0.0
+
+    for _ in range(4):
+        tournament_sample_x = np.random.choice(variables.population_size, size=(variables.population_size - 1) // 2,
+                                               p=probabilities_x,
+                                               replace=False)
+        tournament_sample_y = np.random.choice(variables.population_size, size=(variables.population_size - 1) // 2,
+                                               p=probabilities_y,
+                                               replace=False)
+
+        fitness_x += payoff_function(agent_x, tournament_sample_x, variables)
+        fitness_y += payoff_function(agent_y, tournament_sample_y, variables)
+
+    fitness_x /= float(2.0 * variables.population_size)
+    fitness_y /= float(2.0 * variables.population_size)
+    return [fitness_x, fitness_y]
+
+
 def simulate(variables):
+    Z = variables.population_size
     for r in range(0, variables.runs):
 
         # Initialise random population
@@ -135,39 +164,19 @@ def simulate(variables):
                 variables.track_cooperation = True
 
             mutation_probabilities = np.random.rand(variables.population_size) < variables.mutation_rate
+            agent_pairs = [np.random.choice(Z, size=2, replace=False) for _ in range(Z)]
             for i in range(variables.population_size):
 
-                fitness_a = 0.0
-                fitness_b = 0.0
-
-                agent_one = np.random.randint(variables.population_size)
+                agent_one = agent_pairs[i][0]
+                agent_two = agent_pairs[i][1]
 
                 # Random mutation probability
                 if mutation_probabilities[i]:
                     variables.population[agent_one] = np.random.randint(4)
 
-                # Make sure B != A
-                agent_two = np.random.randint(variables.population_size)
-                while agent_two == agent_one:
-                    agent_two = np.random.randint(variables.population_size)
-
-                # Creating tournament arrays
-                probabilities_a = np.ones(variables.population_size, dtype=np.float) / float(variables.population_size - 1)
-                probabilities_a[agent_one] = 0.0
-                probabilities_b = np.ones(variables.population_size, dtype=np.float) / float(variables.population_size - 1)
-                probabilities_b[agent_two] = 0.0
-
-                for _ in range(4):
-                    tournament_sample_a = np.random.choice(variables.population_size, size=(variables.population_size - 1)//2, p=probabilities_a,
-                                                           replace=False)
-                    tournament_sample_b = np.random.choice(variables.population_size, size=(variables.population_size - 1)//2, p=probabilities_b,
-                                                           replace=False)
-
-                    fitness_a += fitness_function(agent_one, tournament_sample_a, variables)
-                    fitness_b += fitness_function(agent_two, tournament_sample_b, variables)
-
-                fitness_a /= float(2.0 * variables.population_size)
-                fitness_b /= float(2.0 * variables.population_size)
+                fitness = fitness_function(agent_one, agent_two, variables)
+                fitness_a = fitness[0]
+                fitness_b = fitness[1]
 
                 if np.random.random() < np.power(1.0 + np.exp(float(1)*float(fitness_a - fitness_b)), -1.0):
                     variables.population[agent_one] = variables.population[agent_two]
@@ -176,7 +185,7 @@ def simulate(variables):
 def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
                  ExecutionError, ReputationAssignmentError,
                  PrivateAssessmentError, ReputationUpdateProbability,
-                 RandomSeed, SocialNormMatrix, CostValue, BenefitValue):
+                 SocialNormMatrix, CostValue, BenefitValue):
     """
     :return: an array in the form:
             [cooperation_index_avg,
@@ -195,22 +204,56 @@ def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
     return result
 
 if __name__ == "__main__":
-    start = time.clock()
-    num_threads = multiprocessing.cpu_count()
-    pool = multiprocessing.Pool(num_threads)
-    cooperation_index_avg = 0.0
-    results = [pool.apply_async(run_instance,
-                                args=(1, 3*np.power(10, 4), 12, np.power(10*12, -1.0),
-                                      0.08, 0.01, 0.01, 1.0,
-                                      1, [[1, 0], [0, 1]], 1, 5)) for _ in range(num_threads)]
-    """
-    result is the cooperation index
-    """
-    for result in results:
-        cooperation_index_values_i = result.get()
-        cooperation_index_avg += float(cooperation_index_values_i)
-        print(cooperation_index_values_i)
-    cooperation_index_avg /= float(num_threads)
-    end = time.clock()
-    print(cooperation_index_avg)
-    print("Simulation completed in " + str(end - start) + " seconds.")
+    SJ = [[1, 0], [0, 1]]
+    SS = [[1, 1], [0, 1]]
+    ZERO = [[0, 0], [0, 0]]
+    IS = [[1, 1], [0, 0]]
+
+    run_number = 1
+    generation_number = 3 * np.power(10, 3)
+    simulation_data = [
+        # ["Z35_Data.txt", 35, SS],
+        # ["Z35_Data.txt", 35, SJ],
+        # ["Z35_Data.txt", 35, ZERO],
+        # ["Z35_Data.txt", 35, IS],
+
+        # ["Z50_Data.txt", 50, SS],
+        # ["Z50_Data.txt", 50, SJ],
+        # ["Z50_Data.txt", 50, ZERO],
+        # ["Z50_Data.txt", 50, IS],
+
+        # ["Z70_Data.txt", 70, SS],
+        # ["Z70_Data.txt", 70, SJ],
+        # ["Z70_Data.txt", 70, ZERO],
+        # ["Z70_Data.txt", 70, IS],
+
+        ["Z90_Data.txt", 90, SS],
+        ["Z90_Data.txt", 90, SJ],
+        ["Z90_Data.txt", 90, ZERO],
+        ["Z90_Data.txt", 90, IS],
+    ]
+
+    for data in simulation_data:
+
+        start = time.clock()
+        num_threads = multiprocessing.cpu_count()
+        pool = multiprocessing.Pool(num_threads)
+        cooperation_index_avg = 0.0
+        results = [pool.apply_async(run_instance,
+                                    args=(run_number, generation_number, data[1], np.power(10.0*data[1], -1.0),
+                                          0.08, 0.01, 0.01, 1.0,
+                                          data[2], 1, 5)) for _ in range(num_threads)]
+        for result in results:
+            cooperation_index_values_i = result.get()
+            cooperation_index_avg += float(cooperation_index_values_i)
+            out_string = str(float(cooperation_index_values_i)) + ", Z: " + \
+                         str(data[1]) + " of " + str(data[2])
+            file_out = open(data[0], 'a')
+            file_out.write(out_string + "\n")
+            file_out.close()
+            print(out_string)
+            print(cooperation_index_values_i)
+        cooperation_index_avg /= float(num_threads)
+        end = time.clock()
+        print(cooperation_index_avg)
+        print("Simulation completed in " + str(end - start) + " seconds.")
