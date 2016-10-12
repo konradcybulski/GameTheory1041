@@ -72,6 +72,7 @@ def simulate_data(filename, runs_per_thread, generations, Z, socialnorm, spread)
         file_out.close()
         print(out_string)
     cooperation_index_average /= float(num_threads)
+    pool.close()
     # pool.join()
     # pool.terminate()
     return cooperation_index_average
@@ -105,7 +106,7 @@ if __name__ == '__main__':
     IS = [[1, 1], [0, 0]]
 
     run_number = 1
-    generation_number = 3 * np.power(10, 5)
+    generation_number = 15 * np.power(10, 4)
     simulation_data = [
 
         ["Data/Spread05.txt", 25, SJ, 0.5],
