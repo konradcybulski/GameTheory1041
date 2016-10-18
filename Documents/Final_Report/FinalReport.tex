@@ -35,7 +35,7 @@
         Faculty of Information Technology\\
         Monash University\\
         Australia\\
-        24/10/2016
+        21/10/2016
         
     \end{center}
 \end{titlepage}
@@ -77,6 +77,7 @@ The majority of the optimisation however was done by utilising Cython.
 \\
 The method of vectorizing the program took was aimed at parallelizing the stage at which one individual interacted with a number of other individuals in order to determine its average fitness over a number of interactions. 
 All optimizations made at any point in the algorithm were tested to ensure complete correctness and verify the algorithm itself had been altered functionally in any way.
+
 \subsection{Vectorization of the fitness function}
 The fitness function, the function to determine the average fitness of an individual over the course of a series of prisoner's dilemma games with other individual in the population, was the aim of the optimization. 
 The vectorization was required to compute a series of vectors in order to computer the payoff for a given agent X and update the reputations of X and a vector of other agents (the tournament vector).
@@ -85,7 +86,7 @@ The following computations were required:
 \\ 1. Vector of actions taken by a given agent X against each opposing individual in the tournament vector.
 \\ 2. Vector of actions taken by each agent in the tournament vector.
 \\ 3. Vector of the reputation of X after each interaction.
-\\ 4. Vector of the reputation of each agent after each interaction with X. \\\\
+\\ 4. Vector of the reputation of each agent after each interaction with X. \\
 
 The equations defining the actions of both agent X (\emph{$C_{x}$}) and each agent in the tournament vector (\emph{$C_{y}$}) are defined as:\\
 $A_{i}$ = the vector of size two defining the possible actions of agent i against another agent Y, this vector contains the action if Y has reputation G and if Y has reputation B.\\
@@ -138,30 +139,41 @@ The optimizations made to increase the program's time complexity and execution t
 \subsection{Vectorization of the fitness function}
 The pure Python vectorization of the simulation aimed to reduce the overall time complexity of the fitness function from O(\emph{Z}) to O(1).
 While all vector operations performed may take up to O(N) time complexity at a lower level, due to the large overhead of Python function calls the vectorized function reduces the number of function calls from \emph{Z} to 1.
-\\
+\\\\
 The fitness function itself reduces to almost O(1) for values of $\emph{Z}$ within the testing range $(\emph{Z} \in [10, 600])$ (\textit{Figure 2}).
-While the vectorized fitness function is slower than the non-vectorized function, for very large population sizes, it allows the simulation to be tractable and brings the total simulation time complexity to O(\emph{$Z \cdot G\cdot R$}).
-\\
+The results show that the increase in running time for the vectorized function is marginal for large increases in population size.
+While the vectorized fitness function is slower than the non-vectorized function for population sizes below 70, for very large population sizes, it allows the simulation to be tractable and brings the total simulation time complexity to O(\emph{$Z \cdot G\cdot R$}).
+\\\\
 As evident in \textit{Figure 3}, the vectorized function performs much worse on smaller population sizes compared to both the pure Python and Cython programs, however past the mark of \emph{Z}=130, the vectorized function performs much faster with a greatly improved rate of increase.
+However we see in the run time for the fitness function itself, it is far quicker for populations less than 70, however we only see a reduction in run time for the entire simulation for population sizes above 130.
+One possible reason for this discrepancy is that there is a lot of computation time in the vectorized function spent creating new arrays to contain existing data.
+The process of array creation is very CPU heavy and as a result, in order to further speed up the program, code should be written to run in place with no added space complexity.
+\\\\
 This reduction in time complexity allows further work to be done on larger population sizes and to aid in the understanding of reputation and its effect on cooperation in population sizes of greater than 130.
 
 \subsection{Verification of results}
 Simulations were tested using $\epsilon = 0.08, \chi = 0.01, \alpha = 0.01, \mu = (10 \cdot Z)^{-1}, \tau = 1.0$, and contrasted against the data provided in the supporting material of Santos, Santos, Pachecho given $ 5 \leq \emph{Z} \leq 70.$
-As shown in \textit{Figure 4}, the program produced results that closely reflect those of the paper. 
 The four social norms investigated were Stern Judging, Simple Standing, Uniform Zero and Image Score
 Each of the results was the average of R=100 runs and G=$3 \cdot 10^{5}$ generations. 
-Thus the simulation produced verifies the results produced in the paper according to the simulation parameters detailed in the supporting material given the simulations performed and shown in this report.
+\\\\
+\textit{Figure 4} (bottom) shows the results of the simulation run as part of this report compared to those provided in the paper.
+The general trend for Stern Judging in the paper is a steep change between population size of 5 and 10 and converges to 0.82 very quickly and maintains this cooperation index for the entirety of the sample population sizes.
+We see this trend as an exact match to the results of this report.
+For Simple Standing we see a gradual increase in cooperation and reaches a stable value around 0.60, this is evident in both the paper's results and those of this report.
+For the Uniform Zero social norm, we see an almost zero cooperation index for all population sizes.
+Image Scoring provides a higher cooperation for lower population sizes however goes towards zero maintaining a low cooperation index of around 0.1, as shown in both graphs.
+\\\\
+The program produced results that closely reflect those of the paper for the population sizes tested. 
+Thus the simulation produced verifies the results produced in the paper according to the simulation parameters detailed in the supporting material given the sample of population sizes tested in this report.
 
 \subsection{Further work}
 With a simulation developed that is both fast for small population sizes and tractable for large populations, there is a platform for testing new models with relatively small changes to the simulation itself.
 As shown in section 6 (\textit{Extension}) there lies little difficulty in implementing new functionality to test both different parameters and different processes by which we perform the simulation.
-\\
+\\\\
 Regarding large population sizes, there exists work that can be done regarding converting the vectorized Python simulation to a Cython or C/C++ program to improve the speed again.
 Further improvements can be made to the program to increase the speed of the simulation including converting of the Cython program to pure C/C++ in addition to the vectorized simulation.
 This adaptation will most likely further improve the run time of the simulation for small population sizes ($\emph{Z} \leq 130$) in a similar fashion to that shown in \textit{Figure 3}.
-\\
 
-\pagebreak
 \section{Extension}
 The method by which Santos, Santos and Pacheco incorporate private assessment errors of the reputation of any other agent in the simulation involves the use of a single variable $\chi$ which determines this error for all agents.
 The error $\chi$ determines the probability that a given agent will wrongly assess the reputation of another agent in a given interaction.
@@ -169,8 +181,6 @@ The extension on this project aimed to investigate the effect of dynamic assessm
 The process by which this variable assessment error is incorporated into the simulation is outlined in \textit{Methodology (6.1)}
 $ \\\\ $
 While it is expected that the cooperation index for smaller population sizes will stay relatively constant for a given social norm in comparison to a constant private assessment error, for larger population sizes, this propagation delay may have a greater impact on the rate of cooperation.
-
-$ $
 
 \subsection{Methodology}
 The likelihood of wrongly assessing the reputation of a given individual is defined as a function of the time since the last update of that individual's reputation.
@@ -194,10 +204,53 @@ $ \chi(t) = 1 - \chi_{min} - \dfrac{(1 + R_{s})^{t}}{Z},\tab \chi_{min} \leq \ch
 
 \subsection{Results}
 
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=28em]{comms_SJ.PNG}
+  \includegraphics[width=28em]{comms_SS.PNG}
+\end{center}
+  \caption{Results of Stern Judging (Top) and the Simple Standing (Bottom) under parameters $\epsilon = 0.08, \chi_{min} = 0.01, \alpha = 0.01, \mu = (10 \cdot Z)^{-1}$ under different information spread rates.}
+  \label{fig:CommResults}
+\end{figure}
+
 \subsection{Discussion}
+The tests conducted involved investigating the effect of different spread rates over a range of population sizes.
+With the expectation being that a slower reputation spread rate results in information being unavailable to agents in the population when interacting with an agent whose reputation has recently changed.
+The time it takes for information to spread to the entire population increases logarithmically with the population size, however the probability of interacting with an agent whose reputation has recently changed decreases with the increase of the population size.
+From this we expect that for a large enough population size, this information delay will become insignificant and interactions should be unaffected by this additional error.
+\\\\
+Investigating the probability that any given agent will \textbf{not} interact with an agent whose reputation has changed within the amount of time required for this information to spread to the entire population, we arrive at the following graph.
+The probability of not interacting with an agent within this time frame is shown for a series of population sizes.
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=28em]{probability_of_interaction.png}
+\end{center}
+  \label{fig:ProbabilityComms}
+\end{figure}
+
+We see that over time the probability decreases since the time taken to spread increases logarithmically and the rate of increase decreases.
+Since the chance of interacting with any given agent is uniformly $\dfrac{1}{Z}$ the probability of \textbf{not} interacting will an agent that has had their reputation changed within the time for their assessment error to go to $\chi_{min}$ converges to 1.
+\\\\
+Looking at the results for the Stern Judging social norm, we see for low spread rates, the cooperation index starts low and then converge to zero very quickly.
+As the information spread rate increases, we see that the plot of cooperation indexes approaches that of the simulations ran without a variable private assessment error.
+Extremely low spread rates show poor rates of cooperation for all population sizes however spread rates of 1.0 and 1.75 still show relatively high rates of cooperation for small population sizes.
+As the spread increases, we see that for spread rates for 3.0 and 6.0 both reach the same cooperation index for a population size of 110.
+The spread rate of 3.0 defies the trend of the lower spread rates.
+While lower spread rates go towards zero very quickly, a spread of 3.0 decreases slightly at a population size of 50 yet continues to rise for 70, 90 and a marginal increase at 110.
+\\\\
+For the social norm Simple Standing however, it is more evident that regardless of the spread rate, the cooperation indexes goes to zero.
+The larger the spread rate, the more it approaches the shape of the constant assessment error model of the simulation.
+A spread rate of 6.0 is most similar to that of the constant assessment error trend, yet begins to fall to zero after a population size of 50.
+Each plot shows a trend which follows the constant assessment error trend and quickly drops off before approaching zero as the population size increases. 
+Similarly to the results of the social norm Stern Judging, lower spread rates consistently result in a lower cooperation index, however spread rates in the midrange (spread rates of 1.75-3.0) can provide relatively large cooperation indexes for small populations yet cannot maintain this for larger population sizes.
+\\\\
+Regardless of the spread rate for both Stern Judging and Simple Standing, the difference in the respective cooperation rates holds true with regard to the results of the constant assessment error model.
+Stern Judging maintains a high cooperation index all population sizes, and in comparison to Simple Standing, outperforms, for all population sizes with respective spread rates.
 
 \subsection{Further work}
-
+There is work still required to investigate the effect of variable assessment error on larger population sizes.
+The expectations formed around the effect of variable assessment error on large populations have not been looked into.
+While we see that lower spread rates lead to zero cooperation rates for larger population sizes, for much larger population sizes simulations are required to verify the expectation that the cooperation rate will increase as the population size reaches much larger numbers.
 
 \pagebreak
 \begin{thebibliography}{9}
