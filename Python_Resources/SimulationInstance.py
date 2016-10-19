@@ -7,8 +7,6 @@ Code written utilising pseudocode provided
  societies' by Santos, Santos, Pacheco
 """
 import numpy as np
-import time
-from collections import Counter
 from InstanceVariables import InstanceVariables
 
 """
@@ -20,31 +18,6 @@ strategies = np.array([[0, 0],  # AllD
               [1, 0],  # pDisc
               [0, 1],  # Disc
               [1, 1]])  # AllC
-
-# Data saving variables
-generation_data_save_wait = -1
-generation_data_save_filename = ""
-
-
-def save_generation_data(gen_num, variables):
-    counter = Counter(variables.population)
-    alld_count = counter[0]
-    pdisc_count = counter[1]
-    disc_count = counter[2]
-    allc_count = counter[3]
-    out_string = str(gen_num) + "," +\
-        str(alld_count) + "," +\
-        str(pdisc_count) + "," +\
-        str(disc_count) + "," +\
-        str(allc_count) + "," +\
-        str(float(alld_count)/float(variables.population_size)) + "," +\
-        str(float(pdisc_count)/float(variables.population_size)) + "," +\
-        str(float(disc_count)/float(variables.population_size)) + "," +\
-        str(float(allc_count)/float(variables.population_size)) + ",\n"
-    file_out = open(generation_data_save_filename, 'a')
-    file_out.write(out_string)
-    file_out.close()
-
 
 def payoff_function(x, y, variables):
     """
@@ -166,10 +139,6 @@ def simulate(runs, generations, population_size, mutation_rate,
                 if np.random.random() < np.power(1 + np.exp(fitness_a - fitness_b), -1):
                     variables.population[agent_one] = variables.population[agent_two]
 
-                # Save generation information.
-                if generation_data_save_filename != "":
-                    if t % generation_data_save_wait == 0:
-                        save_generation_data(t, variables)
     # Simulation ends
     # Return cooperation index.
     coop_index = variables.get_average_coop_index()

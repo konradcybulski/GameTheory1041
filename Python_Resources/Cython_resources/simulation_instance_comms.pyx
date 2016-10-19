@@ -1,5 +1,3 @@
-# cdef extern from "stdlib.h":
-#     double drand48()
 from libc.stdlib cimport rand, RAND_MAX
 from libc.math cimport exp
 import cython
@@ -188,11 +186,6 @@ cdef double simulate(int runs, int generations, int population_size, double muta
 
                 if (rand()*1.0/RAND_MAX) < pow(1 + exp(fitness_a - fitness_b), -1):
                     variables.population[agent_one] = variables.population[agent_two]
-            # if g % 100 == 0:
-            #     if variables.track_coop:
-            #         print("Coop: " + str(variables.get_average_coop_index()))
-            #     else:
-            #         print("Gen: " + str(g))
 
     cdef double result = variables.get_average_coop_index()
     return result

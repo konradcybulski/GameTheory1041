@@ -9,7 +9,6 @@ Code written utilising pseudocode provided
 import numpy as np
 import time
 import multiprocessing
-from collections import Counter
 
 from InstanceVariables import InstanceVariables
 
@@ -150,7 +149,14 @@ def fitness_function(agent_x, agent_y, variables):
     return [fitness_x, fitness_y]
 
 
-def simulate(variables):
+def simulate(runs, generations, population_size, mutation_rate,
+             execution_error, reputation_assignment_error,
+             private_assessment_error, reputation_update_prob,
+             socialnorm, cost, benefit):
+    variables = InstanceVariables(runs, generations, population_size, mutation_rate,
+                                  execution_error, reputation_assignment_error,
+                                  private_assessment_error, reputation_update_prob,
+                                  socialnorm, cost, benefit)
     Z = variables.population_size
     for r in range(0, variables.runs):
 
@@ -180,80 +186,5 @@ def simulate(variables):
 
                 if np.random.random() < np.power(1.0 + np.exp(float(1)*float(fitness_a - fitness_b)), -1.0):
                     variables.population[agent_one] = variables.population[agent_two]
-
-
-def run_instance(NumRuns, NumGenerations, PopulationSize, MutationRate,
-                 ExecutionError, ReputationAssignmentError,
-                 PrivateAssessmentError, ReputationUpdateProbability,
-                 SocialNormMatrix, CostValue, BenefitValue):
-    """
-    :return: an array in the form:
-            [cooperation_index_avg,
-            cooperation_index_min,
-            cooperation_index_max,
-            cooperation_index_zero_proportion,
-            cooperation_index_without_zeros]
-    """
-    variables = InstanceVariables(NumRuns, NumGenerations, PopulationSize, MutationRate,
-                                  ExecutionError, ReputationAssignmentError,
-                                  PrivateAssessmentError, ReputationUpdateProbability,
-                                  SocialNormMatrix, CostValue, BenefitValue)
-
-    simulate(variables)
     result = variables.get_average_coop_index()
     return result
-
-if __name__ == "__main__":
-    SJ = [[1, 0], [0, 1]]
-    SS = [[1, 1], [0, 1]]
-    ZERO = [[0, 0], [0, 0]]
-    IS = [[1, 1], [0, 0]]
-
-    run_number = 1
-    generation_number = 3 * np.power(10, 3)
-    simulation_data = [
-        # ["Z35_Data.txt", 35, SS],
-        # ["Z35_Data.txt", 35, SJ],
-        # ["Z35_Data.txt", 35, ZERO],
-        # ["Z35_Data.txt", 35, IS],
-
-        # ["Z50_Data.txt", 50, SS],
-        # ["Z50_Data.txt", 50, SJ],
-        # ["Z50_Data.txt", 50, ZERO],
-        # ["Z50_Data.txt", 50, IS],
-
-        # ["Z70_Data.txt", 70, SS],
-        # ["Z70_Data.txt", 70, SJ],
-        # ["Z70_Data.txt", 70, ZERO],
-        # ["Z70_Data.txt", 70, IS],
-
-        ["Z90_Data.txt", 90, SS],
-        ["Z90_Data.txt", 90, SJ],
-        ["Z90_Data.txt", 90, ZERO],
-        ["Z90_Data.txt", 90, IS],
-    ]
-
-    for data in simulation_data:
-
-        start = time.clock()
-        num_threads = multiprocessing.cpu_count()
-        pool = multiprocessing.Pool(num_threads)
-        cooperation_index_avg = 0.0
-        results = [pool.apply_async(run_instance,
-                                    args=(run_number, generation_number, data[1], np.power(10.0*data[1], -1.0),
-                                          0.08, 0.01, 0.01, 1.0,
-                                          data[2], 1, 5)) for _ in range(num_threads)]
-        for result in results:
-            cooperation_index_values_i = result.get()
-            cooperation_index_avg += float(cooperation_index_values_i)
-            out_string = str(float(cooperation_index_values_i)) + ", Z: " + \
-                         str(data[1]) + " of " + str(data[2])
-            file_out = open(data[0], 'a')
-            file_out.write(out_string + "\n")
-            file_out.close()
-            print(out_string)
-            print(cooperation_index_values_i)
-        cooperation_index_avg /= float(num_threads)
-        end = time.clock()
-        print(cooperation_index_avg)
-        print("Simulation completed in " + str(end - start) + " seconds.")

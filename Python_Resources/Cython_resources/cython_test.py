@@ -1,7 +1,12 @@
+"""
+Tests must be run by changing the function definition of
+'payoff_function' in simulation_instance from 'cdef' to 'def'
+"""
+
 import unittest
 import cython
 import numpy as np
-import Cython_resources.simulation_instance_comp as sim_c
+import Cython_resources.build.simulation_instance as sim_c
 
 class MyTestCase(unittest.TestCase):
 
@@ -14,7 +19,7 @@ class MyTestCase(unittest.TestCase):
         reputation_assignment_error = 0.0
         private_assessment_error = 0.0
         reputation_update_prob = 1.0
-        socialnorm = [[1, 0], [0, 1]]
+        socialnorm = np.array([[1, 0], [0, 1]])
         cost = 1
         benefit = 5
         variables = sim_c.InstanceVariables(runs, generations, population_size, mutation_rate,
@@ -64,8 +69,8 @@ class MyTestCase(unittest.TestCase):
                       ]
 
         for test_case in test_cases:
-            variables.population = test_case[0]
-            variables.reputation = test_case[1]
+            variables.population = np.array(test_case[0])
+            variables.reputation = np.array(test_case[1])
             payoff = sim_c.payoff_function(0, 1, variables)
             self.assertEqual(payoff, test_case[2], "Payoff for " + test_case[3] + " playing against " + test_case[4] +
                              " should be " + str(test_case[2]) + " but is " + str(payoff))
@@ -79,7 +84,7 @@ class MyTestCase(unittest.TestCase):
         reputation_assignment_error = 0.0
         private_assessment_error = 0.0
         reputation_update_prob = 1.0
-        socialnorm = [[1, 0], [0, 1]]
+        socialnorm = np.array([[1, 0], [0, 1]])
         cost = 1
         benefit = 5
         variables = sim_c.InstanceVariables(runs, generations, population_size, mutation_rate,
@@ -149,11 +154,11 @@ class MyTestCase(unittest.TestCase):
                       ]
 
         for test_case in test_cases:
-            variables.population = test_case[0]
-            variables.reputation = test_case[1]
+            variables.population = np.array(test_case[0])
+            variables.reputation = np.array(test_case[1])
             payoff = sim_c.payoff_function(0, 1, variables)
             new_rep = variables.reputation
-            self.assertEqual(new_rep, test_case[2], "Reputations for " + test_case[3] + " playing against " + test_case[4] +
+            self.assertEqual(new_rep, np.array(test_case[2]), "Reputations for " + test_case[3] + " playing against " + test_case[4] +
                              ", with social norm + " + str(variables.socialnorm) + " should be " +
                              str(test_case[2]) + " but is " + str(new_rep))
 
@@ -166,7 +171,7 @@ class MyTestCase(unittest.TestCase):
         reputation_assignment_error = 0.0
         private_assessment_error = 0.0
         reputation_update_prob = 1.0
-        socialnorm = [[1, 1], [0, 1]]
+        socialnorm = np.array([[1, 1], [0, 1]])
         cost = 1
         benefit = 5
         variables = sim_c.InstanceVariables(runs, generations, population_size, mutation_rate,
@@ -236,11 +241,11 @@ class MyTestCase(unittest.TestCase):
                       ]
 
         for test_case in test_cases:
-            variables.population = test_case[0]
-            variables.reputation = test_case[1]
+            variables.population = np.array(test_case[0])
+            variables.reputation = np.array(test_case[1])
             payoff = sim_c.payoff_function(0, 1, variables)
             new_rep = variables.reputation
-            self.assertEqual(new_rep, test_case[2], "Reputations for " + test_case[3] + " playing against " + test_case[4] +
+            self.assertEqual(new_rep, np.array(test_case[2]), "Reputations for " + test_case[3] + " playing against " + test_case[4] +
                              ", with social norm + " + str(variables.socialnorm) + " should be " +
                              str(test_case[2]) + " but is " + str(new_rep))
 

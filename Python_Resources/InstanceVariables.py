@@ -43,19 +43,3 @@ class InstanceVariables:
 
     def get_average_coop_index(self):
         return float(self.coop_index_sum)/float(self.interaction_count)
-
-
-"""
-    Test class
-"""
-if __name__ == "__main__":
-    variables = InstanceVariables(1, 1, 12, 0.001,
-                                  0.08, 0.01,
-                                  0.01, 1,
-                                  [[0, 0], [0, 1]], 1, 5)
-    print("Benefit: " + str(variables.benefit))
-    variables.benefit += 5
-    print("Benefit: " + str(variables.benefit))
-    variables.increment_coop_index(0.5)
-    variables.increment_coop_index(1)
-    print(variables.get_average_coop_index())
